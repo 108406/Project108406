@@ -10,27 +10,21 @@ var bot = linebot({
 bot.on('message', function(event) {
 	if (event.message.type = 'text') {
 		var msg = event.message.text;
-		if(event.message.type = 'text') {
-			event.reply(msg).then(function(data) {
-			//success
-			console.log(msg);
-			}).catch (function(error) {
-				//error
-				console.log('error');
-			});	
-		}else if (event.message.type = 'undefined') {
+		event.reply(msg).then(function(data) {
+		//success
+		console.log(msg);
+		}).catch (function(error) {
+			//error
+			console.log('error');
+		});	
+	}else if (event.message.type = 'sticker') {
 			event.reply("那甚麼？我看不懂QQ").then(function(data) {
 			//success
-			console.log(msg);
 			}).catch (function(error) {
 				//error
 				console.log('error');
 			});	
 		}
-		
-		
-			
-	}
 });
 
 const app = express();
