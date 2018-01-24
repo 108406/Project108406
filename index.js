@@ -13,6 +13,8 @@ var pm = [];
 var uviInfo = [];
 _getJSON();
 
+var msg;
+var replyMsg = '';
 _bot();
 const app = express();
 const linebotParser = bot.parser();
@@ -27,8 +29,7 @@ var server = app.listen(process.env.PORT || 8080, function() {
 function _bot() {
   bot.on('message', function(event) {
     if (event.message.type == 'text') {
-      var msg = event.message.text;
-      var replyMsg = '';
+      msg = event.message.text;
       _pm();
 	  _uvi();
 	  if (replyMsg = '') {
