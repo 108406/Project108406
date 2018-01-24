@@ -41,9 +41,9 @@ function _bot() {
 					if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) != -1) ) {
 						replyMsg = e[0] + e[1] + "的UVI為" + e[2];
 					}else if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) == -1) ) {
-						replyMsg = "請輸入鄉鎮地區";
+						replyMsg = "請輸入區域名稱";
 					}else if ((msg.indexOf(e[0]) == -1) && (msg.indexOf(e[1]) != -1 )) {
-						replyMsg = "請輸入縣市";
+						replyMsg = e[0] + e[1] + "的UVI為" + e[2];
 					}
 				});        
 			}
