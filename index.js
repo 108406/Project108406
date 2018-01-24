@@ -70,6 +70,7 @@ function _station() {
 function _getJSON() {
   clearTimeout(timer);
   getJSON('http://opendata2.epa.gov.tw/AQX.json', function(error, response) {
+	  console.log (response);
     response.forEach(function(e, i) {
       pm[i] = [];
       pm[i][0] = e.SiteName;
