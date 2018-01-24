@@ -83,7 +83,7 @@ function _getJSON() {
 
 
 function _getJSON2() {
-  getJSON('http://bit.ly/2rBlBWE', function(error, response) {
+  getJSON('https://www.railway.gov.tw/Upload/UserFiles/%E5%8F%B0%E9%90%B5%E6%97%85%E5%AE%A2%E6%80%A7%E5%88%A5%E7%B5%90%E6%A7%8B%E5%88%86%E6%9E%90.json', function(error, response) {
 	  console.log (response);
     response.forEach(function(e, i) {
       stationInfo[i] = [];
