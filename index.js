@@ -12,6 +12,7 @@ var timer;
 var pm = [];
 _getJSON();
 
+_bot();
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
