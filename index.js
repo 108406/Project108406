@@ -1,5 +1,6 @@
 var linebot = require('linebot');
 var express = require('express');
+var getJSON = require('get-json');
 
 var bot = linebot({
   channelId: '1558887838',
@@ -10,13 +11,18 @@ var bot = linebot({
 bot.on('message', function(event) {
 	if (event.message.type = 'text') {
 		var msg = event.message.text;
-		event.reply(msg).then(function(data) {
+		
+		if(msg.indexOf('1') != -1) {
+			event.reply("有" + msg.indexOf('1') + "個1").then(function(data) {
 			//success
 			console.log(msg);
-		}).catch (function(error) {
-			//error
-			console.log('error');
-		});		
+			}).catch (function(error) {
+				//error
+				console.log('error');
+			});	
+		}
+		
+			
 	}
 });
 
