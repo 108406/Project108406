@@ -11,18 +11,13 @@ var bot = linebot({
 bot.on('message', function(event) {
 	if (event.message.type = 'text') {
 		var msg = event.message.text;
-		
-		if(msg.indexOf('1') != -1) {
-			event.reply("有" + msg.indexOf('1') + "個1").then(function(data) {
+		event.reply(msg).then(function(data) {
 			//success
 			console.log(msg);
-			}).catch (function(error) {
-				//error
-				console.log('error');
-			});	
-		}
-		
-			
+		}).catch (function(error) {
+			//error
+			console.log('error');
+		});		
 	}
 });
 
