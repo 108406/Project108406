@@ -13,8 +13,6 @@ var pm = [];
 var uviInfo = [];
 _getJSON();
 
-var msg;
-var replyMsg = '';
 _bot();
 const app = express();
 const linebotParser = bot.parser();
@@ -27,47 +25,39 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 function _bot() {
-  bot.on('message', function(event) {
-    if (event.message.type == 'text') {
-      msg = event.message.text;
-      _pm();
-	  _uvi();
-	  if (replyMsg = '') {
-		  replyMsg = '無法辨識' + msg + '的意義';
-	  }
-
-      event.reply(replyMsg).then(function(data) {
-        console.log(replyMsg);
-      }).catch(function(error) {
-        console.log('error');
-      });
-    }
-  });
-
-}
-
-function _pm() {
-	if (msg.indexOf('PM2.5') != -1) {
-        pm.forEach(function(e, i) {
-          if (msg.indexOf(e[0]) != -1) {
-            replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
-          }
-        });        
-    }
-}
-
-function _uvi() {
-	if (msg.indexOf('UVI') != -1) {
-        pm.forEach(function(e, i) {
-			if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) != -1) ) {
-				replyMsg = e[0] + e[1] + "的UVI為" + e[2];
-			}else if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) = -1) ) {
-				replyMsg = "請輸入鄉鎮地區";
-			}else if ((msg.indexOf(e[0]) = -1) && (msg.indexOf(e[1]) != -1 )) {
-				replyMsg = "請輸入縣市";
+	bot.on('message', function(event) {
+		if (event.message.type == 'text') {
+		  msg = event.message.text;
+			if (msg.indexOf('PM2.5') != -1) {
+				pm.forEach(function(e, i) {
+					if (msg.indexOf(e[0]) != -1) {
+						replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
+					}
+				});        
 			}
-        });        
-    }
+		if (msg.indexOf('UVI') != -1) {
+			pm.forEach(function(e, i) {
+				if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) != -1) ) {
+					replyMsg = e[0] + e[1] + "的UVI為" + e[2];
+				}else if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) = -1) ) {
+					replyMsg = "請輸入鄉鎮地區";
+				}else if ((msg.indexOf(e[0]) = -1) && (msg.indexOf(e[1]) != -1 )) {
+					replyMsg = "請輸入縣市";
+				}
+			});        
+		}
+		if (replyMsg = '') {
+			replyMsg = '無法辨識' + msg + '的意義';
+		}
+
+		event.reply(replyMsg).then(function(data) {
+			console.log(replyMsg);
+		}).catch(function(error) {
+			console.log('error');
+		});
+    
+	});
+
 }
 
 function _getJSON() {
