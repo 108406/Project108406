@@ -10,6 +10,7 @@ var bot = linebot({
 
 var timer;
 var pm = [];
+var stationInfo = [];
 _getJSON();
 
 _bot();
@@ -28,19 +29,11 @@ function _bot() {
     if (event.message.type == 'text') {
       var msg = event.message.text;
       var replyMsg = '';
-      if (msg.indexOf('PM2.5') != -1) {
-        pm.forEach(function(e, i) {
-          if (msg.indexOf(e[0]) != -1) {
-            replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
-          }
-        });
-        if (replyMsg == '') {
-          replyMsg = '請輸入正確的地點';
-        }
-      }
-      if (replyMsg == '') {
-        replyMsg = '不知道「'+msg+'」是什麼意思 :p';
-      }
+      _pm();
+	  _station();
+	  if (replyMsg = '') {
+		  replyMsg = '無法辨識' + msg + '的意義';
+	  }
 
       event.reply(replyMsg).then(function(data) {
         console.log(replyMsg);
@@ -52,6 +45,27 @@ function _bot() {
 
 }
 
+function _pm() {
+	if (msg.indexOf('PM2.5') != -1) {
+        pm.forEach(function(e, i) {
+          if (msg.indexOf(e[0]) != -1) {
+            replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
+          }
+        });        
+    }
+}
+
+function _station() {
+	if (msg.indexOf('車站') != -1 && ("詳細"||"資料")) {
+        pm.forEach(function(e, i) {
+          if (msg.indexOf(e[3]) != -1) {
+            replyMsg = e[3] + '的住址為 ' + e[1];
+            replyMsg = e[3] + '的電話為 ' + e[2];
+          }
+        });        
+    }
+}
+
 function _getJSON() {
   clearTimeout(timer);
   getJSON('http://opendata2.epa.gov.tw/AQX.json', function(error, response) {
@@ -60,6 +74,16 @@ function _getJSON() {
       pm[i][0] = e.SiteName;
       pm[i][1] = e['PM2.5'] * 1;
       pm[i][2] = e.PM10 * 1;
+    });
+  });
+  
+  getJSON('https://www.railway.gov.tw/Upload/UserFiles/%E8%BB%8A%E7%AB%99%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%992.json', function(error, response) {
+    response.forEach(function(e, i) {
+      stationInfo[i] = [];
+      stationInfo[i][0] = e.網站中文站名;
+      stationInfo[i][1] = e.住址;
+      stationInfo[i][2] = e.電話;
+      stationInfo[i][3] = e.name;
     });
   });
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
