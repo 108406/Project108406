@@ -35,8 +35,7 @@ function _bot() {
 						replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
 					}
 				});        
-			}
-			if ((msg.indexOf('UVI') != -1) || (msg.indexOf('紫外線'))) {
+			}else if ((msg.indexOf('UVI') != -1) || (msg.indexOf('紫外線'))) {
 				uviInfo.forEach(function(e, i) {
 					if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) != -1) ) {
 						replyMsg = e[0] + e[1] + "的UVI為" + e[2];
@@ -46,8 +45,7 @@ function _bot() {
 						replyMsg = e[1] + "的UVI為" + e[2];;
 					}
 				});        
-			}
-			if (replyMsg == '') {
+			}else if (replyMsg == '') {
 				replyMsg = '無法辨識「' + msg + '」的意義';
 			}
 
