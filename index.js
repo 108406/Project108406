@@ -83,7 +83,6 @@ function _getJSON() {
 
 
 function _getJSON2() {
-  clearTimeout(timer);  
   getJSON('https://www.railway.gov.tw/Upload/UserFiles/%E8%BB%8A%E7%AB%99%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%992.json', function(error, response) {
     response.forEach(function(e, i) {
       stationInfo[i] = [];
@@ -93,5 +92,4 @@ function _getJSON2() {
       stationInfo[i][3] = e.name;
     });
   });
-  timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
 }
