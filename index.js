@@ -70,6 +70,7 @@ function _station() {
 function _getJSON() {
   clearTimeout(timer);
   getJSON('http://opendata2.epa.gov.tw/AQX.json', function(error, response) {
+	  console.log (response);
     response.forEach(function(e, i) {
       pm[i] = [];
       pm[i][0] = e.SiteName;
@@ -84,7 +85,6 @@ function _getJSON() {
 
 function _getJSON2() {
   getJSON('https://www.railway.gov.tw/Upload/UserFiles/%E8%BB%8A%E7%AB%99%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%992.json', function(error, response) {
-	  console.log (response);
     response.forEach(function(e, i) {
       stationInfo[i] = [];
       stationInfo[i][0] = e.網站中文站名;
