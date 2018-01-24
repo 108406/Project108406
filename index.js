@@ -6,11 +6,11 @@ var bot = linebot({
   channelSecret: '1a4c4b7f22416496c44b76d566c45576',
   channelAccessToken: 'L3JExeBE/B0vkQMnZFbhxtLijIQHcecDl2LRQV1N6EgeVO4P5vq1WRcklQ5aDK4ZE+gO00BOmPq3d/C5qmg2eEZc9T09ELM3j6DZPI1pYVy2zDMrh2zd0TCCFSYcyolYWavgPmKd31Qj+NFWk1Fz7QdB04t89/1O/w1cDnyilFU='
 });
-
+/*
 bot.on('message', function(event) {
   console.log(event); //把收到訊息的 event 印出來看看
 });
-
+*/
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
