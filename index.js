@@ -68,7 +68,7 @@ function _bot() {
 			//===========================================
 			//對話資料庫
 			//===========================================
-			if (isAnswer) {
+			/*if (isAnswer) {
 				if (replyMsg == '') {
 					for (var i = 0;i <= answerDB.length;i++) {
 						if (answerDB[i][0] == msg) {
@@ -80,7 +80,7 @@ function _bot() {
 					}					
 					
 				}
-			}
+			}*/
 
 			event.reply(replyMsg).then(function(data) {
 				console.log(replyMsg);
