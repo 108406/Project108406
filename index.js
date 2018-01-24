@@ -47,7 +47,10 @@ function _bot() {
 			//所有指令列
 			//-------------
 			if (msg == '//help') {
-				
+				replyMsg = 
+					'休比的指令列表：\n' + 
+					'//mute：關閉休比的回應功能。\n' + 
+					'//open：開啟休比的回應功能。';
 			}
 			
 			//===========================================
@@ -83,7 +86,7 @@ function _bot() {
 							var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
 							replyMsg = answerDB[i][ans];
 						}else {*/
-							replyMsg = '無法辨識「' + msg + '」\n的意義';
+							replyMsg = '無法辨識「' + msg + '」的意義';
 						/*}
 					}					
 					*/
