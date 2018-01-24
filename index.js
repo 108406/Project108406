@@ -17,14 +17,15 @@ bot.on('message', function(event) {
 			//error
 			console.log('error');
 		});	
-	}else if (event.message.type = 'sticker') {
-			event.reply("那甚麼？我看不懂QQ").then(function(data) {
-			//success
-			}).catch (function(error) {
-				//error
-				console.log('error');
-			});	
-		}
+	}
+	if (event.message.type = 'undefined') {
+		event.reply("那甚麼？我看不懂QQ").then(function(data) {
+		//success
+		}).catch (function(error) {
+			//error
+			console.log('error');
+		});	
+	}
 });
 
 const app = express();
