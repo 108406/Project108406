@@ -32,6 +32,18 @@ function _bot() {
 			var msg = event.message.text;
 			var replyMsg = '';
 			//===========================================
+			//指令判斷
+			//===========================================
+			if (msg == '//mute') {
+				replyMsg = '休比回應功能已關閉。';
+				isAnswer = false;
+			}
+			if (msg == '//open') {
+				replyMsg = '休比回應功能啟動。';
+				isAnswer = true;
+			}
+			
+			//===========================================
 			//功能查詢
 			//===========================================
 			if (isAnswer) {
@@ -55,32 +67,22 @@ function _bot() {
 				}
 			}
 			//===========================================
-			//指令判斷
-			//===========================================
-			if (msg == '//mute') {
-				replyMsg = '休比回應功能已關閉。';
-				isAnswer = false;
-			}
-			if (msg == '//open') {
-				replyMsg = '休比回應功能啟動。';
-				isAnswer = true;
-			}
-			//===========================================
 			//對話資料庫
 			//===========================================
-			/*if (isAnswer) {
+			if (isAnswer) {
 				if (replyMsg == '') {
-					for (var i = 0;i <= answerDB.length;i++) {
+			/*		for (var i = 0;i <= answerDB.length;i++) {
 						if (answerDB[i][0] == msg) {
 							var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
 							replyMsg = answerDB[i][ans];
-						}else {
+						}else {*/
 							replyMsg = '無法辨識「' + msg + '」的意義';
-						}
+						/*}
 					}					
-					
+					*/
 				}
-			}*/
+			}
+			
 
 			event.reply(replyMsg).then(function(data) {
 				console.log(replyMsg);
