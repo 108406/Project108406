@@ -77,13 +77,13 @@ function _getJSON() {
     });
   });
   
-  getJSON('https://www.railway.gov.tw/Upload/UserFiles/%E8%BB%8A%E7%AB%99%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%992.json', function(error, response) {
-    response.forEach(function(e, i) {
-      stationInfo[i] = [];
-      stationInfo[i][0] = e.網站中文站名;
-      stationInfo[i][1] = e.住址;
-      stationInfo[i][2] = e.電話;
-      stationInfo[i][3] = e.name;
+  getJSON('https://www.railway.gov.tw/Upload/UserFiles/%E8%BB%8A%E7%AB%99%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%992.json', function(error, response2) {
+    response2.forEach(function(e2, i2) {
+      stationInfo[i2] = [];
+      stationInfo[i2][0] = e.網站中文站名;
+      stationInfo[i2][1] = e.住址;
+      stationInfo[i2][2] = e.電話;
+      stationInfo[i2][3] = e.name;
     });
   });
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
