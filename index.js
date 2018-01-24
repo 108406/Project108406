@@ -37,9 +37,13 @@ function _bot() {
 				});        
 			}
 			if (msg.indexOf('UVI') != -1) {
-				pm.forEach(function(e, i) {
-					if ((msg.indexOf(e[0]) != -1)) {
-						replyMsg = e[0] + "的UVI為" + e[1];
+				uviInfo.forEach(function(e, i) {
+					if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) != -1) ) {
+						replyMsg = e[0] + e[1] + "的UVI為" + e[2];
+					}else if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) == -1) ) {
+						replyMsg = "請輸入鄉鎮地區";
+					}else if ((msg.indexOf(e[0]) == -1) && (msg.indexOf(e[1]) != -1 )) {
+						replyMsg = "請輸入縣市";
 					}
 				});        
 			}
@@ -71,7 +75,8 @@ function _getJSON() {
     response.forEach(function(e, i) {
       uviInfo[i] = [];
       uviInfo[i][0] = e.County;
-      uviInfo[i][1] = e.UVI;
+      uviInfo[i][1] = e.SiteName;
+      uviInfo[i][2] = e.UVI;
     });
   });
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
