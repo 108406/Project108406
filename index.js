@@ -11,6 +11,8 @@ var bot = linebot({
 var timer;
 var pm = [];
 var uviInfo = [];
+var answerDB = [];
+var isAnswer = true;
 _getJSON();
 
 _bot();
@@ -29,26 +31,55 @@ function _bot() {
 		if (event.message.type == 'text') {
 			var msg = event.message.text;
 			var replyMsg = '';
-			if (msg.indexOf('PM2.5') != -1) {
-				pm.forEach(function(e, i) {
-					if (msg.indexOf(e[0]) != -1) {
-						replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
-					}
-				});        
+			//===========================================
+			//功能查詢
+			//===========================================
+			if (isAnswer) {
+				if (msg.indexOf('PM2.5') != -1) {
+					pm.forEach(function(e, i) {
+						if (msg.indexOf(e[0]) != -1) {
+							replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
+						}
+					});        
+				}
+				if ((msg.indexOf('UVI') != -1) || (msg.indexOf('紫外線') != -1)) {
+					uviInfo.forEach(function(e, i) {
+						if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) != -1) ) {
+							replyMsg = e[0] + e[1] + "的UVI為" + e[2];
+						}else if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) == -1) ) {
+							replyMsg = "請輸入區域名稱";
+						}else if ((msg.indexOf(e[0]) == -1) && (msg.indexOf(e[1]) != -1 )) {
+							replyMsg = e[1] + "的UVI為" + e[2];;
+						}
+					});        
+				}
 			}
-			if ((msg.indexOf('UVI') != -1) || (msg.indexOf('紫外線') != -1)) {
-				uviInfo.forEach(function(e, i) {
-					if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) != -1) ) {
-						replyMsg = e[0] + e[1] + "的UVI為" + e[2];
-					}else if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) == -1) ) {
-						replyMsg = "請輸入區域名稱";
-					}else if ((msg.indexOf(e[0]) == -1) && (msg.indexOf(e[1]) != -1 )) {
-						replyMsg = e[1] + "的UVI為" + e[2];;
-					}
-				});        
+			//===========================================
+			//指令判斷
+			//===========================================
+			if (msg == '//mute') {
+				replyMsg = '休比回應功能已關閉。';
+				isAnswer = false;
 			}
-			if (replyMsg == '') {
-				replyMsg = '無法辨識「' + msg + '」的意義';
+			if (msg == '//open') {
+				replyMsg = '休比回應功能啟動。';
+				isAnswer = true;
+			}
+			//===========================================
+			//對話資料庫
+			//===========================================
+			if (isAnswer) {
+				if (replyMsg == '') {
+					for (var i = 0;i <= answerDB.length;i++) {
+						if (answerDB[i][0] == msg) {
+							var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
+							replyMsg = answerDB[i][ans];
+						}else {
+							replyMsg = '無法辨識「' + msg + '」的意義';
+						}
+					}					
+					
+				}
 			}
 
 			event.reply(replyMsg).then(function(data) {
@@ -60,6 +91,7 @@ function _bot() {
 	});
 
 }
+
 
 function _getJSON() {
   clearTimeout(timer);
