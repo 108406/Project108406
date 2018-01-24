@@ -10,9 +10,8 @@ var bot = linebot({
 
 var timer;
 var pm = [];
-var stationInfo = [];
+var uviInfo = [];
 _getJSON();
-_getJSON2();
 
 _bot();
 const app = express();
@@ -31,7 +30,7 @@ function _bot() {
       var msg = event.message.text;
       var replyMsg = '';
       _pm();
-	  _station();
+	  _uvi();
 	  if (replyMsg = '') {
 		  replyMsg = '無法辨識' + msg + '的意義';
 	  }
@@ -56,13 +55,16 @@ function _pm() {
     }
 }
 
-function _station() {
-	if (msg.indexOf('車站') != -1 && ("詳細"||"資料")) {
+function _uvi() {
+	if (msg.indexOf('UVI') != -1) {
         pm.forEach(function(e, i) {
-          if (msg.indexOf(e[3]) != -1) {
-            replyMsg = e[3] + '的住址為 ' + e[1];
-            replyMsg = e[3] + '的電話為 ' + e[2];
-          }
+			if (msg.indexOf(e[0]) != -1 && msg.indexOf(e[1]) != -1 ) {
+				replyMsg = e[0] + e[1] + "的UVI為" + e[2];
+			}else if (msg.indexOf(e[0]) != -1 && msg.indexOf(e[1]) = -1 ) {
+				replyMsg = "請輸入鄉鎮地區";
+			}else if (msg.indexOf(e[0]) = -1 && msg.indexOf(e[1]) != -1 ) {
+				replyMsg = "請輸入縣市";
+			}
         });        
     }
 }
@@ -77,20 +79,14 @@ function _getJSON() {
       pm[i][2] = e.PM10 * 1;
     });
   });
-  
+  getJSON('http://opendata2.epa.gov.tw/UV/UV.json', function(error, response) {
+    response.forEach(function(e, i) {
+      uviInfo[i] = [];
+      uviInfo[i][0] = e.County;
+      uviInfo[i][1] = e.SiteName;
+      uviInfo[i][2] = e.UVI;
+    });
+  });
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
 }
 
-
-function _getJSON2() {
-  getJSON('http://opendata2.epa.gov.tw/UV/UV.json', function(error, response) {
-	  console.log (response);
-    response.forEach(function(e, i) {
-      stationInfo[i] = [];
-      stationInfo[i][0] = e.網站中文站名;
-      stationInfo[i][1] = e.住址;
-      stationInfo[i][2] = e.電話;
-      stationInfo[i][3] = e.name;
-    });
-  });
-}
