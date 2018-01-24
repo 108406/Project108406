@@ -12,7 +12,7 @@ bot.on('message', function(event) {
 		var msg = event.message.text;
 		
 		if(msg.indexOf('1') != -1) {
-			event.reply("有" + msg.index('1') + "個1").then(function(data) {
+			event.reply("有" + msg.indexOf('1') + "個1").then(function(data) {
 			//success
 			console.log(msg);
 			}).catch (function(error) {
