@@ -19,7 +19,16 @@ bot.on('message', function(event) {
 				//error
 				console.log('error');
 			});	
+		}else if (event.message.type = 'sticker') {
+			event.reply("我看不懂貼圖QQ").then(function(data) {
+			//success
+			console.log(msg);
+			}).catch (function(error) {
+				//error
+				console.log('error');
+			});	
 		}
+		
 		
 			
 	}
