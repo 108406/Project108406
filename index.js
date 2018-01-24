@@ -43,6 +43,13 @@ function _bot() {
 				isAnswer = true;
 			}
 			
+			//-------------
+			//所有指令列
+			//-------------
+			if (msg == '//help') {
+				
+			}
+			
 			//===========================================
 			//功能查詢
 			//===========================================
@@ -76,7 +83,7 @@ function _bot() {
 							var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
 							replyMsg = answerDB[i][ans];
 						}else {*/
-							replyMsg = '無法辨識「' + msg + '」的意義';
+							replyMsg = '無法辨識「' + msg + '」\r的意義';
 						/*}
 					}					
 					*/
