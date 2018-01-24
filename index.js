@@ -39,14 +39,14 @@ function _bot() {
 				pm.forEach(function(e, i) {
 					if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) != -1) ) {
 						replyMsg = e[0] + e[1] + "的UVI為" + e[2];
-					}else if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) = -1) ) {
+					}else if ((msg.indexOf(e[0]) != -1) && (msg.indexOf(e[1]) == -1) ) {
 						replyMsg = "請輸入鄉鎮地區";
-					}else if ((msg.indexOf(e[0]) = -1) && (msg.indexOf(e[1]) != -1 )) {
+					}else if ((msg.indexOf(e[0]) == -1) && (msg.indexOf(e[1]) != -1 )) {
 						replyMsg = "請輸入縣市";
 					}
 				});        
 			}
-			if (replyMsg = '') {
+			if (replyMsg == '') {
 				replyMsg = '無法辨識' + msg + '的意義';
 			}
 
