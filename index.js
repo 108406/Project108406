@@ -53,7 +53,7 @@ function _bot() {
 					'//open：開啟休比的回應功能。';
 			}
 			//----------
-			if (isAnswer == 'undefined') {
+			if (isAnswer == undefined) {
 				isAnswer = true;
 			}
 			//===========================================
