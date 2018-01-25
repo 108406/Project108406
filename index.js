@@ -12,10 +12,10 @@ var timer;
 var pm = [];
 var uviInfo = [];
 var answerDB = [];
-var isAnswer = [];	
 var groupID = [];	
 var userID = [];	
-var controller = 0;	
+var groupIsAnswer = [];	
+var userIsAnswer = [];	
 _getJSON();
 
 _bot();
@@ -31,19 +31,71 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
 function _bot() {
 	bot.on('message', function(event) {		
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
+	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
+		var groupC = 0;	
+		var userC = 0;
+		var isGroup = false;
+		var isUser = false;
+		if (event.source.groupId != undefined) {
+			isGroup = true;
+			var pushIn = false;
+			for (var i = 0; i <= groupID.length - 1 ; i++) {
+				if (event.source.groupId == groupID[i]) {
+					if (groupIsAnswer[i] == undefined) {						
+						groupIsAnswer[i] = true;
+					}
+					groupC = i;
+				}else {
+					pushIn = true;
+				}
+			}
+			if (pushIn) {
+				groupID.push(event.source.groupId);
+				groupC = groupID.length-1;
+				pushIn = false;
+			}
+		}else {
+			isUser = true;
+			var pushIn = false;
+			for (var i = 0; i <= userID.length - 1 ; i++) {
+				if (event.source.userId == userID[i]) {
+					if (userIsAnswer[i] == undefined) {						
+						userIsAnswer[i] = true;
+					}
+					userC = i;
+				}else {
+					pushIn = true;
+				}
+			}
+			if (pushIn) {
+				userID.push(event.source.userId);
+				userC = userID.length-1;
+				pushIn = false;
+			}
+		}
+	
+	
 		if (event.message.type == 'text') {
 			var msg = event.message.text;
 			var replyMsg = '';
 			//===========================================
 			//指令判斷
 			//===========================================
-			if (msg == '//mute') {
+			if (msg == '//mute' && isGroup) {
 				replyMsg = '休比回應功能已關閉。';
-				isAnswer = false;
+				groupIsAnswer[groupC] = false;
+			}else if (msg == '//mute' && isUser) {
+				replyMsg = '休比回應功能已關閉。';
+				userIsAnswer[userC] = false;				
 			}
-			if (msg == '//open') {
+			if (msg == '//open' && isGroup) {
 				replyMsg = '休比回應功能啟動。';
-				isAnswer = true;
+				groupIsAnswer[groupC] = true;
+			}else if (msg == '//mute' && isUser) {
+				replyMsg = '休比回應功能已關閉。';
+				userIsAnswer[userC] = true;				
 			}
 			
 			//-------------
@@ -55,14 +107,10 @@ function _bot() {
 					'//mute：關閉休比的回應功能。\n' + 
 					'//open：開啟休比的回應功能。';
 			}
-			//----------
-			if (isAnswer == undefined) {
-				isAnswer = true;
-			}
 			//===========================================
 			//功能查詢
 			//===========================================
-			if (isAnswer) {
+			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {
 				if (msg.indexOf('PM2.5') != -1) {
 					pm.forEach(function(e, i) {
 						if (msg.indexOf(e[0]) != -1) {
@@ -85,7 +133,7 @@ function _bot() {
 			//===========================================
 			//對話資料庫
 			//===========================================
-			if (isAnswer) {
+			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {
 				if (replyMsg == '') {
 			/*		for (var i = 0;i <= answerDB.length-1;i++) {
 						if (answerDB[i][0] == msg) {
@@ -111,12 +159,14 @@ function _bot() {
 	
 	
 	bot.on('join', function(event) {	
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
+	//被加入群組時，將群組ID加入名單陣列
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
 		var	group = event.source.groupId;
 		var replyMsg = '';
 		if (groupID.length != 0) {
 			for (var i = 0; i <= groupID.length - 1 ; i++) {
 				if (group == groupID[i]) {
-					controller = i;
 					replyMsg = '休比又回來了，請多多指教。';
 				}else {
 					groupID.push(group);
@@ -135,8 +185,30 @@ function _bot() {
 	});
 	
 	
-	bot.on('group', function(event) {	
-		
+	bot.on('follow', function(event) {	
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
+	//被加為好友時，將使用者ID加入名單陣列
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
+		var	user = event.source.userId;
+		var replyMsg = '';
+		if (userID.length != 0) {
+			for (var i = 0; i <= userID.length - 1 ; i++) {
+				if (user == userID[i]) {
+					replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
+				}else {
+					userID.push(user);
+					replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';
+				}
+			}
+		}else {
+			userID.push(user);
+			replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';
+		}
+		event.reply(replyMsg).then(function(data) {
+			console.log(replyMsg);
+		}).catch(function(error) {
+			console.log('error');
+		});
 	});
 }
 
