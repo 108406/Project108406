@@ -38,50 +38,101 @@ function _bot() {
 		var userC = 0;
 		var isGroup = false;
 		var isUser = false;
+		//---------------------
+		console.log('1');
+		//---------------------
 		if (event.source.groupId != undefined) {
+		//---------------------
+		console.log('2');
+		//---------------------
 			isGroup = true;
 			var pushIn = false;
 			if (groupID.length != 0) {
+		//---------------------
+		console.log('3');
+		//---------------------
 				for (var i = 0; i <= groupID.length - 1 ; i++) {
+		//---------------------
+		console.log('4');
+		//---------------------
 					if (event.source.groupId == groupID[i]) {
-						if (groupIsAnswer[i] == undefined) {						
+		//---------------------
+		console.log('5');
+		//---------------------
+						if (groupIsAnswer[i] == undefined) {		
+		//---------------------
+		console.log('6');
+		//---------------------				
 							groupIsAnswer[i] = true;
 						}
 						groupC = i;
 					}else {
+		//---------------------
+		console.log('7');
+		//---------------------
 						pushIn = true;
 					}
 				}
 				if (pushIn) {
+		//---------------------
+		console.log('8');
+		//---------------------
 					groupID.push(event.source.groupId);
 					groupC = groupID.length-1;
 					pushIn = false;
 				}
 			} else {
+		//---------------------
+		console.log('9');
+		//---------------------
 				groupID.push(event.source.groupId);
 				groupC = groupID.length-1;
 				pushIn = false;
 			}
 		} else {
+		//---------------------
+		console.log('10');
+		//---------------------
 			isUser = true;
 			var pushIn = false;
 			if (userID.length != 0) {
+		//---------------------
+		console.log('11');
+		//---------------------
 				for (var i = 0; i <= userID.length - 1 ; i++) {
+		//---------------------
+		console.log('12');
+		//---------------------
 					if (event.source.userId == userID[i]) {
-						if (userIsAnswer[i] == undefined) {						
+		//---------------------
+		console.log('13');
+		//---------------------
+						if (userIsAnswer[i] == undefined) {	
+		//---------------------
+		console.log('14');
+		//---------------------					
 							userIsAnswer[i] = true;
 						}
 						userC = i;
 					}else {
+		//---------------------
+		console.log('15');
+		//---------------------
 						pushIn = true;
 					}
 				}
 				if (pushIn) {
+		//---------------------
+		console.log('16');
+		//---------------------
 					userID.push(event.source.userId);
 					userC = userID.length-1;
 					pushIn = false;
 				}
 			} else { 
+		//---------------------
+		console.log('17');
+		//---------------------
 				userID.push(event.source.userId);
 				userC = userID.length-1;
 				pushIn = false;
@@ -90,6 +141,9 @@ function _bot() {
 	
 	
 		if (event.message.type == 'text') {
+		//---------------------
+		console.log('18');
+		//---------------------
 			var msg = event.message.text;
 			var replyMsg = '';
 			//===========================================
@@ -150,6 +204,9 @@ function _bot() {
 			//對話資料庫
 			//===========================================
 			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {
+		//---------------------
+		console.log('19');
+		//---------------------
 				if (replyMsg == '') {
 			/*		for (var i = 0;i <= answerDB.length-1;i++) {
 						if (answerDB[i][0] == msg) {
