@@ -12,7 +12,7 @@ var timer;
 var pm = [];
 var uviInfo = [];
 var answerDB = [];
-var isAnswer = true;	
+var isAnswer = [];	
 var groupID = [];	
 var userID = [];	
 var controller = 0;	
@@ -93,7 +93,7 @@ function _bot() {
 							replyMsg = answerDB[i][ans];
 						}else {*/
 							replyMsg = '無法辨識「' + msg + '」的意義\n' + 
-								event.source.groupId;
+								event.source.userId;
 						/*}
 					}					
 					*/
