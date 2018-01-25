@@ -104,7 +104,24 @@ function _bot() {
 			});
 		}
 	});
-
+	
+	
+	bot.on('join', function(event) {		
+		var replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+		event.reply(replyMsg).then(function(data) {
+			console.log(replyMsg);
+		}).catch(function(error) {
+			console.log('error');
+		});
+	});
+	bot.on('leave', function(event) {		
+		var replyMsg = '我先離開了，下次再見。';
+		event.reply(replyMsg).then(function(data) {
+			console.log(replyMsg);
+		}).catch(function(error) {
+			console.log('error');
+		});		
+	});
 }
 
 
