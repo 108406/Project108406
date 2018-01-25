@@ -12,7 +12,6 @@ var timer;
 var pm = [];
 var uviInfo = [];
 var answerDB = [];
-var isAnswer = true;
 _getJSON();
 
 _bot();
@@ -29,7 +28,7 @@ var server = app.listen(process.env.PORT || 8080, function() {
 function _bot() {
 	bot.on('message', function(event) {
 		if (event.message.type == 'text') {
-			var isAnswerD = true;
+			var isAnswer;			
 			var msg = event.message.text;
 			var replyMsg = '';
 			//===========================================
@@ -38,12 +37,10 @@ function _bot() {
 			if (msg == '//mute') {
 				replyMsg = '休比回應功能已關閉。';
 				isAnswer = false;
-				isAnswerD = false;
 			}
 			if (msg == '//open') {
 				replyMsg = '休比回應功能啟動。';
 				isAnswer = true;
-				isAnswerD = true;
 			}
 			
 			//-------------
@@ -55,11 +52,14 @@ function _bot() {
 					'//mute：關閉休比的回應功能。\n' + 
 					'//open：開啟休比的回應功能。';
 			}
-			
+			//----------
+			if (isAnswer == 'undefined') {
+				isAnswer = true;
+			}
 			//===========================================
 			//功能查詢
 			//===========================================
-			if (isAnswer && isAnswerD) {
+			if (isAnswer) {
 				if (msg.indexOf('PM2.5') != -1) {
 					pm.forEach(function(e, i) {
 						if (msg.indexOf(e[0]) != -1) {
@@ -82,7 +82,7 @@ function _bot() {
 			//===========================================
 			//對話資料庫
 			//===========================================
-			if (isAnswer && isAnswerD) {
+			if (isAnswer) {
 				if (replyMsg == '') {
 			/*		for (var i = 0;i <= answerDB.length;i++) {
 						if (answerDB[i][0] == msg) {
