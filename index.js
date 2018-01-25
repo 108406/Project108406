@@ -99,17 +99,17 @@ function _bot() {
 			//===========================================
 			//指令判斷
 			//===========================================
-			if (msg == '//mute' && isGroup) {
+			if (msg.toLowerCase() == '//mute' && isGroup) {
 				replyMsg = '休比回應功能已關閉。';
 				groupIsAnswer[groupC] = false;
-			}else if (msg == '//mute' && isUser) {
+			}else if (msg.toLowerCase() == '//mute' && isUser) {
 				replyMsg = '休比回應功能已關閉。';
 				userIsAnswer[userC] = false;				
 			}
-			if (msg == '//open' && isGroup) {
+			if (msg.toLowerCase() == '//open' && isGroup) {
 				replyMsg = '休比回應功能啟動。';
 				groupIsAnswer[groupC] = true;
-			}else if (msg == '//open' && isUser) {
+			}else if (msg.toLowerCase() == '//open' && isUser) {
 				replyMsg = '休比回應功能啟動。';
 				userIsAnswer[userC] = true;				
 			}
@@ -118,21 +118,22 @@ function _bot() {
 			//指令偵錯與校正
 			//-------------
 
-			if ((msg == 'mute') ||(msg == '/mute')) {
+			if ((msg.toLowerCase() == 'mute') ||(msg.toLowerCase() == '/mute')) {
 				replyMsg = 
 					'關閉休比回應功能請輸入「//mute」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
 			
-			if ((msg == 'open') ||(msg == '/open')) {
+			if ((msg.toLowerCase() == 'open') ||(msg.toLowerCase() == '/open')) {
 				replyMsg = 
 					'重新開啟休比回應功能請輸入「//open」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
+			
 			//-------------
 			//所有指令列
 			//-------------
-			if (msg == '//help') {
+			if (msg.toLowerCase() == '//help') {
 				replyMsg = 
 					'休比的使用說明：\n' + 
 					'為了讓休比更方便判斷指令\n' + 
