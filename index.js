@@ -14,6 +14,7 @@ var uviInfo = [];
 var answerDB = [];
 var isAnswer = true;	
 var groupID = [];	
+var userID = [];	
 var controller = 0;	
 _getJSON();
 
@@ -92,7 +93,7 @@ function _bot() {
 							replyMsg = answerDB[i][ans];
 						}else {*/
 							replyMsg = '無法辨識「' + msg + '」的意義\n' + 
-								'密我的人是 ' + event.source.userId;
+								event.source.groupId;
 						/*}
 					}					
 					*/
@@ -131,6 +132,11 @@ function _bot() {
 		}).catch(function(error) {
 			console.log('error');
 		});
+	});
+	
+	
+	bot.on('group', function(event) {	
+		
 	});
 }
 
