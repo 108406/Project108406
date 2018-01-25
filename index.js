@@ -107,11 +107,19 @@ function _bot() {
 				userIsAnswer[userC] = false;				
 			}
 			if (msg.toLowerCase() == '//open' && isGroup) {
-				replyMsg = '休比回應功能啟動。';
-				groupIsAnswer[groupC] = true;
+				if (groupIsAnswer[groupC]) {
+					replyMsg = '休比回應功能已經啟動。';
+				}else {
+					replyMsg = '休比回應功能啟動。';
+					groupIsAnswer[groupC] = true;
+				}
 			}else if (msg.toLowerCase() == '//open' && isUser) {
-				replyMsg = '休比回應功能啟動。';
-				userIsAnswer[userC] = true;				
+				if (userIsAnswer[userC]) {
+					replyMsg = '休比回應功能已經啟動。';
+				}else {
+					replyMsg = '休比回應功能啟動。';
+					userIsAnswer[userC] = true;				
+				}
 			}
 			
 			//-------------
@@ -127,6 +135,11 @@ function _bot() {
 			if ((msg.toLowerCase() == 'open') ||(msg.toLowerCase() == '/open')) {
 				replyMsg = 
 					'重新開啟休比回應功能請輸入「//open」\n\n' +
+					'查看更多指令請輸入「//help」';
+			}
+			
+			if ((msg.toLowerCase() == 'help') ||(msg.toLowerCase() == '/help')) {
+				replyMsg = 
 					'查看更多指令請輸入「//help」';
 			}
 			
