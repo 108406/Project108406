@@ -143,7 +143,7 @@ function _bot() {
 			}
 		}
 	
-		console.log (groupC + ', ' + userC + ', ' + isGroup + ', ' + isUser);
+		console.log (groupC + ', ' + userC + ', ' + isGroup + ', ' + isUser + ', ' + groupIsAnswer + ', ' + userIsAnswer);
 	
 		if (event.message.type == 'text') {
 			var msg = event.message.text;
