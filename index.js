@@ -38,71 +38,50 @@ function _bot() {
 		var userC = 0;
 		var isGroup = false;
 		var isUser = false;
-		///////////////////////////
-		console.log ('1');
-		///////////////////////////
 		if (event.source.groupId != undefined) {
-		///////////////////////////
-		console.log ('2');
-		///////////////////////////
 			isGroup = true;
 			var pushIn = false;
-			for (var i = 0; i <= groupID.length - 1 ; i++) {
-		///////////////////////////
-		console.log ('3');
-		///////////////////////////
-				if (event.source.groupId == groupID[i]) {
-		///////////////////////////
-		console.log ('11');
-		///////////////////////////
-					if (groupIsAnswer[i] == undefined) {		
-		///////////////////////////
-		console.log ('12');
-		///////////////////////////				
-						groupIsAnswer[i] = true;
+			if (groupID.length != 0) {
+				for (var i = 0; i <= groupID.length - 1 ; i++) {
+					if (event.source.groupId == groupID[i]) {
+						if (groupIsAnswer[i] == undefined) {						
+							groupIsAnswer[i] = true;
+						}
+						groupC = i;
+					}else {
+						pushIn = true;
 					}
-					groupC = i;
-				}else {
-					pushIn = true;
 				}
-			}
-			if (pushIn) {
-		///////////////////////////
-		console.log ('4');
-		///////////////////////////
+				if (pushIn) {
+					groupID.push(event.source.groupId);
+					groupC = groupID.length-1;
+					pushIn = false;
+				}
+			} else {
 				groupID.push(event.source.groupId);
 				groupC = groupID.length-1;
 				pushIn = false;
 			}
-		}else {
-		///////////////////////////
-		console.log ('5');
-		///////////////////////////
+		} else {
 			isUser = true;
 			var pushIn = false;
-			for (var i = 0; i <= userID.length - 1 ; i++) {
-		///////////////////////////
-		console.log ('6');
-		///////////////////////////
-				if (event.source.userId == userID[i]) {
-		///////////////////////////
-		console.log ('13');
-		///////////////////////////
-					if (userIsAnswer[i] == undefined) {	
-		///////////////////////////
-		console.log ('14');
-		///////////////////////////					
-						userIsAnswer[i] = true;
+			if (userID.length != 0) {
+				for (var i = 0; i <= userID.length - 1 ; i++) {
+					if (event.source.userId == userID[i]) {
+						if (userIsAnswer[i] == undefined) {						
+							userIsAnswer[i] = true;
+						}
+						userC = i;
+					}else {
+						pushIn = true;
 					}
-					userC = i;
-				}else {
-					pushIn = true;
 				}
-			}
-			if (pushIn) {
-		///////////////////////////
-		console.log ('7');
-		///////////////////////////
+				if (pushIn) {
+					userID.push(event.source.userId);
+					userC = userID.length-1;
+					pushIn = false;
+				}
+			} else { 
 				userID.push(event.source.userId);
 				userC = userID.length-1;
 				pushIn = false;
@@ -111,9 +90,6 @@ function _bot() {
 	
 	
 		if (event.message.type == 'text') {
-		///////////////////////////
-		console.log ('8');
-		///////////////////////////
 			var msg = event.message.text;
 			var replyMsg = '';
 			//===========================================
@@ -139,9 +115,13 @@ function _bot() {
 			//-------------
 			if (msg == '//help') {
 				replyMsg = 
+					'休比的使用說明：\n' + 
+					'為了讓休比更方便判斷\n' + 
+					'指令請在開頭加入雙斜線「//」\n\n' +
 					'休比的指令列表：\n' + 
-					'//mute：關閉休比的回應功能。\n' + 
-					'//open：開啟休比的回應功能。';
+					'help：查看休比目前擁有的指令\n' +
+					'mute：關閉休比的回應功能。\n' + 
+					'open：開啟休比的回應功能。';
 			}
 			//===========================================
 			//功能查詢
@@ -170,13 +150,7 @@ function _bot() {
 			//對話資料庫
 			//===========================================
 			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {
-		///////////////////////////
-		console.log ('9');
-		///////////////////////////
 				if (replyMsg == '') {
-		///////////////////////////
-		console.log ('10');
-		///////////////////////////
 			/*		for (var i = 0;i <= answerDB.length-1;i++) {
 						if (answerDB[i][0] == msg) {
 							var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
@@ -206,14 +180,19 @@ function _bot() {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
 		var	group = event.source.groupId;
 		var replyMsg = '';
+		var pushIn = false;
 		if (groupID.length != 0) {
 			for (var i = 0; i <= groupID.length - 1 ; i++) {
 				if (group == groupID[i]) {
 					replyMsg = '休比又回來了，請多多指教。';
 				}else {
-					groupID.push(group);
-					replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+					pushIn = true;
 				}
+			}
+			if (pushIn) {
+				groupID.push(group);
+				replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+				pushIn = false;
 			}
 		}else {
 			groupID.push(group);
@@ -233,14 +212,19 @@ function _bot() {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
 		var	user = event.source.userId;
 		var replyMsg = '';
+		var pushIn = false;
 		if (userID.length != 0) {
 			for (var i = 0; i <= userID.length - 1 ; i++) {
 				if (user == userID[i]) {
 					replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
 				}else {
-					userID.push(user);
-					replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';
+					pushIn = true;
 				}
+			}
+			if (pushIn) {
+				userID.push(user);
+				replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';				
+				pushIn = false;
 			}
 		}else {
 			userID.push(user);
