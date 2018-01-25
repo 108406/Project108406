@@ -89,7 +89,8 @@ function _bot() {
 							var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
 							replyMsg = answerDB[i][ans];
 						}else {*/
-							replyMsg = '無法辨識「' + msg + '」的意義';
+							replyMsg = '無法辨識「' + msg + '」的意義\n' + 
+								'密我的人是 ' + event.source.userId;
 						/*}
 					}					
 					*/
@@ -113,14 +114,6 @@ function _bot() {
 		}).catch(function(error) {
 			console.log('error');
 		});
-	});
-	bot.on('leave', function(event) {		
-		var replyMsg = '我先離開了，下次再見。';
-		event.reply(replyMsg).then(function(data) {
-			console.log(replyMsg);
-		}).catch(function(error) {
-			console.log('error');
-		});		
 	});
 }
 
