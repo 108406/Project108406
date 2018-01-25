@@ -12,7 +12,9 @@ var timer;
 var pm = [];
 var uviInfo = [];
 var answerDB = [];
-var isAnswer = true;			
+var isAnswer = true;	
+var groupID = [];	
+var controller = 0;	
 _getJSON();
 
 _bot();
@@ -84,7 +86,7 @@ function _bot() {
 			//===========================================
 			if (isAnswer) {
 				if (replyMsg == '') {
-			/*		for (var i = 0;i <= answerDB.length;i++) {
+			/*		for (var i = 0;i <= answerDB.length-1;i++) {
 						if (answerDB[i][0] == msg) {
 							var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
 							replyMsg = answerDB[i][ans];
@@ -107,8 +109,18 @@ function _bot() {
 	});
 	
 	
-	bot.on('join', function(event) {		
-		var replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+	bot.on('join', function(event) {	
+		var	group = event.source.groupId;
+		var replyMsg = '';
+		for (var i = 0; i <= groupID.length - 1 ; i++) {
+			if (group == groupID[i]) {
+				controller = i;
+				replyMsg = '休比又回來了，請多多指教。';
+			}else {
+				groupID.push(group);
+				replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+			}
+		}
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
 		}).catch(function(error) {
