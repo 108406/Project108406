@@ -112,14 +112,19 @@ function _bot() {
 	bot.on('join', function(event) {	
 		var	group = event.source.groupId;
 		var replyMsg = '';
-		for (var i = 0; i <= groupID.length - 1 ; i++) {
-			if (group == groupID[i]) {
-				controller = i;
-				replyMsg = '休比又回來了，請多多指教。';
-			}else {
-				groupID.push(group);
-				replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+		if (groupID.length != 0) {
+			for (var i = 0; i <= groupID.length - 1 ; i++) {
+				if (group == groupID[i]) {
+					controller = i;
+					replyMsg = '休比又回來了，請多多指教。';
+				}else {
+					groupID.push(group);
+					replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+				}
 			}
+		}else {
+			groupID.push(group);
+			replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
 		}
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
