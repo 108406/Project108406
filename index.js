@@ -12,6 +12,7 @@ var timer;
 var pm = [];
 var uviInfo = [];
 var answerDB = [];
+var isAnswer = true;			
 _getJSON();
 
 _bot();
@@ -26,9 +27,8 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 function _bot() {
-	bot.on('message', function(event) {
+	bot.on('message', function(event) {		
 		if (event.message.type == 'text') {
-			var isAnswer;			
 			var msg = event.message.text;
 			var replyMsg = '';
 			//===========================================
