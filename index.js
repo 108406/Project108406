@@ -213,7 +213,7 @@ function _bot() {
 					'查看更多指令請輸入「//help」';
 			}
 			
-			if (((msg.toLowerCase() == 'a') || (msg.toLowerCase() == 'q') || (msg.toLowerCase().indexOf('/a') != -1) || (msg.toLowerCase().indexOf('/q') != -1) ) {
+			if ((msg.toLowerCase() == 'a') || (msg.toLowerCase() == 'q') || (msg.toLowerCase().indexOf('/a') != -1) || (msg.toLowerCase().indexOf('/q') != -1) ) {
 				replyMsg = 
 					'協助對話指令「//q」必須與「//a」連用\n' +
 					'查看協助對話教學請輸入「//teaching」\n\n' +
