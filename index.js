@@ -219,7 +219,7 @@ function _bot() {
 					}
 					if (answerDB.length == 0 || answerNotFound) {
 						
-						reply = 
+						replyMsg = 
 							'//q的indexOf值為' + msg.indexOf('//q') + '\n' + 
 							'//a的indexOf值為' + msg.indexOf('//a'); 
 						/*replyMsg = 
