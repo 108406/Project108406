@@ -308,7 +308,7 @@ function _bot() {
 				console.log ('userIsAnswer：' + userIsAnswer);
 				console.log ('answerDB：');
 				for (var i = 0; i <= answerDB.length-1 ; i++) {
-					for (var s = 0; s <= answerDB[].length-1 ; s++) {
+					for (var s = 0; s <= answerDB[i].length-1 ; s++) {
 						console.log (answerDB[i][s]);						
 					}
 					console.log('=========');
