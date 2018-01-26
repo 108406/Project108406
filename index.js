@@ -95,19 +95,20 @@ function _bot() {
 	
 		if (event.message.type == 'text') {
 			var msg = event.message.text;
+			var command = msg.replace(/\s+/g, "");
 			var isUpdateDB = false;
 			var replyMsg = '';
 			//===========================================
 			//指令判斷
 			//===========================================
-			if (msg.toLowerCase() == '//mute' && isGroup) {
+			if (command.toLowerCase() == '//mute' && isGroup) {
 				if (!groupIsAnswer[groupC]) {
 					replyMsg = '休比回應功能已經關閉。';
 				}else {
 					replyMsg = '休比回應功能關閉。';
 					groupIsAnswer[groupC] = false;					
 				}
-			}else if (msg.toLowerCase() == '//mute' && isUser) {
+			}else if (command.toLowerCase() == '//mute' && isUser) {
 				if (!userIsAnswer[userC]) {
 					replyMsg = '休比回應功能已經關閉。';
 				}else {
@@ -116,14 +117,14 @@ function _bot() {
 				}
 			}
 			
-			if (msg.toLowerCase() == '//open' && isGroup) {
+			if (command.toLowerCase() == '//open' && isGroup) {
 				if (groupIsAnswer[groupC]) {
 					replyMsg = '休比回應功能已經啟動。';
 				}else {
 					replyMsg = '休比回應功能啟動。';
 					groupIsAnswer[groupC] = true;
 				}
-			}else if (msg.toLowerCase() == '//open' && isUser) {
+			}else if (command.toLowerCase() == '//open' && isUser) {
 				if (userIsAnswer[userC]) {
 					replyMsg = '休比回應功能已經啟動。';
 				}else {
@@ -132,47 +133,56 @@ function _bot() {
 				}
 			}
 			
-			if ((msg.toLowerCase().indexOf('//q') == 0) && (msg.toLowerCase().indexOf('//a') != -1 )) {
+			if ((command.toLowerCase().indexOf('//q') == 0) && (command.toLowerCase().indexOf('//a') != -1 )) {
 				isUpdateDB = true;
-				if ((msg.indexOf('//a') - msg.indexOf('//q')) > 0) {
-					var Q = msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a'));
-					var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
+				if ((command.indexOf('//a') - command.indexOf('//q')) > 0) {
+					var Q = command.slice((command.indexOf('//q') + 3), command.indexOf('//a'));
+					var A = command.slice((command.indexOf('//a') + 3), command.length);
+					var garbageCommand = false;
+					if ((Q == '') || (A == '')) {
+						garbageCommand = true;
+					}
 					var QtAfPushIn = true;
 					var QfAfPushIn = true;
-					for (var i = 0; i <= answerDB.length-1; i ++) {
-						if (Q == answerDB[i][0]) {
-							for (var a = 0 ; a <= answerDB[i].length-1;a++) {
-								if (A == answerDB[i][a]) {
-									replyMsg = '資料庫裡已經存有相同的問答。';
+					if (!garbageCommand) {
+						for (var i = 0; i <= answerDB.length-1; i ++) {
+							if (Q == answerDB[i][0]) {
+								for (var a = 0 ; a <= answerDB[i].length-1;a++) {
+									if (A == answerDB[i][a]) {
+										replyMsg = '資料庫裡已經存有相同的問答。';
+										QtAfPushIn = false;
+									}
+								}
+								if (QtAfPushIn) {
+									answerDB[i].push(A);
+									replyMsg = 
+										'對話問答成功寫入資料庫中\n' +
+										'問：「' + answerDB[i][0] + '」\n' + 
+										'答：「' + answerDB[i][answerDB[i].length-1] + '」';
 									QtAfPushIn = false;
 								}
+								QfAfPushIn = false;
 							}
-							if (QtAfPushIn) {
-								answerDB[i].push(A);
-								replyMsg = 
-									'對話問答成功寫入資料庫中\n' +
-									'問：「' + answerDB[i][0] + '」\n' + 
-									'答：「' + answerDB[i][answerDB[i].length-1] + '」';
-								QtAfPushIn = false;
-							}
+						} 
+						if (QfAfPushIn) {
+							var newQA = [Q,A];
+							answerDB.push(newQA);
+							replyMsg = 
+								'對話問答成功寫入資料庫中\n' +
+								'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
+								'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
 							QfAfPushIn = false;
 						}
-					} 
-					if (QfAfPushIn) {
-						var newQA = [Q,A];
-						answerDB.push(newQA);
-						replyMsg = 
-							'對話問答成功寫入資料庫中\n' +
-							'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
-							'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
-						QfAfPushIn = false;
+					}else {
+						replyMsg = '問答協助請勿輸入空值';
+						garbageCommand = false;
 					}
 				}else {
 					replyMsg = '「//q」與「//a」的順序不可對調。';
 				}
 			}
 						
-			if (msg.toLowerCase() == '//teaching') {
+			if (command.toLowerCase() == '//teaching') {
 				replyMsg = 
 					'請使用指令「//q」設定問題\n' + 
 					'並使用指令「//a」設定回覆\n\n' +
@@ -195,32 +205,32 @@ function _bot() {
 			//指令偵錯與校正
 			//-------------
 
-			if ((msg.toLowerCase() == 'mute') ||(msg.toLowerCase() == '/mute')) {
+			if ((command.toLowerCase() == 'mute') ||(command.toLowerCase() == '/mute')) {
 				replyMsg = 
 					'關閉休比回應功能請輸入「//mute」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
 			
-			if ((msg.toLowerCase() == 'open') ||(msg.toLowerCase() == '/open')) {
+			if ((command.toLowerCase() == 'open') ||(command.toLowerCase() == '/open')) {
 				replyMsg = 
 					'重新開啟休比回應功能請輸入「//open」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
 			
-			if ((msg.toLowerCase() == 'teaching') ||(msg.toLowerCase() == '/teaching')) {
+			if ((command.toLowerCase() == 'teaching') ||(command.toLowerCase() == '/teaching')) {
 				replyMsg = 
 					'查看協助對話教學請輸入「//teaching」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
 			
-			if (((msg.toLowerCase() == 'a') || (msg.toLowerCase() == 'q') || (msg.toLowerCase().indexOf('/a') != -1) || (msg.toLowerCase().indexOf('/q') != -1)) && !isUpdateDB) {
+			if (((command.toLowerCase() == 'a') || (command.toLowerCase() == 'q') || (command.toLowerCase().indexOf('/a') != -1) || (command.toLowerCase().indexOf('/q') != -1)) && !isUpdateDB) {
 				replyMsg = 
 					'協助對話指令「//q」必須與「//a」連用\n' +
 					'查看協助對話教學請輸入「//teaching」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
 			
-			if ((msg.toLowerCase() == 'help') ||(msg.toLowerCase() == '/help')) {
+			if ((command.toLowerCase() == 'help') ||(command.toLowerCase() == '/help')) {
 				replyMsg = 
 					'查看更多指令請輸入「//help」';
 			}
@@ -228,7 +238,7 @@ function _bot() {
 			//-------------
 			//所有指令列
 			//-------------
-			if ((msg.toLowerCase() == '//help') || (msg.toLowerCase() == '//')) {
+			if ((command.toLowerCase() == '//help') || (command.toLowerCase() == '//')) {
 				replyMsg = 
 					'休比的使用說明：\n' + 
 					'一、為了讓休比更方便判斷指令\n' + 
