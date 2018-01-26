@@ -221,7 +221,8 @@ function _bot() {
 						
 						replyMsg = 
 							'//q的indexOf值為' + msg.indexOf('//q') + '\n' + 
-							'//a的indexOf值為' + msg.indexOf('//a'); 
+							'//a的indexOf值為' + msg.indexOf('//a') + 'n' +
+							'msg的長度為' + (msg.length - 1); 
 						/*replyMsg = 
 							'無法辨別「' + msg + '」的意義\n' + 
 							'如果你願意幫助休比回答問題\n' + 
