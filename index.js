@@ -293,6 +293,14 @@ function _bot() {
 
 			event.reply(replyMsg).then(function(data) {
 				console.log(replyMsg);
+				console.log (groupID);
+				console.log (userID);
+				console.log (groupIsAnswer);
+				console.log (userIsAnswer);
+				console.log (groupC);
+				console.log (userC);
+				console.log (isGroup);
+				console.log (isUser);
 			}).catch(function(error) {
 				console.log('error');
 			});
