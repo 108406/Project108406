@@ -40,16 +40,15 @@ function _bot() {
 		var isUser = false;
 		if (event.source.groupId != undefined) {
 			isGroup = true;
-			var pushIn = false;
+			var pushIn = true;
 			if (groupID.length != 0) {
 				for (var i = 0; i <= groupID.length - 1 ; i++) {
 					if (event.source.groupId == groupID[i]) {
 						if (groupIsAnswer[i] == undefined) {						
 							groupIsAnswer[i] = true;
 						}
+						pushIn = false;
 						groupC = i;
-					}else {
-						pushIn = true;
 					}
 				}
 				if (pushIn) {
@@ -65,49 +64,25 @@ function _bot() {
 				pushIn = false;
 			}
 		} else {
-			
-			console.log ('1');
-			
 			isUser = true;
 			var pushIn = false;
 			if (userID.length != 0) {
-				
-			console.log ('2');
-			
 				for (var i = 0; i <= userID.length - 1 ; i++) {
-					
-			console.log ('3');
-			
-					if (event.source.userId.toString() == userID[i].toString()) {
-						
-			console.log ('4');
-			console.log (event.source.userId);
-			console.log(userID[i]);
-			
-						if (userIsAnswer[i] == undefined) {	
-
-			console.log ('5');
-									
+					if (event.source.userId == userID[i]) {
+						if (userIsAnswer[i] == undefined) {						
 							userIsAnswer[i] = true;
 						}
+						pushIn = false;
 						userC = i;
-					}else {
-			console.log ('6');
-			
-						pushIn = true;
 					}
 				}
 				if (pushIn) {
-			console.log ('7');
-			
 					userID.push(event.source.userId);
 					userC = userID.length-1;
 					userIsAnswer[userC] = true;
 					pushIn = false;
 				}
 			} else { 
-			console.log ('8');
-			
 				userID.push(event.source.userId);
 				userC = userID.length-1;
 				userIsAnswer[userC] = true;
