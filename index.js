@@ -218,7 +218,7 @@ function _bot() {
 						}
 					}
 					if (answerDB.length == 0 || answerNotFound) {
-						if ((msg.indexOf('//q') == 0) && (msg.indexOf('//a') != -1 )) {
+						if (((msg.indexOf('//q') == 0) && (msg.indexOf('//a') != -1 ))  && ((msg.indexOf('//a') - msg.indexOf('//q')) > 0)) {
 							var Q = msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a'));
 							var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
 							replyMsg = 
