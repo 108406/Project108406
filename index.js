@@ -219,9 +219,11 @@ function _bot() {
 					}
 					if (answerDB.length == 0 || answerNotFound) {
 						if ((msg.indexOf('//q') == 0) && (msg.indexOf('//a') != -1 )) {
+							var Q = msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a'));
+							var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
 							replyMsg = 
-								'//q後面的片段為：' + msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a')) + '\n' +
-								'//a後面的片段為：' + msg.slice((msg.indexOf('//a') + 3), msg.length);
+								'//q後面的片段為：' + Q + '\n' +
+								'//a後面的片段為：' + A;
 						}
 						/*replyMsg = 
 							'//q的indexOf值為' + msg.indexOf('//q') + '\n' + 
