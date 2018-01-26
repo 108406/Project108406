@@ -15,7 +15,7 @@ var answerDB = [];
 var groupID = [];	
 var userID = [];	
 var groupIsAnswer = [];	
-var userIsAnswer = [];	
+var userIsAnswer = [];
 _getJSON();
 
 _bot();
@@ -114,6 +114,7 @@ function _bot() {
 					userIsAnswer[userC] = false;									
 				}
 			}
+			
 			if (msg.toLowerCase() == '//open' && isGroup) {
 				if (groupIsAnswer[groupC]) {
 					replyMsg = '休比回應功能已經啟動。';
@@ -130,6 +131,10 @@ function _bot() {
 				}
 			}
 			
+			if (msg.toLowerCase() == '//teaching') {
+				
+			}
+			
 			//-------------
 			//指令偵錯與校正
 			//-------------
@@ -143,6 +148,12 @@ function _bot() {
 			if ((msg.toLowerCase() == 'open') ||(msg.toLowerCase() == '/open')) {
 				replyMsg = 
 					'重新開啟休比回應功能請輸入「//open」\n\n' +
+					'查看更多指令請輸入「//help」';
+			}
+			
+			if ((msg.toLowerCase() == 'teaching') ||(msg.toLowerCase() == '/teaching')) {
+				replyMsg = 
+					'查看協助對話教學請輸入「//teaching」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
 			
@@ -162,7 +173,8 @@ function _bot() {
 					'休比的指令列表：\n' + 
 					'help：查看休比目前擁有的指令\n' +
 					'mute：關閉休比的回應功能。\n' + 
-					'open：開啟休比的回應功能。';
+					'open：開啟休比的回應功能。\n' +
+					'teaching：查看協助對話教學。';
 			}
 			
 			//===========================================
@@ -191,17 +203,26 @@ function _bot() {
 			//===========================================
 			//對話資料庫
 			//===========================================
-			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {
+			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {		
 				if (replyMsg == '') {
-			/*		for (var i = 0;i <= answerDB.length-1;i++) {
-						if (answerDB[i][0] == msg) {
-							var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
-							replyMsg = answerDB[i][ans];
-						}else {*/
-							replyMsg = '無法辨識「' + msg + '」的意義\n';
-						/*}
-					}					
-					*/
+					var answerNotFound = false;
+					if (answerDB.length != 0) {
+						for (var i = 0; i <= answerDB.length-1 ; i++) {
+							if (answerDB[i][0] == msg) {
+								var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
+								replyMsg = answerDB[i][ans];
+							}else {
+								answerNotFound = true;
+							}
+						}
+					}
+					if (answerDB.length == 0 || answerNotFound) {
+						replyMsg = 
+							'無法辨別「' + msg + '」的意義\n' + 
+							'如果你願意幫助休比回答問題\n' + 
+							'請輸入指令「//teaching」' + 
+							'查看教導休比回答的方法。';
+					}
 				}
 			}
 			
