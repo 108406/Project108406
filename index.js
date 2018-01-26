@@ -157,7 +157,7 @@ function _bot() {
 						}else {
 							QfAfPushIn = true;
 						}
-					}
+					} 
 					if (QfAfPushIn) {
 						answerDB.push(Q);
 						answerDB[answerDB.length-1].push(A);
