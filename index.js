@@ -135,34 +135,42 @@ function _bot() {
 					var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
 					var QtAfPushIn = true;
 					var QfAfPushIn = true;
-					for (var i = 0; i <= answerDB.length-1; i ++) {
-						if (Q == answerDB[i][0]) {
-							for (var a = 0 ; a <= answerDB[i].length-1;a++) {
-								if (A == answerDB[i][a]) {
-									replyMsg = '資料庫裡已經存有相同的問答。';
+					if (answerDB.length != 0) {
+						for (var i = 0; i <= answerDB.length-1; i ++) {
+							if (Q == answerDB[i][0]) {
+								for (var a = 0 ; a <= answerDB[i].length-1;a++) {
+									if (A == answerDB[i][a]) {
+										replyMsg = '資料庫裡已經存有相同的問答。';
+										QtAfPushIn = false;
+									}
+								}
+								if (QtAfPushIn) {
+									answerDB[i].push(A);
+									replyMsg = 
+										'對話問答成功寫入資料庫中\n' +
+										'問：「' + answerDB[i][0] + '」\n' + 
+										'答：「' + answerDB[i][answerDB[i].length-1] + '」';
 									QtAfPushIn = false;
 								}
+								QfAfPushIn = false;
 							}
-							if (QtAfPushIn) {
-								answerDB[i].push(A);
-								replyMsg = 
-									'對話問答成功寫入資料庫中\n' +
-									'問：「' + answerDB[i][0] + '」\n' + 
-									'答：「' + answerDB[i][answerDB[i].length-1] + '」';
-								QtAfPushIn = false;
-							}
+						} 
+						if (QfAfPushIn) {
+							answerDB.push(Q);
+							answerDB[answerDB.length-1].push(A);
+							replyMsg = 
+								'對話問答成功寫入資料庫中\n' +
+								'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
+								'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
 							QfAfPushIn = false;
 						}
-					} 
-					if (QfAfPushIn) {
+					}else {
 						answerDB.push(Q);
-						var x = answerDB.length-1;
-						answerDB[x].push(A);
+						answerDB[0].push(A);
 						replyMsg = 
 							'對話問答成功寫入資料庫中\n' +
-							'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
-							'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
-						QfAfPushIn = false;
+							'問：「' + answerDB[0][0] + '」\n' + 
+							'答：「' + answerDB[0][1] + '」';
 					}
 				}else {
 					replyMsg = '「//q」與「//a」的順序不可對調。';
