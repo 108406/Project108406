@@ -131,8 +131,14 @@ function _bot() {
 			}
 			
 			if ((msg.toLowerCase().indexOf('//q') == 0) && (msg.toLowerCase().indexOf('//a') != -1 )) {
+				
+				console.log('1');
+				
 				isUpdateDB = true;
 				if ((msg.indexOf('//a') - msg.indexOf('//q')) > 0) {
+					
+				console.log('2');
+				
 					var Q = msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a'));
 					var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
 					var QtAfPushIn = false;
