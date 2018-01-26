@@ -11,7 +11,11 @@ var bot = linebot({
 var timer;
 var pm = [];
 var uviInfo = [];
+
 var answerDB = [];
+answerDB[0] = [];
+answerDB[1] = [];
+
 var groupID = [];	
 var userID = [];	
 var groupIsAnswer = [];	
