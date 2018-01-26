@@ -65,7 +65,7 @@ function _bot() {
 			}
 		} else {
 			isUser = true;
-			var pushIn = false;
+			var pushIn = true;
 			if (userID.length != 0) {
 				for (var i = 0; i <= userID.length - 1 ; i++) {
 					if (event.source.userId == userID[i]) {
