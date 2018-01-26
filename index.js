@@ -93,6 +93,7 @@ function _bot() {
 	
 		if (event.message.type == 'text') {
 			var msg = event.message.text;
+			var isUpdateDB = false;
 			var replyMsg = '';
 			//===========================================
 			//指令判斷
@@ -130,6 +131,7 @@ function _bot() {
 			}
 			
 			if ((msg.toLowerCase().indexOf('//q') == 0) && (msg.toLowerCase().indexOf('//a') != -1 )) {
+				isUpdateDB = true;
 				if ((msg.indexOf('//a') - msg.indexOf('//q')) > 0) {
 					var Q = msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a'));
 					var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
@@ -211,7 +213,7 @@ function _bot() {
 					'查看更多指令請輸入「//help」';
 			}
 			
-			if ((msg.toLowerCase() == 'a') || (msg.toLowerCase() == 'q') || (msg.toLowerCase().indexOf('/a') != -1) || (msg.toLowerCase().indexOf('/q') != -1) ) {
+			if (((msg.toLowerCase() == 'a') || (msg.toLowerCase() == 'q') || (msg.toLowerCase().indexOf('/a') != -1) || (msg.toLowerCase().indexOf('/q') != -1)) && !isUpdateDB) {
 				replyMsg = 
 					'協助對話指令「//q」必須與「//a」連用\n' +
 					'查看協助對話教學請輸入「//teaching」\n\n' +
@@ -295,10 +297,6 @@ function _bot() {
 				console.log (userID);
 				console.log (groupIsAnswer);
 				console.log (userIsAnswer);
-				console.log (groupC);
-				console.log (userC);
-				console.log (isGroup);
-				console.log (isUser);
 			}).catch(function(error) {
 				console.log('error');
 			});
