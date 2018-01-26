@@ -131,8 +131,64 @@ function _bot() {
 				}
 			}
 			
+			if ((msg.toLowerCase().indexOf('//q') == 0) && (msg.toLowerCase().indexOf('//a') != -1 )) {
+				if ((msg.indexOf('//a') - msg.indexOf('//q')) > 0) {
+					var Q = msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a'));
+					var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
+					var QtAfPushIn = false;
+					var QfAfPushIn = false;
+					for (var i = 0; i <= answerDB.length-1; i ++) {
+						if (Q == answerDB[i][0]) {
+							for (var a = 0 ; a <= answerDB[i].length-1;a++) {
+								if (A == answerDB[i][a]) {
+									replyMsg = '資料庫裡已經存有相同的問答。';
+								}else {
+									QtAfPushIn = true;
+								}
+							}
+							if (QtAfPushIn) {
+								answerDB[i].push(A);
+								replyMsg = 
+									'對話問答成功寫入資料庫中\n' +
+									'問：「' + answerDB[i][0] + '」\n' + 
+									'答：「' + answerDB[i][answerDB[i].length-1] + '」';
+								QtAfPushIn = false;
+							}
+						}else {
+							QfAfPushIn = true;
+						}
+					}
+					if (QfAfPushIn) {
+						answerDB.push(Q);
+						answerDB[answerDB.length-1].push(A);
+						replyMsg = 
+							'對話問答成功寫入資料庫中\n' +
+							'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
+							'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
+						QfAfPushIn = false;
+					}
+				}else {
+					replyMsg = '「//q」與「//a」的順序不可對調。';
+				}
+			}
+						
 			if (msg.toLowerCase() == '//teaching') {
-				
+				replyMsg = 
+					'請使用指令「//q」設定問題\n' + 
+					'並使用指令「//a」設定回覆\n\n' +
+					'請將兩個指令輸入在同一則訊息中\n' +
+					'並以：\n\n' + 
+					'//q問題\n' +
+					'//a回答\n\n' +
+					'的格式來幫助休比回答更多訊息。\n\n' + 
+					'※「//q」與「//a」的順序不可對調\n' +
+					'※「//q」必須在訊息開頭就輸入\n' +
+					'※指令後不需要空格。\n' +
+					'※請不要在「//a」後輸入多餘的訊息，\n' + 
+					'這將會造成日後休比的回覆有誤。\n' + 
+					'為了給休比有更人性化的回覆，\n' + 
+					'感謝您的配合與協助。\n' + 
+					'也感謝您看完這段教學。';
 			}
 			
 			//-------------
@@ -153,6 +209,13 @@ function _bot() {
 			
 			if ((msg.toLowerCase() == 'teaching') ||(msg.toLowerCase() == '/teaching')) {
 				replyMsg = 
+					'查看協助對話教學請輸入「//teaching」\n\n' +
+					'查看更多指令請輸入「//help」';
+			}
+			
+			if (((msg.toLowerCase() == 'a') || (msg.toLowerCase() == 'q') || (msg.toLowerCase().indexOf('/a') != -1) || (msg.toLowerCase().indexOf('/q') != -1) ) {
+				replyMsg = 
+					'協助對話指令「//q」必須與「//a」連用\n' +
 					'查看協助對話教學請輸入「//teaching」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
@@ -218,12 +281,7 @@ function _bot() {
 						}
 					}
 					if (answerDB.length == 0 || answerNotFound) {
-						if (((msg.indexOf('//q') == 0) && (msg.indexOf('//a') != -1 ))  && ((msg.indexOf('//a') - msg.indexOf('//q')) > 0)) {
-							var Q = msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a'));
-							var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
-							replyMsg = 
-								'//q後面的片段為：' + A ;
-						}
+						
 						/*replyMsg = 
 							'//q的indexOf值為' + msg.indexOf('//q') + '\n' + 
 							'//a的indexOf值為' + msg.indexOf('//a') + '\n' +
