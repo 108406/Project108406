@@ -156,7 +156,8 @@ function _bot() {
 					} 
 					if (QfAfPushIn) {
 						answerDB.push(Q);
-						answerDB[(answerDB.length-1)].push(A);
+						var x = answerDB.length-1;
+						answerDB[x].push(A);
 						replyMsg = 
 							'對話問答成功寫入資料庫中\n' +
 							'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
