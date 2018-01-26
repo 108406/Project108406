@@ -159,7 +159,7 @@ function _bot() {
 						}
 					} 
 					if (QfAfPushIn) {
-						var newQA = [Q,A]
+						var newQA = [Q,A];
 						answerDB.push(newQA);
 						replyMsg = 
 							'對話問答成功寫入資料庫中\n' +
