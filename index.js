@@ -156,7 +156,7 @@ function _bot() {
 					} 
 					if (QfAfPushIn) {
 						answerDB.push(Q);
-						answerDB[answerDB.length-1].push(A);
+						answerDB[(answerDB.length-1)].push(A);
 						replyMsg = 
 							'對話問答成功寫入資料庫中\n' +
 							'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
@@ -289,10 +289,10 @@ function _bot() {
 
 			event.reply(replyMsg).then(function(data) {
 				console.log (replyMsg);
-				console.log ('groupID : ' + groupID);
-				console.log ('userID : ' + userID);
-				console.log ('groupIsAnswer : ' + groupIsAnswer);
-				console.log ('userIsAnswer : ' + userIsAnswer);
+				console.log ('groupID：' + groupID);
+				console.log ('userID：' + userID);
+				console.log ('groupIsAnswer：' + groupIsAnswer);
+				console.log ('userIsAnswer：' + userIsAnswer);
 			}).catch(function(error) {
 				console.log('error');
 			});
