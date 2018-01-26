@@ -100,11 +100,19 @@ function _bot() {
 			//指令判斷
 			//===========================================
 			if (msg.toLowerCase() == '//mute' && isGroup) {
-				replyMsg = '休比回應功能已關閉。';
-				groupIsAnswer[groupC] = false;
+				if (!groupIsAnswer[groupC]) {
+					replyMsg = '休比回應功能已經關閉。';
+				}else {
+					replyMsg = '休比回應功能關閉。';
+					groupIsAnswer[groupC] = false;					
+				}
 			}else if (msg.toLowerCase() == '//mute' && isUser) {
-				replyMsg = '休比回應功能已關閉。';
-				userIsAnswer[userC] = false;				
+				if (!userIsAnswer[userC]) {
+					replyMsg = '休比回應功能已經關閉。';
+				}else {
+					replyMsg = '休比回應功能關閉。';
+					userIsAnswer[userC] = false;									
+				}
 			}
 			if (msg.toLowerCase() == '//open' && isGroup) {
 				if (groupIsAnswer[groupC]) {
