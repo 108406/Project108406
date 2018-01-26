@@ -61,7 +61,6 @@ function _bot() {
 				groupID.push(event.source.groupId);
 				groupC = groupID.length-1;
 				groupIsAnswer[groupC] = true;
-				pushIn = false;
 			}
 		} else {
 			isUser = true;
@@ -86,7 +85,6 @@ function _bot() {
 				userID.push(event.source.userId);
 				userC = userID.length-1;
 				userIsAnswer[userC] = true;
-				pushIn = false;
 			}
 		}
 	
@@ -131,25 +129,18 @@ function _bot() {
 			}
 			
 			if ((msg.toLowerCase().indexOf('//q') == 0) && (msg.toLowerCase().indexOf('//a') != -1 )) {
-				
-				console.log('1');
-				
 				isUpdateDB = true;
 				if ((msg.indexOf('//a') - msg.indexOf('//q')) > 0) {
-					
-				console.log('2');
-				
 					var Q = msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a'));
 					var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
-					var QtAfPushIn = false;
-					var QfAfPushIn = false;
+					var QtAfPushIn = true;
+					var QfAfPushIn = true;
 					for (var i = 0; i <= answerDB.length-1; i ++) {
 						if (Q == answerDB[i][0]) {
 							for (var a = 0 ; a <= answerDB[i].length-1;a++) {
 								if (A == answerDB[i][a]) {
 									replyMsg = '資料庫裡已經存有相同的問答。';
-								}else {
-									QtAfPushIn = true;
+									QtAfPushIn = false;
 								}
 							}
 							if (QtAfPushIn) {
@@ -160,8 +151,7 @@ function _bot() {
 									'答：「' + answerDB[i][answerDB[i].length-1] + '」';
 								QtAfPushIn = false;
 							}
-						}else {
-							QfAfPushIn = true;
+							QfAfPushIn = false;
 						}
 					} 
 					if (QfAfPushIn) {
@@ -234,7 +224,7 @@ function _bot() {
 			//-------------
 			//所有指令列
 			//-------------
-			if (msg.toLowerCase() == '//help') {
+			if ((msg.toLowerCase() == '//help') || (msg.toLowerCase() == '//')) {
 				replyMsg = 
 					'休比的使用說明：\n' + 
 					'一、為了讓休比更方便判斷指令\n' + 
@@ -275,14 +265,13 @@ function _bot() {
 			//===========================================
 			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {		
 				if (replyMsg == '') {
-					var answerNotFound = false;
+					var answerNotFound = true;
 					if (answerDB.length != 0) {
 						for (var i = 0; i <= answerDB.length-1 ; i++) {
 							if (answerDB[i][0] == msg) {
 								var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
 								replyMsg = answerDB[i][ans];
-							}else {
-								answerNotFound = true;
+								answerNotFound = false;
 							}
 						}
 					}
@@ -292,17 +281,18 @@ function _bot() {
 							'如果你願意幫助休比回答問題\n' + 
 							'請輸入指令「//teaching」' + 
 							'查看教導休比回答的方法。';
+							answerNotFound = false;
 					}
 				}
 			}
 			
 
 			event.reply(replyMsg).then(function(data) {
-				console.log(replyMsg);
-				console.log (groupID);
-				console.log (userID);
-				console.log (groupIsAnswer);
-				console.log (userIsAnswer);
+				console.log (replyMsg);
+				console.log ('groupID : ' + groupID);
+				console.log ('userID : ' + userID);
+				console.log ('groupIsAnswer : ' + groupIsAnswer);
+				console.log ('userIsAnswer : ' + userIsAnswer);
 			}).catch(function(error) {
 				console.log('error');
 			});
@@ -316,13 +306,12 @@ function _bot() {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
 		var	group = event.source.groupId;
 		var replyMsg = '';
-		var pushIn = false;
+		var pushIn = true;
 		if (groupID.length != 0) {
 			for (var i = 0; i <= groupID.length - 1 ; i++) {
 				if (group == groupID[i]) {
 					replyMsg = '休比又回來了，請多多指教。';
-				}else {
-					pushIn = true;
+					pushIn = false;
 				}
 			}
 			if (pushIn) {
@@ -334,6 +323,8 @@ function _bot() {
 			groupID.push(group);
 			replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
 		}
+		
+		
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
 		}).catch(function(error) {
@@ -348,13 +339,12 @@ function _bot() {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
 		var	user = event.source.userId;
 		var replyMsg = '';
-		var pushIn = false;
+		var pushIn = true;
 		if (userID.length != 0) {
 			for (var i = 0; i <= userID.length - 1 ; i++) {
 				if (user == userID[i]) {
 					replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
-				}else {
-					pushIn = true;
+					pushIn = false;
 				}
 			}
 			if (pushIn) {
@@ -366,6 +356,7 @@ function _bot() {
 			userID.push(user);
 			replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';
 		}
+		
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
 		}).catch(function(error) {
