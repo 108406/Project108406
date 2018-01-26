@@ -280,12 +280,7 @@ function _bot() {
 							}
 						}
 					}
-					if (answerDB.length == 0 || answerNotFound) {
-						
-						/*replyMsg = 
-							'//q的indexOf值為' + msg.indexOf('//q') + '\n' + 
-							'//a的indexOf值為' + msg.indexOf('//a') + '\n' +
-							'msg的長度為' + (msg.length); */
+					if (answerDB.length == 0 || answerNotFound) {						
 						replyMsg = 
 							'無法辨別「' + msg + '」的意義\n' + 
 							'如果你願意幫助休比回答問題\n' + 
