@@ -13,8 +13,8 @@ var pm = [];
 var uviInfo = [];
 
 var answerDB = [];
-answerDB[0] = [];
-answerDB[1] = [];
+answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
+answerDB[1] = ['休比','在','有','嗯?'];
 
 var groupID = [];	
 var userID = [];	
@@ -139,42 +139,33 @@ function _bot() {
 					var A = msg.slice((msg.indexOf('//a') + 3), msg.length);
 					var QtAfPushIn = true;
 					var QfAfPushIn = true;
-					if (answerDB.length != 0) {
-						for (var i = 0; i <= answerDB.length-1; i ++) {
-							if (Q == answerDB[i][0]) {
-								for (var a = 0 ; a <= answerDB[i].length-1;a++) {
-									if (A == answerDB[i][a]) {
-										replyMsg = '資料庫裡已經存有相同的問答。';
-										QtAfPushIn = false;
-									}
-								}
-								if (QtAfPushIn) {
-									answerDB[i].push(A);
-									replyMsg = 
-										'對話問答成功寫入資料庫中\n' +
-										'問：「' + answerDB[i][0] + '」\n' + 
-										'答：「' + answerDB[i][answerDB[i].length-1] + '」';
+					for (var i = 0; i <= answerDB.length-1; i ++) {
+						if (Q == answerDB[i][0]) {
+							for (var a = 0 ; a <= answerDB[i].length-1;a++) {
+								if (A == answerDB[i][a]) {
+									replyMsg = '資料庫裡已經存有相同的問答。';
 									QtAfPushIn = false;
 								}
-								QfAfPushIn = false;
 							}
-						} 
-						if (QfAfPushIn) {
-							answerDB.push(Q);
-							answerDB[answerDB.length-1].push(A);
-							replyMsg = 
-								'對話問答成功寫入資料庫中\n' +
-								'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
-								'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
+							if (QtAfPushIn) {
+								answerDB[i].push(A);
+								replyMsg = 
+									'對話問答成功寫入資料庫中\n' +
+									'問：「' + answerDB[i][0] + '」\n' + 
+									'答：「' + answerDB[i][answerDB[i].length-1] + '」';
+								QtAfPushIn = false;
+							}
 							QfAfPushIn = false;
 						}
-					}else {
+					} 
+					if (QfAfPushIn) {
 						answerDB.push(Q);
-						answerDB[0].push(A);
+						answerDB[answerDB.length-1].push(A);
 						replyMsg = 
 							'對話問答成功寫入資料庫中\n' +
-							'問：「' + answerDB[0][0] + '」\n' + 
-							'答：「' + answerDB[0][1] + '」';
+							'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
+							'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
+						QfAfPushIn = false;
 					}
 				}else {
 					replyMsg = '「//q」與「//a」的順序不可對調。';
@@ -282,7 +273,7 @@ function _bot() {
 					if (answerDB.length != 0) {
 						for (var i = 0; i <= answerDB.length-1 ; i++) {
 							if (answerDB[i][0] == msg) {
-								var ans = Math.floor(Math.random(0,answerDB[i].length)*10);
+								var ans = Math.floor(Math.random(1,answerDB[i].length)*10);
 								replyMsg = answerDB[i][ans];
 								answerNotFound = false;
 							}
