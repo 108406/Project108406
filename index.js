@@ -280,16 +280,14 @@ function _bot() {
 			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {		
 				if (replyMsg == '') {
 					var answerNotFound = true;
-					if (answerDB.length != 0) {
-						for (var i = 0; i <= answerDB.length-1 ; i++) {
-							if (answerDB[i][0] == msg) {
-								var ans = Math.floor(Math.random(1,answerDB[i].length)*10);
-								replyMsg = answerDB[i][ans];
-								answerNotFound = false;
-							}
+					for (var i = 0; i <= answerDB.length-1 ; i++) {
+						if (answerDB[i][0] == msg) {
+							var ans = Math.floor(Math.random(1,answerDB[i].length)*10);
+							replyMsg = answerDB[i][ans];
+							answerNotFound = false;
 						}
 					}
-					if (answerDB.length == 0 || answerNotFound) {						
+					if (answerNotFound) {						
 						replyMsg = 
 							'無法辨別「' + msg + '」的意義\n' + 
 							'如果你願意幫助休比回答問題\n' + 
