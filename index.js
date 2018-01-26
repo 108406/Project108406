@@ -282,7 +282,7 @@ function _bot() {
 					var answerNotFound = true;
 					for (var i = 0; i <= answerDB.length-1 ; i++) {
 						if (answerDB[i][0] == msg) {
-							var ans = Math.floor((Math.random() * answerDB[i].length) + 1);
+							var ans = Math.floor((Math.random() * (answerDB[i].length - 1)) + 1);
 							replyMsg = answerDB[i][ans];
 			console.log(ans);
 							answerNotFound = false;
