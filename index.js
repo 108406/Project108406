@@ -168,8 +168,9 @@ function _bot() {
 			if (msg.toLowerCase() == '//help') {
 				replyMsg = 
 					'休比的使用說明：\n' + 
-					'為了讓休比更方便判斷指令\n' + 
-					'請在開頭加入雙斜線「//」\n\n' +
+					'一、為了讓休比更方便判斷指令\n' + 
+					'請在開頭加入雙斜線「//」\n' +
+					'二、指令不需區分大小寫。\n\n' +
 					'休比的指令列表：\n' + 
 					'help：查看休比目前擁有的指令\n' +
 					'mute：關閉休比的回應功能。\n' + 
@@ -217,11 +218,15 @@ function _bot() {
 						}
 					}
 					if (answerDB.length == 0 || answerNotFound) {
-						replyMsg = 
+						
+						reply = 
+							'//q的indexOf值為' + msg.indexOf('//q') + '\n' + 
+							'//a的indexOf值為' + msg.indexOf('//a'); 
+						/*replyMsg = 
 							'無法辨別「' + msg + '」的意義\n' + 
 							'如果你願意幫助休比回答問題\n' + 
 							'請輸入指令「//teaching」' + 
-							'查看教導休比回答的方法。';
+							'查看教導休比回答的方法。';*/
 					}
 				}
 			}
