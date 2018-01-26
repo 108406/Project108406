@@ -81,6 +81,8 @@ function _bot() {
 					if (event.source.userId == userID[i]) {
 						
 			console.log ('4');
+			console.log (event.source.userId);
+			console.log(userID[i]);
 			
 						if (userIsAnswer[i] == undefined) {	
 
