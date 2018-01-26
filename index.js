@@ -306,6 +306,7 @@ function _bot() {
 				console.log ('userID：' + userID);
 				console.log ('groupIsAnswer：' + groupIsAnswer);
 				console.log ('userIsAnswer：' + userIsAnswer);
+				console.log ('answerDB' + answerDB);
 			}).catch(function(error) {
 				console.log('error');
 			});
@@ -340,6 +341,11 @@ function _bot() {
 		
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
+			console.log ('groupID：' + groupID);
+			console.log ('userID：' + userID);
+			console.log ('groupIsAnswer：' + groupIsAnswer);
+			console.log ('userIsAnswer：' + userIsAnswer);
+			console.log ('answerDB' + answerDB);
 		}).catch(function(error) {
 			console.log('error');
 		});
@@ -372,6 +378,11 @@ function _bot() {
 		
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
+			console.log ('groupID：' + groupID);
+			console.log ('userID：' + userID);
+			console.log ('groupIsAnswer：' + groupIsAnswer);
+			console.log ('userIsAnswer：' + userIsAnswer);
+			console.log ('answerDB' + answerDB);
 		}).catch(function(error) {
 			console.log('error');
 		});
