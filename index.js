@@ -218,11 +218,15 @@ function _bot() {
 						}
 					}
 					if (answerDB.length == 0 || answerNotFound) {
-						
+						if (((msg.indexOf('//q') != -1) && (msg.indexOf('//a') != -1 ) && ((msg.indexOf('//a') - msg.indexOf('//q')) > 0)) {
+							replyMsg = 
+								'//q後面的片段為：' + msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a')) + '\n' +
+								'//a後面的片段為：' + msg.slice((msg.indexOf('//a') + 3), msg.length);
+						}
 						replyMsg = 
 							'//q的indexOf值為' + msg.indexOf('//q') + '\n' + 
-							'//a的indexOf值為' + msg.indexOf('//a') + 'n' +
-							'msg的長度為' + (msg.length - 1); 
+							'//a的indexOf值為' + msg.indexOf('//a') + '\n' +
+							'msg的長度為' + (msg.length); 
 						/*replyMsg = 
 							'無法辨別「' + msg + '」的意義\n' + 
 							'如果你願意幫助休比回答問題\n' + 
