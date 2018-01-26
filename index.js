@@ -277,17 +277,35 @@ function _bot() {
 			//===========================================
 			//對話資料庫
 			//===========================================
-			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {		
+			
+			console.log('1');
+			
+			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {	
+
+			console.log('1');
+						
 				if (replyMsg == '') {
+					
+			console.log('1');
+			
 					var answerNotFound = true;
 					for (var i = 0; i <= answerDB.length-1 ; i++) {
+						
+			console.log('1');
+			
 						if (answerDB[i][0] == msg) {
+							
+			console.log('1');
+			
 							var ans = Math.floor(Math.random(1,answerDB[i].length)*10);
 							replyMsg = answerDB[i][ans];
 							answerNotFound = false;
 						}
 					}
-					if (answerNotFound) {						
+					if (answerNotFound) {
+
+			console.log('1');
+									
 						replyMsg = 
 							'無法辨別「' + msg + '」的意義\n' + 
 							'如果你願意幫助休比回答問題\n' + 
