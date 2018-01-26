@@ -282,20 +282,20 @@ function _bot() {
 			
 			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {	
 
-			console.log('1');
+			console.log('2');
 						
 				if (replyMsg == '') {
 					
-			console.log('1');
+			console.log('3');
 			
 					var answerNotFound = true;
 					for (var i = 0; i <= answerDB.length-1 ; i++) {
 						
-			console.log('1');
+			console.log('4');
 			
 						if (answerDB[i][0] == msg) {
 							
-			console.log('1');
+			console.log('5');
 			
 							var ans = Math.floor(Math.random(1,answerDB[i].length)*10);
 							replyMsg = answerDB[i][ans];
@@ -304,7 +304,7 @@ function _bot() {
 					}
 					if (answerNotFound) {
 
-			console.log('1');
+			console.log('6');
 									
 						replyMsg = 
 							'無法辨別「' + msg + '」的意義\n' + 
