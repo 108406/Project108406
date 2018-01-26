@@ -299,6 +299,7 @@ function _bot() {
 			
 							var ans = Math.floor(Math.random(1,answerDB[i].length)*10);
 							replyMsg = answerDB[i][ans];
+			console.log(ans + ', ' + i);
 							answerNotFound = false;
 						}
 					}
