@@ -286,11 +286,11 @@ function _bot() {
 							'//q的indexOf值為' + msg.indexOf('//q') + '\n' + 
 							'//a的indexOf值為' + msg.indexOf('//a') + '\n' +
 							'msg的長度為' + (msg.length); */
-						/*replyMsg = 
+						replyMsg = 
 							'無法辨別「' + msg + '」的意義\n' + 
 							'如果你願意幫助休比回答問題\n' + 
 							'請輸入指令「//teaching」' + 
-							'查看教導休比回答的方法。';*/
+							'查看教導休比回答的方法。';
 					}
 				}
 			}
