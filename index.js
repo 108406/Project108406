@@ -65,26 +65,47 @@ function _bot() {
 				pushIn = false;
 			}
 		} else {
+			
+			console.log ('1');
+			
 			isUser = true;
 			var pushIn = false;
 			if (userID.length != 0) {
+				
+			console.log ('2');
+			
 				for (var i = 0; i <= userID.length - 1 ; i++) {
+					
+			console.log ('3');
+			
 					if (event.source.userId == userID[i]) {
-						if (userIsAnswer[i] == undefined) {						
+						
+			console.log ('4');
+			
+						if (userIsAnswer[i] == undefined) {	
+
+			console.log ('5');
+									
 							userIsAnswer[i] = true;
 						}
 						userC = i;
 					}else {
+			console.log ('6');
+			
 						pushIn = true;
 					}
 				}
 				if (pushIn) {
+			console.log ('7');
+			
 					userID.push(event.source.userId);
 					userC = userID.length-1;
 					userIsAnswer[userC] = true;
 					pushIn = false;
 				}
 			} else { 
+			console.log ('8');
+			
 				userID.push(event.source.userId);
 				userC = userID.length-1;
 				userIsAnswer[userC] = true;
