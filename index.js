@@ -78,7 +78,7 @@ function _bot() {
 					
 			console.log ('3');
 			
-					if (event.source.userId == userID[i]) {
+					if (event.source.userId.toString() == userID[i].toString()) {
 						
 			console.log ('4');
 			console.log (event.source.userId);
