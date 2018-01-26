@@ -218,7 +218,7 @@ function _bot() {
 						}
 					}
 					if (answerDB.length == 0 || answerNotFound) {
-						if ((msg.indexOf('//q') != -1) && (msg.indexOf('//a') != -1 ) {
+						if ((msg.indexOf('//q') != -1) && (msg.indexOf('//a') != -1 )) {
 							replyMsg = 
 								'//q後面的片段為：' + msg.slice((msg.indexOf('//q') + 3), msg.indexOf('//a')) + '\n' +
 								'//a後面的片段為：' + msg.slice((msg.indexOf('//a') + 3), msg.length);
