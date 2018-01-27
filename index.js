@@ -10,14 +10,22 @@ var bot = linebot({
 
 var timer;
 var timer2;
+var timer3;
 var pm = [];
 var uviInfo = [];
+_greeting();
 _update();
 
 var answerDB = [];
 answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
 answerDB[1] = ['休比','在','有','嗯?'];
-
+answerDB[2] = ['二毛','邊緣人','ㄙㄨㄥˊ'];
+answerDB[3] = ['可以不要這樣嗎','我覺得很可以'];
+answerDB[4] = ['我要玩壞你','(羞'];
+answerDB[5] = ['你是誰','乾你屁事','我是休比，想聊天嗎？'];
+answerDB[6] = ['不想','為什麼不想？！這樣人家會傷心QQ'];
+answerDB[7] = ['想','想你的夜~多希望你能陪在身邊~~~'];
+answerDB[8] = ['啊唷','不錯哦','這個屌'];
 var groupID = [];	
 var userID = [];	
 var groupIsAnswer = [];	
@@ -426,8 +434,27 @@ function _getJSON() {
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
 }
 
+function _greeting() {
+	clearTimeout(timer2);
+	bot.on('message', function(event) {
+		var replyMsg = 
+			'感謝您將休比加為好友\n' + 
+			'如果你願意幫助休比回答問題\n' + 
+			'並願意讓休比有更人性化的回覆，\n' + 
+			'請輸入指令「//teaching」' + 
+			'查看教導休比回答的方法。';
+		event.reply(replyMsg).then(function(data) {
+			console.log(replyMsg);
+		}).catch(function(error) {
+			console.log('error');
+		});
+	});	
+    timer2 = setInterval(_greeting, 43200000); //每12h送出訊息	
+}
+
+
 function _update() {
-  clearTimeout(timer2);
-  console.log('update');
-  timer2 = setInterval(_update, 1800000); //每30min更新	
+	clearTimeout(timer3);
+		console.log('Update');
+    timer3 = setInterval(_update, 60000); //每60s更新	
 }
