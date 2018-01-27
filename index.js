@@ -429,5 +429,5 @@ function _getJSON() {
 function _update() {
   clearTimeout(timer2);
   console.log('test');
-  timer2 = setInterval(_getJSON, 5000); //每5s更新	
+  timer2 = setInterval(_update, 5000); //每5s更新	
 }
