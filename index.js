@@ -9,8 +9,10 @@ var bot = linebot({
 });
 
 var timer;
+var timer2;
 var pm = [];
 var uviInfo = [];
+_update();
 
 var answerDB = [];
 answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
@@ -313,7 +315,6 @@ function _bot() {
 						if (answerDB[i][0] == msg) {
 							var ans = Math.floor((Math.random() * (answerDB[i].length - 1)) + 1);
 							replyMsg = answerDB[i][ans];
-			console.log(ans);
 							answerNotFound = false;
 						}
 					}
@@ -425,3 +426,8 @@ function _getJSON() {
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
 }
 
+function _update() {
+  clearTimeout(timer2);
+  console.log('test');
+  timer2 = setInterval(_getJSON, 5000); //每5s更新	
+}
