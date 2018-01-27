@@ -382,18 +382,18 @@ function _bot() {
 		if (userID.length != 0) {
 			for (var i = 0; i <= userID.length - 1 ; i++) {
 				if (user == userID[i]) {
-					replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
+					replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';
 					pushIn = false;
 				}
 			}
 			if (pushIn) {
 				userID.push(user);
-				replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';				
+				replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';				
 				pushIn = false;
 			}
 		}else {
 			userID.push(user);
-			replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';
+			replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
 		}
 		
 		event.reply(replyMsg).then(function(data) {
