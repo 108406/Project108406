@@ -16,8 +16,8 @@ var answerDB = [];
 answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
 answerDB[1] = ['休比','在','有','嗯?'];
 
-var groupID = [C6671a57df85dd0c335603fbd57c23338];	
-var userID = [U6e7d4242219e379cb8dfa26b62cda593];	
+var groupID = ['C6671a57df85dd0c335603fbd57c23338'];	
+var userID = ['U6e7d4242219e379cb8dfa26b62cda593'];	
 var groupIsAnswer = [];	
 var userIsAnswer = [];
 _getJSON();
