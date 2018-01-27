@@ -425,9 +425,9 @@ function _getJSON() {
   });
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
 }
-
+/*
 function _update() {
   clearTimeout(timer2);
   console.log('test');
   timer2 = setInterval(_update, 5000); //每5s更新	
-}
+}*/
