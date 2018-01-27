@@ -12,7 +12,7 @@ var timer;
 var timer2;
 var pm = [];
 var uviInfo = [];
-_update();
+//_update();
 
 var answerDB = [];
 answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
