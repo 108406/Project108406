@@ -16,8 +16,8 @@ var answerDB = [];
 answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
 answerDB[1] = ['休比','在','有','嗯?'];
 
-var groupID = ['C6671a57df85dd0c335603fbd57c23338'];	
-var userID = ['U6e7d4242219e379cb8dfa26b62cda593'];	
+var groupID = [];	
+var userID = [];	
 var groupIsAnswer = [];	
 var userIsAnswer = [];
 _getJSON();
@@ -252,6 +252,13 @@ function _bot() {
 					'查看更多指令請輸入「//help」';
 			}
 			
+			if ((command.toLowerCase() == 'check') ||(command.toLowerCase() == '/check')) {
+				replyMsg = 
+					'欲使後臺顯示詳細訊息請輸入「//check」\n' + 
+					'※此指令為開發者指令\n\n' + 
+					'查看更多指令請輸入「//help」';
+			}
+			
 			//-------------
 			//所有指令列
 			//-------------
@@ -265,7 +272,12 @@ function _bot() {
 					'help：查看休比目前擁有的指令\n' +
 					'mute：關閉休比的回應功能。\n' + 
 					'open：開啟休比的回應功能。\n' +
-					'teaching：查看協助對話教學。';
+					'q：為休比設定問題以輸入資料庫\n' + 
+					'　　※須與a連用。\n' + 
+					'a：為休比設定回答以輸入資料庫\n' + 
+					'　　※須與q連用。\n' + 
+					'check：後臺顯示詳細訊息。\n' + 
+					'teaching：查看協助對話教學。\n';
 			}
 			
 			//===========================================
