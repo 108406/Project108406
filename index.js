@@ -13,7 +13,6 @@ var timer2;
 var timer3;
 var pm = [];
 var uviInfo = [];
-_greeting();
 _update();
 
 var answerDB = [];
@@ -433,25 +432,6 @@ function _getJSON() {
   });
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
 }
-
-function _greeting() {
-	clearTimeout(timer2);
-	bot.on('message', function(event) {
-		var replyMsg = 
-			'感謝您將休比加為好友\n' + 
-			'如果你願意幫助休比回答問題\n' + 
-			'並願意讓休比有更人性化的回覆，\n' + 
-			'請輸入指令「//teaching」' + 
-			'查看教導休比回答的方法。';
-		event.reply(replyMsg).then(function(data) {
-			console.log(replyMsg);
-		}).catch(function(error) {
-			console.log('error');
-		});
-	});	
-    timer2 = setInterval(_greeting, 43200000); //每12h送出訊息	
-}
-
 
 function _update() {
 	clearTimeout(timer3);
