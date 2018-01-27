@@ -12,7 +12,7 @@ var timer;
 var timer2;
 var pm = [];
 var uviInfo = [];
-//_update();
+_update();
 
 var answerDB = [];
 answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
@@ -425,9 +425,9 @@ function _getJSON() {
   });
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
 }
-/*
+
 function _update() {
   clearTimeout(timer2);
-  console.log('test');
-  timer2 = setInterval(_update, 5000); //每5s更新	
-}*/
+  console.log('update');
+  timer2 = setInterval(_update, 1800000); //每30min更新	
+}
