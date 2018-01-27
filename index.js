@@ -16,8 +16,8 @@ var answerDB = [];
 answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
 answerDB[1] = ['休比','在','有','嗯?'];
 
-var groupID = [];	
-var userID = [];	
+var groupID = [C6671a57df85dd0c335603fbd57c23338];	
+var userID = [U6e7d4242219e379cb8dfa26b62cda593];	
 var groupIsAnswer = [];	
 var userIsAnswer = [];
 _getJSON();
@@ -181,6 +181,23 @@ function _bot() {
 					replyMsg = '「//q」與「//a」的順序不可對調。';
 				}
 			}
+			
+			if (command.toLowerCase() == '//check') {
+				replyMsg = '此指令只有開發者能使用。';				
+				console.log ('groupID：' + groupID);
+				console.log ('userID：' + userID);
+				console.log ('groupIsAnswer：' + groupIsAnswer);
+				console.log ('userIsAnswer：' + userIsAnswer);
+				console.log ('=========');
+				console.log ('answerDB：');
+				for (var i = 0; i <= answerDB.length-1 ; i++) {
+					for (var s = 0; s <= answerDB[i].length-1 ; s++) {
+						console.log (answerDB[i][s]);						
+					}
+					console.log('-----');
+				}
+					
+			}
 						
 			if (command.toLowerCase() == '//teaching') {
 				replyMsg = 
@@ -302,19 +319,6 @@ function _bot() {
 
 			event.reply(replyMsg).then(function(data) {
 				console.log (replyMsg);
-				console.log ('groupID：' + groupID);
-				console.log ('userID：' + userID);
-				console.log ('groupIsAnswer：' + groupIsAnswer);
-				console.log ('userIsAnswer：' + userIsAnswer);
-				console.log ('=========');
-				console.log ('answerDB：');
-				for (var i = 0; i <= answerDB.length-1 ; i++) {
-					for (var s = 0; s <= answerDB[i].length-1 ; s++) {
-						console.log (answerDB[i][s]);						
-					}
-					console.log('-----');
-				}
-				console.log('=================');
 			}).catch(function(error) {
 				console.log('error');
 			});
