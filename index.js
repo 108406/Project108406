@@ -422,7 +422,7 @@ function _send() {
 	});
 
 	console.log('3');
-	const message = {
+	message = {
 	  type: 'text',
 	  text: 'Hello World!'
 	};
