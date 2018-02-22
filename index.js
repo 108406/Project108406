@@ -428,7 +428,7 @@ function _send() {
 	};
 	console.log('4');
 
-	client.push('U6e7d4242219e379cb8dfa26b62cda593', message);
+	client.pushMessage('U6e7d4242219e379cb8dfa26b62cda593', message);
 	  /*.then(() => {
 		
 	  })
