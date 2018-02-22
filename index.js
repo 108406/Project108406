@@ -413,24 +413,30 @@ function _bot() {
 }
 
 function _send() {
+	console.log('1');
 	const line = require('@line/bot-sdk');
 
+	console.log('2');
 	const client = new line.Client({
 	  channelAccessToken: 'L3JExeBE/B0vkQMnZFbhxtLijIQHcecDl2LRQV1N6EgeVO4P5vq1WRcklQ5aDK4ZE+gO00BOmPq3d/C5qmg2eEZc9T09ELM3j6DZPI1pYVy2zDMrh2zd0TCCFSYcyolYWavgPmKd31Qj+NFWk1Fz7QdB04t89/1O/w1cDnyilFU='
 	});
 
+	console.log('3');
 	const message = {
 	  type: 'text',
 	  text: 'Hello World!'
 	};
+	console.log('4');
 
-	client.pushMessage('U6e7d4242219e379cb8dfa26b62cda593', message)
-	  .then(() => {
+	client.push('U6e7d4242219e379cb8dfa26b62cda593', message);
+	  /*.then(() => {
 		
 	  })
 	  .catch((err) => {
 		// error handling
-	  });
+	  });*/
+	  
+	console.log('5');
 
 }
  
