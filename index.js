@@ -428,13 +428,14 @@ function _send() {
 	};
 	console.log('4');
 
-	client.pushMessage('U6e7d4242219e379cb8dfa26b62cda593', message);
-	  /*.then(() => {
+	client.pushMessage('U6e7d4242219e379cb8dfa26b62cda593', message)
+	  .then(() => {
+	console.log('6');
 		
 	  })
 	  .catch((err) => {
 		// error handling
-	  });*/
+	  });
 	  
 	console.log('5');
 
