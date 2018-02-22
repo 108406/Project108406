@@ -429,13 +429,11 @@ function _send() {
 	console.log('4');
 
 	client.pushMessage('U6e7d4242219e379cb8dfa26b62cda593', message)
-	  .then(() => {
-	console.log('6');
-		
-	  })
-	  .catch((err) => {
-		// error handling
-	  });
+	  .then(function(data) {
+			console.log(message);
+		}).catch(function(error) {
+			console.log('error');
+		});
 	  
 	console.log('5');
 
