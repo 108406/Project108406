@@ -79,7 +79,7 @@ function _bot() {
 	bot.on('message', function(event) {
    if (event.message.type === 'text') {
      
-	   appendMyRow(myId);
+	   appendMyRow();
    }
 });/*
 	bot.on('message', function(event) {		
@@ -451,7 +451,7 @@ function _bot() {
 }
 
 
-function appendMyRow(userId) {
+function appendMyRow() {
    var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
