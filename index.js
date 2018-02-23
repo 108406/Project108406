@@ -1,6 +1,8 @@
 var linebot = require('linebot');
 var express = require('express');
 var getJSON = require('get-json');
+var google = require('googleapis');
+var googleAuth = require('google-auth-library');
 
 var bot = linebot({
   channelId: '1558887838',
@@ -411,35 +413,6 @@ function _bot() {
 		});
 	});
 }
-
-function _send() {
-	console.log('1');
-	const line = require('@line/bot-sdk');
-
-	console.log('2');
-	const client = new line.Client({
-	  channelAccessToken: 'L3JExeBE/B0vkQMnZFbhxtLijIQHcecDl2LRQV1N6EgeVO4P5vq1WRcklQ5aDK4ZE+gO00BOmPq3d/C5qmg2eEZc9T09ELM3j6DZPI1pYVy2zDMrh2zd0TCCFSYcyolYWavgPmKd31Qj+NFWk1Fz7QdB04t89/1O/w1cDnyilFU='
-	});
-
-	console.log('3');
-	message = {
-	  type: 'text',
-	  text: 'Hello World!'
-	};
-	console.log('4');
-
-	client.pushMessage('U6e7d4242219e379cb8dfa26b62cda593', message)
-	  .then(function(data) {
-			console.log(message);
-		}).catch(function(error) {
-			console.log('error');
-		});
-	  
-	console.log('5');
-
-}
- 
-
 
 function _getJSON() {
   clearTimeout(timer);
