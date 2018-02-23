@@ -88,10 +88,10 @@ function getIdData() {
         console.log('No data found.');
      } else {		 
 		 for (i=1; i <rows.length ; i++) {	
-			rows[i][0] = userID[i-1];	 
-			rows[i][1] = groupID[i-1]; 
-			rows[i][3] = groupIsAnswer[i-1];
-			rows[i][4] = userIsAnswer[i-1];
+			userID[i-1]	= rows[i][0];
+			groupID[i-1] = rows[i][1];
+			groupIsAnswer[i-1] = rows[i][3];
+			userIsAnswer[i-1] = rows[i][4];
 		 }
 		 console.log(userID);
 		 console.log(groupID);
