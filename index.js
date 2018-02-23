@@ -467,7 +467,7 @@ function appendMyRow(userId) {
       valueInputOption: 'RAW',
       resource: {
         "values": [
-          users[userId].replies
+          users[userId];
         ]
       }
    };
