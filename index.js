@@ -24,8 +24,6 @@ var timer;
 var timer3;
 var pm = [];
 var uviInfo = [];
-  console.log(userID + ', ' + groupID);
-_update();
 
 var answerDB = [];
 var groupID = [];	
@@ -36,6 +34,7 @@ getQuestions();
 getIdData();
 
 _getJSON();
+_update();
 
 _bot();
 const app = express();
