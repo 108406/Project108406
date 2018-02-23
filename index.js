@@ -93,31 +93,12 @@ function getIdData() {
 			groupIsAnswer[i-1] = rows[i][3];
 			userIsAnswer[i-1] = rows[i][4];
 		 }
-		 console.log(userID);
-		 console.log(groupID);
-		 console.log(groupIsAnswer);
-		 console.log(userIsAnswer);
-		 /*if ()
-			 var DBlength = rows.length;
-			 for (i = 0; i < DBlength; i++) {
-				 answerDB[i] = rows[i];
-			 }
-			 
-		 }
-       console.log(rows.length);
-       console.log(rows[1]); */
      }
   });
 }
 
 
 function _bot() {
-	bot.on('message', function(event) {
-   if (event.message.type === 'text') {
-     
-	   appendMyRow();
-   }
-});/*
 	bot.on('message', function(event) {		
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
@@ -257,6 +238,7 @@ function _bot() {
 								'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
 							QfAfPushIn = false;
 						}
+						AnswerDBOverwrite();
 					}else {
 						replyMsg = '問答協助請勿輸入空值';
 						garbageCommand = false;
@@ -483,9 +465,30 @@ function _bot() {
 		}).catch(function(error) {
 			console.log('error');
 		});
-	});*/
+	});
 }
 
+function AnswerDBOverwrite() {
+	var request = {
+      auth: oauth2Client,
+      spreadsheetId: mySheetId,
+      range:encodeURI('setting'),
+      insertDataOption: 'INSERT_ROWS',
+      valueInputOption: 'RAW',
+      resource: {
+        "values": [
+          answerDB
+        ]
+      }
+   };
+   var sheets = google.sheets('v4');
+   sheets.spreadsheets.values.append(request, function(err, response) {
+      if (err) {
+         console.log('The API returned an error: ' + err);
+         return;
+      }
+   });
+}
 
 function appendMyRow() {
    var request = {
