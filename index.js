@@ -76,7 +76,7 @@ function getQuestions() {
      } else {
        myQuestions=rows;
        totalSteps=myQuestions[0].length;
-       console.log(sheets);
+       console.log(myQuestions);
      }
   });
 }
