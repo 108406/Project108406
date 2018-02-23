@@ -87,15 +87,18 @@ function getIdData() {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {
+		 for (i=1; i <5 ; i++) {			 
+			console.log(rows[i][1]); 
+		 }
 		 /*if ()
 			 var DBlength = rows.length;
 			 for (i = 0; i < DBlength; i++) {
 				 answerDB[i] = rows[i];
 			 }
 			 
-		 }*/
+		 }
        console.log(rows.length);
-       console.log(rows[1]); 
+       console.log(rows[1]); */
      }
   });
 }
