@@ -34,6 +34,7 @@ var userIsAnswer = [];
 getQuestions();
 getIdData();
 
+  console.log(userID + ', ' + groupID);
 _getJSON();
 
 _bot();
@@ -111,7 +112,6 @@ function getIdData() {
      }
   });
   
-  console.log(userID + ', ' + groupID);
 }
 
 
