@@ -462,7 +462,7 @@ function appendMyRow(userId) {
    var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
-      range:encodeURI('表單回應 1'),
+      range:encodeURI('setting'),
       insertDataOption: 'INSERT_ROWS',
       valueInputOption: 'RAW',
       resource: {
