@@ -78,9 +78,9 @@ function getQuestions() {
 function _bot() {
 	bot.on('message', function(event) {
    if (event.message.type === 'text') {
-      var myId=event.source.userId;
+      var myText=event.message.text;
       
-      appendMyRow(myId);
+      appendMyRow(myText);
    }
 });/*
 	bot.on('message', function(event) {		
@@ -452,7 +452,7 @@ function _bot() {
 }
 
 
-function appendMyRow(userId) {
+function appendMyRow(myText) {
    var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
@@ -461,7 +461,7 @@ function appendMyRow(userId) {
       valueInputOption: 'RAW',
       resource: {
         "values": [
-          users[userId]
+          myText
         ]
       }
    };
