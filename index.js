@@ -33,15 +33,6 @@ var uviInfo = [];
 _update();
 
 var answerDB = [];
-answerDB[0] = ['哈囉','你好','哈囉','嗨~'];
-answerDB[1] = ['休比','在','有','嗯?'];
-answerDB[2] = ['二毛','邊緣人','ㄙㄨㄥˊ'];
-answerDB[3] = ['可以不要這樣嗎','我覺得很可以'];
-answerDB[4] = ['我要玩壞你','(羞'];
-answerDB[5] = ['你是誰','乾你屁事','我是休比，想聊天嗎？'];
-answerDB[6] = ['不想','為什麼不想？！這樣人家會傷心QQ'];
-answerDB[7] = ['想','想你的夜~多希望你能陪在身邊~~~'];
-answerDB[8] = ['啊唷','不錯哦','這個屌'];
 var groupID = [];	
 var userID = [];	
 var groupIsAnswer = [];	
@@ -74,9 +65,12 @@ function getQuestions() {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {
-       myQuestions=rows;
-       totalSteps=myQuestions[0].length;
-       console.log(myQuestions[1]); 
+		 var DBlength = rows.length;
+		 for (i = 0; i < DBlength; i++) {
+			 answerDB[i] = rows[i];
+		 }
+		 
+       console.log(answerDB); 
      }
   });
 }
