@@ -10,12 +10,25 @@ var bot = linebot({
   channelAccessToken: 'L3JExeBE/B0vkQMnZFbhxtLijIQHcecDl2LRQV1N6EgeVO4P5vq1WRcklQ5aDK4ZE+gO00BOmPq3d/C5qmg2eEZc9T09ELM3j6DZPI1pYVy2zDMrh2zd0TCCFSYcyolYWavgPmKd31Qj+NFWk1Fz7QdB04t89/1O/w1cDnyilFU='
 });
 
+var myClientSecret={"installed":{"client_id":"826945543828-bkch7mebbit467p84hkc2h1t88vmk0ul.apps.googleusercontent.com","project_id":"phonic-agility-178912","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"9BZXk3XPV_hWCeFZP7whFBoS","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}};
+
+var auth = new googleAuth();
+var oauth2Client = new auth.OAuth2(myClientSecret.installed.client_id,myClientSecret.installed.client_secret, myClientSecret.installed.redirect_uris[0]);
+
+oauth2Client.credentials ={"access_token":"ya29.GltrBUPv62sRXPU_WI2iGkqNhpXnmSq511j-G-JNTiWNj8uBbHrxLVySEkrTqDh-WOwG3eacrcSiFlXB-mVelkEISTyiAW5aeRIc7AuO5JEKlJMKJyM2NMzprknZ","refresh_token":"1/FYb8760SodoyLtuX5yrnbbaulbW4l5JcxO4SyrPuOfg","token_type":"Bearer","expiry_date":1519378285674};
+
+var mySheetId='1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
+
+var myQuestions=[];
+var users=[];
+var totalSteps=0;
+var myReplies=[];
+
 var timer;
 var timer2;
 var timer3;
 var pm = [];
 var uviInfo = [];
-_send();
 _update();
 
 var answerDB = [];
@@ -44,6 +57,28 @@ var server = app.listen(process.env.PORT || 8080, function() {
   var port = server.address().port;
   console.log("App now running on port", port);
 });
+
+function getQuestions() {
+  var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.get({
+     auth: oauth2Client,
+     spreadsheetId: mySheetId,
+     range:encodeURI('表單回應 1'),
+  }, function(err, response) {
+     if (err) {
+        console.log('讀取問題檔的API產生問題：' + err);
+        return;
+     }
+     var rows = response.values;
+     if (rows.length == 0) {
+        console.log('No data found.');
+     } else {
+       myQuestions=rows;
+       totalSteps=myQuestions[0].length;
+       console.log('要問的問題已下載完畢！');
+     }
+  });
+}
 
 function _bot() {
 	bot.on('message', function(event) {		
@@ -413,6 +448,31 @@ function _bot() {
 		});
 	});
 }
+
+
+function appendMyRow(userId) {
+   var request = {
+      auth: oauth2Client,
+      spreadsheetId: mySheetId,
+      range:encodeURI('表單回應 1'),
+      insertDataOption: 'INSERT_ROWS',
+      valueInputOption: 'RAW',
+      resource: {
+        "values": [
+          users[userId].replies
+        ]
+      }
+   };
+   var sheets = google.sheets('v4');
+   sheets.spreadsheets.values.append(request, function(err, response) {
+      if (err) {
+         console.log('The API returned an error: ' + err);
+         return;
+      }
+   });
+}
+
+
 
 function _getJSON() {
   clearTimeout(timer);
