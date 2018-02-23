@@ -190,7 +190,6 @@ function _bot() {
 					replyMsg = '休比回應功能關閉。';
 					groupIsAnswer[groupC] = false;					
 				}
-				GroupIdSettingOverwrite();
 			}else if (command.toLowerCase() == '//mute' && isUser) {
 				if (!userIsAnswer[userC]) {
 					replyMsg = '休比回應功能已經關閉。';
@@ -198,7 +197,6 @@ function _bot() {
 					replyMsg = '休比回應功能關閉。';
 					userIsAnswer[userC] = false;									
 				}
-				UserIdSettingOverwrite();
 			}
 			
 			if (command.toLowerCase() == '//open' && isGroup) {
@@ -208,7 +206,6 @@ function _bot() {
 					replyMsg = '休比回應功能啟動。';
 					groupIsAnswer[groupC] = true;
 				}
-				GroupIdSettingOverwrite();
 			}else if (command.toLowerCase() == '//open' && isUser) {
 				if (userIsAnswer[userC]) {
 					replyMsg = '休比回應功能已經啟動。';
@@ -216,7 +213,6 @@ function _bot() {
 					replyMsg = '休比回應功能啟動。';
 					userIsAnswer[userC] = true;				
 				}
-				UserIdSettingOverwrite();
 			}
 			
 			if ((command.toLowerCase().indexOf('//q') == 0) && (command.toLowerCase().indexOf('//a') != -1 )) {
@@ -563,29 +559,6 @@ function GroupIdSettingOverwrite() {
 		}
 	});
 }
-
-function appendMyRow() {
-   var request = {
-      auth: oauth2Client,
-      spreadsheetId: mySheetId,
-      range:encodeURI('setting'),
-      insertDataOption: 'INSERT_ROWS',
-      valueInputOption: 'RAW',
-      resource: {
-        "values": [
-          ['GO!','NOOOO']
-        ]
-      }
-   };
-   var sheets = google.sheets('v4');
-   sheets.spreadsheets.values.append(request, function(err, response) {
-      if (err) {
-         console.log('The API returned an error: ' + err);
-         return;
-      }
-   });
-}
-
 
 
 function _getJSON() {
