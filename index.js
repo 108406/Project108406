@@ -469,7 +469,26 @@ function _bot() {
 }
 
 function AnswerDBOverwrite() {
-	var request = {
+	var resetDB = {
+      auth: oauth2Client,
+      spreadsheetId: mySheetId,
+      range:encodeURI('replyDB'),
+      insertDataOption: 'INSERT_ROWS',
+      valueInputOption: 'RAW',
+      resource: {
+        "values": [
+			[]
+		]       
+      }
+   };
+   var sheets = google.sheets('v4');
+   sheets.spreadsheets.values.append(resetDB, function(err, response) {
+      if (err) {
+         console.log('The API returned an error: ' + err);
+         return;
+      }
+   });
+   var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
       range:encodeURI('replyDB'),
