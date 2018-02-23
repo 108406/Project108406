@@ -517,6 +517,7 @@ function UserIdSettingOverwrite() {
 		settingUpdate[i][0] = userID[i-1];
 		settingUpdate[i][1] = userIsAnswer[i-1];
 	}
+	console.log(settingLength);
 	var request = {
 		auth: oauth2Client,
 		spreadsheetId: mySheetId,
