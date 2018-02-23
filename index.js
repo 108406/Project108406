@@ -88,7 +88,7 @@ function getIdData() {
         console.log('No data found.');
      } else {		 
 		 for (i=1; i <5 ; i++) {			 
-			groupID = rows[i][1]; 
+			groupID[i-1] = rows[i][1]; 
 		 }
 		 console.log(groupID);
 		 /*if ()
