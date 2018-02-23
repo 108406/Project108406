@@ -23,6 +23,7 @@ var myQuestions=[];
 var users=[];
 var totalSteps=0;
 var myReplies=[];
+getQuestions();
 
 var timer;
 var timer2;
