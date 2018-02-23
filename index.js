@@ -86,10 +86,11 @@ function getIdData() {
      var rows = response.values;
      if (rows.length == 0) {
         console.log('No data found.');
-     } else {
+     } else {		 
 		 for (i=1; i <5 ; i++) {			 
-			console.log(rows[i][1]); 
+			groupID = rows[i][1]; 
 		 }
+		 console.log(groupID);
 		 /*if ()
 			 var DBlength = rows.length;
 			 for (i = 0; i < DBlength; i++) {
