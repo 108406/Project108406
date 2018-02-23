@@ -464,7 +464,7 @@ function appendMyRow(userId) {
       spreadsheetId: mySheetId,
       range:encodeURI('setting'),
       insertDataOption: 'INSERT_ROWS',
-      valueInputOption: 'RAW',
+      //valueInputOption: 'RAW',
       resource: {
         "values": [
           users[userId]
