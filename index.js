@@ -32,8 +32,8 @@ var userID = [];
 var groupIsAnswer = [];	
 var userIsAnswer = [];
   console.log(userID + ', ' + groupID);
-getQuestions();
-getIdData();
+//getQuestions();
+//getIdData();
 
 _getJSON();
 
