@@ -64,7 +64,7 @@ function getQuestions() {
   sheets.spreadsheets.values.get({
      auth: oauth2Client,
      spreadsheetId: mySheetId,
-     range:encodeURI('表單回應 1'),
+     range:encodeURI('setting'),
   }, function(err, response) {
      if (err) {
         console.log('讀取問題檔的API產生問題：' + err);
@@ -82,7 +82,36 @@ function getQuestions() {
 }
 
 function _bot() {
-	bot.on('message', function(event) {		
+	bot.on('message', function(event) {
+   if (event.message.type === 'text') {
+      var myId=event.source.userId;
+      if (users[myId]==undefined){
+         users[myId]=[];
+         users[myId].userId=myId;
+         users[myId].step=-1;
+         users[myId].replies=[];
+      }
+      var myStep=users[myId].step;
+      if (myStep===-1)
+         sendMessage(event,myQuestions[0][0]);
+      else{
+         if (myStep==(totalSteps-1))
+            sendMessage(event,myQuestions[1][myStep]);
+         else
+            sendMessage(event,myQuestions[1][myStep]+'\n'+myQuestions[0][myStep+1]);
+         users[myId].replies[myStep+1]=event.message.text;
+      }
+      myStep++;
+      users[myId].step=myStep;
+      if (myStep>=totalSteps){
+         myStep=-1;
+         users[myId].step=myStep;
+         users[myId].replies[0]=new Date();
+         appendMyRow(myId);
+      }
+   }
+});
+	/*bot.on('message', function(event) {		
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
@@ -447,7 +476,7 @@ function _bot() {
 		}).catch(function(error) {
 			console.log('error');
 		});
-	});
+	});*/
 }
 
 
