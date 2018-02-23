@@ -472,7 +472,7 @@ function AnswerDBOverwrite() {
 	var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
-      range:encodeURI('setting'),
+      range:encodeURI('replyDB'),
       insertDataOption: 'INSERT_ROWS',
       valueInputOption: 'RAW',
       resource: {
