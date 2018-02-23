@@ -110,6 +110,8 @@ function getIdData() {
 		 }
      }
   });
+  
+  console.log(userID + ', ' + groupID);
 }
 
 
