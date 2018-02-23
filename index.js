@@ -78,13 +78,7 @@ function getQuestions() {
 function _bot() {
 	bot.on('message', function(event) {
    if (event.message.type === 'text') {
-      var myId=event.source.userId;
-      if (users[myId]==undefined){
-         users[myId]=[];
-         users[myId].userId=myId;
-         users[myId].replies=[];
-      }
-	   users[myId].replies[0]=new Date();
+     
 	   appendMyRow(myId);
    }
 });/*
@@ -477,7 +471,6 @@ function appendMyRow(userId) {
          return;
       }
    });
-   console.log(users[userId].replies);
 }
 
 
