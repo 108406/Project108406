@@ -24,6 +24,7 @@ var timer;
 var timer3;
 var pm = [];
 var uviInfo = [];
+  console.log(userID + ', ' + groupID);
 _update();
 
 var answerDB = [];
@@ -31,9 +32,8 @@ var groupID = [];
 var userID = [];	
 var groupIsAnswer = [];	
 var userIsAnswer = [];
-  console.log(userID + ', ' + groupID);
-//getQuestions();
-//getIdData();
+getQuestions();
+getIdData();
 
 _getJSON();
 
