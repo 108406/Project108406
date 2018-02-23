@@ -473,7 +473,6 @@ function AnswerDBOverwrite() {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
       range:encodeURI('replyDB'),
-      insertDataOption: 'INSERT_ROWS',
       valueInputOption: 'RAW',
       resource: {
         "values": 
