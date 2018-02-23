@@ -587,6 +587,8 @@ function _update() {
 		AnswerDBOverwrite();
 		UserIdSettingOverwrite();
 		GroupIdSettingOverwrite();
+		getQuestions();
+		getIdData();
 		console.log('數據庫已更新');
     timer3 = setInterval(_update, 60000); //每60s更新	
 }
