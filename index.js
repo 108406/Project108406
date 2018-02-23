@@ -23,7 +23,6 @@ var mySheetId='1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 var timer;
 var pm = [];
 var uviInfo = [];
-_update();
 
 var answerDB = [];
 var groupID = [];	
