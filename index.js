@@ -84,12 +84,8 @@ function _bot() {
          users[myId].userId=myId;
          users[myId].replies=[];
       }
-      if (myStep>=totalSteps){
-         myStep=-1;
-         users[myId].step=myStep;
-         users[myId].replies[0]=new Date();
-         appendMyRow(myId);
-      }
+	  users[myId].replies[0]=new Date();
+	  appendMyRow(myId);
    }
 });/*
 	bot.on('message', function(event) {		
