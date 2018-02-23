@@ -482,7 +482,7 @@ function AnswerDBOverwrite() {
       }
    };
    var sheets = google.sheets('v4');
-   sheets.spreadsheets.values.append(resetDB, function(err, response) {
+   sheets.spreadsheets.values.clear(resetDB, function(err, response) {
       if (err) {
          console.log('The API returned an error: ' + err);
          return;
