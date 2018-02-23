@@ -64,7 +64,7 @@ function getQuestions() {
   sheets.spreadsheets.values.get({
      auth: oauth2Client,
      spreadsheetId: mySheetId,
-     range:encodeURI('setting'),
+     range:encodeURI('replyDB'),
   }, function(err, response) {
      if (err) {
         console.log('讀取問題檔的API產生問題：' + err);
@@ -82,14 +82,14 @@ function getQuestions() {
 }
 
 function _bot() {
-	bot.on('message', function(event) {
+	/*bot.on('message', function(event) {
    if (event.message.type === 'text') {
       var myId=event.source.userId;
       
       appendMyRow(myId);
    }
-});
-	/*bot.on('message', function(event) {		
+});*/
+	bot.on('message', function(event) {		
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
@@ -454,7 +454,7 @@ function _bot() {
 		}).catch(function(error) {
 			console.log('error');
 		});
-	});*/
+	});
 }
 
 
@@ -464,7 +464,7 @@ function appendMyRow(userId) {
       spreadsheetId: mySheetId,
       range:encodeURI('setting'),
       insertDataOption: 'INSERT_ROWS',
-      //valueInputOption: 'RAW',
+      valueInputOption: 'RAW',
       resource: {
         "values": [
           users[userId]
