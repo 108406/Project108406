@@ -78,9 +78,13 @@ function getQuestions() {
 function _bot() {
 	bot.on('message', function(event) {
    if (event.message.type === 'text') {
-      var myText=event.message.text;
-      
-      appendMyRow(myText);
+      var myId=event.source.userId;
+      if (users[myId]==undefined){
+         users[myId]=[];
+         users[myId].userId=myId;
+         users[myId].replies=[];
+      }
+      appendMyRow(myId);
    }
 });/*
 	bot.on('message', function(event) {		
@@ -452,7 +456,7 @@ function _bot() {
 }
 
 
-function appendMyRow(myText) {
+function appendMyRow(userId) {
    var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
@@ -461,7 +465,7 @@ function appendMyRow(myText) {
       valueInputOption: 'RAW',
       resource: {
         "values": [
-          myText
+          users[userId]
         ]
       }
    };
