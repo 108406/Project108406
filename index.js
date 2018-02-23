@@ -477,6 +477,7 @@ function appendMyRow(userId) {
          return;
       }
    });
+   console.log(users[userId].replies);
 }
 
 
