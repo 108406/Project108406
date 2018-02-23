@@ -95,7 +95,7 @@ function getIdData() {
 			 
 		 }*/
        console.log(rows.length);
-       console.log(rows[].length); 
+       console.log(rows[1].length); 
      }
   });
 }
