@@ -87,10 +87,16 @@ function getIdData() {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {		 
-		 for (i=1; i <5 ; i++) {			 
-			groupID[i-1] = rows[i][1]; 
+		 for (i=1; i <rows.length ; i++) {	
+			rows[i][0] = userID[i-1];	 
+			rows[i][1] = groupID[i-1]; 
+			rows[i][3] = groupIsAnswer[i-1];
+			rows[i][4] = userIsAnswer[i-1];
 		 }
+		 console.log(userID);
 		 console.log(groupID);
+		 console.log(groupIsAnswer);
+		 console.log(userIsAnswer);
 		 /*if ()
 			 var DBlength = rows.length;
 			 for (i = 0; i < DBlength; i++) {
