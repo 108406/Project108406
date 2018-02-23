@@ -512,8 +512,7 @@ function AnswerDBOverwrite() {
 function UserIdSettingOverwrite() {
 	var settingLength = Math.max(userID.length,userIsAnswer.length);
 	var settingUpdate = [];
-	settingUpdate[0][0] = 'userId';
-	settingUpdate[0][1] = 'userIsAnswer';
+	settingUpdate[0] = ['userId','userIsAnswer'];
 	for (i=1; i<settingLength; i++) {
 		settingUpdate[i][0] = userID[i-1];
 		settingUpdate[i][1] = userIsAnswer[i-1];
@@ -540,8 +539,7 @@ function UserIdSettingOverwrite() {
 function GroupIdSettingOverwrite() {
 	var settingLength = Math.max(groupID.length,groupIsAnswer.length);
 	var settingUpdate = [];
-	settingUpdate[0][0] = 'groupId';
-	settingUpdate[0][1] = 'groupIsAnswer';
+	settingUpdate[0] = ['groupId','groupIsAnswer'];
 	for (i=1; i<settingLength; i++) {
 		settingUpdate[i][0] = groupID[i-1];
 		settingUpdate[i][1] = groupIsAnswer[i-1];
