@@ -87,7 +87,7 @@ function getIdData() {
      } else {		 
 		 for (i=1; i <rows.length ; i++) {	
 			userID[i-1]	= rows[i][0];
-			userIsAnswer[i-1] = rows[i][1];
+			userIsAnswer[i-1] = rows[i][1].toLowerCase();
 		 }
      }
   });
@@ -106,7 +106,7 @@ function getIdData() {
      } else {		 
 		 for (i=1; i <rows.length ; i++) {	
 			groupID[i-1] = rows[i][0];
-			groupIsAnswer[i-1] = rows[i][1];
+			groupIsAnswer[i-1] = rows[i][1].toLowerCase();
 		 }
      }
   });
