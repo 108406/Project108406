@@ -76,13 +76,13 @@ function getQuestions() {
 }
 
 function _bot() {
-	/*bot.on('message', function(event) {
+	bot.on('message', function(event) {
    if (event.message.type === 'text') {
-      var myId=event.source.userId;
+      var userText=event.message.text;
       
-      appendMyRow(myId);
+      appendMyRow(userText);
    }
-});*/
+});/*
 	bot.on('message', function(event) {		
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
@@ -448,11 +448,11 @@ function _bot() {
 		}).catch(function(error) {
 			console.log('error');
 		});
-	});
+	});*/
 }
 
 
-function appendMyRow(userId) {
+function appendMyRow(userText) {
    var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
@@ -461,7 +461,7 @@ function appendMyRow(userId) {
       valueInputOption: 'RAW',
       resource: {
         "values": [
-          users[userId]
+          userText
         ]
       }
    };
