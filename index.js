@@ -19,14 +19,8 @@ oauth2Client.credentials ={"access_token":"ya29.GltrBUPv62sRXPU_WI2iGkqNhpXnmSq5
 
 var mySheetId='1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 
-var myQuestions=[];
-var users=[];
-var totalSteps=0;
-var myReplies=[];
-getQuestions();
 
 var timer;
-var timer2;
 var timer3;
 var pm = [];
 var uviInfo = [];
@@ -37,6 +31,9 @@ var groupID = [];
 var userID = [];	
 var groupIsAnswer = [];	
 var userIsAnswer = [];
+getQuestions();
+getIdData();
+
 _getJSON();
 
 _bot();
@@ -74,6 +71,35 @@ function getQuestions() {
      }
   });
 }
+
+function getIdData() {
+  var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.get({
+     auth: oauth2Client,
+     spreadsheetId: mySheetId,
+     range:encodeURI('setting'),
+  }, function(err, response) {
+     if (err) {
+        console.log('讀取問題檔的API產生問題：' + err);
+        return;
+     }
+     var rows = response.values;
+     if (rows.length == 0) {
+        console.log('No data found.');
+     } else {
+		 /*if ()
+			 var DBlength = rows.length;
+			 for (i = 0; i < DBlength; i++) {
+				 answerDB[i] = rows[i];
+			 }
+			 
+		 }*/
+       console.log(rows.length);
+       console.log(rows[].length); 
+     }
+  });
+}
+
 
 function _bot() {
 	bot.on('message', function(event) {
