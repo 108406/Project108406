@@ -21,8 +21,10 @@ var mySheetId='1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 
 
 var timer;
+var timer3;
 var pm = [];
 var uviInfo = [];
+_update();
 
 var answerDB = [];
 var groupID = [];	
@@ -577,4 +579,12 @@ function _getJSON() {
     });
   });
   timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
+}
+
+function _update() {
+	clearTimeout(timer3);
+		AnswerDBOverwrite();
+		UserIdSettingOverwrite();
+		GroupIdSettingOverwrite();
+    timer3 = setInterval(_update, 60000); //每60s更新	
 }
