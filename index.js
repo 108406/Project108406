@@ -1,7 +1,7 @@
 var linebot = require('linebot');
 var express = require('express');
 var getJSON = require('get-json');
-var {google} = require('googleapis');
+var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
 var bot = linebot({
