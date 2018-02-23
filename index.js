@@ -87,7 +87,11 @@ function getIdData() {
      } else {		 
 		 for (i=1; i <rows.length ; i++) {	
 			userID[i-1]	= rows[i][0];
-			userIsAnswer[i-1] = rows[i][1].toLowerCase();
+			if (rows[i][1].toLowerCase() == 'true') {
+				userIsAnswer[i-1] = true;
+			}else if (rows[i][1].toLowerCase() == 'false') {
+				userIsAnswer[i-1] = false;
+			}
 		 }
      }
   });
@@ -106,7 +110,11 @@ function getIdData() {
      } else {		 
 		 for (i=1; i <rows.length ; i++) {	
 			groupID[i-1] = rows[i][0];
-			groupIsAnswer[i-1] = rows[i][1].toLowerCase();
+			if (rows[i][1].toLowerCase() == 'true') {
+				groupIsAnswer[i-1] = true;
+			}else if (rows[i][1].toLowerCase() == 'false') {
+				groupIsAnswer[i-1] = false;				
+			}
 		 }
      }
   });
