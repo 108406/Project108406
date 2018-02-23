@@ -468,26 +468,7 @@ function _bot() {
 	});
 }
 
-function AnswerDBOverwrite() {
-	var resetDB = {
-      auth: oauth2Client,
-      spreadsheetId: mySheetId,
-      range:encodeURI('replyDB'),
-      insertDataOption: 'INSERT_ROWS',
-      valueInputOption: 'RAW',
-      resource: {
-        "values": [
-			[]
-		]       
-      }
-   };
-   var sheets = google.sheets('v4');
-   sheets.spreadsheets.values.clear(resetDB, function(err, response) {
-      if (err) {
-         console.log('The API returned an error: ' + err);
-         return;
-      }
-   });
+function AnswerDBOverwrite() {	
    var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
@@ -496,12 +477,11 @@ function AnswerDBOverwrite() {
       valueInputOption: 'RAW',
       resource: {
         "values": 
-          answerDB
-        
+          answerDB        
       }
    };
    var sheets = google.sheets('v4');
-   sheets.spreadsheets.values.append(request, function(err, response) {
+   sheets.spreadsheets.values.update(request, function(err, response) {
       if (err) {
          console.log('The API returned an error: ' + err);
          return;
