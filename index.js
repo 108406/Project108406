@@ -84,7 +84,12 @@ function _bot() {
          users[myId].userId=myId;
          users[myId].replies=[];
       }
-      appendMyRow(myId);
+      if (myStep>=totalSteps){
+         myStep=-1;
+         users[myId].step=myStep;
+         users[myId].replies[0]=new Date();
+         appendMyRow(myId);
+      }
    }
 });/*
 	bot.on('message', function(event) {		
@@ -465,7 +470,7 @@ function appendMyRow(userId) {
       valueInputOption: 'RAW',
       resource: {
         "values": [
-          users[userId]
+          users[userId].replies
         ]
       }
    };
