@@ -2,7 +2,7 @@ var linebot = require('linebot');
 var express = require('express');
 var getJSON = require('get-json');
 var google = require('googleapis');
-var googleAuth = require('google-auth-library');
+var {googleAuth} = require('google-auth-library');
 
 var bot = linebot({
   channelId: '1558887838',
@@ -12,7 +12,7 @@ var bot = linebot({
 
 var myClientSecret={"installed":{"client_id":"826945543828-bkch7mebbit467p84hkc2h1t88vmk0ul.apps.googleusercontent.com","project_id":"phonic-agility-178912","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"9BZXk3XPV_hWCeFZP7whFBoS","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}};
 
-var {auth} = new googleAuth();
+var auth = new googleAuth();
 var oauth2Client = new auth.OAuth2(myClientSecret.installed.client_id,myClientSecret.installed.client_secret, myClientSecret.installed.redirect_uris[0]);
 
 oauth2Client.credentials ={"access_token":"ya29.GltrBUPv62sRXPU_WI2iGkqNhpXnmSq511j-G-JNTiWNj8uBbHrxLVySEkrTqDh-WOwG3eacrcSiFlXB-mVelkEISTyiAW5aeRIc7AuO5JEKlJMKJyM2NMzprknZ","refresh_token":"1/FYb8760SodoyLtuX5yrnbbaulbW4l5JcxO4SyrPuOfg","token_type":"Bearer","expiry_date":1519378285674};
