@@ -77,7 +77,7 @@ function getIdData() {
   sheets.spreadsheets.values.get({
      auth: oauth2Client,
      spreadsheetId: mySheetId,
-     range:encodeURI('setting'),
+     range:encodeURI('usersetting'),
   }, function(err, response) {
      if (err) {
         console.log('讀取問題檔的API產生問題：' + err);
@@ -89,9 +89,26 @@ function getIdData() {
      } else {		 
 		 for (i=1; i <rows.length ; i++) {	
 			userID[i-1]	= rows[i][0];
-			groupID[i-1] = rows[i][1];
-			groupIsAnswer[i-1] = rows[i][3];
-			userIsAnswer[i-1] = rows[i][4];
+			userIsAnswer[i-1] = rows[i][1];
+		 }
+     }
+  });
+  sheets.spreadsheets.values.get({
+     auth: oauth2Client,
+     spreadsheetId: mySheetId,
+     range:encodeURI('groupsetting'),
+  }, function(err, response) {
+     if (err) {
+        console.log('讀取問題檔的API產生問題：' + err);
+        return;
+     }
+     var rows = response.values;
+     if (rows.length == 0) {
+        console.log('No data found.');
+     } else {		 
+		 for (i=1; i <rows.length ; i++) {	
+			groupID[i-1] = rows[i][0];
+			groupIsAnswer[i-1] = rows[i][1];
 		 }
      }
   });
@@ -131,6 +148,7 @@ function _bot() {
 				groupC = groupID.length-1;
 				groupIsAnswer[groupC] = true;
 			}
+			GroupIdSettingOverwrite();
 		} else {
 			isUser = true;
 			var pushIn = true;
@@ -155,6 +173,7 @@ function _bot() {
 				userC = userID.length-1;
 				userIsAnswer[userC] = true;
 			}
+			UserIdSettingOverwrite();
 		}
 	
 	
@@ -426,6 +445,7 @@ function _bot() {
 			groupID.push(group);
 			replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
 		}
+		GroupIdSettingOverwrite();
 		
 		
 		event.reply(replyMsg).then(function(data) {
@@ -459,6 +479,7 @@ function _bot() {
 			userID.push(user);
 			replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
 		}
+		UserIdSettingOverwrite();
 		
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
@@ -486,6 +507,62 @@ function AnswerDBOverwrite() {
          return;
       }
    });
+}
+
+function UserIdSettingOverwrite() {
+	var settingLength = Math.max(userID.length,userIsAnswer.length);
+	var settingUpdate = [];
+	settingUpdate[0][0] = 'userId';
+	settingUpdate[0][1] = 'userIsAnswer';
+	for (i=1; i<settingLength; i++) {
+		settingUpdate[i][0] = userID[i-1];
+		settingUpdate[i][1] = userIsAnswer[i-1];
+	}
+	var request = {
+		auth: oauth2Client,
+		spreadsheetId: mySheetId,
+		range:encodeURI('usersetting'),
+		valueInputOption: 'RAW',
+		resource: {
+			"values": 
+			settingUpdate        
+		}
+	};
+	var sheets = google.sheets('v4');
+	sheets.spreadsheets.values.update(request, function(err, response) {
+		if (err) {
+			console.log('The API returned an error: ' + err);
+			return;
+		}
+	});
+}
+
+function GroupIdSettingOverwrite() {
+	var settingLength = Math.max(groupID.length,groupIsAnswer.length);
+	var settingUpdate = [];
+	settingUpdate[0][0] = 'groupId';
+	settingUpdate[0][1] = 'groupIsAnswer';
+	for (i=1; i<settingLength; i++) {
+		settingUpdate[i][0] = groupID[i-1];
+		settingUpdate[i][1] = groupIsAnswer[i-1];
+	}
+	var request = {
+		auth: oauth2Client,
+		spreadsheetId: mySheetId,
+		range:encodeURI('groupsetting'),
+		valueInputOption: 'RAW',
+		resource: {
+			"values": 
+			settingUpdate        
+		}
+	};
+	var sheets = google.sheets('v4');
+	sheets.spreadsheets.values.update(request, function(err, response) {
+		if (err) {
+			console.log('The API returned an error: ' + err);
+			return;
+		}
+	});
 }
 
 function appendMyRow() {
