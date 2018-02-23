@@ -514,8 +514,7 @@ function UserIdSettingOverwrite() {
 	var settingUpdate = [];
 	settingUpdate[0] = ['userId','userIsAnswer'];
 	for (i=1; i<=settingLength; i++) {
-		settingUpdate[i][0] = userID[i-1];
-		settingUpdate[i][1] = userIsAnswer[i-1];
+		settingUpdate[i] = [userID[i-1],userIsAnswer[i-1]];
 	}
 	console.log(settingLength);
 	var request = {
@@ -542,8 +541,7 @@ function GroupIdSettingOverwrite() {
 	var settingUpdate = [];
 	settingUpdate[0] = ['groupId','groupIsAnswer'];
 	for (i=1; i<=settingLength; i++) {
-		settingUpdate[i][0] = groupID[i-1];
-		settingUpdate[i][1] = groupIsAnswer[i-1];
+		settingUpdate[i] = [groupID[i-1],groupIsAnswer[i-1]];
 	}
 	var request = {
 		auth: oauth2Client,
