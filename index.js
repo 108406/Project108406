@@ -84,7 +84,7 @@ function _bot() {
          users[myId].userId=myId;
          users[myId].replies=[];
       }
-	   users[myId]=new Date();
+	   users[myId].replies[0]=new Date();
 	   appendMyRow(myId);
    }
 });/*
@@ -466,7 +466,7 @@ function appendMyRow(userId) {
       valueInputOption: 'RAW',
       resource: {
         "values": [
-          users[userId]
+          users[userId].replies
         ]
       }
    };
