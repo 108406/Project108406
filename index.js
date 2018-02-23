@@ -476,9 +476,9 @@ function AnswerDBOverwrite() {
       insertDataOption: 'INSERT_ROWS',
       valueInputOption: 'RAW',
       resource: {
-        "values": [
+        "values": 
           answerDB
-        ]
+        
       }
    };
    var sheets = google.sheets('v4');
