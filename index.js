@@ -31,10 +31,10 @@ var groupID = [];
 var userID = [];	
 var groupIsAnswer = [];	
 var userIsAnswer = [];
+  console.log(userID + ', ' + groupID);
 getQuestions();
 getIdData();
 
-  console.log(userID + ', ' + groupID);
 _getJSON();
 
 _bot();
