@@ -76,7 +76,7 @@ function getQuestions() {
      } else {
        myQuestions=rows;
        totalSteps=myQuestions[0].length;
-       console.log('要問的問題已下載完畢！');
+       console.log(sheets);
      }
   });
 }
