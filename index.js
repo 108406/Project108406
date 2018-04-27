@@ -421,8 +421,6 @@ function _bot() {
 
 			event.reply(replyMsg).then(function(data) {
 				console.log (replyMsg);
-				console.log (event.source.groupId);
-				console.log (event.source.userId);
 			}).catch(function(error) {
 				console.log('error');
 			});
