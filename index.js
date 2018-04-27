@@ -155,8 +155,7 @@ function _bot() {
 				groupIsAnswer[groupC] = true;
 			}
 			GroupIdSettingOverwrite();
-		} 
-		if (event.source.userId != undefined) {
+		} else {
 			isUser = true;
 			var pushIn = true;
 			if (userID.length != 0) {
@@ -435,27 +434,36 @@ function _bot() {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//被加入群組時，將群組ID加入名單陣列
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
-		var	group = event.source.groupId;
-		var replyMsg = '';
+		var groupC = 0;	
+		var isGroup = true;
+		var replyMsg = '';		
 		var pushIn = true;
+		
 		if (groupID.length != 0) {
 			for (var i = 0; i <= groupID.length - 1 ; i++) {
-				if (group == groupID[i]) {
+				if (event.source.groupId == groupID[i]) {
 					replyMsg = '休比又回來了，請多多指教。';
+					if (groupIsAnswer[i] == undefined) {						
+							groupIsAnswer[i] = true;
+					}
 					pushIn = false;
-				}
+					groupC = i;
+				}			
 			}
 			if (pushIn) {
-				groupID.push(group);
 				replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+				groupID.push(event.source.groupId);
+				groupC = groupID.length-1;
+				groupIsAnswer[groupC] = true;
 				pushIn = false;
 			}
-		}else {
-			groupID.push(group);
+		} else {
 			replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
+			groupID.push(event.source.groupId);
+			groupC = groupID.length-1;
+			groupIsAnswer[groupC] = true;
 		}
-		GroupIdSettingOverwrite();
-		
+		GroupIdSettingOverwrite();		
 		
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
@@ -469,27 +477,37 @@ function _bot() {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//被加為好友時，將使用者ID加入名單陣列
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
-		var	user = event.source.userId;
-		var replyMsg = '';
+		var userC = 0;
+		var isUser = true;
 		var pushIn = true;
+		var replyMsg = '';
+				
 		if (userID.length != 0) {
 			for (var i = 0; i <= userID.length - 1 ; i++) {
-				if (user == userID[i]) {
+				if (event.source.userId == userID[i]) {
 					replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';
+					if (userIsAnswer[i] == undefined) {						
+						userIsAnswer[i] = true;
+					}
 					pushIn = false;
+					userC = i;
 				}
 			}
 			if (pushIn) {
-				userID.push(user);
-				replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';				
+				replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';		
+				userID.push(event.source.userId);
+				userC = userID.length-1;
+				userIsAnswer[userC] = true;
 				pushIn = false;
 			}
-		}else {
-			userID.push(user);
+		} else { 
 			replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
+			userID.push(event.source.userId);
+			userC = userID.length-1;
+			userIsAnswer[userC] = true;
 		}
 		UserIdSettingOverwrite();
-		
+						
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
 		}).catch(function(error) {
