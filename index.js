@@ -121,7 +121,6 @@ function getIdData() {
   
 }
 
-
 function _bot() {
 	bot.on('message', function(event) {		
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
@@ -156,7 +155,8 @@ function _bot() {
 				groupIsAnswer[groupC] = true;
 			}
 			GroupIdSettingOverwrite();
-		} else {
+		} 
+		if (event.source.userId != undefined) {
 			isUser = true;
 			var pushIn = true;
 			if (userID.length != 0) {
@@ -422,6 +422,8 @@ function _bot() {
 
 			event.reply(replyMsg).then(function(data) {
 				console.log (replyMsg);
+				console.log (event.source.groupId);
+				console.log (event.source.userId);
 			}).catch(function(error) {
 				console.log('error');
 			});
