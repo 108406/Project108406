@@ -396,7 +396,7 @@ function _bot() {
 			}
 			//===========================================
 			//對話資料庫
-			//===========================================
+			//=========================================== 
 			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {	
 				if (replyMsg == '') {
 					var answerNotFound = true;
