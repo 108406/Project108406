@@ -36,6 +36,7 @@ getIdData();
 _getJSON();
 _update();
 
+	console.log("heeeeeeeeeeeee");
 _bot();
 const app = express();
 const linebotParser = bot.parser();
@@ -123,7 +124,6 @@ function getIdData() {
 
 function _bot() {
 	bot.on('message', function(event) {		
-	console.log("heeeeeeeeeeeee");
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
