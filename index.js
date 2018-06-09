@@ -36,11 +36,10 @@ getIdData();
 _getJSON();
 _update();
 
+_bot();
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
-
-_bot();
 
 //因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
 var server = app.listen(process.env.PORT || 8080, function() {
@@ -123,7 +122,9 @@ function getIdData() {
 }
 
 function _bot() {
+	console.log("heeeeeeeeeeeee");
 	bot.on('message', function(event) {		
+	console.log("heeeeeeeeeeeee");
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
