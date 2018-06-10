@@ -5,9 +5,9 @@ var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
 var bot = linebot({
-  channelId: '1578299650',
-  channelSecret: '52771f14e89dac4a581aed6ac756e6a3',
-  channelAccessToken: 'LAOjxU4CbRMOnRqiSxTHDxmmR+CUsTYNVGUNBbXjR+P8RkvlXvUmzPpHCrIEtMuVId6YqnSRDUtjunhrMuM3GH94g5a/aacQVJmXtylk3HqYaf6+VPorHFXNnnxNBHJSLbJMdJ33wVpwVRirqzrP/AdB04t89/1O/w1cDnyilFU='
+  channelId: '1558887838',
+  channelSecret: '1a4c4b7f22416496c44b76d566c45576',
+  channelAccessToken: 'L3JExeBE/B0vkQMnZFbhxtLijIQHcecDl2LRQV1N6EgeVO4P5vq1WRcklQ5aDK4ZE+gO00BOmPq3d/C5qmg2eEZc9T09ELM3j6DZPI1pYVy2zDMrh2zd0TCCFSYcyolYWavgPmKd31Qj+NFWk1Fz7QdB04t89/1O/w1cDnyilFU='
 });
 
 var myClientSecret={"installed":{"client_id":"826945543828-bkch7mebbit467p84hkc2h1t88vmk0ul.apps.googleusercontent.com","project_id":"phonic-agility-178912","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"9BZXk3XPV_hWCeFZP7whFBoS","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}};
