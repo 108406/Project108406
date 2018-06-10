@@ -121,7 +121,7 @@ function getIdData() {
   
 }
 
-
+function _bot() {
 	bot.on('message', function(event) {		
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
@@ -427,7 +427,6 @@ function getIdData() {
 		}
 	});
 	
-function _bot() {
 	bot.on('join', function(event) {	
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//被加入群組時，將群組ID加入名單陣列
