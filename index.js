@@ -36,7 +36,7 @@ getIdData();
 _getJSON();
 _update();
 
-_bot();
+//_bot();
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
