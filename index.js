@@ -43,7 +43,6 @@ _bot();
 
 function _Start() {
   getAIDatas();
-    console.log(aiDB);
 }
 
 function _bot() {
@@ -51,6 +50,7 @@ function _bot() {
     var msg = event.message.text;
     var command = msg.replace(/\s+/g, "");
     var replyMsg = '';
+      console.log(event.message.type);
 
     if (event.message.type == 'text') {
       console.log('1');
@@ -94,12 +94,9 @@ function getAIDatas() {
     if (rows.length == 0) {
       console.log('No data found.');
     } else {
-      console.log('0');
       var DBlength = rows.length;
       for (i = 0; i < DBlength; i++) {
-        console.log(rows[i]);
         aiDB[i] = rows[i];
-        console.log(aiDB[i]);
       }
     }
   });
