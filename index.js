@@ -64,21 +64,15 @@ function _bot() {
     var replyMsg = '';
 
     if (event.message.type == 'text') {
-      var loop = true;
-      var indexAt = 0;
       var containCount = 0;
-      for (var i = 1; i <= aiDB[0].length - 1; i++) {
-        do {
-          if (msg.indexOf(aiDB[0][i], indexAt) != -1) {
-            replyMsg = msg.search(aiDB[0][i]) + '';
-            indexAt = msg.indexOf(aiDB[0][i], indexAt + 1);
+      for (var i = 0; i <= msg.length - 1; i++) {
+        for (var a = 0; a <= aiDB[].length - 1; a++) {
+          if (msg.indexOf(aiDBp[0][a], i) != -1) {
             containCount++;
-          } else {
-            loop = false;
           }
-        } while (loop);
+        }
       }
-      console.log('containCount: ' + containCount);
+      replyMsg = 'containCount: ' + containCount;
     }
 
     if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
