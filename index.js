@@ -22,9 +22,63 @@ var mySheetId='1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 
 
 //●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為ＡＩ程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+var AIDB = [];
+_Start();
+Main();
 
+function _Start() {
+	getAIDatas();
+}
 
+function Main() {
+	bot.on('message', function(event) {
+		var msg = event.message.text;
+		var command = msg.replace(/\s+/g, "");
+    var replyMsg = '';
 
+		if (event.message.type == 'text') {
+			for (var i = 1; i <= AIDB.length-1 ; i++) {
+				if (msg.indexOf(AIDB[0][i],0) != -1) {
+					var ans = Math.floor((Math.random() * (answerDB[i].length - 1)) + 1);
+					replyMsg = answerDB[i][ans];
+					answerNotFound = false;
+				}
+			}
+		}
+
+    if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
+      event.reply(replyMsg).then(function(data) {
+        console.log (replyMsg);
+      }).catch(function(error) {
+        console.log('error');
+      });
+    }
+
+	});
+}
+
+function getAIDatas() {
+  var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.get({
+     auth: oauth2Client,
+     spreadsheetId: mySheetId,
+     range:encodeURI('AITest'),
+  }, function(err, response) {
+     if (err) {
+        console.log('讀取問題檔的API產生問題：' + err);
+        return;
+     }
+     var rows = response.values;
+     if (rows.length == 0) {
+        console.log('No data found.');
+     } else {
+		 var DBlength = rows.length;
+		 for (i = 0; i < DBlength; i++) {
+			 AIDB[i] = rows[i];
+		 }
+     }
+  });
+}
 
 //●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為原始程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 
@@ -34,9 +88,9 @@ var pm = [];
 var uviInfo = [];
 
 var answerDB = [];
-var groupID = [];	
-var userID = [];	
-var groupIsAnswer = [];	
+var groupID = [];
+var userID = [];
+var groupIsAnswer = [];
 var userIsAnswer = [];
 getQuestions();
 getIdData();
@@ -92,8 +146,8 @@ function getIdData() {
      var rows = response.values;
      if (rows.length == 0) {
         console.log('No data found.');
-     } else {		 
-		 for (i=1; i <rows.length ; i++) {	
+     } else {
+		 for (i=1; i <rows.length ; i++) {
 			userID[i-1]	= rows[i][0];
 			if (rows[i][1].toLowerCase() == 'true') {
 				userIsAnswer[i-1] = true;
@@ -115,26 +169,26 @@ function getIdData() {
      var rows = response.values;
      if (rows.length == 0) {
         console.log('No data found.');
-     } else {		 
-		 for (i=1; i <rows.length ; i++) {	
+     } else {
+		 for (i=1; i <rows.length ; i++) {
 			groupID[i-1] = rows[i][0];
 			if (rows[i][1].toLowerCase() == 'true') {
 				groupIsAnswer[i-1] = true;
 			}else if (rows[i][1].toLowerCase() == 'false') {
-				groupIsAnswer[i-1] = false;				
+				groupIsAnswer[i-1] = false;
 			}
 		 }
      }
   });
-  
+
 }
 
 function _bot() {
-	bot.on('message', function(event) {		
+	bot.on('message', function(event) {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//每次傳送訊息，都判斷休比所在的空間，並判斷該空間在名單內的哪裡。
-	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
-		var groupC = 0;	
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
+		var groupC = 0;
 		var userC = 0;
 		var isGroup = false;
 		var isUser = false;
@@ -144,7 +198,7 @@ function _bot() {
 			if (groupID.length != 0) {
 				for (var i = 0; i <= groupID.length - 1 ; i++) {
 					if (event.source.groupId == groupID[i]) {
-						if (groupIsAnswer[i] == undefined) {						
+						if (groupIsAnswer[i] == undefined) {
 							groupIsAnswer[i] = true;
 						}
 						pushIn = false;
@@ -169,7 +223,7 @@ function _bot() {
 			if (userID.length != 0) {
 				for (var i = 0; i <= userID.length - 1 ; i++) {
 					if (event.source.userId == userID[i]) {
-						if (userIsAnswer[i] == undefined) {						
+						if (userIsAnswer[i] == undefined) {
 							userIsAnswer[i] = true;
 						}
 						pushIn = false;
@@ -182,15 +236,15 @@ function _bot() {
 					userIsAnswer[userC] = true;
 					pushIn = false;
 				}
-			} else { 
+			} else {
 				userID.push(event.source.userId);
 				userC = userID.length-1;
 				userIsAnswer[userC] = true;
 			}
 			UserIdSettingOverwrite();
 		}
-	
-	
+
+
 		if (event.message.type == 'text') {
 			var msg = event.message.text;
 			var command = msg.replace(/\s+/g, "");
@@ -204,17 +258,17 @@ function _bot() {
 					replyMsg = '休比回應功能已經關閉。';
 				}else {
 					replyMsg = '休比回應功能關閉。';
-					groupIsAnswer[groupC] = false;					
+					groupIsAnswer[groupC] = false;
 				}
 			}else if (command.toLowerCase() == '//mute' && isUser) {
 				if (!userIsAnswer[userC]) {
 					replyMsg = '休比回應功能已經關閉。';
 				}else {
 					replyMsg = '休比回應功能關閉。';
-					userIsAnswer[userC] = false;									
+					userIsAnswer[userC] = false;
 				}
 			}
-			
+
 			if (command.toLowerCase() == '//open' && isGroup) {
 				if (groupIsAnswer[groupC]) {
 					replyMsg = '休比回應功能已經啟動。';
@@ -227,10 +281,10 @@ function _bot() {
 					replyMsg = '休比回應功能已經啟動。';
 				}else {
 					replyMsg = '休比回應功能啟動。';
-					userIsAnswer[userC] = true;				
+					userIsAnswer[userC] = true;
 				}
 			}
-			
+
 			if ((command.toLowerCase().indexOf('//q') == 0) && (command.toLowerCase().indexOf('//a') != -1 )) {
 				isUpdateDB = true;
 				if ((command.indexOf('//a') - command.indexOf('//q')) > 0) {
@@ -253,21 +307,21 @@ function _bot() {
 								}
 								if (QtAfPushIn) {
 									answerDB[i].push(A);
-									replyMsg = 
+									replyMsg =
 										'對話問答成功寫入資料庫中\n' +
-										'問：「' + answerDB[i][0] + '」\n' + 
+										'問：「' + answerDB[i][0] + '」\n' +
 										'答：「' + answerDB[i][answerDB[i].length-1] + '」';
 									QtAfPushIn = false;
 								}
 								QfAfPushIn = false;
 							}
-						} 
+						}
 						if (QfAfPushIn) {
 							var newQA = [Q,A];
 							answerDB.push(newQA);
-							replyMsg = 
+							replyMsg =
 								'對話問答成功寫入資料庫中\n' +
-								'問：「' + answerDB[answerDB.length-1][0] + '」\n' + 
+								'問：「' + answerDB[answerDB.length-1][0] + '」\n' +
 								'答：「' + answerDB[answerDB.length-1][answerDB[answerDB.length-1].length-1] + '」';
 							QfAfPushIn = false;
 						}
@@ -280,9 +334,9 @@ function _bot() {
 					replyMsg = '「//q」與「//a」的順序不可對調。';
 				}
 			}
-			
+
 			if (command.toLowerCase() == '//check') {
-				replyMsg = '此指令只有開發者能使用。';				
+				replyMsg = '此指令只有開發者能使用。';
 				console.log ('groupID：' + groupID);
 				console.log ('userID：' + userID);
 				console.log ('groupIsAnswer：' + groupIsAnswer);
@@ -291,94 +345,94 @@ function _bot() {
 				console.log ('answerDB：');
 				for (var i = 0; i <= answerDB.length-1 ; i++) {
 					for (var s = 0; s <= answerDB[i].length-1 ; s++) {
-						console.log (answerDB[i][s]);						
+						console.log (answerDB[i][s]);
 					}
 					console.log('-----');
 				}
-					
+
 			}
-						
+
 			if (command.toLowerCase() == '//teaching') {
-				replyMsg = 
-					'請使用指令「//q」設定問題\n' + 
+				replyMsg =
+					'請使用指令「//q」設定問題\n' +
 					'並使用指令「//a」設定回覆\n\n' +
 					'請將兩個指令輸入在同一則訊息中\n' +
-					'並以：\n\n' + 
+					'並以：\n\n' +
 					'//q問題\n' +
 					'//a回答\n\n' +
-					'的格式來幫助休比回答更多訊息。\n\n' + 
+					'的格式來幫助休比回答更多訊息。\n\n' +
 					'※「//q」與「//a」的順序不可對調\n' +
 					'※「//q」必須在訊息開頭就輸入\n' +
 					'※指令後不需要空格。\n' +
-					'※請不要在「//a」後輸入多餘的訊息，\n' + 
-					'這將會造成日後休比的回覆有誤。\n' + 
-					'為了給休比有更人性化的回覆，\n' + 
-					'感謝您的配合與協助。\n' + 
+					'※請不要在「//a」後輸入多餘的訊息，\n' +
+					'這將會造成日後休比的回覆有誤。\n' +
+					'為了給休比有更人性化的回覆，\n' +
+					'感謝您的配合與協助。\n' +
 					'也感謝您看完這段教學。';
 			}
-			
+
 			//-------------
 			//指令偵錯與校正
 			//-------------
 
 			if ((command.toLowerCase() == 'mute') ||(command.toLowerCase() == '/mute')) {
-				replyMsg = 
+				replyMsg =
 					'關閉休比回應功能請輸入「//mute」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
-			
+
 			if ((command.toLowerCase() == 'open') ||(command.toLowerCase() == '/open')) {
-				replyMsg = 
+				replyMsg =
 					'重新開啟休比回應功能請輸入「//open」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
-			
+
 			if ((command.toLowerCase() == 'teaching') ||(command.toLowerCase() == '/teaching')) {
-				replyMsg = 
+				replyMsg =
 					'查看協助對話教學請輸入「//teaching」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
-			
+
 			if (((command.toLowerCase() == 'a') || (command.toLowerCase() == 'q') || (command.toLowerCase().indexOf('/a') != -1) || (command.toLowerCase().indexOf('/q') != -1)) && !isUpdateDB) {
-				replyMsg = 
+				replyMsg =
 					'協助對話指令「//q」必須與「//a」連用\n' +
 					'查看協助對話教學請輸入「//teaching」\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
-			
+
 			if ((command.toLowerCase() == 'help') ||(command.toLowerCase() == '/help')) {
-				replyMsg = 
+				replyMsg =
 					'查看更多指令請輸入「//help」';
 			}
-			
+
 			if ((command.toLowerCase() == 'check') ||(command.toLowerCase() == '/check')) {
-				replyMsg = 
-					'欲使後臺顯示詳細訊息請輸入「//check」\n' + 
-					'※此指令為開發者指令\n\n' + 
+				replyMsg =
+					'欲使後臺顯示詳細訊息請輸入「//check」\n' +
+					'※此指令為開發者指令\n\n' +
 					'查看更多指令請輸入「//help」';
 			}
-			
+
 			//-------------
 			//所有指令列
 			//-------------
 			if ((command.toLowerCase() == '//help') || (command.toLowerCase() == '//')) {
-				replyMsg = 
-					'休比的使用說明：\n' + 
-					'一、為了讓休比更方便判斷指令\n' + 
+				replyMsg =
+					'休比的使用說明：\n' +
+					'一、為了讓休比更方便判斷指令\n' +
 					'請在開頭加入雙斜線「//」\n' +
 					'二、指令不需區分大小寫。\n\n' +
-					'休比的指令列表：\n' + 
+					'休比的指令列表：\n' +
 					'help：查看休比目前擁有的指令\n' +
-					'mute：關閉休比的回應功能。\n' + 
+					'mute：關閉休比的回應功能。\n' +
 					'open：開啟休比的回應功能。\n' +
-					'q：為休比設定問題以輸入資料庫\n' + 
-					'　　※須與a連用。\n' + 
-					'a：為休比設定回答以輸入資料庫\n' + 
-					'　　※須與q連用。\n' + 
-					'check：後臺顯示詳細訊息。\n' + 
+					'q：為休比設定問題以輸入資料庫\n' +
+					'　　※須與a連用。\n' +
+					'a：為休比設定回答以輸入資料庫\n' +
+					'　　※須與q連用。\n' +
+					'check：後臺顯示詳細訊息。\n' +
 					'teaching：查看協助對話教學。\n';
 			}
-			
+
 			//===========================================
 			//功能查詢
 			//===========================================
@@ -388,7 +442,7 @@ function _bot() {
 						if (msg.indexOf(e[0]) != -1) {
 							replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
 						}
-					});        
+					});
 				}
 				if ((msg.indexOf('UVI') != -1) || (msg.indexOf('紫外線') != -1)) {
 					uviInfo.forEach(function(e, i) {
@@ -399,13 +453,13 @@ function _bot() {
 						}else if ((msg.indexOf(e[0]) == -1) && (msg.indexOf(e[1]) != -1 )) {
 							replyMsg = e[1] + "的UVI為" + e[2];;
 						}
-					});        
+					});
 				}
 			}
 			//===========================================
 			//對話資料庫
-			//=========================================== 
-			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {	
+			//===========================================
+			if ((isGroup && groupIsAnswer[groupC]) || (isUser && userIsAnswer[userC])) {
 				if (replyMsg == '') {
 					var answerNotFound = true;
 					for (var i = 0; i <= answerDB.length-1 ; i++) {
@@ -416,16 +470,16 @@ function _bot() {
 						}
 					}
 					if (answerNotFound) {
-						replyMsg = 
-							'無法辨別「' + msg + '」的意義\n' + 
-							'如果你願意幫助休比回答問題\n' + 
-							'請輸入指令「//teaching」' + 
+						replyMsg =
+							'無法辨別「' + msg + '」的意義\n' +
+							'如果你願意幫助休比回答問題\n' +
+							'請輸入指令「//teaching」' +
 							'查看教導休比回答的方法。';
 							answerNotFound = false;
 					}
 				}
 			}
-			
+
 			if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
 				event.reply(replyMsg).then(function(data) {
 					console.log (replyMsg);
@@ -435,26 +489,26 @@ function _bot() {
 			}
 		}
 	});
-	
-	bot.on('join', function(event) {	
+
+	bot.on('join', function(event) {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//被加入群組時，將群組ID加入名單陣列
-	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
-		var groupC = 0;	
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
+		var groupC = 0;
 		var isGroup = true;
-		var replyMsg = '';		
+		var replyMsg = '';
 		var pushIn = true;
-		
+
 		if (groupID.length != 0) {
 			for (var i = 0; i <= groupID.length - 1 ; i++) {
 				if (event.source.groupId == groupID[i]) {
 					replyMsg = '休比又回來了，請多多指教。';
-					if (groupIsAnswer[i] == undefined) {						
+					if (groupIsAnswer[i] == undefined) {
 							groupIsAnswer[i] = true;
 					}
 					pushIn = false;
 					groupC = i;
-				}			
+				}
 			}
 			if (pushIn) {
 				replyMsg = '謝謝你把我加進這個群組，請大家多多指教。';
@@ -469,30 +523,30 @@ function _bot() {
 			groupC = groupID.length-1;
 			groupIsAnswer[groupC] = true;
 		}
-		GroupIdSettingOverwrite();		
-		
+		GroupIdSettingOverwrite();
+
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
 		}).catch(function(error) {
 			console.log('error');
 		});
 	});
-	
-	
-	bot.on('follow', function(event) {	
+
+
+	bot.on('follow', function(event) {
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//被加為好友時，將使用者ID加入名單陣列
-	//★★★★★★★★★★★★★★★★★★★★★★★★★★★	
+	//★★★★★★★★★★★★★★★★★★★★★★★★★★★
 		var userC = 0;
 		var isUser = true;
 		var pushIn = true;
 		var replyMsg = '';
-				
+
 		if (userID.length != 0) {
 			for (var i = 0; i <= userID.length - 1 ; i++) {
 				if (event.source.userId == userID[i]) {
 					replyMsg = '謝謝你讓休比有懺悔的機會，我們又是朋友了。';
-					if (userIsAnswer[i] == undefined) {						
+					if (userIsAnswer[i] == undefined) {
 						userIsAnswer[i] = true;
 					}
 					pushIn = false;
@@ -500,20 +554,20 @@ function _bot() {
 				}
 			}
 			if (pushIn) {
-				replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';		
+				replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
 				userID.push(event.source.userId);
 				userC = userID.length-1;
 				userIsAnswer[userC] = true;
 				pushIn = false;
 			}
-		} else { 
+		} else {
 			replyMsg = '謝謝你加我為好友！無聊的時候可以跟我聊聊。';
 			userID.push(event.source.userId);
 			userC = userID.length-1;
 			userIsAnswer[userC] = true;
 		}
 		UserIdSettingOverwrite();
-						
+
 		event.reply(replyMsg).then(function(data) {
 			console.log(replyMsg);
 		}).catch(function(error) {
@@ -522,15 +576,15 @@ function _bot() {
 	});
 }
 
-function AnswerDBOverwrite() {	
+function AnswerDBOverwrite() {
    var request = {
       auth: oauth2Client,
       spreadsheetId: mySheetId,
       range:encodeURI('replyDB'),
       valueInputOption: 'RAW',
       resource: {
-        "values": 
-          answerDB        
+        "values":
+          answerDB
       }
    };
    var sheets = google.sheets('v4');
@@ -555,8 +609,8 @@ function UserIdSettingOverwrite() {
 		range:encodeURI('usersetting'),
 		valueInputOption: 'RAW',
 		resource: {
-			"values": 
-			settingUpdate        
+			"values":
+			settingUpdate
 		}
 	};
 	var sheets = google.sheets('v4');
@@ -581,8 +635,8 @@ function GroupIdSettingOverwrite() {
 		range:encodeURI('groupsetting'),
 		valueInputOption: 'RAW',
 		resource: {
-			"values": 
-			settingUpdate        
+			"values":
+			settingUpdate
 		}
 	};
 	var sheets = google.sheets('v4');
@@ -624,5 +678,5 @@ function _update() {
 		getQuestions();
 		getIdData();
 		console.log('數據庫已更新');
-    timer3 = setInterval(_update, 60000); //每60s更新	
+    timer3 = setInterval(_update, 60000); //每60s更新
 }
