@@ -78,7 +78,7 @@ function _bot() {
           }
         }while (loop);
 
-        console.log(containCount);
+        console.log('containCount: ' + containCount);
 
       }
     }
