@@ -43,6 +43,7 @@ _bot();
 
 function _Start() {
   getAIDatas();
+    console.log(aiDB);
 }
 
 function _bot() {
