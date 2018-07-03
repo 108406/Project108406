@@ -40,18 +40,18 @@ var mySheetId = '1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 var AIDB = [];
 _Start();
 Main();
-  console.log('0');
 
 function _Start() {
   getAIDatas();
 }
-  console.log('0.5');
 
 function Main() {
+  console.log('0');
   bot.on('message', function(event) {
     var msg = event.message.text;
     var command = msg.replace(/\s+/g, "");
     var replyMsg = '';
+      console.log('0.5');
 
     if (event.message.type == 'text') {
       console.log('1');
