@@ -69,6 +69,7 @@ function _bot() {
         for (var a = 0; a <= aiDB[0].length - 1; a++) {
           if (msg.indexOf(aiDB[0][a], i) != -1) {
             containCount++;
+            a = aiDB[0].length;
           }
         }
       }
