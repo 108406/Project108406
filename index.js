@@ -64,23 +64,23 @@ function _bot() {
     var replyMsg = '';
 
     if (event.message.type == 'text') {
-      for (var i = 1; i <= aiDB[0].length - 1; i++) {
-        var loop = true;
-        var indexAt = 0;
-        var containCount = 0
-        do {
+      var loop = true;
+      var indexAt = 0;
+      var containCount = 0
+      do {
+        for (var i = 1; i <= aiDB[0].length - 1; i++) {
           if (msg.indexOf(aiDB[0][i], indexAt) != -1) {
             replyMsg = msg.search(aiDB[0][i]) + '';
             indexAt = msg.indexOf(aiDB[0][i], indexAt);
-            containCount ++ ;
-          }else {
+            containCount++;
+          } else {
             loop = false;
           }
-        }while (loop);
+        }
+      } while (loop);
 
-        console.log('containCount: ' + containCount);
+      console.log('containCount: ' + containCount);
 
-      }
     }
 
     if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
