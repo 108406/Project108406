@@ -54,7 +54,7 @@ function Main() {
     if (event.message.type == 'text') {
       for (var i = 1; i <= AIDB.length - 1; i++) {
         if (msg.indexOf(AIDB[0][i], 0) != -1) {
-          replyMsg = msg.indexOf(AIDB[0][i];
+          replyMsg = msg.indexOf(AIDB[0][i]);
           /*
           var ans = Math.floor((Math.random() * (answerDB[i].length - 1)) + 1);
           replyMsg = answerDB[i][ans];
