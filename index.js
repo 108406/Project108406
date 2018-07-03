@@ -66,7 +66,7 @@ function _bot() {
     if (event.message.type == 'text') {
       for (var i = 1; i <= aiDB.length - 1; i++) {
         if (msg.indexOf(aiDB[0][i], 0) != -1) {
-          replyMsg = msg.indexOf(aiDB[0][i]) + '';
+          replyMsg = msg.search(aiDB[0][i]) + '';
 /*
           var ans = Math.floor((Math.random() * (answerDB[i].length - 1)) + 1);
           replyMsg = answerDB[i][ans];
