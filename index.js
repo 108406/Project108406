@@ -18,7 +18,15 @@ var oauth2Client = new auth.OAuth2(myClientSecret.installed.client_id,myClientSe
 oauth2Client.credentials ={"access_token":"ya29.GltrBUPv62sRXPU_WI2iGkqNhpXnmSq511j-G-JNTiWNj8uBbHrxLVySEkrTqDh-WOwG3eacrcSiFlXB-mVelkEISTyiAW5aeRIc7AuO5JEKlJMKJyM2NMzprknZ","refresh_token":"1/FYb8760SodoyLtuX5yrnbbaulbW4l5JcxO4SyrPuOfg","token_type":"Bearer","expiry_date":1519378285674};
 
 var mySheetId='1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
+//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以上為基本資料●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 
+
+//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為ＡＩ程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+
+
+
+
+//●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為原始程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 
 var timer;
 var timer3;
