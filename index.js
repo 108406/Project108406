@@ -64,7 +64,7 @@ function _bot() {
     var replyMsg = '';
 
     if (event.message.type == 'text') {
-      for (var i = 1; i <= aiDB.length - 1; i++) {
+      for (var i = 1; i <= aiDB[0].length - 1; i++) {
         var loop = true;
         var indexAt = 0;
         var containCount = 0
