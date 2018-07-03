@@ -40,10 +40,12 @@ var mySheetId = '1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 var AIDB = [];
 _Start();
 Main();
+  console.log('0');
 
 function _Start() {
   getAIDatas();
 }
+  console.log('0.5');
 
 function Main() {
   bot.on('message', function(event) {
