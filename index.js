@@ -37,6 +37,7 @@ var mySheetId = '1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 
 
 //●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為ＡＩ程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+/*
 var aiDB = [];
 _Start();
 _bot();
@@ -60,10 +61,10 @@ function _bot() {
           console.log('3');
           replyMsg = msg.indexOf(aiDB[0][i]) + '';
             console.log('4');
-          /*
+
           var ans = Math.floor((Math.random() * (answerDB[i].length - 1)) + 1);
           replyMsg = answerDB[i][ans];
-          answerNotFound = false;*/
+          answerNotFound = false;
         }
       }
     }
@@ -101,9 +102,9 @@ function getAIDatas() {
     }
   });
 }
-
+*/
 //●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為原始程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-/*
+
 var timer;
 var timer3;
 var pm = [];
@@ -702,4 +703,3 @@ function _update() {
 		console.log('數據庫已更新');
     timer3 = setInterval(_update, 60000); //每60s更新
 }
-*/
