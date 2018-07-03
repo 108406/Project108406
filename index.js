@@ -76,11 +76,16 @@ function _bot() {
     }
 
     if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
+      //傳送訊息
       event.reply(replyMsg).then(function(data) {
         console.log(replyMsg);
       }).catch(function(error) {
         console.log('error');
       });
+      //重新讀取資料
+      if (msg == '//getAIData') {
+        getAIDatas();
+      }
     }
 
   });
