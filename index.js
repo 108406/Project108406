@@ -37,15 +37,15 @@ var mySheetId = '1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 
 
 //●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為ＡＩ程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-var AIDB = [];
+var aiDB = [];
 _Start();
-Main();
+_bot();
 
 function _Start() {
   getAIDatas();
 }
 
-function Main() {
+function _bot() {
   console.log('0');
   bot.on('message', function(event) {
     var msg = event.message.text;
@@ -55,11 +55,11 @@ function Main() {
 
     if (event.message.type == 'text') {
       console.log('1');
-      for (var i = 1; i <= AIDB.length - 1; i++) {
+      for (var i = 1; i <= aiDB.length - 1; i++) {
         console.log('2');
-        if (msg.indexOf(AIDB[0][i], 0) != -1) {
+        if (msg.indexOf(aiDB[0][i], 0) != -1) {
           console.log('3');
-          replyMsg = msg.indexOf(AIDB[0][i]) + '';
+          replyMsg = msg.indexOf(aiDB[0][i]) + '';
             console.log('4');
           /*
           var ans = Math.floor((Math.random() * (answerDB[i].length - 1)) + 1);
@@ -97,7 +97,7 @@ function getAIDatas() {
     } else {
       var DBlength = rows.length;
       for (i = 0; i < DBlength; i++) {
-        AIDB[i] = rows[i];
+        aiDB[i] = rows[i];
       }
     }
   });
