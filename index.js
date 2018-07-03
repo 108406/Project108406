@@ -97,7 +97,7 @@ function getAIDatas() {
       console.log('0');
       var DBlength = rows.length;
       for (i = 0; i < DBlength; i++) {
-        console.log('0.5');
+        console.log(rows[i]);
         aiDB[i] = rows[i];
       }
     }
