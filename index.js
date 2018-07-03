@@ -36,7 +36,7 @@ getIdData();
 _getJSON();
 _update();
 
-//_bot();
+_bot();
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
@@ -418,12 +418,13 @@ function _bot() {
 				}
 			}
 			
-
-			event.reply(replyMsg).then(function(data) {
-				console.log (replyMsg);
-			}).catch(function(error) {
-				console.log('error');
-			});
+			if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
+				event.reply(replyMsg).then(function(data) {
+					console.log (replyMsg);
+				}).catch(function(error) {
+					console.log('error');
+				});
+			}
 		}
 	});
 	
