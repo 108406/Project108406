@@ -67,7 +67,7 @@ function _bot() {
       var containCount = 0;
       for (var i = 0; i <= msg.length - 1; i++) {
         for (var a = 0; a <= aiDB[0].length - 1; a++) {
-          if (msg.indexOf(aiDBp[0][a], i) != -1) {
+          if (msg.indexOf(aiDB[0][a], i) != -1) {
             containCount++;
           }
         }
