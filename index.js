@@ -69,9 +69,9 @@ function _bot() {
       var containCount = 0;
       for (var i = 1; i <= aiDB[0].length - 1; i++) {
         do {
-          if (msg.indexOf(aiDB[0][i], indexAt + 1) != -1) {
+          if (msg.indexOf(aiDB[0][i], indexAt) != -1) {
             replyMsg = msg.search(aiDB[0][i]) + '';
-            indexAt = msg.indexOf(aiDB[0][i], indexAt);
+            indexAt = msg.indexOf(aiDB[0][i], indexAt + 1);
             containCount++;
           } else {
             loop = false;
