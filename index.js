@@ -99,6 +99,7 @@ function getAIDatas() {
       for (i = 0; i < DBlength; i++) {
         console.log(rows[i]);
         aiDB[i] = rows[i];
+        console.log(aiDB[i]);
       }
     }
   });
