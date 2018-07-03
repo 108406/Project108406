@@ -47,12 +47,10 @@ function _Start() {
 }
 
 function _bot() {
-  console.log('0');
   bot.on('message', function(event) {
     var msg = event.message.text;
     var command = msg.replace(/\s+/g, "");
     var replyMsg = '';
-      console.log('0.5');
 
     if (event.message.type == 'text') {
       console.log('1');
@@ -96,8 +94,10 @@ function getAIDatas() {
     if (rows.length == 0) {
       console.log('No data found.');
     } else {
+      console.log('0');
       var DBlength = rows.length;
-      for (i = 0; i < aiDB; i++) {
+      for (i = 0; i < DBlength; i++) {
+        console.log('0.5');
         aiDB[i] = rows[i];
       }
     }
