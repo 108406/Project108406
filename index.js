@@ -65,13 +65,18 @@ function _bot() {
 
     if (event.message.type == 'text') {
       for (var i = 1; i <= aiDB.length - 1; i++) {
-        if (msg.indexOf(aiDB[0][i], 0) != -1) {
-          replyMsg = msg.search(aiDB[0][i]) + '';
-/*
-          var ans = Math.floor((Math.random() * (answerDB[i].length - 1)) + 1);
-          replyMsg = answerDB[i][ans];
-          answerNotFound = false;*/
-        }
+        var loop = true;
+        var indexAt = 0;
+        var containCount = 0
+        do {
+          if (msg.indexOf(aiDB[0][i], indexAt) != -1) {
+            replyMsg = msg.search(aiDB[0][i]) + '';
+            indexAt = msg.indexOf(aiDB[0][i], indexAt);
+            containCount ++ ;
+          }else {
+            loop = false;
+          }
+        }while (loop)
       }
     }
 
