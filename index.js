@@ -97,7 +97,7 @@ function getAIDatas() {
       console.log('No data found.');
     } else {
       var DBlength = rows.length;
-      for (i = 0; i < DBlength; i++) {
+      for (i = 0; i < aiDB; i++) {
         aiDB[i] = rows[i];
       }
     }
