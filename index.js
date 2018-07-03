@@ -76,7 +76,10 @@ function _bot() {
           }else {
             loop = false;
           }
-        }while (loop)
+        }while (loop);
+
+        console.log(containCount);
+
       }
     }
 
