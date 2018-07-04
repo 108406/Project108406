@@ -57,6 +57,18 @@ function _Start() {
   getAIDatas();
 }
 
+function getPoSAmountAndPosition(message, sort) {
+  var amountAndPosition = [];
+  for (var i = 0; i <= message.length - 1; i++) {
+    for (var a = 1; a <= aiDB[sort].length - 1; a++) {
+      if (message.substr(i, 1) == aiDB[0][a]) {
+        amountAndPosition.push(i);
+      }
+    }
+  }
+  return amountAndPosition;
+}
+
 function _bot() {
   bot.on('message', function(event) {
     var msg = event.message.text;
@@ -65,15 +77,13 @@ function _bot() {
 
     if (event.message.type == 'text') {
       var containCount = 0;
-      for (var i = 0; i <= msg.length - 1; i++) {
-        for (var a = 1; a <= aiDB[0].length - 1; a++) {
-          if (msg.substr(i,1) == aiDB[0][a]) {
-            containCount++;
-            console.log('msg.substr(i,aiDB[0][a].length): ' + msg.substr(i,aiDB[0][a].length) + '\n' +  'aiDB[0][a]: ' +  aiDB[0][a]);
-          }
-        }
+      var PoS = [];
+      //取得詞性數量與位置
+      for (var c = 0; c <= aiDB.length - 1; c ++) {
+        PoS[c] = getPoSAmountAndPosition(msg, c);
       }
-      replyMsg = 'containCount: ' + containCount;
+
+      console.log(PoS);
     }
 
     if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
