@@ -61,7 +61,7 @@ function getPoSAmountAndPosition(message, sort) {
   var amountAndPosition = [];
   for (var i = 0; i <= message.length - 1; i++) {
     for (var a = 1; a <= aiDB[sort].length - 1; a++) {
-      if (message.substr(i, 1) == aiDB[0][a]) {
+      if (message.substr(i, 1) == aiDB[sort][a]) {
         amountAndPosition.push(i);
       }
     }
