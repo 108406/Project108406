@@ -66,8 +66,8 @@ function _bot() {
     if (event.message.type == 'text') {
       var containCount = 0;
       for (var i = 0; i <= msg.length - 1; i++) {
-        for (var a = 0; a <= aiDB[0].length - 1; a++) {
-          if (msg.substr(i,aiDB[0][a].length) == aiDB[0][a]) {
+        for (var a = 1; a <= aiDB[0].length - 1; a++) {
+          if (msg.substr(i,1) == aiDB[0][a]) {
             containCount++;
             console.log('msg.substr(i,aiDB[0][a].length): ' + msg.substr(i,aiDB[0][a].length) + '\n' +  'aiDB[0][a]: ' +  aiDB[0][a]);
           }
