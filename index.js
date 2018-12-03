@@ -74,7 +74,10 @@ function _bot() {
     var msg = event.message.text;
     var command = msg.replace(/\s+/g, "");
     var replyMsg = '';
-
+	
+	console.log(event.source.userId);
+	
+/*
     if (event.message.type == 'text') {
       var containCount = 0;
       var PoS = [];
@@ -99,7 +102,7 @@ function _bot() {
       if (msg == '//getAIData') {
         getAIDatas();
       }
-    }
+    }*/
 
   });
 }
