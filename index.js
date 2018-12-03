@@ -86,6 +86,7 @@ function _bot() {
       console.log(PoS);
     }
 */
+	replyMsg = msg;
     if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
       if (event.source.groupId == undefined) {
         //傳送訊息
