@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/content.css">
+
+</head>
+
+<body>
+    <!--------------------上方導覽列------------------->
+    <nav class="navbar navbar-expand-lg navbar-dark top_navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand h1" href="#">Navbar</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <form class="form-inline my-2 my-lg-0 mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0 search" type="submit">搜尋</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0 mr-end">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">登出</button>
+            </form>
+        </div>
+    </nav>
+    <!--------------------下方導覽---------------------->
+    <ul class="nav nav-tabs nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="nav-link bg-light text-dark" href="#">會員</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active bg-light text-dark" href="#">專案列表</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link bg-light text-dark" href="#">我的專案</a>
+        </li>
+    </ul>
+    <!------------------------------------------------->
+    <div class="container-fluid">
+        <!--~~~~~~~~~~~~~~~~~-->
+        <div class="content">
+            <!--尚未開始------------------------------->
+            <div class="row justify-content-md-center pt-3">
+                <div class="col-sm">
+                    <button type="button" class="btn btn-dark label">
+                        執行中 <span class="badge badge-light">4</span>
+                        <span class="sr-only">unread messages</span>
+                    </button>
+                </div>
+            </div>
+            <!--尚未開始專案------------------------------->
+            <div class="card-deck mt-3">
+                <div class="card text-center card ">
+                    <a class="card-link" href="#">
+                        <div class="card-body">
+                            <h5 class="card-title">我的專案一</h5>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <a class="card-link" href="#" data-toggle="modal" data-target="#projectset"><img
+                                src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+                <div class="card text-center card">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Add new Project</h5>
+                    </div>
+                    <div class="card-footer">
+                            <a class="card-link" href="#" data-toggle="modal" data-target="#addproject"><img
+                                src="./imgs/plus-3x.png"></a>
+                    </div>
+                </div>
+            </div>
+            <!--執行中------------------------------->
+            <div class="row justify-content-md-center pt-3">
+                <div class="col-sm">
+                    <button type="button" class="btn btn-dark label">
+                        執行中 <span class="badge badge-light">4</span>
+                        <span class="sr-only">unread messages</span>
+                    </button>
+                </div>
+            </div>
+            <!--執行中專案------------------------------->
+            <div class="card-deck mt-3">
+                <div class="card text-center card ">
+                    <a class="card-link text-white bg-primary" href="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Project</h5>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <a class="card-link" href="#" data-toggle="modal" data-target="#projectset"><img
+                                src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+                <div class="card text-center card ">
+                    <a class="card-link" href="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Project</h5>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <a class="card-link" href="#" data-toggle="modal" data-target="#projectset"><img
+                                src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+                <div class="card text-center card ">
+                    <a class="card-link" href="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Project</h5>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <a class="card-link" href="#" data-toggle="modal" data-target="#projectset"><img
+                                src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+                <div class="card text-center card ">
+                    <a class="card-link" href="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Project</h5>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <a class="card-link" href="#" data-toggle="modal" data-target="#projectset"><img
+                                src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+            </div>
+            <!--已完成------------------------------->
+            <div class="row justify-content-md-center pt-3">
+                <div class="col-sm">
+                    <button type="button" class="btn btn-dark label">
+                        已完成 <span class="badge badge-light">2</span>
+                        <span class="sr-only">unread messages</span>
+                    </button>
+                </div>
+            </div>
+            <!--已完成專案------------------------------->
+            <div class="card-deck mt-3">
+                <div class="card text-center card ">
+                    <a class="card-link" href="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Project</h5>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <a class="card-link" href="#" data-toggle="modal" data-target="#projectset"><img
+                                src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+                <div class="card text-center card ">
+                    <a class="card-link" href="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Project</h5>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <a class="card-link" href="#" data-toggle="modal" data-target="#projectset"><img
+                                src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+            </div>
+            <!--專案齒輪設定內容---------------------------------->
+            <div class="modal fade" id="projectset" tabindex="-1" role="dialog" aria-labelledby="projectset"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="projectset">設定</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">重新命名:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">專案代碼:</label>
+                                    <input type="text" class="form-control" id="copy">
+                                </div>
+                                <button onclick="myFunction()">Copy</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--~~~~~~~~~~~~~~~~~-->
+            <!--新增專案設定---------------------------------->
+            <div class="modal fade" id="addproject" tabindex="-1" role="dialog" aria-labelledby="addproject"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addproject">新增</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">標題:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">開始日期:</label>
+                                    <input type="datetime-local" name="inventorydate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">結束日期:</label>
+                                    <input type="datetime-local" name="inventorydate">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!------------------------------------>
+        </div>
+        <!--~~~~~~~~~~~~~~~~~-->
+        <div class="footer">
+            <!--垃圾桶--------------------------->
+            <div class="row pt-2 justify-content-md-end">
+                <div class="col-sm-auto">
+                    <a href="#"><img src="./imgs/trash-8x.png" class="tub"></a>
+                </div>
+            </div>
+            <!--垃圾桶--------------------------->
+        </div>
+        <!--~~~~~~~~~~~~~~~~~-->
+    </div>
+    <!--**************************-->
+    <!------------scrpit----------->
+    <script src="js/copy.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

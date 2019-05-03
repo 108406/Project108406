@@ -1,0 +1,28 @@
+@charset "utf-8";
+/**總體設定-------------------**/
+body,html{
+    height: 100%;
+    overflow-x: hidden;
+    
+}
+.container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+    background-color: #4D6C74;
+    /* background-image: url(../imgs/VBwhoPt.png); */
+    background-repeat: no-repeat;
+}
+/**navbar上方導覽列設定-------------------**/
+.top_navbar{
+    background-color: #4D6C74;
+}
+/**上方導覽列search設定-------------------**/
+.search{
+    background-color:#FFFFFF;
+}
+.content-left{
+    width:30rem;
+}
+.li_wd{
+    width: 15rem;
+}

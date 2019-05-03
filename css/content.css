@@ -1,0 +1,35 @@
+@charset "utf-8";
+/**總體設定-------------------**/
+body,html{
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #999;
+}
+.container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+    /* background-image: url(../imgs/VBwhoPt.png); */
+    background-repeat: no-repeat;
+}
+/**navbar上方導覽列設定-------------------**/
+.top_navbar{
+    background-color: #4D6C74;
+}
+/**上方導覽列search設定-------------------**/
+.search{
+    background-color:#FFFFFF;
+}
+/**label尚未開始、執行中、已完成大小設定-------------------**/
+.label{
+    width: 200px;
+    height:50px;
+}
+/**專案調整設定-------------------**/
+.card{
+    max-width:308px;
+}
+.tub{
+    right: 50px;
+    bottom: 50px;
+}
+

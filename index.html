@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/navbar.css">
+
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <form class="form-inline my-2 my-lg-0 mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <button type="button" class="btn btn-outline-primary">Primary</button>
+        </div>
+    </nav>
+
+    <ul class="nav nav-tabs nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="nav-link bg-light text-dark" href="#">會員</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active bg-light text-dark" href="#">專案列表</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link bg-light text-dark" href="#">我的專案</a>
+        </li>
+    </ul>
+    <!------------------------------------------------->
+    <div class="container-fluid container">
+        <!--~~~~~~~~~~~~~~~~~-->
+        <div class="content">
+            <!--尚未開始------------------------------->
+            <div class="row justify-content-md-center mt-5">
+                <div class="col-sm">
+                    <button type="button" class="btn btn-dark start">
+                                    尚未開始 <span class="badge badge-light">1</span>
+                                    <span class="sr-only">unread messages</span>
+                                </button>
+                </div>
+            </div>
+            <!--尚未開始專案------------------------------->
+            <div class="card" style="width: 18rem;">
+                <img src="./imgs/project_photo1.jpg" class="card-img-top" alt="photo">
+                <div class="card-body">
+                    <h5 class="card-title">我的專案一</h5>
+                    <a href="#" class="btn btn-primary">編輯</a>
+                </div>
+            </div>
+            <!--執行中------------------------------->
+            <div class="row justify-content-md-center label">
+                <div class="col-sm">
+                    <button type="button" class="btn btn-dark start">
+                                    執行中 <span class="badge badge-light">3</span>
+                                    <span class="sr-only">unread messages</span>
+                                </button>
+                </div>
+            </div>
+            <!--已完成------------------------------->
+            <div class="row justify-content-md-center label">
+                <div class="col-sm">
+                    <button type="button" class="btn btn-dark start">
+                                    已完成 <span class="badge badge-light">2</span>
+                                    <span class="sr-only">unread messages</span>
+                                </button>
+                </div>
+            </div>
+
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
