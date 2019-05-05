@@ -9,7 +9,7 @@ const query = require('./asyncDB');
 //------------------------------------------
 var displayTeamMember = async function (project_id) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from teammember where project_id = $1', [project_id])
@@ -35,7 +35,7 @@ var displayTeamMember = async function (project_id) {
 //------------------------------------------
 var displayMyProject = async function (user_id) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from teammember where user_id = $1', [user_id])
@@ -61,7 +61,7 @@ var displayMyProject = async function (user_id) {
 //------------------------------------------
 var addTeamMember = async function (user_id, project_id, group_id, isadmin) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('insert into teammember (user_id, project_id, group_id, isadmin) values ($1, $2, $3, $4)', [user_id, project_id, group_id, isadmin])
@@ -87,7 +87,7 @@ var addTeamMember = async function (user_id, project_id, group_id, isadmin) {
 //------------------------------------------
 var deleteTeamMember = async function (teammember_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('delete from teammember where teammember_serno = $1', [teammember_serno])
@@ -113,7 +113,7 @@ var deleteTeamMember = async function (teammember_serno) {
 //------------------------------------------
 var updateTeamMember = async function (user_id, project_id, group_id, isadmin) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('update teammember set group_id = $3, isadmin = $4 where user_id = $1 and project_id = $2', [user_id, project_id, group_id, isadmin])

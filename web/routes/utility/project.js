@@ -9,13 +9,13 @@ const query = require('./asyncDB');
 //------------------------------------------
 var fetchProject = async function (project_id) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from project where project_id = $1', [project_id])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案資料(物件)
+                result = data.rows;  //專案資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -35,7 +35,7 @@ var fetchProject = async function (project_id) {
 //------------------------------------------
 var addProject = async function (projects) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('insert into project (project_id, projectpermission_serno, project_password, project_name, project_startdate, project_enddate) values ($1, $2, $3, $4, $5, $6)'
@@ -62,7 +62,7 @@ var addProject = async function (projects) {
 //------------------------------------------
 var deleteProject = async function (project_id) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('delete from project where project_id = $1', [project_id])
@@ -88,7 +88,7 @@ var deleteProject = async function (project_id) {
 //------------------------------------------
 var updateProjectName = async function (project_id, project_name) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('update project set project_name = $2 where project_id = $1', [project_id, project_name])

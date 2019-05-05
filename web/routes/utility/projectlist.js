@@ -9,13 +9,13 @@ const query = require('./asyncDB');
 //------------------------------------------
 var fetchProjectListP = async function (list_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from projectlist where list_serno = $1', [list_serno])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案列表資料(物件)
+                result = data.rows;  //專案列表資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -35,13 +35,13 @@ var fetchProjectListP = async function (list_serno) {
 //------------------------------------------
 var fetchProjectListL = async function (project_id) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from projectlist where project_id = $1', [project_id])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案列表資料(物件)
+                result = data.rows;  //專案列表資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -62,7 +62,7 @@ var fetchProjectListL = async function (project_id) {
 //------------------------------------------
 var addProjectList = async function (project_id, list_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('insert into projectlist (project_id, list_serno) values ($1, $2)', [project_id, list_serno])
@@ -88,7 +88,7 @@ var addProjectList = async function (project_id, list_serno) {
 //------------------------------------------
 var deleteProjectList = async function (projectlist_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('delete from projectlist where projectlist_serno = $1', [projectlist_serno])
