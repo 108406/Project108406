@@ -48,12 +48,16 @@
     <div class="container-fluid">
         <!--~~~~~~~~~~~~~~~~~-->
         <div class="row">
-            <div class="col-4 testcolor">
+            <div class="col-3 testcolor">
                 <!-- <h3>個人資料</h3> -->
             </div>
-            <div class="col-4 testcolor1">
-                <div class="text-center mt-5">
-                    <img src="./imgs/project_photo2.jpg" class="photo">
+            <div class="col-6 testcolor1">
+                <div class="text-center mt-5 test">
+                        
+                        <label class="upload_cover">
+                            <input id="upload_input" type="file">
+                            <span class="upload_icon"><img src="./imgs/project_photo2.jpg" class="photo"></span>
+                        </label>
                 </div>
                 <form>
                     <div class="form-group row justify-content-center mt-5">
@@ -91,20 +95,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-between mt-5">
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                            data-target="#editpassword">修改密碼</button>
-                    </div>
-                    <div class="col-sm-4">
+                <div class="row text-center mt-5">
+                    <div class="col-sm-12">
                         <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal"
                             data-target="#delete">刪除帳號</button>
                     </div>
                 </div>
             </div>
+            <div class="col-3 testcolor">
+                <!-- <h3>個人資料</h3> -->
+            </div>
             <!--~~~~~~~~~~~~~~~~~-->
             <div class="footer">
-
+                
             </div>
             <!-- Modal 修改密碼-->
             <div class="modal fade" id="editpassword" tabindex="-1" role="dialog" aria-labelledby="editpassword"
@@ -144,8 +147,7 @@
                 </div>
             </div>
             <!-- Modal 刪除帳號-->
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete"
-                aria-hidden="true">
+            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

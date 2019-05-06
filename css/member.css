@@ -67,3 +67,10 @@ body,html{
     right: 0px; 
     background-color: #27A1CA; 
 }
+/**編輯頭貼-------------------**/
+#upload_input {
+    display: none;
+}
+.edit-photo{
+    /* display: none; */
+}

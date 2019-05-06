@@ -36,20 +36,27 @@ body,html{
     background:#666;  
     height: 800px;
 }
+.testcolor1{
+    background:#666;
+}
+.testcolor2{
+    background:#999;
+}
+.testcolor3{
+    background:#4D6C74;
+}
 /**工作人頭貼-------------------**/
 .img-circle{
     width:45px;
     height:45px;
     border-radius:50%;
 }
-.list_set{
-    height:4rem;
-}
 .img-member{
     width:80px;
     height:80px;
     border-radius:50%;
 }
+/**on/off-------------------**/
 .form{
     border-style: dashed;
     margin-top: 50px;
