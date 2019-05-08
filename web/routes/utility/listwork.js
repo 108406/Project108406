@@ -9,13 +9,13 @@ const query = require('./asyncDB');
 //------------------------------------------
 var fetchListWorkL = async function (work_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from listwork where work_serno = $1', [work_serno])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案列表資料(物件)
+                result = data.rows;  //專案列表資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -35,13 +35,13 @@ var fetchListWorkL = async function (work_serno) {
 //------------------------------------------
 var fetchListWorkW = async function (list_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from listwork where list_serno = $1', [list_serno])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案列表資料(物件)
+                result = data.rows;  //專案列表資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -62,7 +62,7 @@ var fetchListWorkW = async function (list_serno) {
 //------------------------------------------
 var addListWork = async function (list_serno, work_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('insert into listwork (list_serno, work_serno) values ($1, $2)', [list_serno, work_serno])
@@ -88,7 +88,7 @@ var addListWork = async function (list_serno, work_serno) {
 //------------------------------------------
 var deleteListWork = async function (listwork_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('delete from listwork where listwork_serno = $1', [listwork_serno])

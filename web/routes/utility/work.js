@@ -9,13 +9,13 @@ const query = require('./asyncDB');
 //------------------------------------------
 var displayWork = async function (work_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from work where work_serno = $1', [work_serno])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案資料(物件)
+                result = data.rows;  //專案資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -35,13 +35,13 @@ var displayWork = async function (work_serno) {
 //------------------------------------------
 var displayWorkTitle = async function (work_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from work where work_serno = $1', [work_serno])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案資料(物件)
+                result = data.rows;  //專案資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -61,7 +61,7 @@ var displayWorkTitle = async function (work_serno) {
 //------------------------------------------
 var addWork = async function (work_add) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('insert into work (work_title, work_content, deadline, tag, file, first_principal, second_principal) values ($1, $2, $3, $4, $5, $6, $7)'
@@ -88,7 +88,7 @@ var addWork = async function (work_add) {
 //------------------------------------------
 var deleteWork = async function (work_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('delete from work where work_serno = $1', [work_serno])
@@ -114,7 +114,7 @@ var deleteWork = async function (work_serno) {
 //------------------------------------------
 var updateWork = async function (work_update) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('update work set work_title = $2, work_content = $3, deadline = $4, tag = $5, file = $6, first_principal = $7, second_principal = $8 where work_serno = $1'
@@ -141,13 +141,13 @@ var updateWork = async function (work_update) {
 //------------------------------------------
 var displayWrokPrincipal = async function (work_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from work where work_serno = $1', [work_serno])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案資料(物件)
+                result = data.rows;  //專案資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -167,7 +167,7 @@ var displayWrokPrincipal = async function (work_serno) {
 //------------------------------------------
 var displayMyWork = async function (user_id) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from work where first_principal = $1 or second_principal = $1', [user_id])

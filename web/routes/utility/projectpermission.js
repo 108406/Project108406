@@ -9,13 +9,13 @@ const query = require('./asyncDB');
 //------------------------------------------
 var displayProjectPermission = async function (projectpermission_serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from projectpermission where projectpermission_serno = $1', [projectpermission_serno])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //專案資料(物件)
+                result = data.rows;  //專案資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -33,12 +33,12 @@ var displayProjectPermission = async function (projectpermission_serno) {
 //------------------------------------------
 // 新增專案權限
 //------------------------------------------
-var addProjectPermission = async function (listpermission, addwork, editwork, deletework) {
+var addProjectPermission = async function (projectId, listpermission, addwork, editwork, deletework) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
-    await query('insert into projectpermission (list_permission, add_work, edit_work, delete_work) values ($1, $2, $3, $4)', [listpermission, addwork, editwork, deletework])
+    await query('insert into projectpermission (project_id, list_permission, add_work, edit_work, delete_work) values ($1, $2, $3, $4, $5)', [projectId, listpermission, addwork, editwork, deletework])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -60,7 +60,7 @@ var addProjectPermission = async function (listpermission, addwork, editwork, de
 //------------------------------------------
 var deleteProjectPermission = async function (serno) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('delete from projectpermission where projectpermission_serno = $1', [serno])
@@ -86,7 +86,7 @@ var deleteProjectPermission = async function (serno) {
 //------------------------------------------
 var updateProjectPermission = async function (serno, listpermission, addwork, editwork, deletework) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('update projectpermission set list_permission  = $2, add_work = $3, edit_work = $4, delete_work = $5 where projectpermission_serno = $1', [serno, listpermission, addwork, editwork, deletework])

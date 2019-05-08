@@ -6,12 +6,16 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var content = require('./routes/content');
+var content_updateProjectName = require('./routes/content_updateProjectName');
+var content_addProject = require('./routes/content_addProject');
+var project_list_work = require('./routes/project_list_work');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,6 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/content', content);
+app.use('/content/updateProjectName', content_updateProjectName);
+app.use('/content/addProject', content_addProject);
+app.use('/project_list_work', project_list_work);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

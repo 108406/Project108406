@@ -9,13 +9,13 @@ const query = require('./asyncDB');
 //------------------------------------------
 var displayMember = async function (userID) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('select * from member where user_id = $1', [userID])
         .then((data) => {
             if (data.rows.length > 0) {
-                result = data.rows[0];  //學生資料(物件)
+                result = data.rows;  //學生資料(物件)
             } else {
                 result = false;  //找不到資料
             }
@@ -35,7 +35,7 @@ var displayMember = async function (userID) {
 //------------------------------------------
 var addMember = async function (members) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('insert into member values ($1, $2, $3, $4, $5, $6)', [members.user_id, members.photo, members.member_name, members.email, members.member_password, members.linebotpush])
@@ -61,7 +61,7 @@ var addMember = async function (members) {
 //------------------------------------------
 var deleteMember = async function (userID) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('delete from member where user_id = $1', [userID])
@@ -87,7 +87,7 @@ var deleteMember = async function (userID) {
 //------------------------------------------
 var updateMemberPhoto = async function (userID, photo) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('update member set photo = $2 where user_id = $1', [userID, photo])
@@ -113,7 +113,7 @@ var updateMemberPhoto = async function (userID, photo) {
 //------------------------------------------
 var updateMemberEmail = async function (userID, email) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('update member set email = $2 where user_id = $1', [userID, email])
@@ -139,7 +139,7 @@ var updateMemberEmail = async function (userID, email) {
 //------------------------------------------
 var updateMemberLinebotPush = async function (userID, linebotpush) {
     //存放結果
-    let result;
+    var result = [];
 
     //讀取資料庫
     await query('update member set linebotpush = $2 where user_id = $1', [userID, linebotpush])
