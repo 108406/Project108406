@@ -111,12 +111,12 @@ var updateMemberPhoto = async function (userID, photo) {
 //------------------------------------------
 // 更改會員信箱
 //------------------------------------------
-var updateMemberEmail = async function (userID, email) {
+var updateMemberData = async function (userID, name, email) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('update member set email = $2 where user_id = $1', [userID, email])
+    await query('update member set email = $3, member_name = $2 where user_id = $1', [userID, name, email])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;
@@ -161,4 +161,4 @@ var updateMemberLinebotPush = async function (userID, linebotpush) {
 
 
 //匯出
-module.exports = { displayMember, addMember, deleteMember, updateMemberPhoto, updateMemberEmail, updateMemberLinebotPush };
+module.exports = { displayMember, addMember, deleteMember, updateMemberPhoto, updateMemberData, updateMemberLinebotPush };

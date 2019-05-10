@@ -9,7 +9,7 @@ const sql = require('./asyncDB');
 var fetchAdminPush = async function(projectId){
     var result=[];
     await sql(`SELECT * FROM "adminpush" where "project_id" = '` + projectId + `'`)
-        .then((data) => {            
+        .then((data) => {          
             result = data.rows;  
         }, (error) => {
             console.log(error);
