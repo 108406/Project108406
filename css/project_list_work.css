@@ -1,19 +1,17 @@
 @charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+TC');
+
 /**總體設定-------------------**/
 body,html{
-    height: 100%;
-    overflow-x: hidden;
-    /* background-color: #4D6C74; */
+    background-image: url(../imgs/project_list_work.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
 }
 .container-fluid{
+    font-family: 'Open Sans', sans-serif;
     padding-right: 0px;
     padding-left: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    /* background-color: #4D6C74; */
-    /* background-image: url(../imgs/VBwhoPt.png); */
-    background-repeat: no-repeat;
-    height: 800px;
+    
 }
 /**navbar上方導覽列設定-------------------**/
 .top_navbar{
@@ -23,27 +21,10 @@ body,html{
 .search{
     background-color:#FFFFFF;
 }
-/**分割畫面顏色-------------------**/
-.grid-1{
-    background:#999;
-    height: 800px;
-}
-.grid-2{
-    background:#4D6C74;  
-    height: 800px;
-}
-.grid-3{
-    background:#666;  
-    height: 800px;
-}
-.testcolor1{
-    background:#666;
-}
-.testcolor2{
-    background:#999;
-}
-.testcolor3{
-    background:#4D6C74;
+/**組長提醒訊息框-------------------**/
+.photo-admin{
+    width:60px;
+    height:80px;
 }
 /**工作人頭貼-------------------**/
 .img-circle{
@@ -59,9 +40,10 @@ body,html{
 /**on/off-------------------**/
 .form{
     border-style: dashed;
-    margin-top: 50px;
-    margin-left:50px;
-    margin-right:50px;
+    margin-top: 30px;
+    margin-left:30px;
+    margin-right:30px;
+    margin-bottom:30px;
 }
 .onoffswitch {
     position: relative; width: 61px;
@@ -107,5 +89,9 @@ body,html{
     right: 0px; 
     background-color: #27A1CA; 
 }
+/**css測試區-------------------**/
 
+/* .content{
+    display: none;
+} */
 

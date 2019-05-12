@@ -1,10 +1,17 @@
 @charset "utf-8";
 /**總體設定-------------------**/
 body,html{
-    background-color:#FDF6AB;
-    background-repeat: no-repeat;
     height: 100%;
-    width: 100%;
+    overflow-x: hidden;
+    background-image: url(../imgs/background-content.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+    /* background-image: url(../imgs/VBwhoPt.png); */
+    background-repeat: no-repeat;
 }
 /**navbar上方導覽列設定-------------------**/
 .top_navbar{
@@ -14,12 +21,13 @@ body,html{
 .search{
     background-color:#FFFFFF;
 }
-
+/**使用者大頭貼**/
 .photo{
     border-radius: 50%;
     width:150px;
     height:150px;
 }
+/**滑動on/off**/
 .onoffswitch {
     position: relative; width: 160px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
@@ -29,7 +37,7 @@ body,html{
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 0px;
+    border: 2px solid #4D6C74; border-radius: 0px;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -45,17 +53,17 @@ body,html{
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #EEEEEE; color: #FFFFFF;
+    background-color: #FFFF99; color: #999999;
 }
 .onoffswitch-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+    background-color: 	#FFFF99; color: #999999;
     text-align: right;
 }
 .onoffswitch-switch {
     display: block; width: 18px; margin: 0px;
-    background: #A1A1A1;
+    background: 	#27A1CA;
     position: absolute; top: 0; bottom: 0;
     right: 142px;
     transition: all 0.3s ease-in 0s; 
@@ -67,10 +75,40 @@ body,html{
     right: 0px; 
     background-color: #27A1CA; 
 }
-/**編輯頭貼-------------------**/
+/**編輯頭貼加上file-------------------**/
 #upload_input {
     display: none;
 }
-.edit-photo{
-    /* display: none; */
+
+.upload_icon:hover:after{
+    opacity:1;
 }
+
+.upload_icon:after{
+    content:'編輯';
+    position: absolute;
+    left:50%;
+    top:25%;
+    transform: translate(-50%,-25%);
+    font-size:25px;
+    color:rgb(202, 0, 0);
+    font-weight:bold;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s ;
+    opacity:0;
+}
+
+.upload_icon:hover img{
+ opacity:0.5;
+ -webkit-transition: opacity 1s;
+ -moz-transition: opacity 1s;
+ -o-transition: opacity 1s;
+ transition: opacity 1s;
+}
+/**測試的css放置-------------------**/
+
+
+  
+  

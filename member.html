@@ -21,7 +21,7 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand h1" href="#">Navbar</a>
+        <a class="navbar-brand h1" href="#">Plan Yourself</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <form class="form-inline my-2 my-lg-0 mx-auto">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -48,16 +48,16 @@
     <div class="container-fluid">
         <!--~~~~~~~~~~~~~~~~~-->
         <div class="row">
-            <div class="col-3 testcolor">
-                <!-- <h3>個人資料</h3> -->
+            <!-- <h3>個人資料</h3> -->
+            <div class="col-3">
+
             </div>
             <div class="col-6 testcolor1">
                 <div class="text-center mt-5 test">
-                        
-                        <label class="upload_cover">
-                            <input id="upload_input" type="file">
-                            <span class="upload_icon"><img src="./imgs/project_photo2.jpg" class="photo"></span>
-                        </label>
+                    <label class="upload_cover test1">
+                        <input id="upload_input" type="file">
+                        <span class="upload_icon"><img src="./imgs/project_photo2.jpg" class="photo"></span>
+                    </label>
                 </div>
                 <form>
                     <div class="form-group row justify-content-center mt-5">
@@ -87,7 +87,7 @@
                     <div class="col-sm-7">
                         <div class="onoffswitch">
                             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-                                checked>
+                            >
                             <label class="onoffswitch-label" for="myonoffswitch">
                                 <span class="onoffswitch-inner"></span>
                                 <span class="onoffswitch-switch"></span>
@@ -95,8 +95,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row text-center mt-5">
-                    <div class="col-sm-12">
+                <div class="row justify-content-center mt-3">
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary btn-lg">變更傳送</button>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
                         <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal"
                             data-target="#delete">刪除帳號</button>
                     </div>
@@ -107,15 +112,14 @@
             </div>
             <!--~~~~~~~~~~~~~~~~~-->
             <div class="footer">
-                
+
             </div>
-            <!-- Modal 修改密碼-->
-            <div class="modal fade" id="editpassword" tabindex="-1" role="dialog" aria-labelledby="editpassword"
-                aria-hidden="true">
+            <!-- Modal 修改資料-->
+            <!-- <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editpassword">修改密碼</h5>
+                            <h5 class="modal-title" id="editpassword">修改資料</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -123,29 +127,22 @@
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">請輸入舊密碼:</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <label for="recipient-name" class="col-form-label">名字:</label>
+                                    <input type="text" class="form-control" name="" placeholder="灰灰喵">
                                 </div>
                                 <div class="form-group">
-                                    <label for="message-text" class="col-form-label">請輸入新密碼:</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <label for="recipient-name" class="col-form-label">請輸入信箱:</label>
+                                    <input type="text" class="form-control" name="" placeholder="Example@gmail.com">
                                 </div>
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">再次輸入新密碼:</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">返回</button>
+                                    <button type="button" class="btn btn-primary">確定</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">返回</button>
-                            <button type="button" class="btn btn-primary">確定</button>
-                        </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Modal 刪除帳號-->
             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -156,13 +153,16 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body text-center">
-                            請確認是否真的要刪除帳號!
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-                            <button type="button" class="btn btn-primary">確定</button>
-                        </div>
+                        <form>
+                            <div class="modal-body text-center">
+                                請確認是否真的要刪除帳號!
+                            </div>
+
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>
+                                <button type="button" class="btn btn-secondary">確定</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
