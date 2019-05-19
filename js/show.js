@@ -1,4 +1,6 @@
-function myFunction() {
-    document.getElementById(".content").style.display="none";
-    alert('a');
-  }
+$('#form-test').hide();
+$(document).ready(function(){
+  $("#draggable1").on('click', function(){
+    $('#form-test').show();
+  })
+});

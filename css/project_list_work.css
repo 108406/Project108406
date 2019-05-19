@@ -3,14 +3,10 @@
 
 /**總體設定-------------------**/
 body,html{
-    background-image: url(../imgs/project_list_work.jpg);
-    background-repeat: no-repeat;
-    background-size:cover;
+    background: #123456;
 }
 .container-fluid{
     font-family: 'Open Sans', sans-serif;
-    padding-right: 0px;
-    padding-left: 0px;
     
 }
 /**navbar上方導覽列設定-------------------**/

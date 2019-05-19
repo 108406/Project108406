@@ -3,9 +3,7 @@
 body,html{
     height: 100%;
     overflow-x: hidden;
-    background-image: url(../imgs/background-content.jpg);
-    background-repeat: no-repeat;
-    background-size:cover;
+    background-color:#FFEA9C;
 }
 .container-fluid{
     padding-right: 0px;
