@@ -1,0 +1,241 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+TC');
+/**總體設定-------------------**/
+
+body, html {
+  font-family: 'Handlee', 'Noto Sans TC';
+  height: 100%;
+  margin: 0;
+  /* background-image: url(../imgs/project_list_work.jpg); */
+  background: #FFD6E9;
+  background-size: cover;
+}
+
+.container-fluid {
+}
+
+.top_navbar {
+  background-color: #a96f57;
+  /* background-color: #74301d; */
+}
+
+.btn-signout {
+  width: 4em;
+  padding: 5px;
+  margin: 10px;
+  color: #f1dfdb;
+  background: none;
+  text-align: middle;
+  font: normal normal bold 20px "微軟正黑體";
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #f1dfdb;
+}
+
+.btn-signout:hover {
+  color: #ffffff;
+  background-color: #88001b;
+}
+
+/**navbar上方導覽列設定-------------------**/
+
+.top_navbar {
+  background-color: #444054;
+}
+
+/**上方導覽列search設定-------------------**/
+
+.search {
+  background-color: #FFFFFF;
+}
+
+/**組長提醒訊息框-------------------**/
+
+.photo-admin {
+  width: 60px;
+  height: 80px;
+}
+
+/**工作人頭貼-------------------**/
+
+.img-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.img-member {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/**on/off-------------------**/
+
+.form {
+  border-style: dashed;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.onoffswitch {
+  position: relative;
+  width: 61px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+  display: none;
+}
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #999999;
+  border-radius: 17px;
+}
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 22px;
+  padding: 0;
+  line-height: 22px;
+  font-size: 14px;
+  color: white;
+  font-family: Trebuchet, "微軟正黑體", sans-serif;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+  content: url(../imgs/lock-unlocked-3x.png);
+  padding-left: 10px;
+}
+
+.onoffswitch-inner:after {
+  content: url(../imgs/lock-locked-3x.png);
+  padding-right: 10px;
+  text-align: right;
+}
+
+.onoffswitch-switch {
+  display: block;
+  width: 18px;
+  margin: 2px;
+  background: #A1A1A1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 35px;
+  border: 2px solid #999999;
+  border-radius: 17px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+  right: 0px;
+  background-color: #27A1CA;
+}
+
+/**Form-------------------**/
+
+.form-h1 {
+  font-size: 18px;
+  background: #F6AA93 none repeat scroll 0% 0%;
+  color: rgb(255, 255, 255);
+  padding: 22px 25px;
+}
+
+.form-set {
+  border-radius: 5px;
+  max-width: 700px;
+  width: 100%;
+  margin: 5% auto;
+  background-color: #FFFFFF;
+}
+
+.span {
+  color: #F00;
+}
+
+.form-p {
+  margin: 0px;
+  font-weight: 500;
+  line-height: 2;
+  color: #333;
+}
+
+.form-input {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  width: 75%;
+  height: 40px;
+  padding: 0px 15px;
+}
+
+.form-group {
+  overflow: hidden;
+  clear: both;
+}
+
+.icon-case {
+  width: 35px;
+  float: left;
+  left: 10%;
+  border-radius: 5px 0px 0px 5px;
+  background: #eeeeee;
+  height: 42px;
+  position: relative;
+  text-align: center;
+  line-height: 40px;
+}
+
+.contentform {
+  padding: 40px 30px;
+}
+
+.bouton-contact {
+  background-color: #81BDA4;
+  color: #FFF;
+  text-align: center;
+  width: 100%;
+  border: 0;
+  padding: 17px 25px;
+  border-radius: 0px 0px 5px 5px;
+  cursor: pointer;
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+/**css測試區-------------------**/
+
+.TEST {
+  min-height: 800px;
+}
+
+.right-set {
+  background: #FFDBC1;
+}
+
+.left-set {
+  background: #FFF7BF;
+}
