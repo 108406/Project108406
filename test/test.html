@@ -1,0 +1,117 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>孟甲商行</title>
+
+    <style>
+        .header_1023 {
+            width: 600px;
+            height: 56px;
+            position: absolute;
+            top: 0px;
+            left: 25%;
+
+        }
+
+        ul#navigation {
+            position: fixed;
+            margin: 0px;
+            padding: 0px;
+            top: 10px;
+            left: 0px;
+            list-style: none;
+            z-index: 9999;
+        }
+
+        ul#navigation li {
+            width: 100px;
+            margin-bottom: 0px;
+        }
+
+        ul#navigation li a {
+            display: block;
+            margin-left: -2px;
+            width: 100px;
+            height: 70px;
+            background-color: #CFCFCF;
+            background-repeat: no-repeat;
+            background-position: center center;
+            border: 1px solid #AFAFAF;
+            -moz-border-radius: 0px 10px 10px 0px;
+            -webkit-border-bottom-right-radius: 10px;
+            -webkit-border-top-right-radius: 10px;
+            -khtml-border-bottom-right-radius: 10px;
+            -khtml-border-top-right-radius: 10px;
+            /*-moz-box-shadow: 0px 4px 3px #000;
+    -webkit-box-shadow: 0px 4px 3px #000;
+    */
+            opacity: 0.6;
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+        }
+
+        ul#navigation .home a {
+            background-image: url(http://tympanus.net/Tutorials/FixedNavigationTutorial/images/home.png);
+        }
+
+        ul#navigation .about a {
+            background-image: url(http://tympanus.net/Tutorials/FixedNavigationTutorial/images/id_card.png);
+        }
+
+        ul#navigation .search a {
+            background-image: url(http://tympanus.net/Tutorials/FixedNavigationTutorial/images/search.png);
+        }
+
+        ul#navigation .podcasts a {
+            background-image: url(http://tympanus.net/Tutorials/FixedNavigationTutorial/images/ipod.png);
+        }
+
+        ul#navigation .rssfeed a {
+            background-image: url(http://tympanus.net/Tutorials/FixedNavigationTutorial/images/rss.png);
+        }
+
+        ul#navigation .photos a {
+            background-image: url(http://tympanus.net/Tutorials/FixedNavigationTutorial/images/camera.png);
+        }
+
+        ul#navigation .contact a {
+            background-image: url(http://tympanus.net/Tutorials/FixedNavigationTutorial/images/mail.png);
+        }
+    </style>
+    <script type="text/javascript" src="http://tympanus.net/Tutorials/FixedNavigationTutorial/jquery-1.3.2.js"></script>
+</head>
+
+<body>
+
+
+
+    <div class="header_1023"></div>
+    <div class="scroll"></div>
+    <ul id="navigation">
+        <li class="home"><a href="" title="Home"></a></li>
+        <li class="about"><a href="" title="About"></a></li>
+        <li class="search"><a href="" title="Search"></a></li>
+        <li class="photos"><a href="" title="Photos"></a></li>
+        <li class="rssfeed"><a href="" title="Rss Feed"></a></li>
+        <li class="podcasts"><a href="" title="Podcasts"></a></li>
+        <li class="contact"><a href="" title="Contact"></a></li>
+    </ul>
+    <script type="text/javascript">
+        $(function () {
+            $('#navigation a').stop().animate({ 'marginLeft': '-85px' }, 1000);
+
+            $('#navigation > li').hover(
+                function () {
+                    $('a', $(this)).stop().animate({ 'marginLeft': '-2px' }, 200);
+                },
+                function () {
+                    $('a', $(this)).stop().animate({ 'marginLeft': '-85px' }, 200);
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>
