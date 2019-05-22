@@ -1,40 +1,117 @@
 @charset "utf-8";
 /**總體設定-------------------**/
-body,html{
+
+body, html {
+    font-family: 'Handlee', 'Noto Sans TC';
     height: 100%;
     overflow-x: hidden;
-    background-color:#FFEA9C;
+    background-color: #FFF6B7;
 }
-.container-fluid{
+
+.container-fluid {
     padding-right: 0px;
-    padding-left: 0px;
+    padding-left: 3%;
+    padding-bottom: 3%;
     /* background-image: url(../imgs/VBwhoPt.png); */
     background-repeat: no-repeat;
 }
-/**navbar上方導覽列設定-------------------**/
-.top_navbar{
-    background-color: #4D6C74;
+/**導覽列設定-------------------**/
+.top_navbar {
+    background-color: #444054;
 }
-/**上方導覽列search設定-------------------**/
-.search{
-    background-color:#FFFFFF;
+
+.btn-signout {
+    width: 4em;
+    padding: 2%;
+    margin: 10px;
+    color: #BEBBBB;
+    background: none;
+    text-align: middle;
+    font: normal normal bold 1.5rem "微軟正黑體";
+    border-radius: 8px;
+    border-style: solid;
+    border-color: #BEBBBB;
 }
+
+.btn-signout:hover {
+    color: #ffffff;
+    background-color: #DB7493;
+}
+
+.search {
+    background-color: #FFFFFF;
+}
+
+.nav {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
 /**label尚未開始、執行中、已完成大小設定-------------------**/
-.label{
+
+.label {
     width: 200px;
-    height:50px;
+    height: 50px;
+    background-color: #444054;
 }
+
 /**專案調整設定-------------------**/
-.card-set{
-    max-width:280px;
+
+.card-set {
+    max-width: 280px;
     min-width: 280px;
     margin-top: 10px;
 }
-.card-color{
-    color:#999;
-    background: linear-gradient(42deg, #903AC2 0%, #FFEA9C 60%); 
-    background: -moz-linear-gradient(42deg, #903AC2 0%, #FFEA9C 60%); 
-    background: -webkit-linear-gradient(42deg, #903AC2 0%, #FFEA9C 60%); 
-    background: -o-linear-gradient(42deg, #903AC2 0%, #FFEA9C 60%); 
+
+/**card顏色等設定-------------------**/
+
+a {
+    color: black;
+    font-weight: 800px;
 }
-/**css測試-------------------**/
+
+.card-color-footer {
+    background: #F5F1ED;
+    color: #FFFFFF;
+}
+
+.card-color-body {
+    background: #FFD3BC;
+}
+
+.card-color-body-ing {
+    background: #FF84A3;
+}
+
+.card-color-body-end {
+    background: #FF3F72;
+}
+
+.card-color-special {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 16%;
+    background: rgba(190, 187, 187, 0.3);
+    border: 2px #ffffff solid;
+    cursor: pointer;
+}
+
+.card-add {
+    position: relative;
+    top: 35%;
+}
+
+.card {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 0px;
+    background: none;
+    border: none;
+}
+/**tub垃圾桶設定-------------------**/
+.tub{
+    position: fixed;
+    right: 15px;
+    bottom:20px;
+}

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/member.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 
 
@@ -21,14 +23,16 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand h1" href="#">Plan Yourself</a>
+        <a class="navbar-brand mt-2" href="index.html">
+            <h3>Plan Yourself</h3>
+        </a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <form class="form-inline my-2 my-lg-0 mx-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0 search" type="submit">搜尋</button>
+                <input class="form-control mr-2 search-input" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn-signout" type="submit">搜尋</button>
             </form>
             <form class="form-inline my-2 my-lg-0 mr-end">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">登出</button>
+                <button class="btn-signout my-2 my-sm-0" type="submit">登出</button>
             </form>
         </div>
     </nav>
@@ -56,7 +60,7 @@
                 <div class="text-center mt-5 test">
                     <label class="upload_cover test1">
                         <input id="upload_input" type="file">
-                        <span class="upload_icon"><img src="./imgs/project_photo2.jpg" class="photo"></span>
+                        <span class="upload_icon"><img src="./imgs/people1.png" class="photo"></span>
                     </label>
                 </div>
                 <form>
@@ -86,8 +90,7 @@
                     </div>
                     <div class="col-sm-7">
                         <div class="onoffswitch">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
-                            >
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
                             <label class="onoffswitch-label" for="myonoffswitch">
                                 <span class="onoffswitch-inner"></span>
                                 <span class="onoffswitch-switch"></span>
