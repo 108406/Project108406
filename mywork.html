@@ -78,6 +78,7 @@
                 <div class="project-group">
                     <div class="row no-gutters">
                         <div class="col-md-9">
+                            <!-- data-target要跟列表連動 -->
                             <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
                                 data-target="#collapseOne">
                                 專案
@@ -98,6 +99,79 @@
                         </div>
                     </div>
                 </div>
+                <!-- id要自動產生 -->
+                <div id="collapseOne" class="list-group collapse">
+                    <!-- data-target要跟工作連動 -->
+                    <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo">
+                        列表
+                    </button>
+                    <!-- id要自動產生 -->
+                    <div class="work-group collapse" id="collapseTwo">
+                        <div class="row no-gutters">
+                            <div class="col-md-1">
+                                <!-- id需要自動產生 -->
+                                <div class="move-button">
+                                    <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                    <label class="label-move" for="radio-move1"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <button class="btn-work" type="button" data-toggle="modal"
+                                    data-target="#modal-workdetail">
+                                    工作
+                                </button>
+                            </div>
+                            <div class="col-md-1">
+                                <label class="upload_cover">
+                                    <input id="upload_input" type="file">
+                                    <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-group collapse" id="collapseTwo">
+                        <div class="row no-gutters">
+                            <div class="col-md-1">
+                                <!-- id需要自動產生 -->
+                                <div class="move-button">
+                                    <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                    <label class="label-move" for="radio-move1"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <button class="btn-work" type="button" data-toggle="modal"
+                                    data-target="#modal-workdetail">
+                                    工作
+                                </button>
+                            </div>
+                            <div class="col-md-1">
+                                <label class="upload_cover">
+                                    <input id="upload_input" type="file">
+                                    <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="collapseOne" class="list-group collapse">
                     <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
                         data-target="#collapseTwo">
@@ -107,8 +181,42 @@
                         <div class="row no-gutters">
                             <div class="col-md-1">
                                 <!-- id需要自動產生 -->
-                                <input class="rd-move" type="radio" id="radio-move1" name="move">
-                                <label class="label-move" for="radio-move1"></label>
+                                <div class="move-button">
+                                    <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                    <label class="label-move" for="radio-move1"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <button class="btn-work" type="button" data-toggle="modal"
+                                    data-target="#modal-workdetail">
+                                    工作
+                                </button>
+                            </div>
+                            <div class="col-md-1">
+                                <label class="upload_cover">
+                                    <input id="upload_input" type="file">
+                                    <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-group collapse" id="collapseTwo">
+                        <div class="row no-gutters">
+                            <div class="col-md-1">
+                                <!-- id需要自動產生 -->
+                                <div class="move-button">
+                                    <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                    <label class="label-move" for="radio-move1"></label>
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <button class="btn-work" type="button" data-toggle="modal"
@@ -181,7 +289,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="./js/mywork.js"></script>
+    <script src="./js/mywork_move_check.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
