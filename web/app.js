@@ -3,8 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var multer = require('multer');
-var fs = require('fs');
 var bodyParser = require('body-parser')
 
 var indexRouter = require('./routes/index');
@@ -17,6 +15,7 @@ var member_linebotPush = require('./routes/member_linebotPush');
 var member_photo = require('./routes/member_photo');
 var member_update = require('./routes/member_update');
 var member_delete = require('./routes/member_delete');
+var project = require('./routes/project');
 
 var app = express();
 
@@ -45,6 +44,7 @@ app.use('/member/linebotPush', member_linebotPush);
 app.use('/member/photo', member_photo);
 app.use('/member/update', member_update);
 app.use('/member/delete', member_delete);
+app.use('/project', project);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -59,7 +59,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error.ejs');
 });
 
 module.exports = app;

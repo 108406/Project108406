@@ -66,7 +66,7 @@
                 <% for(var i=0; i<items.length; i++) { %>
                     <% if (items[i].project_status == 0) {%>
                     <div class="card text-center card-set">
-                        <a class="card-link" href=<%= "javascript:IntoProject('" + items[i].project_id + "')" %>>
+                        <a class="card-link" href=<%="/project?project_id=" + items[i].project_id %>>
                             <div class="card-body">
                                 <h5 class="card-title"><%= items[i].project_name %></h5>
                             </div>
@@ -110,7 +110,7 @@
                 <% for(var i=0; i<items.length; i++) { %>
                     <% if (items[i].project_status == 1) {%>
                     <div class="card text-center card-set ">
-                        <a class="card-link text-white bg-primary" href=<%= "javascript:IntoProject('" + items[i].project_id + "')" %>>
+                        <a class="card-link text-white bg-primary" href=<%="/project?project_id=" + items[i].project_id %>>
                             <div class="card-body card-color">
                                 <h5 class="card-title"><%= items[i].project_name %></h5>
                             </div>
@@ -145,7 +145,7 @@
                 <% for(var i=0; i<items.length; i++) { %>
                     <% if (items[i].project_status == 2) {%>
                     <div class="card text-center card-set ">
-                        <a class="card-link" href=<%= "javascript:IntoProject('" + items[i].project_id + "')" %>>
+                        <a class="card-link" href=<%="/project?project_id=" + items[i].project_id %>>
                             <div class="card-body">
                                 <h5 class="card-title"><%= items[i].project_name %></h5>
                             </div>
@@ -251,15 +251,6 @@
     <!--**************************-->
     <!------------scrpit----------->
     <script>
-        function IntoProject(projectId) {  
-            $.ajax({
-                type: 'POST',
-                url: 'project_list_work',
-                data: {"project_id": projectId},
-                success: function() {console.log("回傳成功。專案ID為 " + projectId);},
-                error: function() {"回傳失敗。"}
-            });
-        }
         function SetProjectInfo (projectId, projectName, projectPassword) {
             $('#project_id').val(projectId);
             $('#project_name').val(projectName);

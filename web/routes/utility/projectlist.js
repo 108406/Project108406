@@ -40,11 +40,7 @@ var fetchProjectListL = async function (project_id) {
     //讀取資料庫
     await query('select * from projectlist where project_id = $1', [project_id])
         .then((data) => {
-            if (data.rows.length > 0) {
-                result = data.rows;  //專案列表資料(物件)
-            } else {
-                result = false;  //找不到資料
-            }
+            result = data.rows;  //專案列表資料(物件)
         }, (error) => {
             result = false;  //執行錯誤
             console.log(error)
