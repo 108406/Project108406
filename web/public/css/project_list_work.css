@@ -19,7 +19,7 @@ body,html{
     padding: 0;
 }
 .content{
-    height: 100%;
+    height: 130%;
 }
 .list-show{
     margin-top: 25%;
@@ -95,7 +95,7 @@ body,html{
 .photo-admin{
     position:fixed;
     right:22%;
-    top:90%;
+    bottom:5px;
     width:60px;
     height:80px;
 }
