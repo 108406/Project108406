@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/content.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!--------------------上方導覽列------------------->
+    <nav class="navbar navbar-expand-lg navbar-dark top_navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mt-2" href="login">
+            <h3>Plan Yourself</h3>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <form class="form-inline my-2 my-lg-0 mx-auto">
+                <input class="form-control mr-2 search-input" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn-signout" type="submit">搜尋</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0 mr-end">
+                <button class="btn-signout my-2 my-sm-0" type="submit">登出</button>
+            </form>
+        </div>
+    </nav>
+    <!--------------------下方導覽---------------------->
+    <ul class="nav nav-tabs nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="nav-link bg-light text-dark" href="member">會員</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active bg-light text-dark" href="content">計畫</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link bg-light text-dark" href="mywork">我的工作</a>
+        </li>
+    </ul>
+    <!------------------------------------------------->
+    <div class="container-fluid">
+        <!--~~~~~~~~~~~~~~~~~-->
+        <div class="content">
+            <!--尚未開始------------------------------->
+            <div class="row justify-content-md-center mt-4">
+                <div class="col-sm">
+                    <% var count = 0; %>
+                    <% for(var i=0; i<items.length; i++) { %>
+                    <% if (items[i].project_status == 0) {%>
+                    <% count ++; %>
+                    <% } %>
+                    <% } %>
+                    <button type="button" class="btn btn-dark label">
+                        尚未開始 <span class="badge badge-light"><%= count%></span>
+                        <span class="sr-only">unread messages</span>
+                    </button>
+                </div>
+            </div>
+            <!--尚未開始專案------------------------------->
+            <div class="card-deck">
+                <% for(var i=0; i<items.length; i++) { %>
+                <% if (items[i].project_status == 0) {%>
+                <div class="card">
+                    <div class="card-color-body">
+                        <a class="card-link" href=<%="/project?project_id=" + items[i].project_id %>>
+                            <h5 class="card-title"><%= items[i].project_name %></h5>
+                            <div class="block-card">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="block-setting">
+                        <a class="card-setting" href="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
+                            items[i].project_id + "', '" + items[i].project_name + "', '" + 
+                            items[i].project_password + "')" %>" data-toggle="modal"><img src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+                <div class="card text-center card-set" data-toggle="modal" data-target="#addproject">
+                    <div class="card-color-special">
+                        <a class="card-link" href="#"><img src="./imgs/plus-3x.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--執行中------------------------------->
+        <div class="row justify-content-md-center mt-4">
+            <div class="col-sm">
+                <% var count = 0; %>
+                <% for(var i=0; i<items.length; i++) { %>
+                <% if (items[i].project_status == 1) {%>
+                <% count ++; %>
+                <% } %>
+                <% } %>
+                <button type="button" class="btn btn-dark label">
+                    執行中 <span class="badge badge-light"><%= count%></span>
+                    <span class="sr-only">unread messages</span>
+                </button>
+            </div>
+        </div>
+        <!--執行中專案------------------------------->
+        <div class="card-deck">
+            <% for(var i=0; i<items.length; i++) { %>
+            <% if (items[i].project_status == 1) {%>
+            <div class="card">
+                <div class="card-color-body-ing">
+                    <a class="card-link" href=<%="/project?project_id=" + items[i].project_id %>>
+                        <h5 class="card-title"><%= items[i].project_name %></h5>
+                        <div class="block-card">
+                        </div>
+                    </a>
+                </div>
+                <div class="block-setting">
+                    <a class="card-setting" href="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
+                                items[i].project_id + "', '" + items[i].project_name + "', '" + 
+                                items[i].project_password + "')" %>" data-toggle="modal"><img
+                            src="./imgs/cog-3x.png"></a>
+                </div>
+            </div>
+            <% } %>
+            <% } %>
+        </div>
+        <!--已完成------------------------------->
+        <div class="row justify-content-md-center mt-4">
+            <div class="col-sm">
+                <% var count = 0; %>
+                <% for(var i=0; i<items.length; i++) { %>
+                <% if (items[i].project_status == 2) {%>
+                <% count ++; %>
+                <% } %>
+                <% } %>
+                <button type="button" class="btn btn-dark label">
+                    已完成 <span class="badge badge-light"><%= count%></span>
+                    <span class="sr-only">unread messages</span>
+                </button>
+            </div>
+        </div>
+        <!--已完成專案------------------------------->
+        <div class="card-deck">
+            <% for(var i=0; i<items.length; i++) { %>
+            <% if (items[i].project_status == 2) {%>
+            <div class="card">
+                <div class="card-color-body-end">
+                    <a class="card-link" href=<%="/project?project_id=" + items[i].project_id %>>
+                        <h5 class="card-title"><%= items[i].project_name %></h5>
+                        <div class="block-card">
+                        </div>
+                    </a>
+                </div>
+                <div class="block-setting">
+                    <a class="card-setting" href="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
+                                items[i].project_id + "', '" + items[i].project_name + "', '" + 
+                                items[i].project_password + "')" %>" data-toggle="modal"><img
+                            src="./imgs/cog-3x.png"></a>
+                </div>
+            </div>
+            <% } %>
+            <% } %>
+        </div>
+        <!--專案齒輪設定內容---------------------------------->
+        <div class="modal fade" id="projectset" tabindex="-1" role="dialog" aria-labelledby="projectset"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">設定</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="content/updateProjectName" method="POST">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">重新命名:</label>
+                                <input type="text" class="form-control" value="123" id="project_name"
+                                    name="project_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">修改密碼:</label>
+                                <input type="text" class="form-control" id="project_password" name="project_password">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">專案代碼:</label>
+                                <button onclick="myFunction()">Copy</button>
+                                <input type="text" class="form-control" id="project_id" name="project_id">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--~~~~~~~~~~~~~~~~~-->
+        <!--新增專案設定---------------------------------->
+        <div class="modal fade" id="addproject" tabindex="-1" role="dialog" aria-labelledby="addproject"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">新增</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="content/addProject" method="POST">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">標題:</label>
+                                <input type="text" class="form-control" id="project_name" name="project_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">密碼:</label>
+                                <input type="text" class="form-control" id="project_password" name="project_password">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">開始日期:</label>
+                                <input type="datetime-local" id="project_startdate" name="project_startdate">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">結束日期:</label>
+                                <input type="datetime-local" id="project_enddate" name="project_enddate">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!------------------------------------>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~-->
+    <div class="footer">
+        <!--垃圾桶--------------------------->
+        <div class="row pt-2 justify-content-md-end">
+            <div class="col-sm-auto">
+                <a href="#"><img src="./imgs/trash-8x.png" class="tub"></a>
+            </div>
+        </div>
+        <!--垃圾桶--------------------------->
+    </div>
+    <!--~~~~~~~~~~~~~~~~~-->
+    </div>
+    <!--**************************-->
+    <!------------scrpit----------->
+    <script>
+        function SetProjectInfo(projectId, projectName, projectPassword) {
+            $('#project_id').val(projectId);
+            $('#project_name').val(projectName);
+            $('#project_password').val(projectPassword);
+        }        
+    </script>
+    <script src="js/copy.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
