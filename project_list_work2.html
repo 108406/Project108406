@@ -616,8 +616,8 @@
                         <h3 class="modal-title text-center mx-auto" id="adminmessger">前三公告</h3>
                         <span aria-hidden="true"><a href="#"><img src="./imgs/plus-3x.png" class="modal-imgs"
                                     data-toggle="modal" data-target="#adminadd"></a></br>
-                            <span aria-hidden="true"><a href="#"><img src="./imgs/caret-bottom-3x.png"
-                                        class="modal-imgs mt-2"></a>
+                            <span aria-hidden="true"><a href="#" id="list-group-item-show"><img
+                                        src="./imgs/caret-bottom-3x.png" class="modal-imgs mt-2"></a>
                     </div>
                     <div class="modal-body">
                         <ul class="list-group list-group-flush">
@@ -645,6 +645,26 @@
                                 <div class="row">
                                     <div class="col-8">
                                         這是組長推播訊息這是組長推播訊息這是組長推播訊息
+                                    </div>
+                                    <div class="col-4">
+                                        2019/05/25 下午05:23
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item"name="list-group-item-hide">
+                                <div class="row">
+                                    <div class="col-8">
+                                        這是組長推播訊息這是組長推播訊息這是組長推播訊息
+                                    </div>
+                                    <div class="col-4">
+                                        2019/05/25 下午05:23
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item"name="list-group-item-hide">
+                                <div class="row">
+                                    <div class="col-8">
+                                        2這是組長推播訊息這是組長推播訊息這是組長推播訊息
                                     </div>
                                     <div class="col-4">
                                         2019/05/25 下午05:23
@@ -722,48 +742,45 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row no-gutters">
+                        <div class="row no-gutters mt-3">
                             <div class="col-sm-2">
                                 工作新增:
                             </div>
                             <div class="col-sm-2">
-                                <div class="onoffswitch2">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox2"
-                                        id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label2" for="myonoffswitch">
-                                        <span class="onoffswitch-inner2"></span>
-                                        <span class="onoffswitch-switch2"></span>
-                                    </label>
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row no-gutters">
+                        <div class="row no-gutters mt-3">
                             <div class="col-sm-2">
                                 工作編輯:
                             </div>
                             <div class="col-sm-2">
-                                <div class="onoffswitch3">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox3"
-                                        id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label3" for="myonoffswitch">
-                                        <span class="onoffswitch-inner3"></span>
-                                        <span class="onoffswitch-switch3"></span>
-                                    </label>
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row no-gutters">
+                        <div class="row no-gutters mt-3">
                             <div class="col-sm-2">
                                 工作刪除:
                             </div>
                             <div class="col-sm-2">
-                                <div class="onoffswitch4">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox4"
-                                        id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label4" for="myonoffswitch">
-                                        <span class="onoffswitch-inner4"></span>
-                                        <span class="onoffswitch-switch4"></span>
-                                    </label>
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
                                 </div>
                             </div>
                         </div>
@@ -787,6 +804,7 @@
     <script src="./js/Photo_Drop.js"></script>
     <script src="./js/show.js"></script>
     <script src="./js/test.js"></script>
+    <script src="./js/admin_push_hide.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"
         integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH"
         crossorigin="anonymous"></script>

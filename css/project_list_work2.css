@@ -191,7 +191,7 @@ body,html{
 .btn-onoff {
   position: relative;
   float: left;
-  /* margin-top: 15px; */
+  margin-top: -5px;
   width: 80px;
   height: 30px;
   overflow: hidden;
@@ -240,19 +240,19 @@ body,html{
 }
 
 #button-9 .knobs:before {
-  content: 'YES';
+  content:'ON';
   left: 4px;
   text-align: center;
   font: normal normal bold 13px;
-  margin-left: 7%;
-  margin-top: 4%;
+  margin-left: 8%;
+  margin-top:0;
 }
 
 #button-9 .knobs:after {
-  content: url(../imgs/lock-locked-3x.png);
-  margin-left: 62%;
+  content:'OFF';
+  margin-left: 55%;
   font: normal normal bold 13px;
-  margin-top: 4%;
+  margin-top:0;
 }
 
 #button-9 .knobs:before, #button-9 .knobs:after {
@@ -262,7 +262,7 @@ body,html{
 
 #button-9 .knobs span {
   top: 22%;
-  left: 9.5px;
+  left: 12px;
   width: 20px;
   height: 20px;
   background-color: #03a9f4;
@@ -270,11 +270,11 @@ body,html{
 }
 
 #button-9 .checkbox:checked+.knobs:after {
-  margin-left: 62%;
+  /* margin-left: 80%; */
 }
 
 #button-9 .checkbox:checked+.knobs span {
-  left: 62px;
+  left: 48px;
   background-color: #F44336;
 }
 
