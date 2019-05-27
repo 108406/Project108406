@@ -27,5 +27,5 @@ function cancelDefault (ev) {
       $(ev.target).append(document.querySelector('#' + id));  
     }
     $(ev.target).closest("img").get(0).before(document.querySelector('#' + id));
-    // $(ev.target).closest("a").get(0).after(document.querySelector('#' + id));
+    // $(ev.target).closest("img").get(0).after(document.querySelector('#' + id));
   }

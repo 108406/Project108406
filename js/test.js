@@ -1,24 +1,18 @@
-$(document).ready(function() {
-  $("#myCarousel").on("slide.bs.carousel", function(e) {
-    var $e = $(e.relatedTarget);
-    var idx = $e.index();
-    var itemsPerSlide = 3;
-    var totalItems = $(".carousel-item").length;
+jQuery(document).ready(function($) {
 
-    if (idx >= totalItems - (itemsPerSlide - 1)) {
-      var it = itemsPerSlide - (totalItems - idx);
-      for (var i = 0; i < it; i++) {
-        // append slides to end
-        if (e.direction == "left") {
-          $(".carousel-item")
-            .eq(i)
-            .appendTo(".carousel-inner");
-        } else {
-          $(".carousel-item")
-            .eq(0)
-            .appendTo($(this).find(".carousel-inner"));
-        }
-      }
-    }
-  });
+  //Count nr. of square classes
+  var countSquare = $('.square').length;
+
+  //For each Square found add BG image
+  for (i = 0; i < countSquare; i++) {
+    var firstImage = $('.square').eq([i]);
+    var secondImage = $('.square2').eq([i]);
+
+    var getImage = firstImage.attr('data-image');
+    var getImage2 = secondImage.attr('data-image');
+
+    firstImage.css('background-image', 'url(' + getImage + ')');
+    secondImage.css('background-image', 'url(' + getImage2 + ')');
+  }
+
 });

@@ -179,58 +179,103 @@ body,html{
     margin-top: 40px;
     font-size: 18px;
   }
-  /**on/off-------------------**/
-.form{
-    border-style: dashed;
-    margin-top: 30px;
-    margin-left:30px;
-    margin-right:30px;
-    margin-bottom:30px;
+/**on/off-------------------**/
+.onoffswitch1{
+  position: relative; width: 90px;
+  bottom: 5px;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
-.onoffswitch {
-    position: relative; width: 61px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+.onoffswitch2{
+  position: relative; width: 90px;
+  bottom: 5px;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
-.onoffswitch-checkbox {
-    display: none;
+.onoffswitch-checkbox1{
+  display: none;
 }
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 17px;
+.onoffswitch-checkbox2{
+  display: none;
 }
-.onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
+.onoffswitch-label1{
+  display: block; overflow: hidden; cursor: pointer;
+  border: 2px solid #999999; border-radius: 20px;
 }
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 22px; padding: 0; line-height: 22px;
-    font-size: 14px; color: white; font-family: Trebuchet, "微軟正黑體", sans-serif; font-weight: bold;
-    box-sizing: border-box;
+.onoffswitch-label2{
+  display: block; overflow: hidden; cursor: pointer;
+  border: 2px solid #999999; border-radius: 20px;
 }
-.onoffswitch-inner:before {
-    content: url(../imgs/lock-unlocked-3x.png);
-    padding-left: 10px;
+.onoffswitch-inner1{
+  display: block; width: 200%; margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
 }
-.onoffswitch-inner:after {
-    content:url(../imgs/lock-locked-3x.png);
-    padding-right: 10px;
-    text-align: right;
+.onoffswitch-inner2{
+  display: block; width: 200%; margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
 }
-.onoffswitch-switch {
-    display: block; width: 18px; margin: 2px;
-    background: #A1A1A1;
-    position: absolute; top: 0; bottom: 0;
-    right: 35px;
-    border: 2px solid #999999; border-radius: 17px;
-    transition: all 0.3s ease-in 0s; 
+.onoffswitch-inner1:before, .onoffswitch-inner1:after {
+  display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+  font-size: 10px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+  box-sizing: border-box;
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
+.onoffswitch-inner2:before, .onoffswitch-inner2:after {
+  display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+  font-size: 10px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+  box-sizing: border-box;
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px; 
-    background-color: #27A1CA; 
+
+.onoffswitch-inner1:before{
+  content: "ON";
+  padding-left: 10px;
+  background-color: #FFFFFF; color: #000000;
 }
+.onoffswitch-inner2:before{
+  content: "ON";
+  padding-left: 10px;
+  background-color: #FFFFFF; color: #000000;
+}
+.onoffswitch-inner1:after{
+  content: "OFF";
+  padding-right: 10px;
+  background-color: #FFFFFF; color: #050404;
+  text-align: right;
+}
+.onoffswitch-inner2:after{
+  content: "OFF";
+  padding-right: 10px;
+  background-color: #FFFFFF; color: #050404;
+  text-align: right;
+}
+.onoffswitch-switch1{
+  display: block; width: 18px; margin: 6px;
+  background: #A1A1A1;
+  position: absolute; top: 0; bottom: 0;
+  right: 56px;
+  border: 2px solid #999999; border-radius: 20px;
+  transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-switch2{
+  display: block; width: 18px; margin: 6px;
+  background: #A1A1A1;
+  position: absolute; top: 0; bottom: 0;
+  right: 56px;
+  border: 2px solid #999999; border-radius: 20px;
+  transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox1:checked + .onoffswitch-label1 .onoffswitch-inner1 {
+  margin-left: 0;
+}
+.onoffswitch-checkbox2:checked + .onoffswitch-label2 .onoffswitch-inner2 {
+  margin-left: 0;
+}
+.onoffswitch-checkbox1:checked + .onoffswitch-label1 .onoffswitch-switch1 {
+  right: 0px; 
+  background-color: #F00; 
+}
+.onoffswitch-checkbox2:checked + .onoffswitch-label2 .onoffswitch-switch2 {
+  right: 0px; 
+  background-color: #F00; 
+}
+
 /**btn size**/
 .btn-size{
     width: 150px;
@@ -258,10 +303,10 @@ body,html{
 }
 .card-set {
     margin:20px 20px;
-    min-height: 280px;
+    min-height: 300px;
     min-width: 200px;
     max-width: 200px;
-    background-color: #17141d;
+    background-color: #ffffff;
     border-radius: 10px;
     /* box-shadow: -1rem 0 3rem #000; */
     margin-left: -50px;
@@ -285,8 +330,8 @@ body,html{
   } */
   
   .title {
-    color: white;
-    font-weight: 300;
+    color: black;
+    font-weight: 150;
     position: absolute;
     left: 20px;
     top: 15px;
@@ -294,7 +339,7 @@ body,html{
   
   .bar {
     position: absolute;
-    top: 100px;
+    top: 0;
     left: 20px;
     height: 5px;
     width: 150px;
@@ -318,7 +363,7 @@ body,html{
   }
   
   .card-set:hover .filledbar {
-    width: 120px;
+    width: 150px;
     transition: 0.4s ease-out;
   }
   
@@ -345,7 +390,7 @@ body,html{
     transition: 0.6s ease-out;
   } */
   
-  /*控制方向設定*/
+  /*輪播控制方向設定*/
   .carousel-control-next, .carousel-control-prev {
     position: absolute;
     top: 0;
