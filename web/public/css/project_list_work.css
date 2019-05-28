@@ -1,0 +1,104 @@
+@charset "utf-8";
+/**總體設定-------------------**/
+body,html{
+    height: 100%;
+    overflow-x: hidden;
+    /* background-color: #4D6C74; */
+}
+.container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    /* background-color: #4D6C74; */
+    /* background-image: url(../imgs/VBwhoPt.png); */
+    background-repeat: no-repeat;
+    height: 800px;
+}
+/**navbar上方導覽列設定-------------------**/
+.top_navbar{
+    background-color: #4D6C74;
+}
+/**上方導覽列search設定-------------------**/
+.search{
+    background-color:#FFFFFF;
+}
+/**分割畫面顏色-------------------**/
+.grid-1{
+    background:#999;
+    height: 800px;
+}
+.grid-2{
+    background:#4D6C74;  
+    height: 800px;
+}
+.grid-3{
+    background:#666;  
+    height: 800px;
+}
+/**工作人頭貼-------------------**/
+.img-circle{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+}
+.list_set{
+    height:4rem;
+}
+.img-member{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+.form{
+    border-style: dashed;
+    margin-top: 50px;
+    margin-left:50px;
+    margin-right:50px;
+}
+.onoffswitch {
+    position: relative; width: 61px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 17px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 22px; padding: 0; line-height: 22px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: url(../imgs/lock-unlocked-3x.png);
+    padding-left: 10px;
+}
+.onoffswitch-inner:after {
+    content:url(../imgs/lock-locked-3x.png);
+    padding-right: 10px;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 2px;
+    background: #A1A1A1;
+    position: absolute; top: 0; bottom: 0;
+    right: 35px;
+    border: 2px solid #999999; border-radius: 17px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+    background-color: #27A1CA; 
+}
+
+
