@@ -10,25 +10,32 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
-    
+
 
 
 </head>
 
 <body>
-    <div class="header">
+    <div class="container-fluid">
         <div class="info">
             <h1>Plan Yourself</h1>
         </div>
-        <a href="member.html"class="mt-5"><img src="./imgs/btn_login_base.png"></a>
+        <div class="logreg-forms">
+            <form class="form-signin">
+                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+                <div class="social-login text-center">
+                        <img src="./imgs/btn_login_hover.png">
+                </div>
+                <p style="text-align:center"> OR </p>
+                <input type="text" id="inputLINE" class="form-control" placeholder="請輸入帳號" required=""
+                    autofocus="">
+                <input type="password" id="inputPassword" class="form-control" placeholder="請輸入密碼" required="">
+
+                <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign
+                    in</button>
+            </form>
+        </div>
     </div>
-    <!-- <section class="content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nisl turpis, porttitor et finibus id, viverra a
-            metus. Praesent non ante sed orci posuere varius quis sit amet dui. Cras molestie magna orci, id gravida
-            dolor molestie in. Duis sollicitudin turpis quis tortor egestas, ut ultrices nisl elementum. Vestibulum sed
-            ipsum eget nulla laoreet cursus in ac sem. Integer a suscipit justo, quis aliquam sapien. Maecenas et tellus
-            nibh. Vivamus tincidunt eros id commodo pellentesque.</p>
-    </section> -->
     </div>
     <!--**************************-->
     <!------------scrpit----------->
