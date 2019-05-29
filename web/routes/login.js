@@ -3,7 +3,7 @@ var router = express.Router();
 
 //接收GET請求
 router.get('/', function(req, res, next) {
-    res.render('login.ejs', { title: 'Express' });
+    res.render('login.ejs', { text: 'none' });
   });
   
 

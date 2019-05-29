@@ -10,11 +10,7 @@ var projectWithUser = async function (user_id) {
     //讀取資料庫
     await query("select project_id, project_name, project_password, project_startdate, project_enddate from projectwithuser_view where user_id = '" + user_id + "'")
         .then((data) => {
-            if (data.rowCount > 0) {
-                result = data;  //成功
-            } else {
-                result = false;
-            }
+            result = data;  //成功
         }, (error) => {
             result = false;  //執行錯誤
             console.log(error)
