@@ -1,0 +1,23 @@
+/**工作人頭貼-------------------**/
+.img-circle{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+}
+.img-member{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+
+.form-control:focus{
+    box-shadow: none;
+}
+
+input:focus{
+    border:#999999 solid 4px !important;
+    opacity:0.8;
+}
+a.list-group-item{
+    background:#999999;
+}
