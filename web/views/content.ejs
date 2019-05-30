@@ -39,10 +39,10 @@
     <!--------------------下方導覽---------------------->
     <ul class="nav nav-tabs nav-pills nav-fill">
         <li class="nav-item">
-            <a class="nav-link bg-light text-dark" href="member">會員</a>
+            <a class="nav-link bg-light text-dark" href=<%= "/member?userid=" + account %>>會員</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-light text-dark" href="content">計畫</a>
+            <a class="nav-link active bg-light text-dark" href=<%= "/content?userid=" + account %>>計畫</a>
         </li>
         <li class="nav-item">
             <a class="nav-link bg-light text-dark" href="mywork">我的工作</a>
@@ -264,11 +264,11 @@
             $('#project_id').val(projectId);
             $('#project_name').val(projectName);
             $('#project_password').val(projectPassword);
-        }        
+        }
     </script>
-    <script src="js/copy.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="js/copy.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
