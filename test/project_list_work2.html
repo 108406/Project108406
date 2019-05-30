@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+TC" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/project_list_work2.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!--------------------上方導覽列------------------->
+    <!-- <div class="fixed-top"> -->
+    <nav class="navbar navbar-expand-lg navbar-dark top_navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mt-2" href="index.html">
+            <h3>Plan Yourself</h3>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <form class="form-inline my-2 my-lg-0 mx-auto">
+                <input class="form-control mr-2 search-input" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn-signout" type="submit">搜尋</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0 mr-end">
+                <button class="btn-signout my-2 my-sm-0" type="submit">登出</button>
+            </form>
+        </div>
+    </nav>
+    <!--------------------下方導覽---------------------->
+    <ul class="nav nav-tabs nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="nav-link bg-light text-dark" href="member.html">會員</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active bg-light text-dark" href="content.html">計畫</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link bg-light text-dark" href="mywork.html">我的工作</a>
+        </li>
+    </ul>
+    <!--------------------測試側邊導覽列---------------------->
+    
+    <!-- </div> -->
+    <div class="container-fluid">
+        
+        <div class="row content no-gutters">
+            <div class="col-lg-3 left-set" name="list_total">
+                <!--~~~~~上方按鈕~~~~~~~~~~~~-->
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-info btn-size">新增列表</button>
+                    <button type="button" class="btn btn-danger btn-size">刪除</button>
+                </div>
+                <!--~~~~~列表~~~~~~~~~~~~-->
+                <div class="card mt-5" id="list_drop1" name="list_drop" draggable="true">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning" id="button-card-click">尚未開始列表</button>
+                        <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split"
+                            aria-haspopup="true" data-toggle="collapse" href="#multiCollapseExample1"
+                            aria-expanded="false" aria-controls="multiCollapseExample1">
+                            <span class="sr-only">Toggle Dropdown</span>
+                    </div>
+                    <div class="collapse row multi-collapse" id="multiCollapseExample1">
+                        <div class="card-body" name="dropzone">
+                            <a class="list-group-item list-group-item-action" name="draggable" id="draggable1"
+                                draggable="true">
+                                <div class="row no-gutters">
+                                    <div class="col-2">
+                                        <span class=""><img src="./imgs/people1.png" class="img-circle"></span>
+                                    </div>
+                                    <div class="col-10 d-flex justify-content-center" style="padding:0;">
+                                        網頁製作
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end" style="padding:0;">
+                                        <div class="row no-gutters">
+                                            <span class="badge badge-pill badge-danger ml-2">Bootstrap</span>
+                                            <span class="badge badge-pill badge-info ml-2">Javascript</span>
+                                            <span class="badge badge-pill badge-danger ml-2">Html</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item list-group-item-action" name="draggable" id="draggable2"
+                                draggable="true">
+                                <div class="row no-gutters">
+                                    <div class="col-2">
+                                        <span class="align-middle"><img src="./imgs/people1.png"
+                                                class="img-circle"></span>
+                                    </div>
+                                    <div class="col-10 d-flex justify-content-center">
+                                        資料庫規劃
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <div class="row no-gutters">
+                                            <span class="badge badge-pill badge-danger ml-2">PostgreSQL</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item list-group-item-action" name="draggable" id="draggable3"
+                                draggable="true">
+                                <div class="row no-gutters">
+                                    <div class="col-2">
+                                        <span class="align-middle"><img src="./imgs/people1.png"
+                                                class="img-circle"></span>
+                                    </div>
+                                    <div class="col-10 d-flex justify-content-center" style="padding:0;">
+                                        專題文件製作
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end" style="padding:0;">
+                                        <div class="row no-gutters">
+                                            <span class="badge badge-pill badge-danger ml-2">5/19日前</span>
+                                            <span class="badge badge-pill badge-info ml-2">PDF檔案</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-5" id="list_drop2" name="list_drop" draggable="true">
+                    <!--按鈕-->
+                    <div class="btn-group justify-content-center">
+                        <button type="button" class="btn btn-warning">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning">執行中列表</button>
+                        <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split"
+                            aria-haspopup="true" data-toggle="collapse" href="#multiCollapseExample2"
+                            aria-expanded="false" aria-controls="multiCollapseExample2">
+                            <span class="sr-only">Toggle Dropdown</span>
+                    </div>
+                    <!--工作區-->
+                    <div class="collapse row multi-collapse" id="multiCollapseExample2">
+                        <div class="card-body" name="dropzone">
+                            <a class="list-group-item list-group-item-action" name="draggable" id="draggable4"
+                                draggable="true">
+                                <div class="row no-gutters">
+                                    <div class="col-2">
+                                        <span class="align-middle"><img src="./imgs/people1.png"
+                                                class="img-circle"></span>
+                                    </div>
+                                    <div class="col-10 d-flex justify-content-center" style="padding:0;">
+                                        UML分析設計圖
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end" style="padding:0;">
+                                        <div class="row no-gutters">
+                                            <span class="badge badge-pill badge-danger ml-2">5/27前完成</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="list-group-item list-group-item-action" name="draggable" id="draggable5"
+                                draggable="true">
+                                <div class="row no-gutters">
+                                    <div class="col-2">
+                                        <span class="align-middle"><img src="./imgs/people1.png"
+                                                class="img-circle"></span>
+                                    </div>
+                                    <div class="col-10 d-flex justify-content-center" style="padding:0;">
+                                        Logo設計
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end" style="padding:0;">
+                                        <div class="row no-gutters">
+                                            <span class="badge badge-pill badge-danger ml-2">黃色系</span>
+                                            <span class="badge badge-pill badge-info ml-2">溫暖感覺</span>
+                                            <span class="badge badge-pill badge-danger ml-2">粗線條</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--div left 結束-->
+            <div class="col-lg-7 center-set">
+                <!--點選列表顯示列表工作-->
+                <div class="list-show" id="button-card">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="card-deck d-flex justify-content-center">
+                                    <div class="card card-set d-flex justify-content-center">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="./imgs/people1.png" class="img-circle">
+                                                </div>
+                                                <div class="col-8">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            網頁製作
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-center no-gutters">
+                                            <div class="row no-gutters text-center">
+                                                <div class="col-12">
+                                                    <span class="badge badge-pill badge-danger ml-2">Bootstrap</span>
+                                                    <span class="badge badge-pill badge-info ml-2">Javascript</span>
+                                                    <span class="badge badge-pill badge-danger ml-2">Html</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-title title">
+
+                                        </div>
+                                        <div class="bar">
+                                            <div class="emptybar"></div>
+                                            <div class="filledbar"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card card-set d-flex justify-content-center">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="./imgs/people1.png" class="img-circle">
+                                                </div>
+                                                <div class="col-8">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            資料庫規劃
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-center no-gutters">
+                                            <div class="row no-gutters d-flex justify-content-center">
+                                                <span class="badge badge-pill badge-danger ml-2">PostgreSQL</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-title title">
+
+                                        </div>
+                                        <div class="bar">
+                                            <div class="emptybar"></div>
+                                            <div class="filledbar"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card card-set d-flex justify-content-center">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="./imgs/people1.png" class="img-circle">
+                                                </div>
+                                                <div class="col-8">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            專題文件製作
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-center no-gutters">
+                                            <div class="row no-gutters d-flex justify-content-center">
+                                                <span class="badge badge-pill badge-danger ml-2">5/19日前</span>
+                                                <span class="badge badge-pill badge-info ml-2">PDF檔案</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-title title">
+
+                                        </div>
+                                        <div class="bar">
+                                            <div class="emptybar"></div>
+                                            <div class="filledbar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card-deck d-flex justify-content-center">
+                                    <div class="card card-set d-flex justify-content-center">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="./imgs/people1.png" class="img-circle">
+                                                </div>
+                                                <div class="col-8">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            UML分析設計圖
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-center no-gutters">
+                                            <div class="row no-gutters d-flex justify-content-center">
+                                                <span class="badge badge-pill badge-danger ml-2">5/27前完成</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-title title">
+
+                                        </div>
+                                        <div class="bar">
+                                            <div class="emptybar"></div>
+                                            <div class="filledbar"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card card-set d-flex justify-content-center">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="./imgs/people1.png" class="img-circle">
+                                                </div>
+                                                <div class="col-8">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            Logo設計
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-center no-gutters">
+                                            <div class="row no-gutters d-flex justify-content-center">
+                                                <span class="badge badge-pill badge-danger ml-2">黃色系</span>
+                                                <span class="badge badge-pill badge-info ml-2">溫暖感覺</span>
+                                                <span class="badge badge-pill badge-danger ml-2">粗線條</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-title title">
+
+                                        </div>
+                                        <div class="bar">
+                                            <div class="emptybar"></div>
+                                            <div class="filledbar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="carousel-item">
+                                <div class="card-deck d-flex justify-content-center">
+                                    <div class="card card-set d-flex justify-content-center">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="./imgs/people1.png" class="img-circle">
+                                                </div>
+                                                <div class="col-8">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            小美的工作
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-center no-gutters">
+                                            <div class="row no-gutters">
+                                                <span class="badge badge-pill badge-danger ml-1">BUG</span>
+                                                <span class="badge badge-pill badge-info ml-1">功能</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-title title">
+
+                                        </div>
+                                        <div class="bar">
+                                            <div class="emptybar"></div>
+                                            <div class="filledbar"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card card-set d-flex justify-content-center">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="./imgs/people1.png" class="img-circle">
+                                                </div>
+                                                <div class="col-8">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            小美的工作
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-center no-gutters">
+                                            <div class="row no-gutters">
+                                                <span class="badge badge-pill badge-danger ml-1">BUG</span>
+                                                <span class="badge badge-pill badge-info ml-1">功能</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="card-title title">
+
+                                        </div>
+                                        <div class="bar">
+                                            <div class="emptybar"></div>
+                                            <div class="filledbar"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card card-set d-flex justify-content-center">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="./imgs/people1.png" class="img-circle">
+                                                </div>
+                                                <div class="col-8">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            小美的工作
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-center no-gutters">
+                                            <div class="row no-gutters">
+                                                <span class="badge badge-pill badge-danger ml-1">BUG</span>
+                                                <span class="badge badge-pill badge-info ml-1">功能</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="card-title title">
+
+                                        </div>
+                                        <div class="bar">
+                                            <div class="emptybar"></div>
+                                            <div class="filledbar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <!--點選列表顯示列表工作-->
+                <form class="form-set" id="form-test">
+
+                    <h1 class="form-h1 text-center">詳細工作內容</h1>
+
+                    <div class="contentform">
+
+                        <div class="from-all text-center">
+                            <div class="form-group text-center">
+                                <p>工作標題<span class="span">*</span></p>
+                                <span class="icon-case"><i class="fas fa-heading"></i></span>
+                                <input class="form-input" type="text" name="nom" id="nom" data-rule="required">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">工作內容 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fas fa-edit"></i></span>
+                                <input class="form-input" type="text" name="prenom" id="prenom" data-rule="required">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">截止日期 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fas fa-calendar-alt"></i></span>
+                                <input class="form-input" type="datetime-local" class="form-control"
+                                    name="inventorydate">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">增加標籤 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fas fa-tags"></i></span>
+                                <input class="form-input" type="text" name="society" id="society" data-rule="required">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">上傳檔案 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fa fa-location-arrow"></i></span>
+                                <div class="custom-file form-input">
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="zn">
+                                    <label class="custom-file-label" for="customFileLang"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">負責人 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fa fa-user"></i></span>
+                                <input class="form-input" type="text" name="postal" id="postal" data-rule="required">
+                            </div>
+
+                        </div>
+                    </div>
+                    <button type="submit" class="bouton-contact">Send</button>
+                </form>
+                <!--組長推播圖片-->
+                <div class="row no gutters"><a href="#" data-toggle="modal" data-target="#adminmessger"><img
+                            src="./imgs/comment-dots-regular-01.png" class="photo-admin"></a>
+                </div>
+                <!--組長推播圖片結束-->
+            </div>
+            <!--div center 結束-->
+            <!--div right-set 開始-->
+            <div class="col-lg-2 right-set">
+                <HR color="#000000;" size="10" class="hr-set">
+                <div class="row text-center">
+                    <div class="col-12" style="color:black;">管理員</div>
+                </div>
+                <HR color="#000000;" size="10" class="hr-set">
+                <!-- <div class="row justify-content-center"> -->
+                <div class="list-group justify-content-center" name="photo-save" style="min-height:100px;">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo1"
+                        draggable="true">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo2"
+                        draggable="true">
+                </div>
+                <HR color="#000000;" size="10" class="hr-set">
+                <!-- </div> -->
+                <div class="row text-center">
+                    <div class="col-12" style="color:black;">成員</div>
+                </div>
+                <HR color="#000000;" size="10" class="hr-set">
+                <!-- <div class="row justify-content-center"> -->
+                <div class="list-group justify-content-center" name="photo-save" style="min-height:100px;">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo3"
+                        draggable="true">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo4"
+                        draggable="true">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo5"
+                        draggable="true">
+                </div>
+                <!-- </div> -->
+                <div class="d-flex justify-content-between member-btn-set">
+                    <button type="button" class="btn btn-danger btn-size">刪除成員</button>
+                    <button type="button" class="btn btn-warning btn-size" data-toggle="modal"
+                        data-target="#permission">設定權限</button>
+                </div>
+            </div>
+            <!--div right-set 結束-->
+        </div>
+        <!--div content結束-->
+        <!--~~~~~~~~~~~~~~~~-->
+        <!--~~~~~~~~組長推播設定~~~~~~~~-->
+        <!-- Modal -->
+        <div class="modal fade" id="adminmessger" tabindex="-1" role="dialog" aria-labelledby="adminmessger"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered pl-3" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title text-center mx-auto" id="adminmessger">前三公告</h3>
+                        <span aria-hidden="true"><a href="#"><img src="./imgs/plus-3x.png" class="modal-imgs"
+                                    data-toggle="modal" data-target="#adminadd"></a></br>
+                            <span aria-hidden="true"><a href="#" id="list-group-item-show"><img
+                                        src="./imgs/caret-bottom-3x.png" class="modal-imgs mt-2"></a>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        請各位好好努力自己的部分，謝謝。
+                                    </div>
+                                    <div class="col-4">
+                                        2019/03/28 下午05:23
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        網頁請設計精美一點!!
+                                    </div>
+                                    <div class="col-4">
+                                        2019/04/25 上午11:08
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        資料庫規劃請使用PostgreSQL。
+                                    </div>
+                                    <div class="col-4">
+                                        2019/05/20 下午09:55
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item" id="list-group-item-hide1">
+                                <div class="row">
+                                    <div class="col-8">
+                                        UML請在5月27前完成。
+                                    </div>
+                                    <div class="col-4">
+                                        2019/05/23 下午05:28
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item" id="list-group-item-hide2">
+                                <div class="row">
+                                    <div class="col-8">
+                                        請在6/5號前完成Logo設計，謝謝。
+                                    </div>
+                                    <div class="col-4">
+                                        2019/05/25 下午08:23
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--~~~~~~~~組長新增公告~~~~~~~~-->
+        <!-- Modal -->
+        <div class="modal fade" id="adminadd" tabindex="-1" role="dialog" aria-labelledby="adminadd" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="adminadd">新增訊息</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">時間:</label>
+                                <input type="datetime-local" class="form-control" name="inventorydate">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">訊息:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--~~~~~~~~~~~~~~~~-->
+        <!--~~~~~~~~權限設定~~~~~~~~-->
+        <!-- Modal -->
+        <div class="modal fade" id="permission" tabindex="-1" role="dialog" aria-labelledby="permission"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="permission">權限設定</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>說明</h5>
+                        <p>請謹慎的選擇開放的權限設定。</p>
+                        <hr>
+                        <h5>請選擇鎖哪些功能:</h5>
+                        <div class="row no-gutters">
+                            <div class="col-sm-2">
+                                列表權限:
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters mt-3">
+                            <div class="col-sm-2">
+                                工作新增:
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters mt-3">
+                            <div class="col-sm-2">
+                                工作編輯:
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters mt-3">
+                            <div class="col-sm-2">
+                                工作刪除:
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--~~~~~~~~~~~~~~~~-->
+    </div>
+
+    <!------------scrpit----------->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="./js/Drop.js"></script>
+    <script src="./js/Photo_Drop.js"></script>
+    <script src="./js/list_drop.js"></script>
+    <script src="./js/show.js"></script>
+    <script src="./js/test.js"></script>
+    <script src="./js/admin_push_hide.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"
+        integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

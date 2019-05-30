@@ -1,0 +1,52 @@
+@charset "utf-8";
+/**總體設定-------------------**/
+body,html{
+    background-color:#FDF6AB;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+/**navbar上方導覽列設定-------------------**/
+.top_navbar{
+    background-color: #4D6C74;
+}
+/**上方導覽列search設定-------------------**/
+.search{
+    background-color:#FFFFFF;
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
