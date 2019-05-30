@@ -9,7 +9,7 @@ $(document).ready(function () {
             e.stopPropagation();
             if (is_check) {
                 $('.card').animate({ left: "100%" }, 500);
-                $(this).children('.label-move').css({ "background": "#bebebe" });
+                $(this).children('.label-move').css({ "background": "#c38d69" });
                 is_check = false;
             } else {
                 $('.card').animate({ left: "-100%" }, 500);

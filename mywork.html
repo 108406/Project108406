@@ -20,11 +20,11 @@
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand mt-2" href="#">
+            <a class="navbar-brand mt-2" href="index.html">
                 <h3>Plan Yourself</h3>
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <form class="form-inline my-2 my-lg-0 mx-auto">
+                <form class="form-inline mx-auto">
                     <input class="form-control mr-2 search-input" type="search" placeholder="Search"
                         aria-label="Search">
                     <button class="btn-signout" type="submit">搜尋</button>
@@ -35,37 +35,36 @@
             </div>
         </nav>
         <!--------------------下方導覽---------------------->
-        <ul class="nav nav-tabs nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link text-dark nav-list" href="member.html">會員</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark nav-list" href="content.html">專案列表</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark nav-list" href="mywork.html">我的工作</a>
-            </li>
+        <ul class="nav">
+            <div class="nav-item-border">
+                <a class="nav-item" href="member.html">會員</a>
+            </div>
+
+            <div class="nav-item-border">
+                <a class="nav-item" href="content.html">計畫</a>
+            </div>
+            <div class="nav-item-noborder">
+                <a class="nav-item" href="mywork.html">我的工作</a>
+            </div>
         </ul>
         <!----------------------左側移動視窗----------------------->
         <div class="row no-gutters">
-            <div class="col-md-3">
-                <div class="mywork-movelist" id="movelist">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">目前所在位置</h5>
-                            <h5 class="card-title">目前列表名稱</h5>
-                            <button class="btn-move-work">工作</button>
-                        </div>
-                        <hr style="width: auto">
-                        <div class="card-body">
-                            <h5 class="card-title">移動到：</h5>
-                            <button class="btn-move-list dropdown-toggle" type="button">
-                                列表選項
-                            </button>
-                            <button class="btn-ok" type="button">
-                                確定
-                            </button>
-                        </div>
+            <div class="mywork-movelist" id="movelist">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">目前所在位置</h5>
+                        <h5 class="card-title">目前列表名稱</h5>
+                        <button class="btn-move-work">工作</button>
+                    </div>
+                    <hr style="width: auto">
+                    <div class="card-body">
+                        <h5 class="card-title">移動到：</h5>
+                        <button class="btn-move-list dropdown-toggle" type="button">
+                            列表選項
+                        </button>
+                        <button class="btn-ok" type="button">
+                            確定
+                        </button>
                     </div>
                 </div>
             </div>
@@ -73,171 +72,196 @@
     </div>
     <!------------我的專案列表工作顯示------------>
     <div class="container-fluid">
-        <div class="col-md-9">
-            <div class="mywork-content">
-                <div class="project-group">
+        <div class="mywork-content">
+            <div class="project-group">
+                <div class="row no-gutters">
+                    <div class="col-md-9">
+                        <!-- data-target要跟列表連動 -->
+                        <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
+                            data-target="#collapseOne">
+                            專案
+                        </button>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-1">
+                        <div class="onoff-align">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
+                                </div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- id要自動產生 -->
+            <div id="collapseOne" class="list-group collapse">
+                <!-- data-target要跟工作連動 -->
+                <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
+                    data-target="#collapseTwo">
+                    列表
+                </button>
+                <!-- id要自動產生 -->
+                <div class="work-group collapse" id="collapseTwo">
                     <div class="row no-gutters">
-                        <div class="col-md-9">
-                            <!-- data-target要跟列表連動 -->
-                            <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
-                                data-target="#collapseOne">
-                                專案
+                        <div class="col-md-1">
+                            <!-- id需要自動產生 -->
+                            <div class="move-button">
+                                <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                <label class="label-move" for="radio-move1"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <button class="btn-work" type="button" data-toggle="modal" data-target="#modal-workdetail">
+                                工作
                             </button>
                         </div>
                         <div class="col-md-1">
+                            <label class="upload_cover">
+                                <input id="upload_input" type="file">
+                                <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+                            </label>
                         </div>
                         <div class="col-md-1">
-                            <div class="onoff-align">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
                                 </div>
+                                <div class="layer"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- id要自動產生 -->
-                <div id="collapseOne" class="list-group collapse">
-                    <!-- data-target要跟工作連動 -->
-                    <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
-                        data-target="#collapseTwo">
-                        列表
-                    </button>
-                    <!-- id要自動產生 -->
-                    <div class="work-group collapse" id="collapseTwo">
-                        <div class="row no-gutters">
-                            <div class="col-md-1">
-                                <!-- id需要自動產生 -->
-                                <div class="move-button">
-                                    <input class="rd-move" type="radio" id="radio-move1" name="move">
-                                    <label class="label-move" for="radio-move1"></label>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <button class="btn-work" type="button" data-toggle="modal"
-                                    data-target="#modal-workdetail">
-                                    工作
-                                </button>
-                            </div>
-                            <div class="col-md-1">
-                                <label class="upload_cover">
-                                    <input id="upload_input" type="file">
-                                    <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
-                                </label>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
-                                </div>
+                <div class="work-group collapse" id="collapseTwo">
+                    <div class="row no-gutters">
+                        <div class="col-md-1">
+                            <!-- id需要自動產生 -->
+                            <div class="move-button">
+                                <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                <label class="label-move" for="radio-move1"></label>
                             </div>
                         </div>
-                    </div>
-                    <div class="work-group collapse" id="collapseTwo">
-                        <div class="row no-gutters">
-                            <div class="col-md-1">
-                                <!-- id需要自動產生 -->
-                                <div class="move-button">
-                                    <input class="rd-move" type="radio" id="radio-move1" name="move">
-                                    <label class="label-move" for="radio-move1"></label>
+                        <div class="col-md-8">
+                            <button class="btn-work" type="button" data-toggle="modal" data-target="#modal-workdetail">
+                                工作
+                            </button>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="upload_cover">
+                                <input id="upload_input" type="file">
+                                <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <button class="btn-work" type="button" data-toggle="modal"
-                                    data-target="#modal-workdetail">
-                                    工作
-                                </button>
-                            </div>
-                            <div class="col-md-1">
-                                <label class="upload_cover">
-                                    <input id="upload_input" type="file">
-                                    <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
-                                </label>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
-                                </div>
+                                <div class="layer"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="collapseOne" class="list-group collapse">
-                    <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
-                        data-target="#collapseTwo">
-                        列表
-                    </button>
-                    <div class="work-group collapse" id="collapseTwo">
-                        <div class="row no-gutters">
-                            <div class="col-md-1">
-                                <!-- id需要自動產生 -->
-                                <div class="move-button">
-                                    <input class="rd-move" type="radio" id="radio-move1" name="move">
-                                    <label class="label-move" for="radio-move1"></label>
+            </div>
+            <div id="collapseOne" class="list-group collapse">
+                <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
+                    data-target="#collapseThree">
+                    列表
+                </button>
+                <div class="work-group collapse" id="collapseThree">
+                    <div class="row no-gutters">
+                        <div class="col-md-1">
+                            <!-- id需要自動產生 -->
+                            <div class="move-button">
+                                <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                <label class="label-move" for="radio-move1"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <button class="btn-work" type="button" data-toggle="modal" data-target="#modal-workdetail">
+                                工作
+                            </button>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="upload_cover">
+                                <input id="upload_input" type="file">
+                                <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <button class="btn-work" type="button" data-toggle="modal"
-                                    data-target="#modal-workdetail">
-                                    工作
-                                </button>
-                            </div>
-                            <div class="col-md-1">
-                                <label class="upload_cover">
-                                    <input id="upload_input" type="file">
-                                    <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
-                                </label>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
-                                </div>
+                                <div class="layer"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="work-group collapse" id="collapseTwo">
-                        <div class="row no-gutters">
-                            <div class="col-md-1">
-                                <!-- id需要自動產生 -->
-                                <div class="move-button">
-                                    <input class="rd-move" type="radio" id="radio-move1" name="move">
-                                    <label class="label-move" for="radio-move1"></label>
+                </div>
+                <div class="work-group collapse" id="collapseThree">
+                    <div class="row no-gutters">
+                        <div class="col-md-1">
+                            <!-- id需要自動產生 -->
+                            <div class="move-button">
+                                <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                <label class="label-move" for="radio-move1"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <button class="btn-work" type="button" data-toggle="modal" data-target="#modal-workdetail">
+                                工作
+                            </button>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="upload_cover">
+                                <input id="upload_input" type="file">
+                                <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
                                 </div>
+                                <div class="layer"></div>
                             </div>
-                            <div class="col-md-8">
-                                <button class="btn-work" type="button" data-toggle="modal"
-                                    data-target="#modal-workdetail">
-                                    工作
-                                </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-group collapse" id="collapseThree">
+                    <div class="row no-gutters">
+                        <div class="col-md-1">
+                            <!-- id需要自動產生 -->
+                            <div class="move-button">
+                                <input class="rd-move" type="radio" id="radio-move1" name="move">
+                                <label class="label-move" for="radio-move1"></label>
                             </div>
-                            <div class="col-md-1">
-                                <label class="upload_cover">
-                                    <input id="upload_input" type="file">
-                                    <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
-                                </label>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
+                        </div>
+                        <div class="col-md-8">
+                            <button class="btn-work" type="button" data-toggle="modal" data-target="#modal-workdetail">
+                                工作
+                            </button>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="upload_cover">
+                                <input id="upload_input" type="file">
+                                <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
                                 </div>
+                                <div class="layer"></div>
                             </div>
                         </div>
                     </div>
@@ -289,7 +313,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="./js/mywork_move_check.js"></script>
+    <script src="./js/mywork_move.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
