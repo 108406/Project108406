@@ -45,23 +45,26 @@
             <a class="nav-link bg-light text-dark" href="member.html">會員</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active bg-light text-dark" href="content.html">專案列表</a>
+            <a class="nav-link active bg-light text-dark" href="content.html">計畫</a>
         </li>
         <li class="nav-item">
             <a class="nav-link bg-light text-dark" href="mywork.html">我的工作</a>
         </li>
     </ul>
+    <!--------------------測試側邊導覽列---------------------->
+    
     <!-- </div> -->
     <div class="container-fluid">
-        <div class="content">
-            <div class="left-set" name="list_total">
+        
+        <div class="row content no-gutters">
+            <div class="col-lg-3 left-set" name="list_total">
                 <!--~~~~~上方按鈕~~~~~~~~~~~~-->
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-between">
                     <button type="button" class="btn btn-info btn-size">新增列表</button>
                     <button type="button" class="btn btn-danger btn-size">刪除</button>
                 </div>
                 <!--~~~~~列表~~~~~~~~~~~~-->
-                <div class="card mt-5"id="list_drop1" name="list_drop" draggable="true">
+                <div class="card mt-5" id="list_drop1" name="list_drop" draggable="true">
                     <div class="btn-group">
                         <button type="button" class="btn btn-warning">
                             <i class="fas fa-plus-circle"></i>
@@ -70,7 +73,7 @@
                         <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split"
                             aria-haspopup="true" data-toggle="collapse" href="#multiCollapseExample1"
                             aria-expanded="false" aria-controls="multiCollapseExample1">
-                            <span class="sr-only">Toggle Dropdown</span></button>
+                            <span class="sr-only">Toggle Dropdown</span>
                     </div>
                     <div class="collapse row multi-collapse" id="multiCollapseExample1">
                         <div class="card-body" name="dropzone">
@@ -130,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mt-5"id="list_drop2" name="list_drop" draggable="true">
+                <div class="card mt-5" id="list_drop2" name="list_drop" draggable="true">
                     <!--按鈕-->
                     <div class="btn-group justify-content-center">
                         <button type="button" class="btn btn-warning">
@@ -186,7 +189,7 @@
                 </div>
             </div>
             <!--div left 結束-->
-            <div class="center-set">
+            <div class="col-lg-7 center-set">
                 <!--點選列表顯示列表工作-->
                 <div class="list-show" id="button-card">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -504,7 +507,7 @@
             </div>
             <!--div center 結束-->
             <!--div right-set 開始-->
-            <div class="right-set">
+            <div class="col-lg-2 right-set">
                 <HR color="#000000;" size="10" class="hr-set">
                 <div class="row text-center">
                     <div class="col-12" style="color:black;">管理員</div>
