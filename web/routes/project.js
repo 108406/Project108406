@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
             console.log(listwork);
             console.log(lists);
             console.log(works);
-            res.render('project_list_work.ejs', {items:data});
+            res.render('project_list_work.ejs', {items:data, account: 'A001'});
         } 
     })
 });
