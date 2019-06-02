@@ -1,0 +1,32 @@
+@charset "utf-8";
+html, body{
+    font-family: 'Noto Sans TC', sans-serif; 
+    background-repeat:no-repeat;
+    background:#999;
+}
+/*---------------------------*/
+/* 總框架設定           */
+/*---------------------------*/
+.container-fluid{
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+  }
+/*---------------------------*/
+/* 文字段落設定           */
+/*---------------------------*/
+#Boutton_PlanYourself{
+    font-size:40px;
+    margin-top:100px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+#LineBot{
+    font-size:40px;
+    margin-top:100px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+

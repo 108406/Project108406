@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+TC" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/project_list_work.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!--------------------上方導覽列------------------->
+    <!-- <div class="fixed-top"> -->
+    <nav class="navbar navbar-expand-lg navbar-dark top_navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mt-2" href="index.html">
+            <h3>Plan Yourself</h3>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <form class="form-inline mx-auto">
+                <input class="form-control mr-2 search-input" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn-signout" type="submit">搜尋</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0 mr-end">
+                <button class="btn-signout my-2 my-sm-0" type="submit">登出</button>
+            </form>
+        </div>
+    </nav>
+    <!--------------------下方導覽---------------------->
+    <ul class="nav">
+        <div class="nav-item-border">
+            <a class="nav-item" href="member.html">會員</a>
+        </div>
+        <div class="nav-item-border">
+            <a class="nav-item" href="content.html">計畫</a>
+        </div>
+        <div class="nav-item-noborder">
+            <a class="nav-item" href="mywork.html">我的工作</a>
+        </div>
+    </ul>
+    </div>
+    <!--------------------測試側邊導覽列---------------------->
+
+    <!-- </div> -->
+    <div class="container-fluid">
+
+        <div class="row content no-gutters">
+            <div class="col-lg-3 left-set" name="list_total">
+                <!--~~~~~列表~~~~~~~~~~~~-->
+                <div class="card-group row">
+                    <div class="col-md-12 mx-auto">
+                        <div class="card card-default">
+                            <div class="card-header screen-header">
+                                <div class="screen-header-left d-flex justify-content-between">
+                                    <i class="fas fa-plus-circle mt-1"></i>
+                                    <input type="text" class="form-control input-style" placeholder="工作列表"
+                                        aria-label="Username" aria-describedby="basic-addon1"
+                                        style="border-radius:0px;">
+                                </div>
+                                <a href="#collapse1" class="screen-header-right" data-toggle="collapse"
+                                    href="#collapse1">
+                                    <i class="fas fa-angle-double-down" style="color:#999999;"></i>
+                                    <!-- <div class="screen-header-ellipsis"></div>
+                                        <div class="screen-header-ellipsis"></div>
+                                        <div class="screen-header-ellipsis"></div> -->
+                                </a>
+
+                            </div>
+                            <!-- <div class="card-heading d-flex justify-content-between">
+                                    <button class="btn btn-warning" style="border-radius:0px;">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                    <div class="input-group row no-gutters">
+                                        <input type="text" class="form-control" placeholder="工作列表" aria-label="Username"
+                                            aria-describedby="basic-addon1" style="border-radius:0px;">
+                                    </div>
+                                    <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="collapse" href="#collapse1" style="border-radius:0px;">
+                                        <span class="sr-only">Toggle Dropdown</span></button>
+                                </div> -->
+                            <div id="collapse1" class="card-collapse collapse">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <img src="./imgs/people1.png" class="img-circle">
+                                            <h5 class="mb-1">這是工作名稱</h5>
+                                            <small></small>
+                                        </div>
+                                        <small class="d-flex justify-content-end">
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                        </small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <img src="./imgs/people1.png" class="img-circle">
+                                            <h5 class="mb-1">這是工作名稱</h5>
+                                            <small></small>
+                                        </div>
+                                        <small class="d-flex justify-content-end">
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                        </small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <img src="./imgs/people1.png" class="img-circle">
+                                            <h5 class="mb-1">這是工作名稱</h5>
+                                            <small></small>
+                                        </div>
+                                        <small class="d-flex justify-content-end">
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
+                                        </small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--div left 結束-->
+            <div class="col-lg-7 center-set">
+                <!--點選列表顯示列表工作-->
+
+                <!--組長推播圖片-->
+                <div class="row no gutters"><a href="#" data-toggle="modal" data-target="#adminmessger"><img
+                            src="./imgs/comment-dots-regular-01.png" class="photo-admin"></a>
+                </div>
+                <!--組長推播圖片結束-->
+            </div>
+            <!--div center 結束-->
+            <!--div right-set 開始-->
+            <div class="col-lg-2 right-set">
+                <HR color="#000000;" size="10" class="hr-set">
+                <div class="row text-center">
+                    <div class="col-12" style="color:black;">管理員</div>
+                </div>
+                <HR color="#000000;" size="10" class="hr-set">
+                <!-- <div class="row justify-content-center"> -->
+                <div class="list-group justify-content-center" name="photo-save" style="min-height:100px;">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo1"
+                        draggable="true">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo2"
+                        draggable="true">
+                </div>
+                <HR color="#000000;" size="10" class="hr-set">
+                <!-- </div> -->
+                <div class="row text-center">
+                    <div class="col-12" style="color:black;">成員</div>
+                </div>
+                <HR color="#000000;" size="10" class="hr-set">
+                <!-- <div class="row justify-content-center"> -->
+                <div class="list-group justify-content-center" name="photo-save" style="min-height:100px;">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo3"
+                        draggable="true">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo4"
+                        draggable="true">
+                    <img src="./imgs/people1.png" class="img-member mx-auto d-block mt-3" name="photo-drop" id="photo5"
+                        draggable="true">
+                </div>
+                <!-- </div> -->
+                <div class="d-flex justify-content-between member-btn-set">
+                    <button type="button" class="btn btn-danger btn-size">刪除成員</button>
+                    <button type="button" class="btn btn-warning btn-size" data-toggle="modal"
+                        data-target="#permission">設定權限</button>
+                </div>
+            </div>
+            <!--div right-set 結束-->
+        </div>
+        <!--div content結束-->
+        <!--~~~~~~~~~~~~~~~~-->
+        <!--~~~~~~~~組長推播設定~~~~~~~~-->
+        <!-- Modal -->
+        <div class="modal fade" id="adminmessger" tabindex="-1" role="dialog" aria-labelledby="adminmessger"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered pl-3" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title text-center mx-auto" id="adminmessger">前三公告</h3>
+                        <span aria-hidden="true"><a href="#"><img src="./imgs/plus-3x.png" class="modal-imgs"
+                                    data-toggle="modal" data-target="#adminadd"></a></br>
+                            <span aria-hidden="true"><a href="#" id="list-group-item-show"><img
+                                        src="./imgs/caret-bottom-3x.png" class="modal-imgs mt-2"></a>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        請各位好好努力自己的部分，謝謝。
+                                    </div>
+                                    <div class="col-4">
+                                        2019/03/28 下午05:23
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        網頁請設計精美一點!!
+                                    </div>
+                                    <div class="col-4">
+                                        2019/04/25 上午11:08
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        資料庫規劃請使用PostgreSQL。
+                                    </div>
+                                    <div class="col-4">
+                                        2019/05/20 下午09:55
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item" id="list-group-item-hide1">
+                                <div class="row">
+                                    <div class="col-8">
+                                        UML請在5月27前完成。
+                                    </div>
+                                    <div class="col-4">
+                                        2019/05/23 下午05:28
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item" id="list-group-item-hide2">
+                                <div class="row">
+                                    <div class="col-8">
+                                        請在6/5號前完成Logo設計，謝謝。
+                                    </div>
+                                    <div class="col-4">
+                                        2019/05/25 下午08:23
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--~~~~~~~~組長新增公告~~~~~~~~-->
+        <!-- Modal -->
+        <div class="modal fade" id="adminadd" tabindex="-1" role="dialog" aria-labelledby="adminadd" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="adminadd">新增訊息</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">時間:</label>
+                                <input type="datetime-local" class="form-control" name="inventorydate">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">訊息:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--~~~~~~~~~~~~~~~~-->
+        <!--~~~~~~~~權限設定~~~~~~~~-->
+        <!-- Modal -->
+        <div class="modal fade" id="permission" tabindex="-1" role="dialog" aria-labelledby="permission"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="permission">權限設定</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>說明</h5>
+                        <p>請謹慎的選擇開放的權限設定。</p>
+                        <hr>
+                        <h5>請選擇鎖哪些功能:</h5>
+                        <div class="row no-gutters">
+                            <div class="col-sm-2">
+                                列表權限:
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters mt-3">
+                            <div class="col-sm-2">
+                                工作新增:
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters mt-3">
+                            <div class="col-sm-2">
+                                工作編輯:
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters mt-3">
+                            <div class="col-sm-2">
+                                工作刪除:
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="btn-onoff r" id="button-9">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs">
+                                        <span></span>
+                                    </div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--~~~~~~~~~~~~~~~~-->
+    </div>
+
+    <!------------scrpit----------->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="./js/Drop.js"></script>
+    <script src="./js/Photo_Drop.js"></script>
+    <script src="./js/list_drop.js"></script>
+    <script src="./js/show.js"></script>
+    <script src="./js/test.js"></script>
+    <script src="./js/admin_push_hide.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"
+        integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

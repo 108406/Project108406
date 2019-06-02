@@ -1,0 +1,447 @@
+@charset "utf-8";
+/* 總體設定------------------- */
+
+body, html {
+    height: 100%;
+    background-color: #f6eee1;
+    overflow: auto;
+    font-family: 'Handlee', 'Noto Sans TC';
+    font: normal normal bold;
+}
+
+/* 下方內容-------------------*/
+
+.container-fluid {
+    /* display: inline; */
+    vertical-align: center;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 95px;
+    background-repeat: no-repeat;
+}
+
+/* 上方導覽列設定-------------------*/
+
+h3 {
+    color: #a25421;
+    /* color: #FEFCAD; */
+}
+
+.top_navbar {
+    background-color: #d6c1a6;
+}
+
+.btn-signout {
+    width: 4em;
+    padding: 5 8 5 8px;
+    margin: 10px;
+    color: #444054;
+    background: none;
+    text-align: middle;
+    font: normal normal bold 1.4rem "微軟正黑體";
+    border-style: solid;
+    border-color: #444054;
+}
+
+.btn-signout:hover {
+    color: #ffffff;
+    background-color: #444054;
+}
+
+.search-input {
+    background-color: #FFFFFF;
+    border-radius: 0px;
+}
+
+/* 下navbar */
+
+.nav {
+    background-color: #ffffff;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1.3px solid #bebebe;
+    border-top: 1.3px solid #bebebe;
+}
+
+.nav-item-border, .nav-item-noborder {
+    display: inline-block;
+    height: 85%;
+    margin-top: 2px;
+    margin-bottom: 2.5px;
+}
+
+.nav-item-border {
+    border-right: #BEBBBB solid 2px;
+}
+
+.nav-item-border:hover, .nav-item-noborder:hover {
+    background-color: #bebebe;
+}
+
+.nav-item {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #444054;
+    font-size: 1.3rem;
+    text-decoration: none;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 4px;
+}
+
+.nav-item:hover {
+    color: #444054;
+    text-decoration: none;
+}
+
+/* RWD */
+
+@media only screen and (max-width: 500px) {
+    .nav-item {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
+
+/* 工作移動欄-------------------*/
+
+.card {
+    margin-left: -100%;
+    float: left;
+    padding: 1%;
+    height: 90%;
+    background-color: #fdd1d0;
+    min-width: 20%;
+    position: fixed;
+    z-index: 5;
+    top: 1;
+    left: 0;
+    overflow: auto;
+}
+
+.card-title {
+    margin-bottom: 5%;
+    color: #a25421;
+    font: normal normal bold 1.7rem;
+}
+
+.btn-move-work {
+    width: 100%;
+    padding: 0.5rem;
+    color: #444054;
+    background: #fda2a9;
+    text-align: center;
+    font-size: 1.4rem;
+    border: 0px none;
+}
+
+.btn-move-list {
+    width: 100%;
+    padding: 0.5rem;
+    color: #444054;
+    background: #fda2a9;
+    text-align: center;
+    font-size: 1.4rem;
+    border: 0px none;
+}
+
+.btn-ok {
+    float: right;
+    margin-top: 25%;
+    color: #c38d69;
+    background: none;
+    font-size: 1.4rem;
+    padding-top: 6px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #c38d69;
+}
+
+.btn-ok:hover {
+    color: #ffffff;
+    background: #c38d69;
+    border-color: #c38d69;
+}
+
+/* 我的工作內容-------------------*/
+
+.mywork-content {
+    float: left;
+    position: relative;
+    margin-left: 25%;
+    margin-top: 5%;
+    width: 60%;
+}
+
+/* RWD */
+
+@media only screen and (max-width: 456px) {
+    .mywork-content {
+        margin-left: 1%;
+        margin-top: 1%;
+    }
+}
+
+/* 專案工作列表長度------------------- */
+
+.project-group {
+    width: 100%;
+    height: 50px;
+}
+
+.list-group {
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+.work-group {
+    width: 100%;
+    vertical-align: center;
+}
+
+/* 按鈕------------------- */
+
+.onoff-align {
+    margin-left: 3%;
+}
+
+.btn-collapse {
+    width: 8rem;
+    padding: 1% 1% 0 1%;
+    margin-bottom: 1%;
+    color: #a25421;
+    background: none;
+    text-align: left;
+    font-size: 1.6rem;
+    border-radius: 0px;
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-color: #a25421;
+}
+
+.btn-collapse:focus {
+    outline: none;
+}
+
+.btn-work {
+    width: 100%;
+    padding: 2.5%;
+    margin-top: 2%;
+    color: #444054;
+    background: #fda2a9;
+    text-align: left;
+    font-size: 1.5rem;
+    border: 0px none;
+}
+
+.btn-work:focus {
+    outline: none;
+}
+
+.rd-move {
+    display: none;
+}
+
+.label-move {
+    display: inline-block;
+    cursor: pointer;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 45%;
+    margin-left: 40%;
+    background: #ffffff;
+    border: 0.2rem #c38d69 solid;
+}
+
+/* upload------------------- */
+
+.upload_cover {
+    margin-top: 40%;
+    margin-left: 20%;
+}
+
+#upload_input {
+    display: none;
+}
+
+/* ON/OFF------------------- */
+
+.button-cover, .knobs, .layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.btn-onoff {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 50px;
+    overflow: hidden;
+    margin-top: 25%;
+}
+
+/* project-group裡面-- */
+
+.project-group .btn-onoff {
+    margin-left: 5%;
+    margin-top: 0%;
+}
+
+/* ------------------- */
+
+.btn-onoff.r, .btn-onoff.r .layer {
+    border-radius: 100px;
+}
+
+.checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs {
+    z-index: 2;
+}
+
+.layer {
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+    border: 0.09rem #03a9f4 solid;
+}
+
+#button-9 .knobs:before, #button-9 .knobs:after, #button-9 .knobs span {
+    position: absolute;
+    top: 4px;
+    width: 20px;
+    height: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 10px 4px;
+    border-radius: 50%;
+    transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-9 .knobs:before {
+    content: 'YES';
+    left: 4px;
+    text-align: center;
+    font: normal normal bold 13px;
+    margin-left: 7%;
+    margin-top: 9%;
+}
+
+#button-9 .knobs:after {
+    content: 'NO';
+    margin-left: 62%;
+    font: normal normal bold 13px;
+    margin-top: 9%;
+}
+
+#button-9 .knobs:before, #button-9 .knobs:after {
+    color: #fff;
+    z-index: 2;
+}
+
+#button-9 .knobs span {
+    top: 22%;
+    left: 9.5px;
+    width: 30px;
+    height: 30px;
+    background-color: #03a9f4;
+    z-index: 1;
+}
+
+#button-9 .checkbox:checked+.knobs:after {
+    margin-left: 62%;
+}
+
+#button-9 .checkbox:checked+.knobs span {
+    left: 59px;
+    background-color: #F44336;
+}
+
+#button-9 .checkbox:checked~.layer {
+    background-color: #FCE3E3;
+    border: 0.09rem #F44336 solid;
+}
+
+/* work-modal */
+
+.modal-content {
+    background-color: #f6eee1fa;
+}
+
+.text-left {
+    margin: 0 0 1% 0;
+    font-size: 1.5rem;
+}
+
+.modal-work-content {
+    width: auto;
+    padding: 1%;
+    margin: 0 0 1% 0;
+    color: #444054;
+    background: #f3dfd4;
+    text-align: justify;
+    font: normal normal bold 1.3rem;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #c38d69;
+}
+
+.modal-work-deadline, .modal-work-tag, .modal-work-principal, .modal-work-file {
+    display: inline-block;
+    padding: 1%;
+    margin: 0 0 1% 0;
+    color: #ffffff;
+    background: #c38d69;
+    text-align: justify;
+    font: normal normal bold 1.3rem;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #c38d69;
+    text-decoration: none;
+}
+
+.modal-work-file:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.modal-edit {
+    width: 100%;
+    padding: 8px 8px 4px 8px;
+    color: #c38d69;
+    background: none;
+    text-align: middle;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #c38d69;
+    text-decoration: none;
+}
+
+.modal-edit:hover {
+    color: #ffffff;
+    background: #c38d69;
+    text-decoration: none;
+}

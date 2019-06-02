@@ -1,0 +1,313 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+TC');
+
+
+/**框架設定-------------------**/
+body, html {
+  font-family: 'Handlee', 'Noto Sans TC';
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #f6eee1;
+}
+.container-fluid {
+  height:100%;
+  width:100%;
+  padding:0;
+}
+.content{
+    height: 100%;
+}
+.list-show{
+    margin-top: 25%;
+    margin-bottom: 25%;
+}
+/**left-set**/
+.left-set{
+    background: #FFF7BF;
+    border-right: solid;
+}
+/**center-set**/
+.center-set{
+    background:#81BDA4;
+}
+/**right-set**/
+.right-set{
+    border-left: solid;
+    background: #FFDBC1;
+}
+
+/**導覽列設定-------------------**/
+
+h3 {
+    color: #a25421;
+    /* color: #FEFCAD; */
+}
+
+.top_navbar {
+    background-color: #d6c1a6;
+}
+
+.btn-signout {
+    width: 4em;
+    padding: 5 8 5 8px;
+    margin: 10px;
+    color: #444054;
+    background: none;
+    text-align: middle;
+    font: normal normal bold 1.4rem "微軟正黑體";
+    border-style: solid;
+    border-color: #444054;
+}
+
+.btn-signout:hover {
+    color: #ffffff;
+    background-color: #444054;
+}
+
+.search-input {
+    background-color: #FFFFFF;
+    border-radius: 0px;
+}
+
+/* 下navbar */
+
+.nav {
+    background-color: #ffffff;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1.3px solid #bebebe;
+    border-top: 1.3px solid #bebebe;
+}
+
+.nav-item-border, .nav-item-noborder {
+    display: inline-block;
+    height: 85%;
+    margin-top: 2px;
+    margin-bottom: 2.5px;
+}
+
+.nav-item-border {
+    border-right: #BEBBBB solid 2px;
+}
+
+.nav-item-border:hover, .nav-item-noborder:hover {
+    background-color: #bebebe;
+}
+
+.nav-item {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #444054;
+    font-size: 1.3rem;
+    text-decoration: none;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 4px;
+}
+
+.nav-item:hover {
+    color: #444054;
+    text-decoration: none;
+}
+
+
+/**組長提醒訊息框-------------------**/
+.photo-admin{
+    position:fixed;
+    right:22%;
+    bottom:5px;
+    width:60px;
+    height:80px;
+}
+/**工作人頭貼-------------------**/
+.img-circle{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+}
+.img-member{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+/**Form-------------------**/  
+
+/**on/off-------------------**/
+.button-cover, .knobs, .layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.btn-onoff {
+  position: relative;
+  float: left;
+  margin-top: -5px;
+  width: 80px;
+  height: 30px;
+  overflow: hidden;
+}
+
+.btn-onoff.r, .btn-onoff.r .layer {
+  border-radius: 100px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #ebf7fc;
+  transition: 0.3s ease all;
+  z-index: 1;
+  border: 0.09rem #03a9f4 solid;
+}
+
+#button-9 .knobs:before, #button-9 .knobs:after, #button-9 .knobs span {
+  position: absolute;
+  top: 2px;
+  width: 20px;
+  height: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 10px 4px;
+  border-radius: 50%;
+  transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-9 .knobs:before {
+  content:'ON';
+  left: 4px;
+  text-align: center;
+  font: normal normal bold 13px;
+  margin-left: 8%;
+  margin-top:0;
+}
+
+#button-9 .knobs:after {
+  content:'OFF';
+  margin-left: 55%;
+  font: normal normal bold 13px;
+  margin-top:0;
+}
+
+#button-9 .knobs:before, #button-9 .knobs:after {
+  color: #fff;
+  z-index: 2;
+}
+
+#button-9 .knobs span {
+  top: 18%;
+  left: 12px;
+  width: 22px;
+  height: 22px;
+  background-color: #03a9f4;
+  z-index: 1;
+}
+
+#button-9 .checkbox:checked+.knobs:after {
+  /* margin-left: 80%; */
+}
+
+#button-9 .checkbox:checked+.knobs span {
+  left: 50px;
+  background-color: #F44336;
+}
+
+#button-9 .checkbox:checked~.layer {
+  background-color: #FCE3E3;
+  border: 0.09rem #F44336 solid;
+}
+
+/**btn size**/
+
+
+/*測試資料*/
+.form-control:focus{
+  box-shadow: none;
+}
+.input-style{
+  border-top:0px ;
+  border-left:0px ;
+  border-right:0px ;
+  margin-left:50px;
+  background: #4d4d4f;
+  color:#ffffff; 
+  height: 25px;
+  width:200px;
+  line-height: 25px;
+  border:0;
+  margin-left: 15px;
+}
+
+input:focus{
+  border:#999999 solid 4px !important;
+  opacity:0.8;
+}
+a.list-group-item{
+  background:#999999;
+}
+.screen-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #4d4d4f;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.screen-header-left {
+  margin-right: auto;
+}
+
+.screen-header-button {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 3px;
+  border-radius: 8px;
+  background: white;
+}
+
+.screen-header-button.test {
+  background: #ed1c6f;
+}
+
+.screen-header-button.maximize {
+  background: #e8e925;
+}
+
+.screen-header-button.minimize {
+  background: #74c54f;
+}
+
+.screen-header-right {
+  display: flex;
+}
+
+.screen-header-ellipsis {
+  width: 3px;
+  height: 3px;
+  margin-left: 2px;
+  border-radius: 8px;
+  background: #999;
+}
