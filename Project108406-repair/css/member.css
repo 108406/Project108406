@@ -11,7 +11,7 @@ html {
     overflow-x: hidden;
     /* background-image: url(../imgs/background-content.jpg); */
     /* background-image: url(../imgs/background-member.jpg); */
-    background: #FFF6B7;
+    background-color: #f6eee1;
 }
 
 .container-fluid {
@@ -22,37 +22,91 @@ html {
     background-repeat: no-repeat;
 }
 
+h3 {
+    color: #a25421;
+    /* color: #FEFCAD; */
+}
+
 .top_navbar {
-    background-color: #444054;
+    background-color: #d6c1a6;
 }
 
 .btn-signout {
     width: 4em;
-    padding: 2%;
+    padding: 5 8 5 8px;
     margin: 10px;
-    color: #BEBBBB;
+    color: #444054;
     background: none;
     text-align: middle;
-    font: normal normal bold 1.5rem "微軟正黑體";
-    border-radius: 8px;
+    font: normal normal bold 1.4rem "微軟正黑體";
     border-style: solid;
-    border-color: #BEBBBB;
+    border-color: #444054;
 }
 
 .btn-signout:hover {
     color: #ffffff;
-    background-color: #DB7493;
+    background-color: #444054;
 }
 
-.search {
+.search-input {
     background-color: #FFFFFF;
+    border-radius: 0px;
 }
+
+/* 下navbar */
 
 .nav {
-    font-size: 1.3rem;
-    text-align: center;
+    background-color: #ffffff;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1.3px solid #bebebe;
+    border-top: 1.3px solid #bebebe;
 }
 
+.nav-item-border, .nav-item-noborder {
+    display: inline-block;
+    height: 85%;
+    margin-top: 2px;
+    margin-bottom: 2.5px;
+}
+
+.nav-item-border {
+    border-right: #BEBBBB solid 2px;
+}
+
+.nav-item-border:hover, .nav-item-noborder:hover {
+    background-color: #bebebe;
+}
+
+.nav-item {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #444054;
+    font-size: 1.3rem;
+    text-decoration: none;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 4px;
+}
+
+.nav-item:hover {
+    color: #444054;
+    text-decoration: none;
+}
+
+/* RWD */
+
+@media only screen and (max-width: 500px) {
+    .nav-item {
+        font-size: 1.3rem;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
 
 /**使用者大頭貼**/
 

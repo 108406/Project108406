@@ -25,7 +25,7 @@ function dropped(ev) {
   cancelDefault(ev);
   let id = ev.dataTransfer.getData('text/plain');
   if (!(id in dropzones )) {
-    $(ev.target).append(document.querySelector('#' + id));  
+    $(ev.target).append(document.querySelector('#' + id)); 
   }
   $(ev.target).closest("a").get(0).before(document.querySelector('#' + id));
   // $(ev.target).closest("a").get(0).after(document.querySelector('#' + id));

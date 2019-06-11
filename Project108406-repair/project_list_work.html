@@ -26,7 +26,7 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand mt-2" href="index.html">
+        <a class="navbar-brand mt-2" href="login.html">
             <h3>Plan Yourself</h3>
         </a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -59,8 +59,12 @@
 
         <div class="row content no-gutters">
             <div class="col-lg-3 left-set" name="list_total">
+                <div clas="row">
+                    <button type="button" class="btn btn-info btn-block"style="border-radius:0;">新增列表</button>
+                    <button type="button" class="btn btn-danger btn-block mt-0" style="border-radius:0;">刪除</button>
+                </div>
                 <!--~~~~~列表~~~~~~~~~~~~-->
-                <div class="card-group row">
+                <div class="card-group row mt-3">
                     <div class="col-md-12 mx-auto">
                         <div class="card card-default">
                             <div class="card-header screen-header">
@@ -70,64 +74,65 @@
                                         aria-label="Username" aria-describedby="basic-addon1"
                                         style="border-radius:0px;">
                                 </div>
-                                <a href="#collapse1" class="screen-header-right" data-toggle="collapse"
-                                    href="#collapse1">
+                                <a href="#collapse1" class="screen-header-right" data-toggle="collapse">
                                     <i class="fas fa-angle-double-down" style="color:#999999;"></i>
-                                    <!-- <div class="screen-header-ellipsis"></div>
-                                        <div class="screen-header-ellipsis"></div>
-                                        <div class="screen-header-ellipsis"></div> -->
                                 </a>
-
                             </div>
-                            <!-- <div class="card-heading d-flex justify-content-between">
-                                    <button class="btn btn-warning" style="border-radius:0px;">
-                                        <i class="fas fa-plus-circle"></i>
-                                    </button>
-                                    <div class="input-group row no-gutters">
-                                        <input type="text" class="form-control" placeholder="工作列表" aria-label="Username"
-                                            aria-describedby="basic-addon1" style="border-radius:0px;">
-                                    </div>
-                                    <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="collapse" href="#collapse1" style="border-radius:0px;">
-                                        <span class="sr-only">Toggle Dropdown</span></button>
-                                </div> -->
+
                             <div id="collapse1" class="card-collapse collapse">
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <img src="./imgs/people1.png" class="img-circle">
-                                            <h5 class="mb-1">這是工作名稱</h5>
-                                            <small></small>
+                                <div class="card-body" style="padding:5px;" name="dropzone">
+                                    <a class="list-group-item list-group-item-action" name="draggable" id="draggable1"
+                                        draggable="true">
+                                        <div class="row no-gutters">
+                                            <div class="col-2">
+                                                <span class=""><img src="./imgs/people1.png" class="img-circle"></span>
+                                            </div>
+                                            <div class="col-10 d-flex justify-content-center" style="padding:0;">
+                                                網頁製作
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-end" style="padding:0;">
+                                                <div class="row no-gutters">
+                                                    <span class="badge badge-pill badge-danger ml-2">Bootstrap</span>
+                                                    <span class="badge badge-pill badge-info ml-2">Javascript</span>
+                                                    <span class="badge badge-pill badge-danger ml-2">Html</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <small class="d-flex justify-content-end">
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                        </small>
                                     </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <img src="./imgs/people1.png" class="img-circle">
-                                            <h5 class="mb-1">這是工作名稱</h5>
-                                            <small></small>
+                                    <a class="list-group-item list-group-item-action" name="draggable" id="draggable2"
+                                        draggable="true">
+                                        <div class="row no-gutters">
+                                            <div class="col-2">
+                                                <span class="align-middle"><img src="./imgs/people1.png"
+                                                        class="img-circle"></span>
+                                            </div>
+                                            <div class="col-10 d-flex justify-content-center">
+                                                資料庫規劃
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-end">
+                                                <div class="row no-gutters">
+                                                    <span class="badge badge-pill badge-danger ml-2">PostgreSQL</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <small class="d-flex justify-content-end">
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                        </small>
                                     </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <img src="./imgs/people1.png" class="img-circle">
-                                            <h5 class="mb-1">這是工作名稱</h5>
-                                            <small></small>
+                                    <a class="list-group-item list-group-item-action" name="draggable" id="draggable3"
+                                        draggable="true">
+                                        <div class="row no-gutters">
+                                            <div class="col-2">
+                                                <span class="align-middle"><img src="./imgs/people1.png"
+                                                        class="img-circle"></span>
+                                            </div>
+                                            <div class="col-10 d-flex justify-content-center" style="padding:0;">
+                                                專題文件製作
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-end" style="padding:0;">
+                                                <div class="row no-gutters">
+                                                    <span class="badge badge-pill badge-danger ml-2">5/19日前</span>
+                                                    <span class="badge badge-pill badge-info ml-2">PDF檔案</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <small class="d-flex justify-content-end">
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                            <span class="badge badge-pill badge-warning ml-2">Warning</span>
-                                        </small>
                                     </a>
                                 </div>
                             </div>
@@ -137,8 +142,59 @@
             </div>
             <!--div left 結束-->
             <div class="col-lg-7 center-set">
-                <!--點選列表顯示列表工作-->
 
+                <!--點選列表顯示列表工作-->
+                <form class="form-set" id="form-test">
+
+                    <h1 class="form-h1 text-center">詳細工作內容</h1>
+
+                    <div class="contentform">
+
+                        <div class="from-all text-center">
+                            <div class="form-group text-center">
+                                <p>工作標題<span class="span">*</span></p>
+                                <span class="icon-case"><i class="fas fa-heading"></i></span>
+                                <input class="form-input" type="text" name="nom" id="nom" data-rule="required">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">工作內容 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fas fa-edit"></i></span>
+                                <input class="form-input" type="text" name="prenom" id="prenom" data-rule="required">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">截止日期 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fas fa-calendar-alt"></i></span>
+                                <input class="form-input" type="datetime-local" class="form-control"
+                                    name="inventorydate">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">增加標籤 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fas fa-tags"></i></span>
+                                <input class="form-input" type="text" name="society" id="society" data-rule="required">
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">上傳檔案 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fa fa-location-arrow"></i></span>
+                                <div class="custom-file form-input">
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="zn">
+                                    <label class="custom-file-label" for="customFileLang"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <p class="form-p">負責人 <span class="span">*</span></p>
+                                <span class="icon-case"><i class="fa fa-user"></i></span>
+                                <input class="form-input" type="text" name="postal" id="postal" data-rule="required">
+                            </div>
+
+                        </div>
+                    </div>
+                    <button type="submit" class="bouton-contact">Send</button>
+                </form>
                 <!--組長推播圖片-->
                 <div class="row no gutters"><a href="#" data-toggle="modal" data-target="#adminmessger"><img
                             src="./imgs/comment-dots-regular-01.png" class="photo-admin"></a>
@@ -146,9 +202,7 @@
                 <!--組長推播圖片結束-->
             </div>
             <!--div center 結束-->
-            <!--div right-set 開始-->
             <div class="col-lg-2 right-set">
-                <HR color="#000000;" size="10" class="hr-set">
                 <div class="row text-center">
                     <div class="col-12" style="color:black;">管理員</div>
                 </div>
@@ -182,199 +236,198 @@
                         data-target="#permission">設定權限</button>
                 </div>
             </div>
-            <!--div right-set 結束-->
+            <!--div right 結束-->
         </div>
-        <!--div content結束-->
-        <!--~~~~~~~~~~~~~~~~-->
-        <!--~~~~~~~~組長推播設定~~~~~~~~-->
-        <!-- Modal -->
-        <div class="modal fade" id="adminmessger" tabindex="-1" role="dialog" aria-labelledby="adminmessger"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered pl-3" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title text-center mx-auto" id="adminmessger">前三公告</h3>
-                        <span aria-hidden="true"><a href="#"><img src="./imgs/plus-3x.png" class="modal-imgs"
-                                    data-toggle="modal" data-target="#adminadd"></a></br>
-                            <span aria-hidden="true"><a href="#" id="list-group-item-show"><img
-                                        src="./imgs/caret-bottom-3x.png" class="modal-imgs mt-2"></a>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-8">
-                                        請各位好好努力自己的部分，謝謝。
-                                    </div>
-                                    <div class="col-4">
-                                        2019/03/28 下午05:23
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-8">
-                                        網頁請設計精美一點!!
-                                    </div>
-                                    <div class="col-4">
-                                        2019/04/25 上午11:08
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-8">
-                                        資料庫規劃請使用PostgreSQL。
-                                    </div>
-                                    <div class="col-4">
-                                        2019/05/20 下午09:55
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item" id="list-group-item-hide1">
-                                <div class="row">
-                                    <div class="col-8">
-                                        UML請在5月27前完成。
-                                    </div>
-                                    <div class="col-4">
-                                        2019/05/23 下午05:28
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item" id="list-group-item-hide2">
-                                <div class="row">
-                                    <div class="col-8">
-                                        請在6/5號前完成Logo設計，謝謝。
-                                    </div>
-                                    <div class="col-4">
-                                        2019/05/25 下午08:23
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">ok</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--~~~~~~~~組長新增公告~~~~~~~~-->
-        <!-- Modal -->
-        <div class="modal fade" id="adminadd" tabindex="-1" role="dialog" aria-labelledby="adminadd" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered " role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="adminadd">新增訊息</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">時間:</label>
-                                <input type="datetime-local" class="form-control" name="inventorydate">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">訊息:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--~~~~~~~~~~~~~~~~-->
-        <!--~~~~~~~~權限設定~~~~~~~~-->
-        <!-- Modal -->
-        <div class="modal fade" id="permission" tabindex="-1" role="dialog" aria-labelledby="permission"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="permission">權限設定</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h5>說明</h5>
-                        <p>請謹慎的選擇開放的權限設定。</p>
-                        <hr>
-                        <h5>請選擇鎖哪些功能:</h5>
-                        <div class="row no-gutters">
-                            <div class="col-sm-2">
-                                列表權限:
-                            </div>
-                            <div class="col-sm-10">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row no-gutters mt-3">
-                            <div class="col-sm-2">
-                                工作新增:
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row no-gutters mt-3">
-                            <div class="col-sm-2">
-                                工作編輯:
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row no-gutters mt-3">
-                            <div class="col-sm-2">
-                                工作刪除:
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--~~~~~~~~~~~~~~~~-->
-    </div>
 
+    </div>
+    <!--div content結束-->
+    <!--~~~~~~~~~~~~~~~~-->
+    <!--~~~~~~~~組長推播設定~~~~~~~~-->
+    <!-- Modal -->
+    <div class="modal fade" id="adminmessger" tabindex="-1" role="dialog" aria-labelledby="adminmessger"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered pl-3" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center mx-auto" id="adminmessger">前三公告</h3>
+                    <span aria-hidden="true"><a href="#"><img src="./imgs/plus-3x.png" class="modal-imgs"
+                                data-toggle="modal" data-target="#adminadd"></a></br>
+                        <span aria-hidden="true"><a href="#" id="list-group-item-show"><img
+                                    src="./imgs/caret-bottom-3x.png" class="modal-imgs mt-2"></a>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-8">
+                                    請各位好好努力自己的部分，謝謝。
+                                </div>
+                                <div class="col-4">
+                                    2019/03/28 下午05:23
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-8">
+                                    網頁請設計精美一點!!
+                                </div>
+                                <div class="col-4">
+                                    2019/04/25 上午11:08
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-8">
+                                    資料庫規劃請使用PostgreSQL。
+                                </div>
+                                <div class="col-4">
+                                    2019/05/20 下午09:55
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" id="list-group-item-hide1">
+                            <div class="row">
+                                <div class="col-8">
+                                    UML請在5月27前完成。
+                                </div>
+                                <div class="col-4">
+                                    2019/05/23 下午05:28
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" id="list-group-item-hide2">
+                            <div class="row">
+                                <div class="col-8">
+                                    請在6/5號前完成Logo設計，謝謝。
+                                </div>
+                                <div class="col-4">
+                                    2019/05/25 下午08:23
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--~~~~~~~~組長新增公告~~~~~~~~-->
+    <!-- Modal -->
+    <div class="modal fade" id="adminadd" tabindex="-1" role="dialog" aria-labelledby="adminadd" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="adminadd">新增訊息</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">時間:</label>
+                            <input type="datetime-local" class="form-control" name="inventorydate">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">訊息:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--~~~~~~~~~~~~~~~~-->
+    <!--~~~~~~~~權限設定~~~~~~~~-->
+    <!-- Modal -->
+    <div class="modal fade" id="permission" tabindex="-1" role="dialog" aria-labelledby="permission" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="permission">權限設定</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>說明</h5>
+                    <p>請謹慎的選擇開放的權限設定。</p>
+                    <hr>
+                    <h5>請選擇鎖哪些功能:</h5>
+                    <div class="row no-gutters">
+                        <div class="col-sm-2">
+                            列表權限:
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
+                                </div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                        <div class="col-sm-2">
+                            工作新增:
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
+                                </div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                        <div class="col-sm-2">
+                            工作編輯:
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
+                                </div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters mt-3">
+                        <div class="col-sm-2">
+                            工作刪除:
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="btn-onoff r" id="button-9">
+                                <input type="checkbox" class="checkbox">
+                                <div class="knobs">
+                                    <span></span>
+                                </div>
+                                <div class="layer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--~~~~~~~~~~~~~~~~-->
     <!------------scrpit----------->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

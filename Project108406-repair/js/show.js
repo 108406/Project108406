@@ -1,6 +1,12 @@
 $('#form-test').hide();
+$('#button-card').hide();
 $(document).ready(function(){
-  $("#draggable1").on('click', function(){
-    $('#form-test').show();
-  })
+  $("#draggable1").click(function(){
+    $("#form-test").toggle();
+  });
+});
+$(document).ready(function(){
+  $("#button-card-click").click(function(){
+    $("#button-card").toggle();
+  });
 });
