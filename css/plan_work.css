@@ -1,0 +1,1168 @@
+    @import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
+    /*----------------------------------*/
+
+    /*            總體設定               */
+
+    /*----------------------------------*/
+
+    html, body {
+        font-family: 'Noto Serif TC', serif;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    div.container-fluid {
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute;
+        top: 3.4em;
+        height: 100%;
+        width: 100%;
+        display: flex;
+    }
+
+    div.deck {
+        position: absolute;
+        top: 3.5em;
+        bottom: 3.5em;
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    a:hover {
+        text-decoration: none;
+        outline: none;
+    }
+
+    /*----------------------------------*/
+
+    /*    member&administrator          */
+
+    /*----------------------------------*/
+
+    div.member-bottom {
+        position: absolute;
+        display: flex;
+        top: 0;
+        width: 100%;
+        left: 0;
+        height: 3.5em;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: #17294C;
+    }
+
+    div.administrator-total, div.member-total {
+        display: flex;
+        align-items: center;
+    }
+
+    div.administrator-img, div.member-img {
+        display: flex;
+        align-items: center;
+        margin: 0 2em;
+    }
+
+    div.plan-name {
+        display: inline-block;
+        padding-right: 0.4em;
+        padding-left: 0.4em;
+        font-weight: 700;
+        white-space: nowrap;
+        color: #ffffff;
+        margin-left: 0.5em;
+        font-size: 1.2em;
+    }
+
+    span.admin-name {
+        display: inline-block;
+        white-space: nowrap;
+        color: #ffffff;
+        font-size: 0.8em;
+        font-weight: 700;
+        background: #999999;
+        padding: 0.1em;
+        border-radius: 4px;
+    }
+
+    img.img-photo {
+        margin-left: 1em;
+        border-radius: 50%;
+        width: 2.5em;
+        height: 2.5em;
+    }
+
+    div.hr {
+        font-weight: 700;
+        display: flex;
+        width: 0.1em;
+        height: 1.8em;
+        align-self: center;
+        margin: 0 0.5em;
+        background: #ffffff;
+    }
+
+    div.hr-set {
+        font-weight: 700;
+        display: flex;
+        width: 0.1em;
+        height: 2em;
+        align-self: center;
+        margin: 0 0.5em;
+        background: #ffffff;
+    }
+
+    div.hightline {
+        font-weight: 700;
+        display: flex;
+        width: 0.1em;
+        height: 2em;
+        align-self: center;
+        margin: 0 0.5em;
+        background: #ffffff;
+    }
+
+    form.admin-set {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    button.btn-admin-set {
+        font-size: 0.8em;
+        padding: 0.2em;
+        margin-right: 0.5em;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    /*----------------------------------*/
+
+    /*    work-header input設定          */
+
+    /*----------------------------------*/
+
+    input.form-control:focus {
+        box-shadow: none;
+        border: rgba(245, 245, 245) solid 4px !important;
+    }
+
+    input.input-style {
+        background: rgba(245, 245, 245);
+        color: black;
+        border: 0;
+        font-size: 1em;
+        font-weight: 600;
+        width: 85%;
+        height: 2em;
+        margin-left: 0.4em;
+        line-height: 2em;
+    }
+
+    input.input-style::placeholder {
+        color: black;
+        font-size: 1em;
+    }
+
+    input.input-style::-webkit-input-placeholder {
+        color: black;
+        font-size: 1em;
+    }
+
+    /*----------------------------------*/
+
+    /*    卡片總體設定work-total         */
+
+    /*----------------------------------*/
+
+    div.work-total {
+        background: rgba(245, 245, 245);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        min-width: 18em;
+        max-width: 18em;
+        max-height: 90%;
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+
+    div.work-card {
+        margin-bottom: 0.5em;
+    }
+
+    div.work-card:hover {
+        background-color: rgba(216, 216, 216, 0.13);
+    }
+
+    .work-header {
+        display: flex;
+        align-items: center;
+    }
+
+    /*----------------------------------*/
+
+    /*    dropdown                      */
+
+    /*----------------------------------*/
+
+    .dropdown, .dropleft, .dropright, .dropup {
+        position: static !important;
+    }
+
+    .dropdown-menu {
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 0.8em !important;
+    }
+
+    .dropdown-p {
+        margin: 0.3em !important;
+        display: flex;
+        align-self: center;
+        justify-content: center;
+    }
+
+    .dropdown-item {
+        text-align: center;
+    }
+
+    .btn-header:hover {
+        background-color: rgba(9, 30, 66, .13);
+    }
+
+    /*----------------------------------*/
+
+    /*    work-header                   */
+
+    /*----------------------------------*/
+
+    div.work-card-header {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0.2em;
+    }
+
+    a.badge-warning, a.badge-info {
+        margin: 0 0.3em 0.5em;
+    }
+
+    div.work-card-header:hover {
+        background-color: rgba(9, 30, 66, .1);
+    }
+
+    /*----------------------------------*/
+
+    /*    標籤設定                       */
+
+    /*----------------------------------*/
+
+    .card-label-1 {
+        float: left;
+        font-size: 13px;
+        font-weight: 700;
+        height: 8px;
+        line-height: 100px;
+        margin: 0 4px 4px 0;
+        background-color: #6c7afa;
+        border-radius: 4px;
+        color: rgb(255, 255, 255);
+        display: block;
+        margin-right: 4px;
+        overflow: hidden;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-width: 45px;
+        max-width: 45px;
+    }
+
+    .card-label-2 {
+        float: left;
+        font-size: 13px;
+        font-weight: 700;
+        height: 8px;
+        line-height: 100px;
+        margin: 0 4px 4px 0;
+        background-color: #585300;
+        border-radius: 4px;
+        color: rgb(255, 255, 255);
+        display: block;
+        margin-right: 4px;
+        overflow: hidden;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-width: 45px;
+        max-width: 45px;
+        width: auto;
+    }
+
+    .card-label-3 {
+        float: left;
+        font-size: 13px;
+        font-weight: 700;
+        height: 8px;
+        line-height: 100px;
+        margin: 0 4px 4px 0;
+        background-color: #ff807c;
+        border-radius: 4px;
+        color: rgb(255, 255, 255);
+        display: block;
+        margin-right: 4px;
+        overflow: hidden;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 45px;
+        max-width: 45px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .label-text {
+        height: 5px;
+        line-height: 5px;
+        padding: 0 8px;
+    }
+
+    /*----------------------------------*/
+
+    /*    work-body                    */
+
+    /*----------------------------------*/
+
+    div.work-body {
+        padding: 0px 0.5em 0.5em 0.5em;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+    }
+
+    div.work-name {
+        font-size: 0.9em;
+        padding: 0.5em 0.5em;
+    }
+
+    /*----------------------------------*/
+
+    /*    add-card                      */
+
+    /*----------------------------------*/
+
+    div.add-card-text {
+        font-size: 0.9em;
+        padding: 0.3em 0.5em;
+        overflow-wrap: break-word;
+    }
+
+    /*----------------------------------*/
+
+    /*    work-bottom                   */
+
+    /*----------------------------------*/
+
+    img.work-img-photo {
+        border-radius: 50%;
+        width: 1.75em;
+        height: 1.75em;
+    }
+
+    div.work-img {
+        padding: 0.5em;
+        margin-left: auto;
+    }
+
+    div.work-card-bottom {
+        display: flex;
+        padding: 0 0.5em;
+        align-items: center;
+    }
+
+    span.deadtime {
+        background: #17294C;
+        color: #ffffff;
+        border-radius: 4px;
+        padding: 0.3em 0.35em;
+        font-size: 0.7em;
+    }
+
+    div.card-footer {
+        padding: .75rem 0.25rem;
+        background-color: rgba(245, 245, 245);
+        border-top: none;
+    }
+
+    div.footer-name {
+        font-size: 1em;
+    }
+
+    a.a-footer:focus {
+        border: none;
+        outline: none;
+    }
+
+    /*----------------------------------*/
+
+    /*            scroll                */
+
+    /*----------------------------------*/
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        margin: 0px 0 5px 0;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        background: #808080;
+    }
+
+    /*----------------------------------*/
+
+    /*            icon顏色&調整          */
+
+    /*----------------------------------*/
+
+    .fa-angle-double-down {
+        color: #17294C;
+    }
+
+    .fa-angle-double-down:hover {
+        color: #FF7744;
+    }
+
+    .fa-plus-circle {
+        color: #17294C;
+    }
+
+    .fa-plus-circle:hover {
+        color: #FF7744;
+    }
+
+    .fa-plus {
+        margin-right: 0.2em;
+    }
+
+    .fa-clock {
+        margin-right: 0.3em;
+    }
+
+    /*----------------------------------*/
+
+    /*            新增列表               */
+
+    /*----------------------------------*/
+
+    div.add-list {}
+
+    div.add-list-header {
+        background-color: rgba(245, 245, 245);
+        margin-top: 1em;
+        min-width: 18em;
+        max-width: 18em;
+        max-height: 90%;
+        margin-right: 2em;
+    }
+
+    input.form-control:focus {
+        box-shadow: none;
+        border: rgba(245, 245, 245) solid 4px !important;
+    }
+
+    input.add-input-style {
+        background: rgba(245, 245, 245);
+        color: black;
+        border: 0;
+        width: 100%;
+        font-size: 1em;
+        font-weight: 600;
+        height: 2em;
+        line-height: 2em;
+    }
+
+    input.input-style::placeholder {
+        color: black;
+        font-size: 1em;
+    }
+
+    input.input-style::-webkit-input-placeholder {
+        color: black;
+        font-size: 1em;
+    }
+
+    form.add-list-submit {
+        display: flex;
+        align-items: center;
+    }
+
+    button.btn-add-list {
+        padding: 0.5em;
+        font-size: 0.8em;
+        margin: 0.5em;
+    }
+
+    /*----------------------------------*/
+
+    /*            modal調整              */
+
+    /*----------------------------------*/
+
+    .modal-dialog, .modal-content {
+        /* 90% of window height */
+        /* height: 90%;
+        min-height: 90%;
+        width: 100%; */
+        background-color: #f4f5f7;
+        height: auto !important;
+        /* min-height: 80% !important; */
+        /* min-height: 100% !important; */
+    }
+
+    .modal-body {
+        /* 100% = dialog height, 120px = header + footer */
+        /* max-height: calc(100% - 120px); */
+        padding: 0 !important;
+        height: auto !important;
+    }
+
+    /* .modal-left{
+        position: absolute;
+        top:0;
+        width:70%;
+        height: auto !important;
+        background: #f3d4d3;
+    }
+    .modal-right{
+        position: absolute;
+        background: #c9cdf1;
+        top:0;
+        left:70%;
+        height: 100% !important;
+        width:30%;
+    } */
+
+    /*----------------------------------*/
+
+    /*            modal header          */
+
+    /*----------------------------------*/
+
+    div.modal-header {
+        display: flex;
+        align-items: flex-start;
+        padding: 1rem 1rem;
+        border-bottom: none !important;
+        border-top-left-radius: .3rem;
+        border-top-right-radius: .3rem;
+    }
+
+    div.modal-title {
+        font-size: 1.2em !important;
+        display: flex;
+        width: 100%;
+    }
+
+    textarea.mod-card-back-title {
+        background: transparent;
+        border-radius: 3px;
+        box-shadow: none;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        margin: -4px -8px;
+        min-height: 24px;
+        padding: 4px 8px;
+        resize: none;
+        overflow-wrap: break-word;
+        height: 34px;
+        margin-left: 2%;
+        border: none;
+    }
+
+    p.u-inline-block {
+        font-size: 0.9em;
+        margin-left: 7%;
+        color: #999999;
+    }
+
+    /*----------------------------------*/
+
+    /*            modal標籤              */
+
+    /*----------------------------------*/
+
+    div.label-set {
+        margin-left: 3.5em;
+    }
+
+    div.modal-left-name {
+        color: #6b778c;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: .04em;
+        line-height: 16px;
+        margin-top: 16px;
+        text-transform: uppercase;
+        display: block;
+        line-height: 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    div.modal-label {
+        display: flex;
+        flex-flow: wrap;
+        align-items: center;
+    }
+
+    button.modal-add-label {
+        position: relative;
+        bottom: 0.1em;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: 700;
+        height: 30px;
+        line-height: 20px;
+        width: 30px;
+        background: rgba(104, 100, 100, 0.13);
+        border: none;
+    }
+
+    span.modal-label-1 {
+        float: left;
+        font-size: 13px;
+        font-weight: 700;
+        height: 30px;
+        line-height: 30px;
+        margin: 0 4px 4px 0;
+        background-color: #ff807c;
+        border-radius: 4px;
+        color: rgb(255, 255, 255);
+        display: block;
+        margin-right: 4px;
+        overflow: hidden;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 45px;
+        max-width: 45px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /*----------------------------------*/
+
+    /*            modal描述              */
+
+    /*----------------------------------*/
+
+    div.modal-description {
+        margin-top: 1.5em;
+        margin-left: 1.2em;
+    }
+
+    i.icon-description {
+        margin-right: 0.8em;
+    }
+
+    div.modal-description-name {
+        display: inline-block;
+        width: auto;
+        margin: 0;
+        min-height: 18px;
+        min-width: 40px;
+    }
+
+    textarea.describle-text {
+        width: 88%;
+        margin-left: 2em;
+        margin-top: 0.5em;
+    }
+
+    /*----------------------------------*/
+
+    /*        modal新增評論              */
+
+    /*----------------------------------*/
+
+    div.new-comment {
+        margin-top: 1.5em;
+        margin-left: 1.2em;
+    }
+
+    i.icon-comment {
+        margin-right: 0.8em;
+    }
+
+    .modal-comment-name {
+        display: inline-block;
+        width: auto;
+        margin: 0;
+        min-height: 18px;
+        min-width: 40px;
+    }
+
+    .modal-comment-img-textarea {
+        margin-top: 1.5em;
+        display: flex;
+    }
+
+    .modal-img-comment {
+        position: relative;
+        right: 0.4em;
+        height: 2em;
+        width: 2em;
+        border-radius: 50%;
+    }
+
+    i.fa-comment {
+        margin-right: 0.55em;
+    }
+
+    .comment-text {
+        width: 88%;
+    }
+
+    .modal-comment-btn {
+        border: none;
+        box-shadow: none;
+        margin-top: 0.5em;
+        margin-left: 2em;
+        background-color: rgba(9, 30, 66, .04);
+    }
+
+    /*----------------------------------*/
+
+    /*        modal新增活動              */
+
+    /*----------------------------------*/
+
+    .activity {
+        margin-top: 1.5em;
+        margin-left: 1.2em;
+        display: flex;
+        padding-bottom: 15%;
+        align-items: center;
+    }
+
+    i.icon-activity {
+        margin-right: 0.8em;
+    }
+
+    div.button-modal-activity {
+        position: relative;
+        right: 5%;
+        margin-left: auto;
+    }
+
+    button.modal-activity-btn {
+        border: none;
+        box-shadow: none;
+        background-color: rgba(9, 30, 66, .04);
+    }
+
+    /*----------------------------------*/
+
+    /*        modal新增卡片&動作         */
+
+    /*----------------------------------*/
+
+    div.add-to-card-name {
+        color: #6b778c;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: .04em;
+        line-height: 16px;
+        margin-top: 16px;
+        margin-left: 0.5em;
+        text-transform: uppercase;
+        line-height: 20px;
+        margin-bottom: -4px;
+    }
+
+    a.button-link:hover {
+        background-color: rgba(9, 30, 66, .08);
+        box-shadow: none;
+        border: none;
+    }
+
+    a.button-link:hover {
+        color: #091e42;
+    }
+
+    a.button-link:active, a.button-link:hover {
+        outline: 0;
+    }
+
+    a {
+        color: #091e42;
+        text-decoration: none;
+        background-color: transparent;
+    }
+
+    a.button-link {
+        background-color: rgba(9, 30, 66, .04);
+        box-shadow: none;
+        border: none;
+        border-radius: 3px;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 32px;
+        margin-top: 8px;
+        margin-left: 0.5em;
+        max-width: 15em;
+        overflow: hidden;
+        position: relative;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        white-space: nowrap;
+        transition-duration: 85ms;
+        transition-timing-function: ease;
+    }
+
+    div.modal-action {
+        padding-bottom: 1em;
+    }
+
+    /*----------------------------------*/
+
+    /*        新增標籤                   */
+
+    /*----------------------------------*/
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 18rem !important;
+        padding: .5rem 0;
+        margin: .125rem 0 0;
+        font-size: 1rem;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: .25rem;
+    }
+
+    .pop-over-header {
+        height: 40px;
+        position: relative;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    .pop-over-header-title {
+        box-sizing: border-box;
+        color: #6b778c;
+        display: block;
+        line-height: 40px;
+        border-bottom: 1px solid rgba(9, 30, 66, .13);
+        margin: 0 12px;
+        overflow: hidden;
+        padding: 0 32px;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        z-index: 1;
+    }
+
+    input.label-input-search {
+        width: 85%;
+        margin-left: 2.2em;
+        display: flex;
+        justify-content: center;
+    }
+
+    /*----------------------------------*/
+
+    /*        標籤顏色和位置             */
+
+    /*----------------------------------*/
+
+    div.label-total {
+        display: flex;
+        margin-top: 0.5em;
+        margin-left: 2.2em;
+        align-items: center;
+    }
+
+    button.label-color-edit-btn {
+        align-self: center;
+        border: none;
+        height: 2em;
+        border-radius: 3px;
+        width: 2em;
+        margin-left: 0.5em;
+        background: none;
+    }
+
+    button.label-color-edit-btn:hover {
+        background-color: rgba(9, 30, 66, .13);
+    }
+
+    a.label-color-green-a {
+        border-radius: 3px;
+        font-weight: 700;
+        height: 2em;
+        width: 80%;
+        background-color: rgb(97, 189, 79);
+    }
+
+    a.label-color-green-a:hover {
+        box-shadow: -5px 0px 0px 0px rgba(97, 189, 79, 0.5);
+    }
+
+    a.label-color-yellow-a {
+        border-radius: 3px;
+        font-weight: 700;
+        height: 2em;
+        width: 80%;
+        background-color: rgb(242, 214, 0);
+    }
+
+    a.label-color-yellow-a:hover {
+        box-shadow: -5px 0px 0px 0px rgba(242, 214, 0, 0.5);
+    }
+
+    a.label-color-orange-a {
+        border-radius: 3px;
+        font-weight: 700;
+        height: 2em;
+        width: 80%;
+        background-color: rgb(255, 159, 26);
+    }
+
+    a.label-color-orange-a:hover {
+        box-shadow: -5px 0px 0px 0px rgba(255, 159, 26, 0.5);
+    }
+
+    a.label-color-red-a {
+        border-radius: 3px;
+        font-weight: 700;
+        height: 2em;
+        width: 80%;
+        background-color: rgb(235, 90, 70);
+    }
+
+    a.label-color-red-a:hover {
+        box-shadow: -5px 0px 0px 0px rgba(235, 90, 70, 0.5);
+    }
+
+    a.label-color-purple-a {
+        border-radius: 3px;
+        font-weight: 700;
+        height: 2em;
+        width: 80%;
+        background-color: rgb(195, 119, 224);
+    }
+
+    a.label-color-purple-a:hover {
+        box-shadow: -5px 0px 0px 0px rgba(195, 119, 224, 0.5);
+    }
+
+    a.label-color-blue-a {
+        border-radius: 3px;
+        font-weight: 700;
+        height: 2em;
+        width: 80%;
+        background-color: rgb(0, 121, 191);
+    }
+
+    a.label-color-blue-a:hover {
+        box-shadow: -5px 0px 0px 0px rgba(0, 121, 191, 0.5);
+    }
+
+    div.create-label {
+        margin: 1.5em auto;
+        text-align: center;
+        width: 80%;
+        border-radius: 3px;
+        height: 2em;
+        line-height: 2em;
+        background: #b8b8b8;
+    }
+
+    div.create-label:hover {
+        background-color: rgba(9, 30, 66, .13);
+    }
+
+    a.create-label-a {
+        color: black;
+    }
+
+    /*----------------------------------*/
+
+    /*        點擊編輯                   */
+
+    /*----------------------------------*/
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 230px;
+        max-width: 230px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    .pop-over-header-title {
+        text-align: center;
+        box-sizing: border-box;
+        color: #6b778c;
+        display: block;
+        line-height: 40px;
+        border-bottom: 1px solid rgba(9, 30, 66, .13);
+        margin: 0 12px;
+        overflow: hidden;
+        padding: 0 32px;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        z-index: 1;
+    }
+
+    .pop-over {
+        margin-top: 4px;
+    }
+
+    label {
+        font-weight: 700;
+        color: #6b778c;
+        font-size: 12px;
+        line-height: 16px;
+        margin-top: 12px;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    div.label-color-total {
+        padding: 2px 10px;
+    }
+
+    .label-edit-input-search {
+        width: 100%;
+    }
+
+    .u-clearfix {
+        height: auto;
+    }
+
+    .card-label {
+        background-color: #b3bac5;
+        height: 40px;
+        width: 48px;
+        border-radius: 4px;
+        margin-left: 1px;
+        color: #fff;
+        display: inline-block;
+    }
+
+    .card-label-green {
+        background-color: #61bd4f;
+    }
+
+    .card-label-yellow {
+        background-color: #f2d600;
+    }
+
+    .card-label-orange {
+        background-color: #ff9f1a;
+    }
+
+    .card-label-red {
+        background-color: #eb5a46;
+    }
+
+    .card-label-purple {
+        background-color: #c377e0;
+    }
+
+    .card-label-blue {
+        background-color: #0079bf;
+    }
+
+    .card-label-sky {
+        background-color: #00c2e0;
+    }
+
+    .card-label-lime {
+        background-color: #51e898;
+    }
+
+    .card-label-pink {
+        background-color: #ff78cb;
+    }
+
+    .card-label-black {
+        background-color: #344563;
+    }
+
+    .label-edit-btn-set {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.2em;
+    }
+
+    button.btn-save {
+        width:5em;
+        padding: 0.5em 0.1em;
+        background-color: #61bd4f;
+        box-shadow: none;
+        border: none;
+        color: #fff;
+    }
+    button.btn-cancel{
+        width:3em;
+        padding: 0.5em 0.1em;
+        background-color: #eb5a46;
+        box-shadow: none;
+        border: none;
+        color: #fff;
+    }

@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+
+<head>
+
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/plan_work.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!--------------------------navbar-------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+
+        <div class="nav-brand">PlanYourself</div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav">
+                <li>
+                    <a href="#"> <i class="far fa-user fa-lg"></i>會員</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-book fa-lg"></i>計畫</a>
+                </li>
+                <li>
+                    <a href="#"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                </li>
+            </ul>
+
+            <form class="search">
+                <input class="search-input" type="text" name="search" placeholder="Search">
+                <a href="#"><i class="fas fa-search search-icon"></i></a>
+            </form>
+
+            <div class="study-logout">
+                <button class="btn btn-light btn-navbar-study" type="submit">教學<i class="fas fa-question-circle fa-lg"
+                        style="padding-left:5px;"></i></button>
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;">登出</button>
+            </div>
+
+        </div>
+
+    </nav>
+    <!----------------------------------------------------------------->
+
+
+
+    <div class="container-fluid">
+
+        <!-----------------------------組會員&管理者--------------------------------->
+        <div class="member-bottom" id="member">
+
+            <div class="administrator-total">
+
+                <div class="plan-name">
+                    我的計畫
+                </div>
+
+                <span class="admin-name">管理者</span>
+
+            </div>
+
+            <div class="administrator-img">
+
+                <img src="images/gray-cat.png" class="img-photo">
+                <img src="images/gray-cat.png" class="img-photo">
+                <img src="images/gray-cat.png" class="img-photo">
+
+
+            </div>
+
+
+            <div class="member-total">
+
+                <span class="admin-name">成員</span>
+
+            </div>
+
+            <div class="member-img">
+
+                <img src="images/gray-cat.png" class="img-photo">
+                <img src="images/gray-cat.png" class="img-photo">
+                <img src="images/gray-cat.png" class="img-photo">
+
+            </div>
+
+            <form class="admin-set">
+                <button class="btn btn-light btn-admin-set" type="submit">設定<i class="fas fa-question-circle fa-lg"
+                        style="padding-left:5px;"></i></button>
+                <button class="btn btn-light btn-admin-set" type="submit">刪除<i class="fas fa-question-circle fa-lg"
+                        style="padding-left:5px;"></i></button>
+            </form>
+
+        </div>
+        <!-----------------------------bottom結束--------------------------------->
+
+        <div class="deck">
+
+            <div class="work-total">
+
+                <div class="work-header">
+
+                    <input type="text" class="form-control input-style" placeholder="工作列表">
+
+                    <div class="dropright">
+
+                        <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <p class="dropdown-p">列表動作</p>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">刪除列表</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="work-body" id="list-1-work-body">
+
+
+
+                    <div class="card work-card" data-toggle="modal" data-target="#exampleModalLong">
+
+                        <div class="work-card-header">
+
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">功能</span></span>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)">功能</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">功能</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">功能</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">功能</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">功能</span></span>
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                    </div>
+
+                    <div class="card add-card" id="add-card">
+                        <textarea class="card-add-text" id="card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+                    <a href="#" class="a-footer" id="add-card-textarea">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div class="work-total">
+
+                <div class="work-header">
+
+                    <input type="text" class="form-control input-style" placeholder="工作列表">
+
+                    <button class="btn btn-link btn-header" type="button" data-toggle="collapse" data-target="#"
+                        aria-expanded="true">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+
+                </div>
+
+                <div class="work-body">
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="card-footer">
+                    <a href="#" class="a-footer">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div class="work-total">
+
+                <div class="work-header">
+
+                    <input type="text" class="form-control input-style" placeholder="工作列表">
+
+                    <button class="btn btn-link btn-header" type="button" data-toggle="collapse" data-target="#"
+                        aria-expanded="true">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+
+                </div>
+
+                <div class="work-body">
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+                    <a href="#" class="a-footer">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div class="work-total">
+
+                <div class="work-header">
+
+                    <input type="text" class="form-control input-style" placeholder="工作列表">
+
+                    <button class="btn btn-link btn-header" type="button" data-toggle="collapse" data-target="#"
+                        aria-expanded="true">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+
+                </div>
+
+                <div class="work-body">
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+                    <a href="#" class="a-footer">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div class="work-total">
+
+                <div class="work-header">
+
+                    <input type="text" class="form-control input-style" placeholder="工作列表">
+
+                    <button class="btn btn-link btn-header" type="button" data-toggle="collapse" data-target="#"
+                        aria-expanded="true">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+
+                </div>
+
+                <div class="work-body">
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+                    <a href="#" class="a-footer">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div class="work-total">
+
+                <div class="work-header">
+
+                    <input type="text" class="form-control input-style" placeholder="工作列表">
+
+                    <button class="btn btn-link btn-header" type="button" data-toggle="collapse" data-target="#"
+                        aria-expanded="true">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+
+                </div>
+
+                <div class="work-body">
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+
+                        <div class="work-card-header">
+
+                            <a href="#" class="badge badge-warning">愛買</a>
+                            <a href="#" class="badge badge-warning">7/2~7/15</a>
+                            <a href="#" class="badge badge-info">要有會員</a>
+
+                        </div>
+
+                        <div class="work-name">
+                            我要看一下工作如果太長會發生甚麼問題所以我只好打出那麼長的名字
+                        </div>
+                        <div class="work-card-bottom">
+
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+
+                            <div class="work-img">
+                                <img src="images/gray-cat.png" class="work-img-photo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card-footer">
+                    <a href="#" class="a-footer">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div class="add-list">
+
+                <div class="add-list-header">
+
+                    <a href="#" id="add-list">
+                        <input type="text" class="form-control add-input-style" placeholder="新增工作列表"
+                            id="add-list-input">
+                    </a>
+
+                    <form class="add-list-submit">
+                        <button class="btn btn-danger btn-add-list" type="submit">新增列表</button>
+                        <a href="#" id="add-cancel">
+                            <i class="fas fa-times fa-lg"></i>
+                        </a>
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="far fa-credit-card fa-lg" style="font-size: 1.5em;"></i>
+                            <textarea cols="60" class="mod-card-back-title">html 手機模式下列表會消失 修正問題</textarea>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <p class="u-inline-block">在「<a href="#"><u>尚未完成</u></a>」列表中</p>
+
+                        <div class="modal-body">
+
+                            <div class="row no-gutters">
+
+                                <div class="col-md-8">
+
+                                    <div class="label-set">
+                                        <div class="modal-left-name">標籤</div>
+
+                                        <div class="modal-label">
+
+                                            <span class="modal-label-1"><span class="label-text"
+                                                    onmousemove="removeClassType(this)">功能</span></span>
+                                            <span class="modal-label-1"><span class="label-text"
+                                                    onmousemove="removeClassType(this)">功能</span></span>
+
+                                            <div class="dropdown-total">
+                                                <button class="modal-add-label" href="#" role="button" id="add-label"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                                        class="fas fa-plus"></i></button>
+
+                                                <div class="dropdown-menu" aria-labelledby="add-label"
+                                                    data-stopPropagation="true">
+
+                                                    <div class="pop-over-header js-pop-over-header"><span
+                                                            class="pop-over-header-title">標籤</span>
+                                                        <a href="#"
+                                                            class="pop-over-header-close-btn icon-sm icon-close"></a>
+                                                    </div>
+
+                                                    <input class="label-input-search" type="text" placeholder="搜尋標籤…">
+
+                                                    <div class="label-total">
+                                                        <a href="#" class="label-color-green-a">
+                                                        </a>
+
+                                                        <div class="dropdown">
+                                                            <button class="label-color-edit-btn"><i class="fas fa-pen"
+                                                                    id="edit-label-dropdown"></i></button>
+                                                            <div class="dropdown-content" data-stopPropagation="true">
+                                                                <span class="pop-over-header-title">改變標籤</span>
+                                                                <div class="label-color-total">
+
+                                                                    <label for="labelName">名字</label>
+                                                                    <input class="label-edit-input-search" type="text"
+                                                                        name="name" value="123">
+                                                                    <label>選一個顏色</label>
+
+                                                                    <div class="u-clearfix">
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-green"
+                                                                                data-color="green"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-yellow"
+                                                                                data-color="yellow"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-orange"
+                                                                                data-color="orange"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-red"
+                                                                                data-color="red"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-purple"
+                                                                                data-color="purple"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-blue"
+                                                                                data-color="blue"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-sky"
+                                                                                data-color="sky"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-lime"
+                                                                                data-color="lime"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-pink"
+                                                                                data-color="pink"></span></a>
+                                                                        <a href="#"><span
+                                                                                class="card-label card-label-black"
+                                                                                data-color="black"></span></a>
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save">儲存</button>
+                                                                            <button class="btn-cancel">刪除</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="label-total">
+                                                        <a href="#" class="label-color-yellow-a"></a>
+                                                        <button class="label-color-edit-btn"><i
+                                                                class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <div class="label-total">
+                                                        <a href="#" class="label-color-orange-a">
+                                                        </a>
+                                                        <button class="label-color-edit-btn"><i
+                                                                class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <div class="label-total">
+                                                        <a href="#" class="label-color-red-a">
+                                                        </a>
+                                                        <button class="label-color-edit-btn"><i
+                                                                class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <div class="label-total">
+                                                        <a href="#" class="label-color-purple-a">
+                                                        </a>
+                                                        <button class="label-color-edit-btn"><i
+                                                                class="fas fa-pen"></i></button>
+                                                    </div>
+
+                                                    <div class="label-total">
+                                                        <a href="#" class="label-color-blue-a">
+                                                        </a>
+                                                        <button class="label-color-edit-btn"><i
+                                                                class="fas fa-pen"></i></button>
+                                                    </div>
+                                                    <a class="create-label-a" href="#">
+                                                        <div class="create-label">建立新標籤</div>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="modal-description">
+
+                                        <div class="modal-description-header">
+
+                                            <i class="fas fa-bars icon-description fa-lg"></i>
+                                            <div class="modal-description-name">描述</div>
+
+                                        </div>
+
+                                        <textarea class="form-control describle-text" rows="2"
+                                            placeholder="新增更多詳細敘述...."></textarea>
+
+                                    </div>
+
+                                    <div class="new-comment">
+
+                                        <div class="modal-new-comment-header">
+                                            <i class="far fa-comment fa-lg"></i>
+                                            <div class="modal-comment-name">新增評論</div>
+                                        </div>
+
+                                        <div class="modal-comment-img-textarea">
+                                            <img src="images/gray-cat.png" class="modal-img-comment">
+                                            <textarea class="form-control comment-text" rows="1"></textarea>
+                                        </div>
+
+                                        <div class="button-modal-comment">
+                                            <button type="button" class="modal-comment-btn">儲存</button>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="activity">
+
+                                        <div class="modal-activity-header">
+                                            <i class="fas fa-bars icon-activity fa-lg"></i>
+                                            <div class="modal-comment-name">活動</div>
+                                        </div>
+
+                                        <div class="button-modal-activity">
+                                            <button type="button" class="modal-activity-btn">顯示詳情</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="add-to-card">
+
+                                        <div class="add-to-card-name">新增至卡片</div>
+
+                                        <a class="button-link js-change-card-members" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="far fa-user"
+                                                    style="margin-right: 0.35em;"></i>成員</span></a>
+
+                                        <a class="button-link js-change-card-labels" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="far fa-bookmark"
+                                                    style="margin-right: 0.65em;"></i>標籤</span></a>
+
+                                        <a class="button-link js-change-card-lists" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="far fa-calendar-check"
+                                                    style="margin-right: 0.55em;"></i>代辦清單</span></a>
+
+                                        <a class="button-link js-change-card-times" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="far fa-clock"
+                                                    style="margin-right: 0.45em;"></i>到期日</span></a>
+
+                                        <a class="button-link js-change-card-files" href="#"><span
+                                                style="margin-left: 0.6em;"><i class="far fa-file"
+                                                    style="margin-right: 0.65em;"></i>附件</span></a>
+
+                                    </div>
+                                    <hr>
+                                    <div class="modal-action">
+
+                                        <div class="add-to-card-name">動作</div>
+
+                                        <a class="button-link js-change-card-moves" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="fas fa-arrow-right"
+                                                    style="margin-right: 0.55em;"></i>移動</span></a>
+
+                                        <a class="button-link js-change-card-copys" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="far fa-copy"
+                                                    style="margin-right: 0.55em;"></i>複製</span></a>
+
+                                        <a class="button-link js-change-card-tracks" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="far fa-eye"
+                                                    style="margin-right: 0.35em;"></i>追蹤</span></a>
+
+                                        <a class="button-link js-change-card-deletes" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="fas fa-ban"
+                                                    style="margin-right: 0.45em;"></i>封存</span></a>
+
+                                        <a class="button-link js-change-card-shares" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="fas fa-share-alt"
+                                                    style="margin-right: 0.45em;"></i>分享</span></a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    </div>
+
+    </div>
+
+    <!-----------------------------------scrpit-------------------------------------------->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="./js/member-slider.js"></script>
+    <script src="./js/add-list.js"></script>
+    <script src="./js/textarea.js"></script>
+    <script src="./js/label.js"></script>
+    <script src="./js/textshow.js"></script>
+    <script src="./js/stop_dropdown.js"></script>
+    <script src="js/dropdown-show.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!------------------------------------------------------------------------------------->
+</body>
+
+</html>
