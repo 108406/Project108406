@@ -1,296 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="utf-8">
 
 <head>
     <title>Plan Yourself</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/mywork.css">
+    <link rel="stylesheet" href="css/triangle.css">
+    <link rel="stylesheet" href="css/card-list-color.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="fixed-top no-gutters set-fixed">
-        <!--------------------上方導覽列------------------->
-        <nav class="navbar navbar-expand-lg navbar-dark top_navbar">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand mt-2" href="#">
-                <h3>Plan Yourself</h3>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <form class="form-inline my-2 my-lg-0 mx-auto">
-                    <input class="form-control mr-2 search-input" type="search" placeholder="Search"
-                        aria-label="Search">
-                    <button class="btn-signout" type="submit">搜尋</button>
-                </form>
-                <form class="form-inline my-2 my-lg-0 mr-end">
-                    <button class="btn-signout my-2 my-sm-0" type="submit">登出</button>
-                </form>
-            </div>
-        </nav>
-        <!--------------------下方導覽---------------------->
-        <ul class="nav nav-tabs nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link text-dark nav-list" href="member">會員</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark nav-list" href="content">專案列表</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark nav-list" href="mywork">我的工作</a>
-            </li>
-        </ul>
-        <!----------------------左側移動視窗----------------------->
-        <div class="row no-gutters">
-            <div class="col-md-3">
-                <div class="mywork-movelist" id="movelist">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">目前所在位置</h5>
-                            <h5 class="card-title">目前列表名稱</h5>
-                            <button class="btn-move-work">工作</button>
-                        </div>
-                        <hr style="width: auto">
-                        <div class="card-body">
-                            <h5 class="card-title">移動到：</h5>
-                            <button class="btn-move-list dropdown-toggle" type="button">
-                                列表選項
-                            </button>
-                            <button class="btn-ok" type="button">
-                                確定
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <!--------------------------navbar-------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="nav-brand">PlanYourself</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="#"> <i class="far fa-user fa-lg"></i>會員</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-book fa-lg"></i>計畫</a>
+                </li>
+                <li>
+                    <a href="#"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                </li>
+            </ul>
+            <form class="search">
+                <input class="search-input" type="text" name="search" placeholder="Search">
+                <a href="#"><i class="fas fa-search search-icon"></i></a>
+            </form>
+            <div class="study-logout">
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel">教學<i
+                        class="fas fa-question-circle fa-lg" style="padding-left:5px;"></i></button>
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;">登出</button>
             </div>
         </div>
-    </div>
-    <!------------我的專案列表工作顯示------------>
+    </nav>
+    <!---------------------------內容---------------------------------->
     <div class="container-fluid">
-        <div class="col-md-9">
-            <div class="mywork-content">
-                <% for(var i=0; i<items.length; i++) { %>
-                <% if (i > 0) { %>
-                <% if (items[i].project_id != items[i-1].project_id) { %>
-                <div class="project-group">
-                    <div class="row no-gutters">
-                        <div class="col-md-9">
-                            <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
-                                data-target=<%= "#" + items[i].project_id %>>
-                                <%= items[i].project_name %>
-                            </button>
-                        </div>
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-1">
-                            <div class="onoff-align">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
-                                </div>
+        <!-----------------------左邊窗格----------------------->
+        <div class="slider-left" id="slider-left">
+            <div class="left-top">
+                <div class="slider-header-name">
+                    目前所在位置:
+                </div>
+                <div class="card mx-auto" style="width: 18rem; height:5rem;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="slider-card-list">
+                                <div class="left-header-list">這是列表一</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <% } %>
-                <% if (items[i].list_id != items[i-1].list_id) { %>
-                <div id=<%= items[i].project_id %> class="list-group collapse">
-                    <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
-                        data-target=<%= "#" + items[i].list_id %>>
-                        <%= items[i].list_name %>
-                    </button>
+            </div>
+            <hr>
+            <div class="slider-header-name">移動到:</div>
+            <div class="left-bottom">
+                <div class="card text-center mx-auto" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="slider-card-list">
+                                <div class="left-header-list">其他列表:</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>這是列表一</option>
+                                <option>這是列表二</option>
+                                <option>這是列表三</option>
+                                <option>這是列表四</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-group collapse" id=<%= items[i].list_id %>>
-                    <div class="row no-gutters">
-                        <div class="col-md-1">
-                            <!-- id需要自動產生 -->
-                            <input class="rd-move" type="radio" id=<%= items[i].work_id %>>
-                            <label class="label-move" for=<%= items[i].work_id %>></label>
-                        </div>
-                        <div class="col-md-8">
-                            <button class="btn-work" type="button" data-toggle="modal" data-target="#modal-workdetail">
-                                <%= items[i].work_title %>
-                            </button>
-                        </div>
-                        <div class="col-md-1">
-                            <label class="upload_cover">
-                                <input id="upload_input" type="file">
-                                <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
+            </div>
+            <form class="slider-btn">
+                <button type="button" class="btn btn-secondary button-submit" id="return">返回</button>
+                <button type="button" class="btn btn-danger button-submit" style="margin-left:1em;">確定</button>
+            </form>
+        </div>
+        <!-----------------------新手教學----------------------->
+        <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../public/imgs/photo-1.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../public/imgs/photo-2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../public/imgs/photo-3.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div> -->
+        <!-----------------------每項計畫----------------------->
+        <div class="content">
+            <div class="typesetting">
+                <% for(var i=0; i<items.length; i++) { %>
+                <% console.log(items.length) %>
+                <% console.log(i) %>
+                <div class="card mywork">
+                    <% for(var p=0; i<items[i].project.length; i++) { %>
+                    <!-----------------------標題----------------------->
+                    <div class="header">
+                        <div class="text"><%= items[i].project[p].project_name %></div>
+                        <div class="switch-move-top">
+                            <label class="switch-top">
+                                <input type="checkbox" checked>
+                                <span class="slider-top round-top"></span>
                             </label>
                         </div>
-                        <div class="col-md-1">
-                            <div class="btn-onoff r" id="button-9">
-                                <input type="checkbox" class="checkbox">
-                                <div class="knobs">
-                                    <span></span>
-                                </div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <% } else { %>
-                <div id=<%= items[i].project_id %> class="collapse">
-                    <div class="work-group" id=<%= items[i].list_id %>>
-                        <div class="row no-gutters">
-                            <div class="col-md-1">
-                                <!-- id需要自動產生 -->
-                                <input class="rd-move" type="radio" id=<%= items[i].work_id %>>
-                                <label class="label-move" for=<%= items[i].work_id %>></label>
-                            </div>
-                            <div class="col-md-8">
-                                <button class="btn-work" type="button" data-toggle="modal"
-                                    data-target="#modal-workdetail">
-                                    <%= items[i].work_title %>
+                    <hr class="highlight">
+                    <!-----------------------內容----------------------->
+                    <div class="body-show">
+                        <!----------------列表---------------->
+                        <% for(var lw=0; lw<items[i].listwork.length; lw++) { %>
+                        <% for(var l=0; l<items[i].listwork[lw].list.length; l++) { %>
+                        <% console.log(lw) %>
+                        <% console.log(l) %>
+                        <a href="#" data-toggle="collapse" data-target="#list-work-1" aria-expanded="true"
+                            class="list-a" id="list-1">
+                            <div class="card-list-1">
+
+                                <div class="list-header"><%= items[i].listwork[lw].list[l].list_name %></div>
+                                <button class="btn btn-link card-list-btn" type="button" data-toggle="collapse"
+                                    data-target="#list-work-1" aria-expanded="true">
+                                    <div class="triangle-1"></div>
                                 </button>
                             </div>
-                            <div class="col-md-1">
-                                <label class="upload_cover">
-                                    <input id="upload_input" type="file">
-                                    <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
-                                </label>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
+                        </a>
+                        <% } %>
+                        <!----------------工作---------------->
+                        <% for(var w=0; w<items[i].listwork[lw].work.length; w++) { %>
+                        <% console.log(w) %>
+                        <div class="collapse show work-total" id="list-work-1">
+                            <div class="card-content">
+                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
+                                        class="fas fa-square"></i></button>
+                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
+                                    onmousemove="removeClassType(this)">
+                                    <%= items[i].listwork[lw].work[w].work_title %>
+                                </a>
+                                <div class="switch-move">
+                                    <label class="upload_cover">
+                                        <input id="upload_input" type="file">
+                                        <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
+                                    </label>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
                                 </div>
                             </div>
+                            <!-- <div class="card-content">
+                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
+                                        class="fas fa-square"></i></button>
+                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
+                                    onmousemove="removeClassType(this)">
+                                    我要測試我的資料太長會發生甚麼問題
+                                </a>
+                                <div class="switch-move">
+                                    <label class="upload_cover">
+                                        <input id="upload_input" type="file">
+                                        <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
+                                    </label>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div> -->
                         </div>
-                    </div>
-                </div>
-                <% } %>
-                <% } else { %>
-                <div class="project-group">
-                    <div class="row no-gutters">
-                        <div class="col-md-9">
-                            <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
-                                data-target=<%= "#" + items[i].project_id %> data-target=<%= "#" + items[i].list_id %>>
-                                <%= items[i].project_name %>
-                            </button>
-                        </div>
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-1">
-                            <div class="onoff-align">
-                                <div class="btn-onoff r" id="button-9">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs">
-                                        <span></span>
-                                    </div>
-                                    <div class="layer"></div>
+                        <% } %>
+                        <% } %>
+                        <!----------------列表---------------->
+                        <!-- <a href="#" data-toggle="collapse" data-target="#list-work-2" aria-expanded="true"
+                            class="list-a" id="list-2">
+                            <div class="card-list-2">
+                                <div class="list-header">這是列表二</div>
+                                <button class="btn btn-link card-list-btn" type="button" data-toggle="collapse"
+                                    data-target="#list-work-2" aria-expanded="true">
+                                    <div class="triangle-2"></div>
+                                </button>
+                            </div>
+                        </a> -->
+                        <!----------------工作---------------->
+                        <!-- <div class="collapse show work-total" id="list-work-2">
+                            <div class="card-content">
+                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
+                                        class="fas fa-square"></i></button>
+                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
+                                    onmousemove="removeClassType(this)">
+                                    我要測試我的資料太長會發生甚麼問題
+                                </a>
+                                <div class="switch-move">
+                                    <label class="upload_cover">
+                                        <input id="upload_input" type="file">
+                                        <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
+                                    </label>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div id=<%= items[i].project_id %> class="list-group collapse">
-                    <button class="btn-collapse dropdown-toggle" type="button" data-toggle="collapse"
-                        data-target=<%= "#" + items[i].list_id %>>
-                        <%= items[i].list_name %>
-                    </button>
-                </div>
-                <div class="work-group collapse" id=<%= items[i].list_id %>>
-                    <div class="row no-gutters">
-                        <div class="col-md-1">
-                            <!-- id需要自動產生 -->
-                            <input class="rd-move" type="radio" id=<%= items[i].work_id %>>
-                            <label class="label-move" for=<%= items[i].work_id %>></label>
-                        </div>
-                        <div class="col-md-8">
-                            <button class="btn-work" type="button" data-toggle="modal" data-target="#modal-workdetail">
-                                <%= items[i].work_title %>
-                            </button>
-                        </div>
-                        <div class="col-md-1">
-                            <label class="upload_cover">
-                                <input id="upload_input" type="file">
-                                <span class="upload_icon"><img src="./imgs/paperclip-4x.png"></span>
-                            </label>
-                        </div>
-                        <div class="col-md-1">
-                            <div class="btn-onoff r" id="button-9">
-                                <input type="checkbox" class="checkbox">
-                                <div class="knobs">
-                                    <span></span>
+                            <div class="card-content">
+                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
+                                        class="fas fa-square"></i></button>
+                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
+                                    onmousemove="removeClassType(this)">
+                                    我要測試我的資料太長會發生甚麼問題
+                                </a>
+                                <div class="switch-move">
+                                    <label class="upload_cover">
+                                        <input id="upload_input" type="file">
+                                        <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
+                                    </label>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
                                 </div>
-                                <div class="layer"></div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
+                    <div class="card-footer">
+                    </div>
+                    <% } %>
                 </div>
-                <% } %>
                 <% } %>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    <!------------------------ Modal ------------------------>
-    <!------------ 點擊工作後出現的內容 ------------>
-    <div class="modal fade bd-example-modal-lg" id="modal-workdetail" tabindex="-1" role="dialog"
-        aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="myLargeModalLabel">work-title</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-left">工作內容</p>
-                    <p class="modal-work-content">這只是一個工作內容的顯示
-                        這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示這只是一個工作內容的顯示
-                    </p>
-                    <hr>
-                    <p class="text-left">截止日期</p>
-                    <p class="modal-work-deadline">2019/05/30 12:00:00</p>
-                    <hr>
-                    <p class="text-left">標籤</p>
-                    <p class="modal-work-tag">功能</p>
-                    <hr>
-                    <p class="text-left">檔案</p>
-                    <a class="modal-work-file" download href="./企鵝(檔案下載測試).zip">
-                        檔案.zip
-                    </a>
-                    <hr>
-                    <p class="text-left">負責人</p>
-                    <p class="modal-work-principal">睡著的企鵝</p>
-                    <p class="modal-work-principal">醒來的企鵝</p>
-                    <hr>
-                    <div style="float: right; margin:10px;">
-                        <a class="modal-edit" href="project_list_work.html">編輯</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!------------scrpit----------->
+    <!-----------------------------------scrpit-------------------------------------------->
+    <!-- <script>
+        function SetWorkInfo(workId, workTitle, workConten, deadline, tag, file, firstPrincipal, secondPrincipal) {
+            $('#work_id').val(workId);
+        }        
+    </script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="./js/mywork.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/slider-left.js"></script>
+    <script src="js/text-show.js"></script>
+    <script src="js/list_on_click.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/width.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!------------------------------------------------------------------------------------->
 </body>
 
 </html>

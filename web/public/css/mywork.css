@@ -1,413 +1,724 @@
-@charset "utf-8";
-/* 總體設定------------------- */
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
+/*----------------------------------*/
 
-body, html {
+/*            總體設定               */
+
+/*----------------------------------*/
+
+html, body {
+    font-family: 'Noto Serif TC', serif;
+    background: rgb(255, 255, 255);
     height: 100%;
-    background-color: #FFF6B7;
-    /* background-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Ccircle fill='%23ffef88' cx='45' cy='45' r='10'/%3E%3Cg fill='%23bebebe' fill-opacity='1'%3E%3Ccircle cx='0' cy='90' r='10'/%3E%3Ccircle cx='90' cy='90' r='10'/%3E%3Ccircle cx='90' cy='0' r='10'/%3E%3Ccircle cx='0' cy='0' r='10'/%3E%3C/g%3E%3C/svg%3E"); */
-    overflow: auto;
-    font-family: 'Handlee', 'Noto Sans TC';
-    font: normal normal bold;
+    overflow-x: hidden;
 }
 
-/* 下方內容-------------------*/
-
-.container-fluid {
-    /* display: inline; */
-    vertical-align: center;
-    padding-right: 0px;
-    padding-left: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 100px;
-    background-repeat: no-repeat;
+div.container-fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+    position: absolute;
+    top: 3.5em;
+    height: 100%;
 }
 
-/* 上方導覽列設定-------------------*/
-
-.top_navbar {
-    z-index: 1;
-    background-color: #444054;
+div.content {
+    width: 100%;
 }
 
-.btn-signout {
-    width: 4em;
-    padding: 2%;
-    margin: 10px;
-    color: #BEBBBB;
-    background: none;
-    text-align: middle;
-    font: normal normal bold 1.5rem "微軟正黑體";
-    border-radius: 8px;
-    border-style: solid;
-    border-color: #BEBBBB;
+a:hover {
+    color: black;
+    text-decoration: none;
 }
 
-.btn-signout:hover {
-    color: #ffffff;
-    background-color: #DB7493;
+div.typesetting {
+    width:80%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
-.search {
-    background-color: #FFFFFF;
+/*----------------------------------*/
+
+/*            slider-left           */
+
+/*----------------------------------*/
+
+div.slider-left {
+    position: fixed;
+    float: left;
+    top: 3.5em;
+    left: 0;
+    margin-left: -100%;
+    width: 300px;
+    height: 100%;
+    z-index: 10000000;
+    background: rgb(219, 219, 219);
 }
 
-/* 下方導覽列設定-------------------*/
-
-.nav-list {
-    z-index: 1;
-    background-color: #FFFAFA;
-    font-size: 1.3rem;
+div.slider-header-name {
+    font-size: 1.2em;
     text-align: center;
-    padding: 1.5%;
+    margin-top: 0.5em;
+    margin-bottom: 0.75em;
+    font-weight: bolder;
 }
 
-.nav-list:hover {
-    background-color: #BEBBBB;
-    font: #ffffff;
+div.slider-card-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #343a40;
+    margin-left: 0.75em;
+    margin-right: 0.75em;
+    height: 2em;
+    padding: 0.5em;
+    border-radius: 4px;
 }
 
-/* RWD */
+div.left-header-list {
+    color: #FFF8DC;
+    padding-left: 0.25em;
+    font-size: 1em;
+    height: 12px;
+    line-height: 12px;
+}
 
-/* 
-@media only screen and (max-width: 456px) {
-    .nav-item {
-        font: normal normal bold 1.5rem ;
-    }
+form.slider-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+button.button-submit {
+    width: 5em;
+    padding: 0.5em !important;
+}
+
+/*----------------------------------*/
+
+/*                輪播              */
+
+/*----------------------------------*/
+
+.carousel {
+    /* margin-top: 5em; */
+}
+
+.carousel-item {
+    height: 30em;
+}
+
+.carousel-item img {
+    height: 30em;
+}
+
+/*----------------------------------*/
+
+/*            card框架              */
+
+/*----------------------------------*/
+
+/* div.mywork {
+    box-sizing: border-box;
+    min-width: 25%;
+    max-width: 25%;
+    margin-left: 4%;
+    margin-right: 4%;
+    min-width: 20em;
+    max-width: 20em;
+    margin-left: 1em;
+    margin-right: 1em;
+    min-height: 30em;
+    max-height: 30em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: rgb(235, 235, 235);
+    border: none;
+    overflow-y: hidden;
+    overflow-x: hidden;
 } */
 
-/* 工作移動欄-------------------*/
-
-.card {
-    margin-left: -100%;
-    float: left;
-    padding: 1%;
-    height: 90%;
-    background-color: #FFE9DD;
-    min-width: 20%;
-    position: fixed;
-    z-index: 5;
-    top: 1;
-    left: 0;
-    overflow: auto;
+div.work-total {
+    border-radius: 8px;
+    margin: 0.5em;
 }
 
-.card-title {
-    margin-bottom: 5%;
-    color: #2F243A;
-    font: normal normal bold 1.7rem;
+
+div.body-show {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
-.btn-move-work {
-    width: 100%;
-    padding: 0.5rem;
-    color: #2F243A;
-    background: #FFA5AB;
-    text-align: center;
-    font-size: 1.5rem;
-    border: 0px none;
+/*----------------------------------*/
+
+/*            card-header           */
+
+/*----------------------------------*/
+
+div.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8em 0 0 0;
 }
 
-.btn-move-list {
-    width: 100%;
-    padding: 0.5rem;
-    color: #2F243A;
-    background: #FFA5AB;
-    text-align: center;
-    font-size: 1.5rem;
-    border: 0px none;
-}
-
-.btn-ok {
-    float: right;
-    margin-top: 25%;
-    color: #c95957;
-    background: none;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    border-style: solid;
-    border-color: #e58b82;
-}
-
-.btn-ok:hover {
-    color: #ffffff;
-    background: #e58b82;
-    border-color: #e58b82;
-}
-
-/* 我的工作內容-------------------*/
-
-.mywork-content {
-    float: left;
-    position: relative;
-    margin-left: 40%;
-    margin-top: 5%;
-    width: 70%;
-}
-
-/* RWD */
-
-@media only screen and (max-width: 456px) {
-    .mywork-content {
-        margin-left: 1%;
-        margin-top: 1%;
-    }
-}
-
-/* 專案工作列表長度------------------- */
-
-.project-group {
-    width: 100%;
-}
-
-.list-group {
-    margin-top: -1%;
+div.text {
+    font-size: 1.2em;
     margin-left: 5%;
+    font-weight: bolder;
 }
 
-.work-group {
-    width: 100%;
-    vertical-align: center;
+hr.highlight {
+    width: 90%;
+    margin: 0.65em 0;
 }
 
-/* 按鈕------------------- */
+/*----------------------------------*/
 
-.onoff-align {
-    margin-left: 3%;
+/*            card列表              */
+
+/*----------------------------------*/
+
+div.card-list {
+    display: flex;
+    align-items: center;
+    background: #343a40;
+    margin-top: 0.6em;
+    margin-left: 0.75em;
+    margin-right: 0.75em;
+    height: 2em;
+    padding: 0.5em;
+    border-radius: 8px;
 }
 
-.btn-collapse {
-    width: 8rem;
-    padding: 1% 1% 0 1%;
-    margin-bottom: 1%;
-    color: #2F243A;
-    background: none;
-    text-align: left;
-    font-size: 1.7rem;
-    border-radius: 0px;
-    border-style: none;
-    border-bottom-style: solid;
-    border-bottom-color: #2F243A;
+div.list-header {
+    color: #FFF8DC;
+    padding-left: 0.25em;
+    display: flex;
+    font-size: 1em;
+    height: 12px;
+    line-height: 12px;
 }
 
-.btn-collapse:focus {
-    outline: none;
+button.card-list-btn {
+    margin-left: auto;
+    margin-right: -0.5em;
 }
 
-.btn-work {
-    width: 100%;
-    padding: 2.5%;
-    margin-top: 2%;
-    color: #2F243A;
-    background: #FFA5AB;
-    text-align: left;
-    font-size: 1.5rem;
-    border: 0px none;
-    border-radius: 6px;
+/*----------------------------------*/
+
+/*            card工作              */
+
+/*----------------------------------*/
+
+div.card-content {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin-top: 0.2em;
+    margin-left: 5%;
+    padding: 0.2em 0.8em 0.2em 0.2em;
+    justify-content: flex-end;
 }
 
-.btn-work:focus {
-    outline: none;
+a.work-a {
+    width: 65%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: black;
+    text-decoration: none !important;
 }
 
-.rd-move {
-    display: none;
+.fa-hand-point-left {
+    margin-left: 0.2em;
 }
 
-.label-move {
-    display: inline-block;
-    cursor: pointer;
-    width: 1.3rem;
-    height: 1.3rem;
-    margin-top: 45%;
-    margin-left: 40%;
-    background: #ffffff;
-    border: 0.2rem #444054 solid;
+button.btn-work {
+    margin: 0;
+    padding: 0;
+    color: #17294C;
 }
 
-/* upload------------------- */
+button.btn-work:hover {
+    color: #3F62A6;
+}
 
-.upload_cover {
-    margin-top: 40%;
-    margin-left: 20%;
+a.work-a :hover {
+    color: black;
+}
+
+i.fa-caret-left {
+    font-size: 20px;
+    padding-top: 0.25em;
+}
+
+i.fa-caret-left:focus {
+    color: #3F62A6;
+}
+
+/*----------------------------------*/
+
+/*            card-footer           */
+
+/*----------------------------------*/
+
+.card-footer {
+    padding: 1.25rem 1.25rem;
+    background-color: rgba(255, 255, 255, .03);
+    border-top: none;
+}
+
+/*----------------------------------*/
+
+/*            上傳                 */
+
+/*----------------------------------*/
+
+label.upload_cover {
+    position: relative;
+    left: 0.8em;
+    top: 0.15em;
 }
 
 #upload_input {
     display: none;
 }
 
-/* ON/OFF------------------- */
+/*----------------------------------*/
 
-.button-cover, .knobs, .layer {
+/*            scroll                */
+
+/*----------------------------------*/
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 0;
+    /* margin:80px 0 5px 0; */
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: rgb(143, 143, 143);
+}
+
+/*----------------------------------*/
+
+/*            ON/OFF 上方           */
+
+/*----------------------------------*/
+
+div.switch-move-top {
+    display: flex;
+    margin-left: auto;
+    margin-top: 0.1em;
+    margin-right: 1.5em;
+}
+
+label.switch-top {
+    position: relative;
+    display: inline-block;
+    top: 0.3em;
+    left: 1em;
+    margin-left: auto;
+    margin-right: 0.8em;
+    width: 45px;
+    height: 15px;
+}
+
+label.switch-top input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+span.slider-top {
     position: absolute;
+    cursor: pointer;
     top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
-    left: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
-.btn-onoff {
-    position: relative;
-    float: left;
-    margin-top: 15px;
-    width: 100px;
-    height: 50px;
-    overflow: hidden;
-}
-
-/* project-group裡面-- */
-
-.project-group .btn-onoff {
-    margin-left: 5%;
-}
-
-/* ------------------- */
-
-.btn-onoff.r, .btn-onoff.r .layer {
-    border-radius: 100px;
-}
-
-.checkbox {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 3;
-}
-
-.knobs {
-    z-index: 2;
-}
-
-.layer {
-    width: 100%;
-    background-color: #ebf7fc;
-    transition: 0.3s ease all;
-    z-index: 1;
-    border: 0.09rem #03a9f4 solid;
-}
-
-#button-9 .knobs:before, #button-9 .knobs:after, #button-9 .knobs span {
+span.slider-top:before {
     position: absolute;
-    top: 4px;
-    width: 20px;
-    height: 10px;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1;
-    padding: 10px 4px;
+    content: "";
+    height: 0.8em;
+    width: 0.8em;
+    top: 1px;
+    left: 0px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+span.slider-top {
+    background-color: #FFA356;
+}
+
+input:focus+span.slider-top {
+    box-shadow: 0 0 1px #FFA356;
+}
+
+input:checked+span.slider-top:before {
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
+}
+
+/* Rounded sliders */
+
+span.slider-top, span.round-top {
+    border-radius: 30px;
+}
+
+span.slider-top:before, span.round-top:before {
     border-radius: 50%;
-    transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-#button-9 .knobs:before {
-    content: 'YES';
-    left: 4px;
-    text-align: center;
-    font: normal normal bold 13px;
-    margin-left: 7%;
-    margin-top: 9%;
+/*----------------------------------*/
+
+/*            ON/OFF                */
+
+/*----------------------------------*/
+
+div.switch-move {
+    position: relative;
+    right: 3%;
+    display: flex;
+    align-items: center;
 }
 
-#button-9 .knobs:after {
-    content: 'NO';
-    margin-left: 62%;
-    font: normal normal bold 13px;
-    margin-top: 9%;
+label.switch {
+    position: relative;
+    display: inline-block;
+    top: 0.3em;
+    left: 1em;
+    margin-left: auto;
+    margin-right: 0.8em;
+    width: 2em;
+    height: 0.5em;
 }
 
-#button-9 .knobs:before, #button-9 .knobs:after {
-    color: #fff;
-    z-index: 2;
+label.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-#button-9 .knobs span {
-    top: 22%;
-    left: 9.5px;
-    width: 30px;
-    height: 30px;
-    background-color: #03a9f4;
-    z-index: 1;
+span.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
-#button-9 .checkbox:checked+.knobs:after {
-    margin-left: 62%;
+span.slider:before {
+    position: absolute;
+    content: "";
+    height: 1em;
+    width: 1em;
+    top: -4px;
+    left: -3px;
+    bottom: 0px;
+    background-color: #FFA356;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
-#button-9 .checkbox:checked+.knobs span {
-    left: 59px;
-    background-color: #F44336;
+input:checked+span.slider {
+    /* background-color: #FFA356; */
+    background-color: rgb(50, 47, 92);
 }
 
-#button-9 .checkbox:checked~.layer {
-    background-color: #FCE3E3;
-    border: 0.09rem #F44336 solid;
+input:focus+span.slider {
+    box-shadow: 0 0 1px #FFA356;
 }
 
-/* work-modal */
-
-.modal-content {
-    background-color: #fffac2;
+input:checked+span.slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
 }
 
-.text-left {
-    margin: 0 0 1% 0;
-    font-size: 1.5rem;
+/* Rounded sliders */
+
+span.slider, span.round {
+    border-radius: 30px;
 }
+
+span.slider:before, span.round:before {
+    border-radius: 50%;
+}
+
+/*----------------------------------*/
+
+/*     work-modal框架設定一版        */
+
+/*----------------------------------*/
+
+.modal-header {
+    background: #3F62A6;
+    color: #ffffff;
+}
+
+.modal-dialog {
+    margin: 1.75rem auto;
+}
+
+/*----------------------------------*/
+
+/*     work-modal內容調整  一版      */
+
+/*----------------------------------*/
 
 .modal-work-content {
-    width: auto;
-    padding: 1%;
-    margin: 0 0 1% 0;
-    color: #2F243A;
-    background: #fffbd5;
-    text-align: justify;
-    font: normal normal bold 1.3rem;
+    font-size: 1em;
+    padding: 0.5em;
     border-radius: 8px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #f2d293;
 }
 
-.modal-work-deadline, .modal-work-tag, .modal-work-principal, .modal-work-file {
+.modal-text-name {
+    margin-top: 0.5em;
+    font-size: 1.4em;
+}
+
+.modal-work-deadline {
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+.tag-edit {
     display: inline-block;
-    padding: 1%;
-    margin: 0 0 1% 0;
-    color: #ffffff;
-    background: #a96f57;
-    text-align: justify;
-    font: normal normal bold 1.3rem;
-    border-radius: 8px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #a96f57;
-    text-decoration: none;
 }
 
-.modal-work-file:hover {
-    color: #ffffff;
-    text-decoration: none;
+.badge-warning, .badge-info {
+    margin-bottom: 0.5em;
+    margin-right: 0.5em;
+    font-size: 1em;
 }
 
-.modal-edit {
-    width: 100%;
-    padding: 0.5rem;
-    color: #f3bb4c;
-    background: none;
-    text-align: middle;
-    font-size: 1.5rem;
-    border-radius: 10px;
-    border-style: solid;
-    border-color: #f3bb4c;
-    text-decoration: none;
+a.modal-work-file {
+    font-size: 1em;
+    display: flex;
+    align-items: center;
 }
 
-.modal-edit:hover {
-    color: #ffffff;
-    background: #f3bb4c;
-    text-decoration: none;
+.fa-file-archive {
+    margin-right: 1.2em;
+    font-size: 1.2em;
 }
+
+p.test {
+    display: flex;
+    align-self: center;
+}
+
+img.modal-img-photo {
+    border-radius: 50%;
+    height: 3em;
+    width: 3em;
+}
+
+.modal-img {
+    margin-left: 0.25em;
+}
+
+/*----------------------------------*/
+
+/*            @media                */
+
+/*----------------------------------*/
+
+@media screen and (min-width:1300px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 30%;
+        max-width: 30%;
+        margin-left: 1.5%;
+        margin-right: 1.5%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+@media screen and (max-width:1299px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 40%;
+        max-width: 40%;
+        margin-left: 4.75%;
+        margin-right: 4.75%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width:1099px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 40%;
+        max-width: 40%;
+        margin-left: 4.75%;
+        margin-right: 4.75%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+@media screen and (max-width:920px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 70%;
+        max-width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+@media screen and (max-width:875px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 70%;
+        max-width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+@media screen and (max-width:685px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 80%;
+        max-width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+@media screen and (max-width:550px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 95%;
+        max-width: 95%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+/* @media screen and (max-width:360px) {
+    div.mywork {
+        float: left;
+        box-sizing: border-box;
+        min-width: 20rem;
+        max-width: 20rem;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-bottom: 1em;
+        border-radius: 10px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+} */
+
+/* @media screen and (max-width:320px) {
+    div.mywork {
+        float: left;
+        box-sizing: border-box;
+        min-width: 18rem;
+        max-width: 18rem;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-bottom: 1em;
+        border-radius: 10px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    div.work-name {
+        display: inline-block;
+        font-size: 1em;
+        margin-left: 0.5em;
+        width: 5em;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    div.slider-left {
+        position: fixed;
+        float: left;
+        top: 3.5em;
+        left: 0;
+        margin-left: -100%;
+        width: 300px;
+        height: 100%;
+        z-index: 10000000;
+        background: rgb(219, 219, 219);
+    }
+} */

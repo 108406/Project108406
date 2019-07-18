@@ -10,17 +10,17 @@ router.get('/', function (req, res, next) {
         if (data == null) {
             res.render('error');  //導向錯誤頁面
         } else if (data.rows.length > 0) {
-            // var result = HandleProjectListWork(data);
-            var result = [];
-            for (var s = 0; s < data.rows.length; s++) {
-                result.push({
-                    "member_name": data.rows[s].member_name, 
-                    "work_id": data.rows[s].work_id, "work_title": data.rows[s].work_title,
-                    "list_id": data.rows[s].list_id, "list_name": data.rows[s].list_name,
-                    "project_id": data.rows[s].project_id, "project_name": data.rows[s].project_name
-                });
-            }
-            console.log(result);
+            var result = SetProjectResult(data);
+
+            // console.log("result: ", result);
+            // console.log("proj 1: ", result[0]);
+            // console.log("list 1: ", result[0].listwork);
+            // console.log("work 1: ", result[0].listwork[0].work[0]);
+
+            // console.log("proj 2: ", result[1]);
+            // console.log("list 2: ", result[1].listwork[0].list[0]);
+            // console.log("work 3: ", result[1].listwork[0].work[0]);
+
             res.render('mywork.ejs', { items: result });  //將資料傳給顯示頁面
         } else {
             res.render('notFound');  //導向找不到頁面
@@ -28,43 +28,81 @@ router.get('/', function (req, res, next) {
     })
 });
 
-// function HandleProjectListWork(data) {
-//     var result = [];
-//     for (i = 0; i < data.rows.length; i++) {
-//         if (i > 0) {
-//             if (data.rows[i].project_id = data.rows[i - 1].project_id) {
-//                 if (data.rows[i].list_id = data.rows[i - 1].list_id) {
+function SetProjectResult(data) {
+    var data;
+    var result = [];
+    var projectId = [];
 
-//                 } else {
-//                     return SetListResult(data.rows[i]);
-//                 }
-//             } else {
-//                 return SetProjectResult(data.rows[i]);
-//             }
-//         }
-//     }
-// }
+    for (var i = 0; i < data.rowCount; i++) {
+        var project = [];
 
-// function SetProjectResult(data) {
-//     var result = [];
-//     result.push({
-//         "member_name": data.member_name,
-//         "work_id": data.work_id, "work_title": data.work_title,
-//         "list_id": data.list_id, "list_name": data.list_name,
-//         "project_id": data.project_id, "project_name": data.project_name
-//     });
-//     return result;
-// }
+        if (!projectId.includes(data.rows[i].project_id)) {
+            projectId.push(data.rows[i].project_id);
+            project.push({
+                "project_id": data.rows[i].project_id,
+                "project_name": data.rows[i].project_name
+            });
+            var listwork = SetListResult(data, project);
+            result.push({ project, listwork });
+        }
+    }
 
-// function SetListResult(data) {
-//     var result = [];
-//     result.push({
-//         "member_name": data.member_name,
-//         "work_id": data.work_id, "work_title": data.work_title,
-//         "list_id": data.list_id, "list_name": data.list_name,
-//         "project_id": null, "project_name": data.project_name
-//     });
-//     return result;
-// }
+    return result;
+}
+
+function SetListResult(data, project) {
+    var data;
+    var project;
+    var result = [];
+    var listId = [];
+
+    for (var i = 0; i < project.length; i++) {
+        for (var j = 0; j < data.rowCount; j++) {
+            var list = [];
+
+            if (data.rows[j].project_id == project[i].project_id) {
+                if (!listId.includes(data.rows[j].list_id)) {
+                    listId.push(data.rows[j].list_id);
+                    list.push({
+                        "list_id": data.rows[j].list_id,
+                        "list_name": data.rows[j].list_name
+                    });
+                    work = SetWorkResult(data, list);
+                    result.push({ list, work });
+                }
+            }
+        }
+    }
+
+    return result;
+
+}
+
+function SetWorkResult(data, list) {
+    var data;
+    var list;
+    var result = [];
+    var workId = [];
+
+    for (var i = 0; i < list.length; i++) {
+        for (j = 0; j < data.rowCount; j++) {
+            if (data.rows[j].list_id == list[i].list_id) {
+                workId.push(data.rows[j].work_id);
+                result.push({
+                    "work_id": data.rows[j].work_id,
+                    "work_title": data.rows[j].work_title,
+                    "work_content": data.rows[j].work_content,
+                    "deadline": data.rows[j].deadline,
+                    "tag": data.rows[j].tag,
+                    "file": data.rows[j].file,
+                    "first_principal": data.rows[j].first_principal,
+                    "second_principal": data.rows[j].second_principal
+                });
+            }
+        }
+    }
+
+    return result;
+}
 
 module.exports = router;
