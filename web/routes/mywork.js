@@ -12,20 +12,15 @@ router.get('/', function (req, res, next) {
         } else if (data.rows.length > 0) {
             var result = SetProjectResult(data);
 
-            // console.log("result: ", result);
-            // console.log("proj 1: ", result[0]);
-            // console.log("list 1: ", result[0].listwork);
-            // console.log("work 1: ", result[0].listwork[0].work[0]);
+            console.log(result);
+            console.log(result[0].options);
 
-            // console.log("proj 2: ", result[1]);
-            // console.log("list 2: ", result[1].listwork[0].list[0]);
-            // console.log("work 3: ", result[1].listwork[0].work[0]);
-
-            res.render('mywork.ejs', { items: result });  //將資料傳給顯示頁面
+            // res.render('mywork.ejs', { "items": result });  //將資料傳給顯示頁面
         } else {
             res.render('notFound');  //導向找不到頁面
         }
     })
+
 });
 
 function SetProjectResult(data) {
@@ -43,11 +38,39 @@ function SetProjectResult(data) {
                 "project_name": data.rows[i].project_name
             });
             var listwork = SetListResult(data, project);
-            result.push({ project, listwork });
+            var options = SetOptions(project);
+            result.push({ project, listwork, options });
         }
     }
 
     return result;
+}
+
+function SetOptions(project) {
+    var project;
+    var options = [];
+
+    for (var i = 0; i < project.length; i++) {
+        view.listWithProject(project[i].project_id).then(data => {
+            if (data == null) {
+                console.log(error);
+            } else if (data.rowCount > 0) {
+                var Name = [];
+
+                for (var l = 0; l < data.rowCount; l++) {
+                    if (!Name.includes(data.rows[l].list_name)) {
+                        options.push(data.rows[l].list_name);
+                    }
+                }
+
+                console.log("222" + options);
+            } else {
+                console.log('notFound');
+            }
+        })
+    }
+
+    return options;
 }
 
 function SetListResult(data, project) {

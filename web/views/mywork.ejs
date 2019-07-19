@@ -60,7 +60,7 @@
                     <div class="card-body">
                         <div class="card-title">
                             <div class="slider-card-list">
-                                <div class="left-header-list">這是列表一</div>
+                                <div class="left-header-list" id="list_name"></div>
                             </div>
                         </div>
                     </div>
@@ -78,10 +78,9 @@
                         </div>
                         <div class="form-group">
                             <select class="form-control">
-                                <option>這是列表一</option>
-                                <option>這是列表二</option>
-                                <option>這是列表三</option>
-                                <option>這是列表四</option>
+                                <% for(var k=0; k<options.length; k++) { %>
+                                <option><%= options[k] %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
@@ -123,10 +122,8 @@
         <div class="content">
             <div class="typesetting">
                 <% for(var i=0; i<items.length; i++) { %>
-                <% console.log(items.length) %>
-                <% console.log(i) %>
                 <div class="card mywork">
-                    <% for(var p=0; i<items[i].project.length; i++) { %>
+                    <% for(var p=0; p<items[i].project.length; p++) { %>
                     <!-----------------------標題----------------------->
                     <div class="header">
                         <div class="text"><%= items[i].project[p].project_name %></div>
@@ -143,15 +140,13 @@
                         <!----------------列表---------------->
                         <% for(var lw=0; lw<items[i].listwork.length; lw++) { %>
                         <% for(var l=0; l<items[i].listwork[lw].list.length; l++) { %>
-                        <% console.log(lw) %>
-                        <% console.log(l) %>
-                        <a href="#" data-toggle="collapse" data-target="#list-work-1" aria-expanded="true"
+                        <a href="#" data-toggle="collapse" data-target=<%="#list-work-" + lw %> aria-expanded="true"
                             class="list-a" id="list-1">
                             <div class="card-list-1">
 
                                 <div class="list-header"><%= items[i].listwork[lw].list[l].list_name %></div>
                                 <button class="btn btn-link card-list-btn" type="button" data-toggle="collapse"
-                                    data-target="#list-work-1" aria-expanded="true">
+                                    data-target=<%="#list-work-" + lw %> aria-expanded="true">
                                     <div class="triangle-1"></div>
                                 </button>
                             </div>
@@ -159,13 +154,23 @@
                         <% } %>
                         <!----------------工作---------------->
                         <% for(var w=0; w<items[i].listwork[lw].work.length; w++) { %>
-                        <% console.log(w) %>
-                        <div class="collapse show work-total" id="list-work-1">
+                        <div class="collapse show work-total" id=<%="list-work-" + lw %>>
                             <div class="card-content">
-                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
-                                        class="fas fa-square"></i></button>
+                                <button class="btn btn-link btn-work" type="button" name="left-show"
+                                    onclick="<%= "javascript:SetListInfo('" + items[i].listwork[lw].list[0].list_name + "')" %>">
+                                    <i class="fas fa-square"></i></button>
                                 <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
-                                    onmousemove="removeClassType(this)">
+                                    onmousemove="removeClassType(this)" onclick="
+                                    <%= "javascript:SetWorkInfo('" + 
+                                    items[i].listwork[lw].work[w].work_id + "', '" + 
+                                    items[i].listwork[lw].work[w].work_title + "', '" + 
+                                    items[i].listwork[lw].work[w].work_content + "', '" + 
+                                    items[i].listwork[lw].work[w].deadline + "', '" + 
+                                    items[i].listwork[lw].work[w].tag + "', '" + 
+                                    items[i].listwork[lw].work[w].file + "', '" + 
+                                    items[i].listwork[lw].work[w].first_principal + "', '" + 
+                                    items[i].listwork[lw].work[w].second_principal + "')" %>
+                                    ">
                                     <%= items[i].listwork[lw].work[w].work_title %>
                                 </a>
                                 <div class="switch-move">
@@ -179,77 +184,9 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- <div class="card-content">
-                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
-                                        class="fas fa-square"></i></button>
-                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
-                                    onmousemove="removeClassType(this)">
-                                    我要測試我的資料太長會發生甚麼問題
-                                </a>
-                                <div class="switch-move">
-                                    <label class="upload_cover">
-                                        <input id="upload_input" type="file">
-                                        <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
-                                    </label>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div> -->
                         </div>
                         <% } %>
                         <% } %>
-                        <!----------------列表---------------->
-                        <!-- <a href="#" data-toggle="collapse" data-target="#list-work-2" aria-expanded="true"
-                            class="list-a" id="list-2">
-                            <div class="card-list-2">
-                                <div class="list-header">這是列表二</div>
-                                <button class="btn btn-link card-list-btn" type="button" data-toggle="collapse"
-                                    data-target="#list-work-2" aria-expanded="true">
-                                    <div class="triangle-2"></div>
-                                </button>
-                            </div>
-                        </a> -->
-                        <!----------------工作---------------->
-                        <!-- <div class="collapse show work-total" id="list-work-2">
-                            <div class="card-content">
-                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
-                                        class="fas fa-square"></i></button>
-                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
-                                    onmousemove="removeClassType(this)">
-                                    我要測試我的資料太長會發生甚麼問題
-                                </a>
-                                <div class="switch-move">
-                                    <label class="upload_cover">
-                                        <input id="upload_input" type="file">
-                                        <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
-                                    </label>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
-                                        class="fas fa-square"></i></button>
-                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
-                                    onmousemove="removeClassType(this)">
-                                    我要測試我的資料太長會發生甚麼問題
-                                </a>
-                                <div class="switch-move">
-                                    <label class="upload_cover">
-                                        <input id="upload_input" type="file">
-                                        <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
-                                    </label>
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="card-footer">
                     </div>
@@ -258,13 +195,66 @@
                 <% } %>
             </div>
         </div>
+        <!----------------------- Modal ----------------------->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel work_id">work title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color: #ffffff;">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-text">
+                            <p class="modal-text-name"></p>
+                        </div>
+                        <p class="modal-work-content" id="work_content">
+                        </p>
+                        <hr>
+                        <p class="modal-text-name">截止日期</p>
+                        <p class="modal-work-deadline" id="deadline"></p>
+                        <hr>
+                        <p class="modal-text-name">標籤</p>
+                        <div class="tag-edit">
+                            <a href="#" class="badge badge-warning" id="tag"></a>
+                        </div>
+                        <hr>
+                        <p class="modal-text-name">檔案</p>
+                        <a class="modal-work-file" download href="./zip/測試資料夾.zip">
+                            <i class="fas fa-file-archive fa-lg" id="file"></i>
+                        </a>
+                        <hr>
+                        <p class="modal-text-name">負責人</p>
+                        <div class="modal-img">
+                            <img src="images/gray-cat.png" class="modal-img-photo" id="first_principal">
+                            <img src="images/gray-cat.png" class="modal-img-photo" id="second_principal">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">編輯</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-----------------------------------scrpit-------------------------------------------->
-    <!-- <script>
-        function SetWorkInfo(workId, workTitle, workConten, deadline, tag, file, firstPrincipal, secondPrincipal) {
-            $('#work_id').val(workId);
-        }        
-    </script> -->
+    <script>
+        function SetWorkInfo(workId, workTitle, workContent, deadline, tag, file, firstPrincipal, secondPrincipal) {
+            $('#work_id').text(workId);
+            $('#work_title').text(workTitle);
+            $('#work_content').text(workContent);
+            $('#deadline').text(deadline);
+            $('#tag').text(tag);
+            $('#file').text(file);
+            $('#first_principal').text(firstPrincipal);
+            $('#second_principal').text(secondPrincipal);
+        }
+        function SetListInfo(listName) {
+            $('#list_name').text(listName);
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
