@@ -5,14 +5,14 @@ const query = require('./asyncDB');
 
 
 //------------------------------------------
-// 用list_serno查詢
+// 用list_id查詢
 //------------------------------------------
-var fetchList = async function (list_serno) {
+var fetchList = async function (list_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('select * from list where list_serno = $1', [list_serno])
+    await query('select * from list where list_id = $1', [list_id])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案資料(物件)
@@ -59,12 +59,12 @@ var addList = async function (list_name) {
 //------------------------------------------
 // 刪除列表資料
 //------------------------------------------
-var deleteList = async function (list_serno) {
+var deleteList = async function (list_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('delete from list where list_serno = $1', [list_serno])
+    await query('delete from list where list_id = $1', [list_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -85,12 +85,12 @@ var deleteList = async function (list_serno) {
 //------------------------------------------
 // 更改列表名稱
 //------------------------------------------
-var updateListName = async function (list_serno, list_name) {
+var updateListName = async function (list_id, list_name) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('update list set list_name = $2 where list_serno = $1', [list_serno, list_name])
+    await query('update list set list_name = $2 where list_id = $1', [list_id, list_name])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功

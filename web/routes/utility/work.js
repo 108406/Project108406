@@ -5,14 +5,14 @@ const query = require('./asyncDB');
 
 
 //------------------------------------------
-// 用work_serno查詢
+// 用work_id查詢
 //------------------------------------------
-var displayWork = async function (work_serno) {
+var displayWork = async function (work_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('select * from work where work_serno = $1', [work_serno])
+    await query('select * from work where work_id = $1', [work_id])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案資料(物件)
@@ -31,14 +31,14 @@ var displayWork = async function (work_serno) {
 
 
 //------------------------------------------
-// 用work_serno顯示work_title
+// 用work_id顯示work_title
 //------------------------------------------
-var displayWorkTitle = async function (work_serno) {
+var displayWorkTitle = async function (work_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('select * from work where work_serno = $1', [work_serno])
+    await query('select * from work where work_id = $1', [work_id])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案資料(物件)
@@ -86,12 +86,12 @@ var addWork = async function (work_add) {
 //------------------------------------------
 // 刪除工作資料
 //------------------------------------------
-var deleteWork = async function (work_serno) {
+var deleteWork = async function (work_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('delete from work where work_serno = $1', [work_serno])
+    await query('delete from work where work_id = $1', [work_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -117,8 +117,8 @@ var updateWork = async function (work_update) {
     var result = [];
 
     //讀取資料庫
-    await query('update work set work_title = $2, work_content = $3, deadline = $4, tag = $5, file = $6, first_principal = $7, second_principal = $8 where work_serno = $1'
-    , [work_update.work_serno, work_update.work_title, work_update.work_content, work_update.deadline, work_update.tag, work_update.file, work_update.first_principal, work_update.second_principal])
+    await query('update work set work_title = $2, work_content = $3, deadline = $4, tag = $5, file = $6, first_principal = $7, second_principal = $8 where work_id = $1'
+    , [work_update.work_id, work_update.work_title, work_update.work_content, work_update.deadline, work_update.tag, work_update.file, work_update.first_principal, work_update.second_principal])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -137,14 +137,14 @@ var updateWork = async function (work_update) {
 
 
 //------------------------------------------
-// 用work_serno查詢
+// 用work_id查詢
 //------------------------------------------
-var displayWrokPrincipal = async function (work_serno) {
+var displayWrokPrincipal = async function (work_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('select * from work where work_serno = $1', [work_serno])
+    await query('select * from work where work_id = $1', [work_id])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案資料(物件)
