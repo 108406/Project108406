@@ -17,6 +17,7 @@ var member_update = require('./routes/member_update');
 var member_delete = require('./routes/member_delete');
 var project = require('./routes/project');
 var mywork = require('./routes/mywork');
+var mywork_updateListWork = require('./routes/mywork_updateListWork');
 
 var app = express();
 
@@ -47,6 +48,7 @@ app.use('/member/update', member_update);
 app.use('/member/delete', member_delete);
 app.use('/project', project);
 app.use('/mywork', mywork);
+app.use('/mywork/updateListWork', mywork_updateListWork);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

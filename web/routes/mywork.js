@@ -55,7 +55,10 @@ function SetOptions(data, project_id) {
         if (data.rows[i].project_id == project_id) {    //確認list_id不重複
             if (!id.includes(data.rows[i].list_id)) {
                 id.push(data.rows[i].list_id);
-                options.push(data.rows[i].list_name);
+                options.push({
+                    "list_id": data.rows[i].list_id,
+                    "list_name": data.rows[i].list_name
+                });
             }
         }
     }
@@ -77,6 +80,7 @@ function SetListResult(data, project_id) {
                 if (data.rows[j].work_id != null) {         //確認列表裡有工作
                     listId.push(data.rows[j].list_id);
                     list.push({
+                        "listwork_serno": data.rows[j].listwork_serno,
                         "list_id": data.rows[j].list_id,
                         "list_name": data.rows[j].list_name
                     });

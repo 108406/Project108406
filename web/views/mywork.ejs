@@ -28,13 +28,13 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav">
                 <li>
-                    <a href="#"> <i class="far fa-user fa-lg"></i>會員</a>
+                    <a href="member"> <i class="far fa-user fa-lg"></i>會員</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-book fa-lg"></i>計畫</a>
+                    <a href="content"><i class="fas fa-book fa-lg"></i>計畫</a>
                 </li>
                 <li>
-                    <a href="#"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                    <a href="mywork"> <i class="far fa-edit fa-lg"></i>我的工作</a>
                 </li>
             </ul>
             <form class="search">
@@ -85,7 +85,8 @@
             </div>
             <form class="slider-btn">
                 <button type="button" class="btn btn-secondary button-submit" id="return">返回</button>
-                <button type="button" class="btn btn-danger button-submit" style="margin-left:1em;">確定</button>
+                <button type="button" class="btn btn-danger button-submit" style="margin-left:1em;"
+                    onclick="javascript:UpdateListWork();">確定</button>
             </form>
         </div>
         <!-----------------------新手教學----------------------->
@@ -152,9 +153,10 @@
                         <% for(var w=0; w<items[i].listwork[lw].work.length; w++) { %>
                         <div class="collapse show work-total" id=<%="list-work-" + lw %>>
                             <div class="card-content">
-                                <button class="btn btn-link btn-work" type="button" name="left-show" onclick="<%= "javascript:SetListInfo('" + 
-                                    items[i].options + "', '" + 
+                                <button class="btn btn-link btn-work" type="button" name="left-show" onclick="<%= "javascript:SetListInfo(" + 
+                                    items[i].options + ", '" + 
                                     items[i].listwork[lw].list[0].list_name + "')" %>">
+                                    <% console.log(items[i].options) %>
                                     <i class="fas fa-square"></i></button>
                                 <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
                                     onmousemove="removeClassType(this)" onclick="
@@ -248,13 +250,18 @@
             $('#first_principal').text(firstPrincipal);
             $('#second_principal').text(secondPrincipal);
         }
+
         function SetListInfo(options, listName) {
+            alert(1);
             var left = $('#slider-left').css("left");
-            var opt = options.split(",");
-            
+            console.log(typeof(options));
+            alert(options[0]);
+
             if (left == "0px") {
                 for (var i = 0; i < opt.length; i++) {
-                    $('#options').append("<option>" + opt[i] + "</option>")
+                    if (opt[i] != listName) {
+                        $('#options').append("<option>" + opt[i] + "</option>");
+                    }
                 }
                 $('#list_name').text(listName);
             } else {

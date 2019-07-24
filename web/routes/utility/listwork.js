@@ -109,5 +109,31 @@ var deleteListWork = async function (listwork_serno) {
 //------------------------------------------
 
 
+//------------------------------------------
+// 更改列表工作
+//------------------------------------------
+var updateListWork = async function (listwork_serno, list_id) {
+    //存放結果
+    var result = [];
+
+    //讀取資料庫
+    await query('update listwork set list_id = $2 where listwork_serno = $1', [listwork_serno, list_id])
+        .then((data) => {
+            if (data.rowCount > 0) {
+                result = true;
+            } else {
+                result = false;
+            }
+        }, (error) => {
+            result = false;  //執行錯誤
+            console.log(error)
+        });
+
+    //回傳執行結果
+    return result;
+}
+//------------------------------------------
+
+
 //匯入
-module.exports = { fetchListWorkL, fetchListWorkW, addListWork, deleteListWork }
+module.exports = { fetchListWorkL, fetchListWorkW, addListWork, deleteListWork, updateListWork }
