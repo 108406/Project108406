@@ -8,7 +8,7 @@ const member = require('./utility/member');
 router.get('/', function(req, res, next) {
     member.displayMember('A001').then(data => {
         if(data){
-            res.render('member.ejs', {items:data});  //將資料傳給顯示頁面            
+            res.render('member.ejs', {items:data, account:'A001'});  //將資料傳給顯示頁面            
         }else{
             res.render('notFound');  //導向找不到頁面
         }  

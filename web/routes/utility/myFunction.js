@@ -4,7 +4,7 @@
 var SeparateDate = function(date) {
     var result = [6];
     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];  
-    date = date.substring(4, date.length);
+    date = (date + "").substring(4, date.length);
     for (var i = 0; i < month.length; i ++) {
         if (date.substring(0,3).toLowerCase() == month[i].toLowerCase()) {
             result[1] = i + 1;
@@ -24,5 +24,18 @@ var SeparateDate = function(date) {
     return result;
 }
 
+var IsAdateNotArrived = function(date1, date2) {
+    date1 = SeparateDate(date1);
+    date2 = SeparateDate(date2);
+    for (var i = 0; i < 6; i++) {
+        if (date1[i] > date2[i]) {
+            return true;
+        } else if (date1[i] < date2[i]) {
+            return false;
+        }
+    }
+    return false;
+}
 
-module.exports = {SeparateDate};
+
+module.exports = {SeparateDate, IsAdateNotArrived};

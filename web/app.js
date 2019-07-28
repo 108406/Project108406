@@ -16,7 +16,8 @@ var member_photo = require('./routes/member_photo');
 var member_update = require('./routes/member_update');
 var member_delete = require('./routes/member_delete');
 var project = require('./routes/project');
-
+var mywork = require('./routes/mywork');
+var login = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -34,6 +35,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.use('/login',login);
+app.use('/mywork',mywork);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/content', content);

@@ -86,12 +86,12 @@ var deleteProject = async function (project_id) {
 //------------------------------------------
 // 更改專案名稱
 //------------------------------------------
-var updateProjectName = async function (project_id, project_name, project_password) {
+var updateProjectName = async function (project_id, project_name, project_password, project_startdate, project_enddate) {
     //存放結果
     var result = [];
-
+    console.log(project_id + ', ' + project_name + ', ' + project_password + ', ' + project_startdate + ', ' + project_enddate)
     //讀取資料庫
-    await query('update project set project_name = $2, project_password = $3 where project_id = $1', [project_id, project_name, project_password])
+    await query('update project set project_name = $2, project_password = $3, project_startdate = $4, project_enddate = $5 where project_id = $1', [project_id, project_name, project_password, project_startdate, project_enddate])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功

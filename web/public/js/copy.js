@@ -1,6 +1,6 @@
 function myFunction() {
     /* Get the text field */
-    var copyText = document.getElementById("project_id");
+    var copyText = document.getElementById("copy");
   
     /* Select the text field */
     copyText.select();
