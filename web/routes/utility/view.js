@@ -31,7 +31,7 @@ var projectAllData = async function (project_id) {
             result = data.rows;  //成功
             // console.log(data.rows);
         }, (error) => {
-            result = false;  //執行錯誤
+            result = 'failed';  //執行錯誤
             console.log(error)
         });
 

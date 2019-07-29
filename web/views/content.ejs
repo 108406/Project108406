@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <!--------------------------navbar-------------------------------->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -80,7 +79,7 @@
                 <% if (items[i].project_status == 0) {%>
                 <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
                     <div class="card-color-body">
-                        <a class="card-link" href="plan_work">
+                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
                             <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
                             <div class="block-card">
                             </div>
@@ -133,7 +132,7 @@
                 <% if (items[i].project_status == 1) {%>
                 <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
                     <div class="card-color-body-ing">
-                        <a class="card-link" href="#" onclick="cons();">
+                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
                             <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
                             <div class="block-card">
                             </div>
@@ -179,7 +178,7 @@
                 <% if (items[i].project_status == 2) {%>
                 <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
                     <div class="card-color-body-end">
-                        <a class="card-link" href="#">
+                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
                             <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
                             <div class="block-card">
                             </div>
@@ -348,6 +347,11 @@
             $('#project_name').val(projectName);
             $('#project_startdate').val(projectStartdate);
             $('#project_enddate').val(projectEnddate);
+        }
+
+        function IntoProject(project_id) {
+            document.cookie = 'projectid=' + project_id;
+            window.location.href = window.location.origin + '/content/plan'
         }
 
         function UpdateProject() {

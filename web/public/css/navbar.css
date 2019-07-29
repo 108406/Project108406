@@ -10,6 +10,10 @@ html, body {
     font-family: 'Noto Serif TC', serif;
 }
 
+a{
+    cursor: pointer;
+}
+
 /*----------------------------------*/
 
 /*            navbar                */
