@@ -16,7 +16,6 @@ router.get('/', function (req, res, next) {
                 var lists = SetList(data);
                 var listwork = SetListWork(data, lists);
                 var works = SetWork(data);
-                console.log('??????')
                 console.log(projectPermission)
                 console.log(teammeber)
                 console.log(adminpush)
@@ -50,6 +49,8 @@ function SetTeammember(data) {
         if (!userId.includes(data[i].user_id)) {
             userId.push(data[i].user_id);
             user.push(data[i].user_id);
+            user.push(data[i].member_name);
+            user.push(data[i].photo);
             user.push(data[i].isadmin);
             result.push(user);
         }

@@ -64,40 +64,26 @@
 
         <!-----------------------------組會員&管理者--------------------------------->
         <div class="member-bottom" id="member">
-
             <div class="administrator-total">
-
                 <div class="plan-name">
                     我的計畫
                 </div>
-
                 <div class="hr-set"></div>
-
                 <span class="admin-name">管理者</span>
-
             </div>
-
             <div class="administrator-img" id="admin-move">
-
                 <img src="/imgs/gray-cat.png" class="img-photo">
                 <img src="/imgs/gray-cat.png" class="img-photo">
                 <img src="/imgs/gray-cat.png" class="img-photo">
-
-
             </div>
-
             <div class="hr-set">
                 <div class="hightline"></div>
             </div>
-
             <div class="member-total">
-
                 <span class="admin-name">成員</span>
-
             </div>
 
             <div class="member-img" id="member-move">
-
                 <div class="member-img-trash">
                     <img src="/imgs/gray-cat.png" class="img-photo">
                     <a href="#"><i class="fas fa-times-circle member-delete-icon"></i></a>
@@ -110,7 +96,6 @@
                     <img src="/imgs/gray-cat.png" class="img-photo">
                     <a href="#"><i class="fas fa-times-circle member-delete-icon"></i></a>
                 </div>
-
             </div>
 
             <div class="admin-set">
@@ -119,55 +104,40 @@
                 <button class="btn btn-light btn-admin-set" id="member-delete">刪除<i class="fas fa-trash-alt fa-lg"
                         style="padding-left:5px;"></i></button>
             </div>
-
         </div>
         <!-----------------------------bottom結束--------------------------------->
         <!--列表-->
         <div class="deck" id="work-total-move">
-
+            <!-- 列表開始 -->
             <div class="work-total">
-
                 <div class="work-header">
-
                     <input type="text" class="form-control input-style" placeholder="尚未開始">
-
                     <div class="drpdown">
-
                         <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
-
                         <div class="dropdown-menu" style="min-width: 12em !important;"
                             aria-labelledby="dropdownMenuLink">
                             <div class="drop-right-header-title">
                                 <span class="drop-right-title">列表動作</span>
                             </div>
-
                             <div class="dropdown-right-content">
                                 <div>
                                     <div>
                                         <ul class="dropdown-right-list">
-
                                             <li><a href="#">新增卡片</a></li>
                                             <li><a href="#">刪除這個列表的所有卡片</a></li>
                                             <li><a href="#">封存這個列表</a></li>
                                         </ul>
-
                                         <ul class="dropdown-right-list" data-stopPropagation="true">
-
                                             <div class="dropdown-list-move">
                                                 <li><a href="#" id="dropdown-list-show-1">移動列表</a></li>
-
                                                 <div class="dropdown-content-list">
-
                                                     <a href="#" class="add-label-icon-a" id="move-list-off-1"><i
                                                             class="fas fa-times close-list-icon"></i></a>
-
                                                     <div class="move-list">
-
                                                         <div class="form-grid">
-
                                                             <div class="button-drop-move">
                                                                 <span class="move-label">看板</span>
                                                                 <span class="move-value" id="move-list-value"
@@ -180,11 +150,8 @@
                                                                     </optgroup>
                                                                 </select>
                                                             </div>
-
                                                         </div>
-
                                                         <div class="form-grid">
-
                                                             <div class="button-drop-move">
                                                                 <span class="move-label">位置</span>
                                                                 <span class="move-value" id="drop-move-get-position"
@@ -195,38 +162,23 @@
                                                                     <option>2</option>
                                                                 </select>
                                                             </div>
-
                                                         </div>
-
                                                         <button class="move-btn">移動</button>
-
                                                     </div>
-
                                                 </div>
-
                                             </div>
-
                                         </ul>
-
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="work-body" id="work-body-move-1">
-
 
                     <!--卡片-->
                     <div class="card work-card" id="card-1">
-
                         <div class="work-card-header">
-
                             <span class="card-label-1"><span class="label-text"
                                     onmousemove="removeClassType(this)">需要研究</span></span>
                             <span class="card-label-2"><span class="label-text"
@@ -235,84 +187,18 @@
                                     onmousemove="removeClassType(this)">架設上去</span></span>
                             <span class="card-label-1"><span class="label-text"
                                     onmousemove="removeClassType(this)">node.js</span></span>
-
                         </div>
-
                         <div class="work-name" data-toggle="modal" data-target="#show-modal">
                             使用vue.js
                         </div>
-
                         <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
-
                             <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
-
                             <div class="work-img">
                                 <img src="/imgs/gray-cat.png" class="work-img-photo">
                             </div>
-
                         </div>
-
                     </div>
-
-                    <div class="card work-card">
-
-                        <div class="work-card-header">
-
-                            <span class="card-label-1"><span class="label-text"
-                                    onmousemove="removeClassType(this)">html</span></span>
-                            <span class="card-label-2"><span class="label-text"
-                                    onmousemove="removeClassType(this)">jquery</span></span>
-                            <span class="card-label-3"><span class="label-text"
-                                    onmousemove="removeClassType(this)">css</span></span>
-                            <span class="card-label-1"><span class="label-text"
-                                    onmousemove="removeClassType(this)">javascript</span></span>
-                            <span class="card-label-2"><span class="label-text"
-                                    onmousemove="removeClassType(this)">bootstrap</span></span>
-                            <span class="card-label-3"><span class="label-text"
-                                    onmousemove="removeClassType(this)">jqueryUI</span></span>
-                        </div>
-
-                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
-                            做出部落格的網站
-                        </div>
-
-                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
-
-                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
-
-                            <div class="work-img">
-                                <img src="/imgs/gray-cat.png" class="work-img-photo">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="card work-card">
-
-                        <div class="work-card-header">
-
-                            <span class="card-label-1"><span class="label-text"
-                                    onmousemove="removeClassType(this)">UI設計</span></span>
-
-                        </div>
-
-                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
-                            UI設計
-                        </div>
-
-                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
-
-                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
-
-                            <div class="work-img">
-                                <img src="/imgs/gray-cat.png" class="work-img-photo">
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!---->
+                    <!--卡片-->
 
 
                     <!--點選新增卡片出現的框架##可以刪除-->
@@ -335,184 +221,8 @@
                 <!---->
 
             </div>
+            <!-- 列表結束 -->
 
-            <div class="work-total">
-
-                <div class="work-header">
-
-                    <input type="text" class="form-control input-style" placeholder="執行中">
-
-                    <div class="drodown">
-
-                        <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </button>
-
-                        <div class="dropdown-menu" style="min-width: 12em !important;"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="drop-right-header-title">
-                                <span class="drop-right-title">列表動作</span>
-                            </div>
-
-                            <div class="dropdown-right-content">
-                                <div>
-                                    <div>
-                                        <ul class="dropdown-right-list">
-
-                                            <li><a href="#">新增卡片</a></li>
-                                            <li><a href="#">刪除這個列表的所有卡片</a></li>
-                                            <li><a href="#">封存這個列表</a></li>
-                                        </ul>
-
-                                        <ul class="dropdown-right-list" data-stopPropagation="true">
-
-                                            <div class="dropdown-list-move">
-                                                <li><a class="js-move-list" href="#" id="dropdown-list-show-2">移動列表</a>
-                                                </li>
-
-                                                <div class="dropdown-content-list">
-
-                                                    <a href="#" class="add-label-icon-a" id="move-list-off-2"><i
-                                                            class="fas fa-times close-list-icon"></i></a>
-
-                                                    <div class="move-list">
-
-                                                        <div class="form-grid">
-
-                                                            <div class="button-drop-move">
-                                                                <span class="move-label">看板</span>
-                                                                <span class="move-value" id="move-list-value"
-                                                                    onmousemove="removeClassType(this)">個人事項</span>
-                                                                <select id="drop-list-value"
-                                                                    onchange="move_list_Value(this.id)">
-                                                                    <optgroup label="計畫">
-                                                                        <option>我的計畫</option>
-                                                                        <option>我的計畫2</option>
-                                                                    </optgroup>
-                                                                </select>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="form-grid">
-
-                                                            <div class="button-drop-move">
-                                                                <span class="move-label">位置</span>
-                                                                <span class="move-value" id="drop-move-get-position"
-                                                                    onmousemove="removeClassType(this)">1</span>
-                                                                <select id="drop-position-value"
-                                                                    onchange="drop_position_value(this.id)">
-                                                                    <option>1</option>
-                                                                    <option>2</option>
-                                                                </select>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <button class="move-btn">移動</button>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="work-body" id="work-body-move-2">
-
-
-                    <!--卡片-->
-                    <div class="card work-card">
-
-                        <div class="work-card-header">
-
-                            <span class="card-label-1"><span class="label-text"
-                                    onmousemove="removeClassType(this)">需要測試</span></span>
-                        </div>
-
-                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
-                            javascript問題待修正
-                        </div>
-
-                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
-
-                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
-
-                            <div class="work-img">
-                                <img src="/imgs/gray-cat.png" class="work-img-photo">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="card work-card">
-
-                        <div class="work-card-header">
-
-                            <span class="card-label-1"><span class="label-text"
-                                    onmousemove="removeClassType(this)">顏色配色</span></span>
-                            <span class="card-label-2"><span class="label-text"
-                                    onmousemove="removeClassType(this)">使用者想法</span></span>
-                            <span class="card-label-3"><span class="label-text"
-                                    onmousemove="removeClassType(this)">創意巧思</span></span>
-
-                        </div>
-
-                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
-                            顏色配色、使用者想法、創意巧思
-                        </div>
-
-                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
-
-                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
-
-                            <div class="work-img">
-                                <img src="/imgs/gray-cat.png" class="work-img-photo">
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!---->
-
-
-                    <!--點選新增卡片出現的框架##可以刪除-->
-                    <div class="card add-card" id="add-card-2">
-                        <textarea class="card-add-text" id="card-textarea-2" placeholder="為這張卡片輸入標題..."></textarea>
-                    </div>
-                    <!---->
-                </div>
-                <!---->
-
-                <!--列表尾部-->
-                <div class="card-footer">
-                    <a href="#" class="a-footer" id="add-card-textarea-2">
-                        <div class="footer-name">
-                            <i class="fas fa-plus"></i>
-                            新增另外一張卡片
-                        </div>
-                    </a>
-                </div>
-                <!---->
-
-            </div>
-
-
-            <!---->
             <!--新增列表-->
             <div class="add-list">
 
@@ -1356,116 +1066,78 @@
                         <h5 class="modal-title">前三公告</h5>
                         <div class="admin-icon-set">
                             <div class="plus-square-admin">
-
                                 <a href="#"><i class="far fa-plus-square fa-lg" data-toggle="modal"
                                         data-target="#admin-text"></i></a>
-
                             </div>
-
                             <div class="double-down-member">
-
                                 <a href="#" id="admin-text-show"><i class="fas fa-angle-double-down fa-lg"></i></a>
-
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-body">
-
                         <div class="show-messenge">
-
                             <div class="messenge">
-
                                 <div class="messenge-text">
                                     請各位負責好自己的部分，謝謝。
                                 </div>
-
                                 <div class="time-show">
                                     2019/07/25 下午03:47
                                 </div>
-
                             </div>
-
                             <hr class="hr-admin">
-
-                        </div>
-                        <div class="show-messenge">
-
-                            <div class="messenge">
-
-                                <div class="messenge-text">
-                                    請各位負責好自己的部分，謝謝。
-                                </div>
-
-                                <div class="time-show">
-                                    2019/07/25 下午03:47
-                                </div>
-
-                            </div>
-
-                            <hr class="hr-admin">
-
                         </div>
 
                         <div class="show-messenge">
-
                             <div class="messenge">
-
                                 <div class="messenge-text">
                                     請各位負責好自己的部分，謝謝。
                                 </div>
-
                                 <div class="time-show">
                                     2019/07/25 下午03:47
                                 </div>
-
                             </div>
-
                             <hr class="hr-admin">
+                        </div>
 
+                        <div class="show-messenge">
+                            <div class="messenge">
+                                <div class="messenge-text">
+                                    請各位負責好自己的部分，謝謝。
+                                </div>
+                                <div class="time-show">
+                                    2019/07/25 下午03:47
+                                </div>
+                            </div>
+                            <hr class="hr-admin">
                         </div>
 
                         <div class="show-messenge" name="modal-messenge-show">
-
                             <div class="messenge">
-
                                 <div class="messenge-text">
                                     請各位負責好自己的部分，謝謝。
                                 </div>
-
                                 <div class="time-show">
                                     2019/07/25 下午03:47
                                 </div>
-
                             </div>
-
                             <hr class="hr-admin">
-
                         </div>
 
                         <div class="show-messenge" name="modal-messenge-show">
-
                             <div class="messenge">
-
                                 <div class="messenge-text">
                                     請各位負責好自己的部分，謝謝。
                                 </div>
-
                                 <div class="time-show">
                                     2019/07/25 下午03:47
                                 </div>
-
                             </div>
-
                             <hr class="hr-admin">
-
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
         <!---->
         <!-- Modal組長新增訊息-->
@@ -1504,8 +1176,8 @@
 
     <!-----------------------------------scrpit-------------------------------------------->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <!-- <script src="./js/jquery.ui.touch-punch.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -1524,13 +1196,13 @@
     <script src="/js/dropdown-list.js"></script>
     <script src="/js/modal-delete.js"></script>
     <script src="/js/admin_messenge.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!------------------------------------------------------------------------------------->
