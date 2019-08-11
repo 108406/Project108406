@@ -56,12 +56,12 @@ var fetchProjectListL = async function (project_id) {
 //------------------------------------------
 // 新增專案列表資料
 //------------------------------------------
-var addProjectList = async function (project_id, list_serno) {
+var addProjectList = async function (project_id, list_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('insert into projectlist (project_id, list_serno) values ($1, $2)', [project_id, list_serno])
+    await query('insert into projectlist (project_id, list_id) values ($1, $2)', [project_id, list_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功

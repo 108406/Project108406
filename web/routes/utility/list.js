@@ -33,12 +33,12 @@ var fetchList = async function (list_serno) {
 //------------------------------------------
 // 新增列表資料
 //------------------------------------------
-var addList = async function (list_name) {
+var addList = async function (list_id, list_name) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('insert into list (list_name) values ($1)', [list_name])
+    await query('insert into list (list_id, list_name) values ($1, $2)', [list_id, list_name])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功

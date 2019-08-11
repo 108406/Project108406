@@ -135,7 +135,6 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .card-link:hover {
@@ -143,7 +142,7 @@ a:hover {
     text-decoration: none;
 }
 
-.card .card-title {
+.card-title {
     width:85%;
     position: relative;
     top:0.5em;
@@ -222,11 +221,17 @@ a:hover {
     color: black;
 }
 .ui-state-hover{
-    background: rgba(206, 201, 202, 0.397);   
-    font-size: 1.2em;
+    background: rgba(214, 214, 214, 0.397);   
+    font-size: 1.1em;
 }
 /**-------專案設定-----------**/
-
+.modal-body {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+    margin: 0 2em;
+}
 .modal-btn {
     background: rgba(68, 78, 226, 0.788);
     color: #ffffff;

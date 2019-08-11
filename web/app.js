@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var content = require('./routes/content');
 var content_updateProjectName = require('./routes/content_updateProjectName');
 var content_addProject = require('./routes/content_addProject');
+var plan = require('./routes/plan');
 var member = require('./routes/member');
 var member_linebotPush = require('./routes/member_linebotPush');
 var member_photo = require('./routes/member_photo');
@@ -18,6 +19,8 @@ var member_delete = require('./routes/member_delete');
 var project = require('./routes/project');
 var mywork = require('./routes/mywork');
 var login = require('./routes/login');
+var forgot = require('./routes/forgot');
+var register = require('./routes/register');
 var app = express();
 
 // view engine setup
@@ -36,12 +39,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/login',login);
+app.use('/forgot',forgot);
+app.use('/register',register);
 app.use('/mywork',mywork);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/content', content);
 app.use('/content/updateProjectName', content_updateProjectName);
 app.use('/content/addProject', content_addProject);
+app.use('/content/plan', plan);
 app.use('/member', member);
 app.use('/member/linebotPush', member_linebotPush);
 app.use('/member/photo', member_photo);

@@ -5,7 +5,7 @@ const member = require('./utility/member');
 
 //接收GET請求
 router.post('/', function(req, res, next) {        
-    member.updateMemberPhoto('A001', req.body.photoContent).then(data => {
+    member.updateMemberPhoto(req.cookies.userid, req.body.photoContent).then(data => {
         if (data) {
             // 將使用者上傳的檔案匯入伺服器端
             // var path = 'public/imgs/';
