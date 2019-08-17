@@ -16,6 +16,7 @@ router.get('/', function (req, res, next) {
                 var lists = SetList(data);
                 var listwork = SetListWork(data, lists);
                 var works = SetWork(data);
+<<<<<<< HEAD
                 var tags = SetTag(data);
                 console.log(data[0].project_name);
                 console.log(projectPermission);
@@ -27,6 +28,16 @@ router.get('/', function (req, res, next) {
                 console.log(tags);
                 res.render('plan.ejs', {project_name:data[0].project_name, projectPermission:projectPermission, teammember:teammeber,
                     adminpush:adminpush, lists:lists, listwork:listwork, works:works, tags:tags});
+=======
+                console.log(projectPermission)
+                console.log(teammeber)
+                console.log(adminpush)
+                console.log(lists)
+                console.log(listwork)
+                console.log(works)
+                res.render('plan.ejs', {projectPermission:projectPermission, teammeber:teammeber,
+                    adminpush:adminpush, lists:lists, listwork:listwork, works:works});
+>>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
             } 
         })
     } else {
@@ -126,12 +137,16 @@ function SetWork(data) {
                 work.push(data[i].work_title);
                 work.push(data[i].work_content);
                 work.push(data[i].deadline);
+<<<<<<< HEAD
                 work.push(data[i].tag_id1);
                 work.push(data[i].tag_id2);
                 work.push(data[i].tag_id3);
                 work.push(data[i].tag_id4);
                 work.push(data[i].tag_id5);
                 work.push(data[i].tag_id6);
+=======
+                work.push(data[i].tag);
+>>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                 work.push(data[i].file);
                 work.push(data[i].first_principal);
                 work.push(data[i].second_principal);
@@ -142,6 +157,7 @@ function SetWork(data) {
     return result;
 }
 
+<<<<<<< HEAD
 function SetTag (data) {
     allTag = [];
     tag_id = [];
@@ -200,4 +216,6 @@ function SetTag (data) {
     return allTag;
 }
 
+=======
+>>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
 module.exports = router;
