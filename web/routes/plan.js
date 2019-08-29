@@ -3,6 +3,8 @@ var router = express.Router();
 
 //增加引用函式
 const view = require('./utility/view');
+const adminpush = require('./utility/adminpush');
+const myFunction = require('./utility/myFunction');
 
 router.get('/', function (req, res, next) {
     if (req.cookies.userid != undefined) {
@@ -12,32 +14,20 @@ router.get('/', function (req, res, next) {
             }else{
                 var projectPermission = SetProjectPermission(data);
                 var teammeber = SetTeammember(data);
-                var adminpush = SetAdminPush(data);
                 var lists = SetList(data);
                 var listwork = SetListWork(data, lists);
                 var works = SetWork(data);
-<<<<<<< HEAD
                 var tags = SetTag(data);
-                console.log(data[0].project_name);
-                console.log(projectPermission);
-                console.log(teammeber);
-                console.log(adminpush);
-                console.log(lists);
-                console.log(listwork);
-                console.log(works);
-                console.log(tags);
-                res.render('plan.ejs', {project_name:data[0].project_name, projectPermission:projectPermission, teammember:teammeber,
-                    adminpush:adminpush, lists:lists, listwork:listwork, works:works, tags:tags});
-=======
-                console.log(projectPermission)
-                console.log(teammeber)
-                console.log(adminpush)
-                console.log(lists)
-                console.log(listwork)
-                console.log(works)
-                res.render('plan.ejs', {projectPermission:projectPermission, teammeber:teammeber,
-                    adminpush:adminpush, lists:lists, listwork:listwork, works:works});
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
+                var isAdmin = setAdmin(teammeber, req.cookies.userid);
+                adminpush.fetchAdminPush(req.cookies.projectid).then(data2 => {
+                    if (data2 != null) {
+                    res.render('plan.ejs', {project_name:data[0].project_name, projectPermission:projectPermission, teammember:teammeber,
+                        adminpush:SetAdminPush(data2), lists:lists, listwork:listwork, works:works, tags:tags, isAdmin:isAdmin});
+                    } else {
+                        res.render('error');  //導向錯誤頁面
+                    }
+                })
+                
             } 
         })
     } else {
@@ -51,6 +41,7 @@ function SetProjectPermission(data) {
     result.push(data[0].add_work);
     result.push(data[0].edit_work);
     result.push(data[0].delete_work);
+    result.push(data[0].projectpermission_serno);
 
     return result;
 }
@@ -76,13 +67,13 @@ function SetAdminPush(data) {
     result = [];
     adminpush_serno = [];
     for (var i = 0; i < data.length; i ++) {
-        adminpush = [];
+        adminpushArray = [];
         if (!adminpush_serno.includes(data[i].adminpush_serno)) {
             adminpush_serno.push(data[i].adminpush_serno);
-            adminpush.push(data[i].adminpush_content);
-            adminpush.push(data[i].adminpush_startdate);
-            adminpush.push(data[i].adminpush_enddate);
-            result.push(adminpush);
+            adminpushArray.push(data[i].adminpush_content);
+            adminpushArray.push(data[i].adminpush_startdate);
+            adminpushArray.push(data[i].adminpush_enddate);
+            result.push(adminpushArray);
         }
     }
     result.sort(function(a, b) {
@@ -136,17 +127,13 @@ function SetWork(data) {
                 work.push(data[i].work_id);
                 work.push(data[i].work_title);
                 work.push(data[i].work_content);
-                work.push(data[i].deadline);
-<<<<<<< HEAD
+                work.push(myFunction.SeparateDate(data[i].deadline));
                 work.push(data[i].tag_id1);
                 work.push(data[i].tag_id2);
                 work.push(data[i].tag_id3);
                 work.push(data[i].tag_id4);
                 work.push(data[i].tag_id5);
                 work.push(data[i].tag_id6);
-=======
-                work.push(data[i].tag);
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                 work.push(data[i].file);
                 work.push(data[i].first_principal);
                 work.push(data[i].second_principal);
@@ -157,7 +144,6 @@ function SetWork(data) {
     return result;
 }
 
-<<<<<<< HEAD
 function SetTag (data) {
     allTag = [];
     tag_id = [];
@@ -216,6 +202,14 @@ function SetTag (data) {
     return allTag;
 }
 
-=======
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
+function setAdmin(data, userId) {
+    var index;
+    for (var t = 0; t < data.length; t ++) {
+        if (data[t][0] == userId) {
+            index = t;
+        }
+    }
+    return data[index][3];
+}
+
 module.exports = router;

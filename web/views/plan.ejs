@@ -12,14 +12,45 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-<<<<<<< HEAD
     <link rel="stylesheet" href="../css/Navbar.css">
     <link rel="stylesheet" href="../css/Plan.css">
-=======
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/plan_work.css">
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
-
+    <%
+    var SeparateDate = function(date) {
+        var result = [6];
+        var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];  
+        date = (date + "").substring(4, date.length);
+        for (var i = 0; i < month.length; i ++) {
+            if (date.substring(0,3).toLowerCase() == month[i].toLowerCase()) {
+                result[1] = i + 1;
+            }
+        }  
+        date = date.substring(4, date.length);
+        result[2] = +date.substring(0,2);
+        date = date.substring(3, date.length);
+        result[0] = +date.substring(0,4);
+        date = date.substring(5, date.length);
+        result[3] = +date.substring(0,2);
+        date = date.substring(3, date.length);
+        result[4] = +date.substring(0,2);
+        date = date.substring(3, date.length);
+        result[5] = +date.substring(0,2);
+    
+        return result;
+    }
+    %>
+    <%
+    var IsAdateNotArrived = function(date1, date2) {
+        date2 = SeparateDate(date2);
+        for (var i = 0; i < 6; i++) {
+            if (date1[i] > date2[i]) {
+                return true;
+            } else if (date1[i] < date2[i]) {
+                return false;
+            }
+        }
+        return false;
+    }
+    %>
 </head>
 
 <body>
@@ -37,7 +68,6 @@
 
             <ul class="navbar-nav">
                 <li>
-<<<<<<< HEAD
                     <a href="/member"> <i class="far fa-user fa-lg"></i>會員</a>
                 </li>
                 <li>
@@ -45,15 +75,6 @@
                 </li>
                 <li>
                     <a href="/mywork"> <i class="far fa-edit fa-lg"></i>我的工作</a>
-=======
-                    <a href="member.html"> <i class="far fa-user fa-lg"></i>會員</a>
-                </li>
-                <li>
-                    <a href="index.html"><i class="fas fa-book fa-lg"></i>計畫</a>
-                </li>
-                <li>
-                    <a href="mywork.html"> <i class="far fa-edit fa-lg"></i>我的工作</a>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                 </li>
             </ul>
 
@@ -65,11 +86,8 @@
             <div class="study-logout">
                 <button class="btn btn-light btn-navbar-study" type="submit">教學<i class="fas fa-question-circle fa-lg"
                         style="padding-left:5px;"></i></button>
-<<<<<<< HEAD
-                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;" onclick="Logout()">登出</button>
-=======
-                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;">登出</button>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
+                    onclick="Logout()">登出</button>
             </div>
 
         </div>
@@ -85,27 +103,17 @@
         <div class="member-bottom" id="member">
             <div class="administrator-total">
                 <div class="plan-name">
-<<<<<<< HEAD
                     <%= project_name %>
-=======
-                    我的計畫
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                 </div>
                 <div class="hr-set"></div>
                 <span class="admin-name">管理者</span>
             </div>
             <div class="administrator-img" id="admin-move">
-<<<<<<< HEAD
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (teammember[i][3]) { %>
                 <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
                 <% } %>
                 <% } %>
-=======
-                <img src="/imgs/gray-cat.png" class="img-photo">
-                <img src="/imgs/gray-cat.png" class="img-photo">
-                <img src="/imgs/gray-cat.png" class="img-photo">
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
             </div>
             <div class="hr-set">
                 <div class="hightline"></div>
@@ -115,7 +123,6 @@
             </div>
 
             <div class="member-img" id="member-move">
-<<<<<<< HEAD
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (!teammember[i][3]) { %>
                 <% if (teammember[i][2] != null) { %>
@@ -126,20 +133,6 @@
                 <% } %>
                 <% } %>
                 <% } %>
-=======
-                <div class="member-img-trash">
-                    <img src="/imgs/gray-cat.png" class="img-photo">
-                    <a href="#"><i class="fas fa-times-circle member-delete-icon"></i></a>
-                </div>
-                <div class="member-img-trash">
-                    <img src="/imgs/gray-cat.png" class="img-photo">
-                    <a href="#"><i class="fas fa-times-circle member-delete-icon"></i></a>
-                </div>
-                <div class="member-img-trash">
-                    <img src="/imgs/gray-cat.png" class="img-photo">
-                    <a href="#"><i class="fas fa-times-circle member-delete-icon"></i></a>
-                </div>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
             </div>
 
             <div class="admin-set">
@@ -153,7 +146,6 @@
         <!--列表-->
         <div class="deck" id="work-total-move">
             <!-- 列表開始 -->
-<<<<<<< HEAD
             <% var tempTeammember = teammember; %>
             <% for (var b = 0; b < tempTeammember.length; b ++) { %>
             <%     tempTeammember[b][2] = tempTeammember[b][2] != null ? new Buffer(tempTeammember[b][2], 'base64').toString() : null %>
@@ -162,11 +154,6 @@
             <div class="work-total">
                 <div class="work-header">
                     <input type="text" class="form-control input-style" placeholder="<%= lists[listIndex][1] %>">
-=======
-            <div class="work-total">
-                <div class="work-header">
-                    <input type="text" class="form-control input-style" placeholder="尚未開始">
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                     <div class="drpdown">
                         <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -182,49 +169,10 @@
                                     <div>
                                         <ul class="dropdown-right-list">
                                             <li><a href="#">新增卡片</a></li>
-                                            <li><a href="#">刪除這個列表的所有卡片</a></li>
-                                            <li><a href="#">封存這個列表</a></li>
-                                        </ul>
-                                        <ul class="dropdown-right-list" data-stopPropagation="true">
-                                            <div class="dropdown-list-move">
-                                                <li><a href="#" id="dropdown-list-show-1">移動列表</a></li>
-                                                <div class="dropdown-content-list">
-                                                    <a href="#" class="add-label-icon-a" id="move-list-off-1"><i
-                                                            class="fas fa-times close-list-icon"></i></a>
-                                                    <div class="move-list">
-                                                        <div class="form-grid">
-                                                            <div class="button-drop-move">
-<<<<<<< HEAD
-=======
-                                                                <span class="move-label">看板</span>
-                                                                <span class="move-value" id="move-list-value"
-                                                                    onmousemove="removeClassType(this)">個人事項</span>
-                                                                <select id="drop-list-value"
-                                                                    onchange="move_list_Value(this.id)">
-                                                                    <optgroup label="計畫">
-                                                                        <option>我的計畫</option>
-                                                                        <option>我的計畫2</option>
-                                                                    </optgroup>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-grid">
-                                                            <div class="button-drop-move">
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
-                                                                <span class="move-label">位置</span>
-                                                                <span class="move-value" id="drop-move-get-position"
-                                                                    onmousemove="removeClassType(this)">1</span>
-                                                                <select id="drop-position-value"
-                                                                    onchange="drop_position_value(this.id)">
-                                                                    <option>1</option>
-                                                                    <option>2</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <button class="move-btn">移動</button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <li><a href="#">刪除所有卡片</a></li>
+                                            <li><a href="#"
+                                                    onclick="<%= 'DeleteList("' + lists[listIndex][0] + '", ' + listIndex + ')' %>">刪除列表</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -234,7 +182,6 @@
                 </div>
                 <div class="work-body" id="work-body-move-1">
 
-<<<<<<< HEAD
                     <% for (var workIndex = 0; workIndex < listwork[listIndex].length; workIndex ++) { %>
                     <% var thiswork = []; %>
                     <% for (var workDetail = 0; workDetail < works.length; workDetail ++) { %>
@@ -272,15 +219,14 @@
                             <% } %>
                             <% } %>
                         </div>
-                        <% var tempWork = {listname:lists[listIndex][1], workData:thiswork, teammember: tempTeammember} %>
+                        <% var tempWork = {listname:lists[listIndex][1], workData:thiswork, teammember: tempTeammember, tags: tags} %>
                         <div onclick="<%= 'javascript:SetWorkCard(' + JSON.stringify(tempWork) + ')'%>">
                             <div class="work-name" data-toggle="modal" data-target="#show-modal">
                                 <%= thiswork[1] %>
                             </div>
                             <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
-                                <% var tempDate = SeparateDate(thiswork[3].toString()) %>
                                 <span class="deadtime"><i
-                                        class="far fa-clock"></i><%= tempDate[1] + '月' + tempDate[2] + '日' %></span>
+                                        class="far fa-clock"></i><%= thiswork[3][1] + '月' + thiswork[3][2] + '日' %></span>
                                 <div class="work-img">
                                     <% for (var a = 0; a < teammember.length; a ++) { %>
                                     <% if (teammember[a][0] == thiswork[11] || teammember[a][0] == thiswork[12]) { %>
@@ -288,40 +234,16 @@
                                     <% } %>
                                     <% } %>
                                 </div>
-=======
-                    <!--卡片-->
-                    <div class="card work-card" id="card-1">
-                        <div class="work-card-header">
-                            <span class="card-label-1"><span class="label-text"
-                                    onmousemove="removeClassType(this)">需要研究</span></span>
-                            <span class="card-label-2"><span class="label-text"
-                                    onmousemove="removeClassType(this)">預估10天</span></span>
-                            <span class="card-label-3"><span class="label-text"
-                                    onmousemove="removeClassType(this)">架設上去</span></span>
-                            <span class="card-label-1"><span class="label-text"
-                                    onmousemove="removeClassType(this)">node.js</span></span>
-                        </div>
-                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
-                            使用vue.js
-                        </div>
-                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
-                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
-                            <div class="work-img">
-                                <img src="/imgs/gray-cat.png" class="work-img-photo">
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                             </div>
                         </div>
                     </div>
                     <!--卡片-->
-<<<<<<< HEAD
                     <% } %>
-=======
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
 
 
                     <!--點選新增卡片出現的框架##可以刪除-->
-                    <div class="card add-card" id="add-card-1">
-                        <textarea class="card-add-text" id="card-textarea-1" placeholder="為這張卡片輸入標題..."></textarea>
+                    <div class="card add-card">
+                        <textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
                     </div>
                     <!---->
                 </div>
@@ -329,7 +251,7 @@
 
                 <!--列表尾部-->
                 <div class="card-footer">
-                    <a href="#" class="a-footer" id="add-card-textarea-1">
+                    <a href="#" class="a-footer add-card-textarea">
                         <div class="footer-name">
                             <i class="fas fa-plus"></i>
                             新增另外一張卡片
@@ -337,26 +259,19 @@
                     </a>
                 </div>
                 <!---->
-
             </div>
-<<<<<<< HEAD
             <% } %>
-=======
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
             <!-- 列表結束 -->
-
             <!--新增列表-->
             <div class="add-list">
-
                 <div class="add-list-header">
-
                     <a href="#" id="add-list">
                         <input type="text" class="form-control add-input-style" placeholder="新增工作列表"
                             id="add-list-input">
                     </a>
 
                     <div class="add-list-submit">
-                        <button class="btn btn-danger btn-add-list">新增列表</button>
+                        <button class="btn btn-danger btn-add-list" onclick="AddList();">新增列表</button>
                         <a href="#" id="add-cancel">
                             <i class="fas fa-times fa-lg"></i>
                         </a>
@@ -364,14 +279,8 @@
                     <!--組長推播-->
                     <a href="#" class="admin-push-text" data-target="#modal-admin-push" data-toggle="modal"><i
                             class="fas fa-bell"></i></a>
-                    <!---->
                 </div>
-
             </div>
-            <!---->
-
-
-
         </div>
 
 
@@ -379,23 +288,17 @@
         <div class="modal fade bd-example-modal-lg" id="show-modal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
-
                 <div class="modal-content">
                     <!--標題-->
                     <div class="modal-header">
                         <i class="far fa-credit-card fa-lg" style="font-size: 1.5em;"></i>
-<<<<<<< HEAD
                         <textarea id="work_title" cols="60" class="mod-card-back-title">html 手機模式下列表會消失 修正問題</textarea>
-=======
-                        <textarea cols="60" class="mod-card-back-title">html 手機模式下列表會消失 修正問題</textarea>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <!---->
                     <!--狀態位置-->
-<<<<<<< HEAD
                     <p class="u-inline-block">
                         在「
                         <a href="#">
@@ -403,344 +306,153 @@
                         </a>
                         」列表中
                     </p>
-=======
-                    <p class="u-inline-block">在「<a href="#"><u>尚未完成</u></a>」列表中</p>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                     <!---->
                     <!--畫面分割兩塊-->
                     <div class="modal-body">
-
                         <div class="row no-gutters">
                             <!--左邊區塊-->
                             <div class="col-md-8">
                                 <!--標籤-->
                                 <div class="modal-label-left">
-
                                     <div class="modal-label-header">
-
                                         <i class="far fa-bookmark label-icon fa-lg"></i>
                                         <div class="modal-label-name">標籤</div>
-
                                     </div>
-
                                     <div class="label-set">
-
-
                                         <div class="modal-label" name="modal-label-show">
-
-                                            <span class="modal-label-1"><span class="label-text"
-                                                    onmousemove="removeClassType(this)">功能</span></span>
-                                            <span class="modal-label-1"><span class="label-text"
-                                                    onmousemove="removeClassType(this)">功能</span></span>
-
+                                            <span id="fixedTags">
+                                                <span class="modal-label-1">
+                                                    <span class="label-text"
+                                                        onmousemove="removeClassType(this)">功能</span>
+                                                </span>
+                                            </span>
                                             <!--左側新增標籤-->
                                             <div class="dropdown-total">
-
                                                 <button class="modal-add-label" href="#" role="button" id="add-label"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                                        class="fas fa-plus"></i></button>
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="add-label"
                                                     data-stopPropagation="true">
-
                                                     <div class="dropdown-label-header">
                                                         <span class="dropdown-label-header-title">標籤</span>
                                                     </div>
-
+                                                    <% for (var a = 0; a < tags.length; a ++) { %>
                                                     <div class="label-total">
+                                                        <% if (tags[a][2] == '#61BD4F') { %>
                                                         <a href="#" class="label-color-green-a"
-                                                            onmousemove="removeClassType(this)">
-                                                            <span class="label-color-name">測試</span>
+                                                            onmousemove="removeClassType(this)"
+                                                            id="label-color-green-a">
+                                                            <%= tags[a][1] %>
                                                         </a>
+                                                        <% } else if (tags[a][2] == '#F2D600') { %>
+                                                        <a href="#" class="label-color-yellow-a"
+                                                            onmousemove="removeClassType(this)"
+                                                            id="label-color-yellow-a">
+                                                            <%= tags[a][1] %>
+                                                        </a>
+                                                        <% } else if (tags[a][2] == '#FF9F1A') { %>
+                                                        <a href="#" class="label-color-orange-a"
+                                                            onmousemove="removeClassType(this)"
+                                                            id="label-color-orange-a">
+                                                            <%= tags[a][1] %>
+                                                        </a>
+                                                        <% } else if (tags[a][2] == '#EB5A46') { %>
+                                                        <a href="#" class="label-color-red-a"
+                                                            onmousemove="removeClassType(this)" id="label-color-red-a">
+                                                            <%= tags[a][1] %>
+                                                        </a>
+                                                        <% } else if (tags[a][2] == '#C377E0') { %>
+                                                        <a href="#" class="label-color-purple-a"
+                                                            onmousemove="removeClassType(this)"
+                                                            id="label-color-purple-a">
+                                                            <%= tags[a][1] %>
+                                                        </a>
+                                                        <% } else if (tags[a][2] == '#0079BF') { %>
+                                                        <a href="#" class="label-color-blue-a"
+                                                            onmousemove="removeClassType(this)" id="label-color-blue-a">
+                                                            <%= tags[a][1] %>
+                                                        </a>
+                                                        <% } %>
                                                         <!--左側編輯標籤-->
                                                         <div class="dropdown-edit">
-
                                                             <button class="label-color-edit-btn"
-                                                                id="edit-label-dropdown"><i
-                                                                    class="fas fa-pen"></i></button>
-
-                                                            <div class="dropdown-content" data-stopPropagation="true">
-
-                                                                <span class="dropdown-label-header-title">改變標籤<a
-                                                                        href="#" class="add-label-icon-a"
-                                                                        id="label-edit-off"><i
-                                                                            class="fas fa-times change-label-icon"></i></a></span>
-
+                                                                id="<%= 'edit-label-dropdown-' + (a + 1) %>">
+                                                                <i class="fas fa-pen"></i>
+                                                            </button>
+                                                            <div class="dropdown-content" data-stopPropagation="true"
+                                                                id="<%= 'dropdown-content-' + (a + 1) %>">
+                                                                <span class="dropdown-label-header-title">
+                                                                    改變標籤
+                                                                    <a href="#" class="add-label-icon-a"
+                                                                        name="label-edit-off">
+                                                                        <i class="fas fa-times change-label-icon"></i>
+                                                                    </a>
+                                                                </span>
                                                                 <div class="label-color-total">
-
                                                                     <label class="label-name">名字</label>
-
-                                                                    <input class="label-edit-input-search" type="text">
-
-                                                                    <label class="label-name">選一個顏色</label>
-
-                                                                    <div class="color-choice">
-
-                                                                        <a href="#" name="green"><span
-                                                                                class="card-label card-label-green"
-                                                                                data-color="green"><i
-                                                                                    class="fas fa-check"
-                                                                                    name="green-check"></i></span></a>
-                                                                        <a href="#" name="yellow"><span
-                                                                                class="card-label card-label-yellow"
-                                                                                data-color="yellow"><i
-                                                                                    class="fas fa-check"
-                                                                                    name="yellow-check"></i></span></a>
-                                                                        <a href="#" name="orange"><span
-                                                                                class="card-label card-label-orange"
-                                                                                data-color="orange"><i
-                                                                                    class="fas fa-check"
-                                                                                    name="orange-check"></i></span></a>
-                                                                        <a href="#" name="red"><span
-                                                                                class="card-label card-label-red"
-                                                                                data-color="red"><i class="fas fa-check"
-                                                                                    name="red-check"></i></span></a>
-                                                                        <a href="#" name="purple"><span
-                                                                                class="card-label card-label-purple"
-                                                                                data-color="purple"><i
-                                                                                    class="fas fa-check"
-                                                                                    name="purple-check"></i></span></a>
-                                                                        <a href="#" name="blue"><span
-                                                                                class="card-label card-label-blue"
-                                                                                data-color="blue"><i
-                                                                                    class="fas fa-check"
-                                                                                    name="blue-check"></i></span></a>
-                                                                        <a href="#" name="sky"><span
-                                                                                class="card-label card-label-sky"
-                                                                                data-color="sky"><i class="fas fa-check"
-                                                                                    name="sky-check"></i></span></a>
-                                                                        <a href="#" name="lime"><span
-                                                                                class="card-label card-label-lime"
-                                                                                data-color="lime"><i
-                                                                                    class="fas fa-check"
-                                                                                    name="lime-check"></i></span></a>
-                                                                        <a href="#" name="pink"><span
-                                                                                class="card-label card-label-pink"
-                                                                                data-color="pink"><i
-                                                                                    class="fas fa-check"
-                                                                                    name="pink-check"></i></span></a>
-                                                                        <a href="#" name="black"><span
-                                                                                class="card-label card-label-black"
-                                                                                data-color="black"><i
-                                                                                    class="fas fa-check"
-                                                                                    name="black-check"></i></span></a>
-
-                                                                        <div class="label-edit-btn-set">
-                                                                            <button class="btn-save"
-                                                                                id="add-label-edit-btn">儲存</button>
-                                                                            <button class="btn-cancel"
-                                                                                id="cancel-label-edit-btn">刪除</button>
-                                                                        </div>
-
+                                                                    <input class="label-edit-input-search" type="text"
+                                                                        id="<%= 'label-edit-input-search-' + (a + 1) %>"
+                                                                        value="<%= tags[a][1] %>">
+                                                                    <div class="label-edit-btn-set">
+                                                                        <button class="btn-save"
+                                                                            id="<%= 'add-label-edit-btn-' + (a + 1) %>">儲存</button>
                                                                     </div>
-
                                                                 </div>
-
                                                             </div>
-
                                                         </div>
                                                         <!--左側編輯標籤結束-->
                                                     </div>
-
-                                                    <div class="label-total">
-                                                        <a href="#" class="label-color-yellow-a"
-                                                            onmousemove="removeClassType(this)"></a>
-                                                        <button class="label-color-edit-btn"><i
-                                                                class="fas fa-pen"></i></button>
-                                                    </div>
-
-                                                    <div class="label-total">
-                                                        <a href="#" class="label-color-orange-a"
-                                                            onmousemove="removeClassType(this)">
-                                                        </a>
-                                                        <button class="label-color-edit-btn"><i
-                                                                class="fas fa-pen"></i></button>
-                                                    </div>
-
-                                                    <div class="label-total">
-                                                        <a href="#" class="label-color-red-a"
-                                                            onmousemove="removeClassType(this)">
-                                                        </a>
-                                                        <button class="label-color-edit-btn"><i
-                                                                class="fas fa-pen"></i></button>
-                                                    </div>
-
-                                                    <div class="label-total">
-                                                        <a href="#" class="label-color-purple-a"
-                                                            onmousemove="removeClassType(this)">
-                                                        </a>
-                                                        <button class="label-color-edit-btn"><i
-                                                                class="fas fa-pen"></i></button>
-                                                    </div>
-
-                                                    <div class="label-total">
-                                                        <a href="#" class="label-color-blue-a"
-                                                            onmousemove="removeClassType(this)">
-                                                        </a>
-                                                        <button class="label-color-edit-btn"><i
-                                                                class="fas fa-pen"></i></button>
-                                                    </div>
-
-                                                    <!--建立新標籤-->
-                                                    <div class="dropdown-add-label">
-
-                                                        <a class="create-label-a" href="#" id="add-new-label">
-                                                            <div class="create-label">建立新標籤</div>
-                                                        </a>
-
-                                                        <div class="dropdown-content-add-label"
-                                                            data-stopPropagation="true">
-
-                                                            <span class="dropdown-label-header-title">新增標籤<a href="#"
-                                                                    class="change-label-icon-a" id="add-label-off"><i
-                                                                        class="fas fa-times change-label-icon"></i></a></span>
-
-                                                            <div class="label-color-total">
-
-                                                                <label class="label-name">名字</label>
-
-                                                                <input class="label-edit-input-search" type="text">
-
-                                                                <label class="label-name">選一個顏色</label>
-
-                                                                <div class="color-choice">
-
-                                                                    <a href="#" name="green"><span
-                                                                            class="card-label card-label-green"
-                                                                            data-color="green"><i class="fas fa-check"
-                                                                                name="green-check"></i></span></a>
-                                                                    <a href="#" name="yellow"><span
-                                                                            class="card-label card-label-yellow"
-                                                                            data-color="yellow"><i class="fas fa-check"
-                                                                                name="yellow-check"></i></span></a>
-                                                                    <a href="#" name="orange"><span
-                                                                            class="card-label card-label-orange"
-                                                                            data-color="orange"><i class="fas fa-check"
-                                                                                name="orange-check"></i></span></a>
-                                                                    <a href="#" name="red"><span
-                                                                            class="card-label card-label-red"
-                                                                            data-color="red"><i class="fas fa-check"
-                                                                                name="red-check"></i></span></a>
-                                                                    <a href="#" name="purple"><span
-                                                                            class="card-label card-label-purple"
-                                                                            data-color="purple"><i class="fas fa-check"
-                                                                                name="purple-check"></i></span></a>
-                                                                    <a href="#" name="blue"><span
-                                                                            class="card-label card-label-blue"
-                                                                            data-color="blue"><i class="fas fa-check"
-                                                                                name="blue-check"></i></span></a>
-                                                                    <a href="#" name="sky"><span
-                                                                            class="card-label card-label-sky"
-                                                                            data-color="sky"><i class="fas fa-check"
-                                                                                name="sky-check"></i></span></a>
-                                                                    <a href="#" name="lime"><span
-                                                                            class="card-label card-label-lime"
-                                                                            data-color="lime"><i class="fas fa-check"
-                                                                                name="lime-check"></i></span></a>
-                                                                    <a href="#" name="pink"><span
-                                                                            class="card-label card-label-pink"
-                                                                            data-color="pink"><i class="fas fa-check"
-                                                                                name="pink-check"></i></span></a>
-                                                                    <a href="#" name="black"><span
-                                                                            class="card-label card-label-black"
-                                                                            data-color="black"><i class="fas fa-check"
-                                                                                name="black-check"></i></span></a>
-
-                                                                    <div class="label-edit-btn-set">
-                                                                        <button class="btn-save"
-                                                                            id="add-label-edit-btn">儲存</button>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-                                                    <!--建立新標籤結束-->
+                                                    <% } %>
                                                 </div>
-
                                             </div>
                                             <!--左側點選新增標籤結束-->
                                         </div>
-
-
                                     </div>
-
                                 </div>
                                 <!---->
                                 <!--到期日-->
                                 <div class="modal-timeout">
-
                                     <div class="modal-timeout-header">
                                         <i class="far fa-clock timeout-icon fa-lg"></i>
                                         <div class="modal-timeout-name">到期日</div>
-
                                     </div>
-
                                     <div class="timeout">
-<<<<<<< HEAD
                                         <span class="deadtime"><i class="far fa-clock"></i><span id="work_deadline">5月5日
                                                 下午7點12分</span></span>
-=======
-                                        <span class="deadtime"><i class="far fa-clock"></i>5月5日 下午7點12分</span>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                                     </div>
-
                                 </div>
                                 <!---->
                                 <!--會員-->
                                 <div class="modal-member">
-
                                     <div class="modal-description-header">
-
                                         <i class="fas fa-user icon-member fa-lg"></i>
                                         <div class="modal-description-name">會員</div>
-
                                     </div>
-
-<<<<<<< HEAD
                                     <div id="principal" class="modal-member-show">
                                         <img src="/imgs/gray-cat.png" class="modal-member-photo">
-=======
-                                    <div class="modal-member-show">
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                                         <img src="/imgs/gray-cat.png" class="modal-member-photo">
                                     </div>
-
-
                                 </div>
                                 <!---->
 
                                 <!--檔案-->
                                 <div class="modal-file">
-
                                     <div class="modal-file-header">
-
                                         <i class="far fa-file icon-file fa-lg"></i>
                                         <div class="modal-file-name">下載附件</div>
-
                                     </div>
-
-
-
                                     <div class="file-set">
-
                                         <a class="box-rar" download href="./test.rar">
                                             <span class="box-rar-text">rar</span>
                                         </a>
-
                                         <p class="file-set-show">
                                             <a download href="./test.rar" class="file-name">2.0.rar</a>
                                         </p>
-
                                     </div>
-
                                 </div>
                                 <!---->
-
-
 
                             </div>
                             <!--右側區塊-->
@@ -755,43 +467,33 @@
                                         <a class="button-link js-change-card-members" href="#" role="button"
                                             id="dropdown-member" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
-                                            <span style="margin-left: 0.5em;"><i class="far fa-user"
-                                                    style="margin-right: 0.35em;"></i>成員</span></a>
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="far fa-user" style="margin-right: 0.35em;"></i>
+                                                成員
+                                            </span>
+                                        </a>
 
                                         <div class="dropdown-menu" aria-labelledby="dropdown-member">
-
                                             <span class="pop-over-header-title">成員</span>
-
-<<<<<<< HEAD
                                             <div id="addMemberToWork" class="dropdown-member-edit">
-=======
-                                            <div class="dropdown-member-edit">
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
-
                                                 <a class="dropdown-img-member-set" href="#">
                                                     <img src="/imgs/gray-cat.png" class="dropdown-member-img">
                                                     <div class="member-name">張智皓(JD12358)</div>
                                                 </a>
-<<<<<<< HEAD
-                                                <a class="dropdown-img-member-set" href="#">
-                                                    <img src="/imgs/gray-cat.png" class="dropdown-member-img">
-                                                    <div class="member-name">張智皓(JD12358)</div>
-                                                </a>
-=======
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                                             </div>
-
                                         </div>
 
                                     </div>
                                     <!---->
                                     <!--右側標籤-->
                                     <div class="dropdown-right-total">
-
                                         <a class="button-link" href="#" role="button" id="add-right-label"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
-                                                style="margin-left: 0.5em;"><i class="far fa-bookmark"
-                                                    style="margin-right: 0.65em;"></i>標籤</span></a>
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="far fa-bookmark" style="margin-right: 0.65em;"></i>
+                                                標籤
+                                            </span>
+                                        </a>
 
                                         <!--右邊的標籤第一層-->
                                         <div class="dropdown-menu" aria-labelledby="add-right-label"
@@ -803,216 +505,75 @@
 
                                             <div class="label-color-all" name="label-color-all-right">
 
+                                                <% for (var a = 0; a < tags.length; a ++) { %>
                                                 <div class="label-total">
-
+                                                    <% if (tags[a][2] == '#61BD4F') { %>
                                                     <a href="#" class="label-color-green-a"
-                                                        onmousemove="removeClassType(this)">文字測試</a>
-
-                                                    <!--右邊的標籤點選編輯層-->
-                                                    <div class="dropdown-edit">
-
-                                                        <button class="label-color-edit-btn" id="edit-right-dropdown"><i
-                                                                class="fas fa-pen"></i></button>
-
-                                                        <div class="dropdown-content-right" data-stopPropagation="true"
-                                                            id="dropdown-content-right">
-
-                                                            <span class="dropdown-label-header-title">改變標籤<a href="#"
-                                                                    class="add-label-icon-a"
-                                                                    id="label-edit-right-off"><i
-                                                                        class="fas fa-times change-label-icon"></i></a></span>
-
-                                                            <div class="label-color-total">
-
-                                                                <label class="label-name">名字</label>
-
-                                                                <input class="label-edit-input-search" type="text">
-
-                                                                <label class="label-name">選一個顏色</label>
-
-                                                                <div class="color-choice">
-
-                                                                    <a href="#" name="green"><span
-                                                                            class="card-label card-label-green"
-                                                                            data-color="green"><i class="fas fa-check"
-                                                                                name="green-check"></i></span></a>
-                                                                    <a href="#" name="yellow"><span
-                                                                            class="card-label card-label-yellow"
-                                                                            data-color="yellow"><i class="fas fa-check"
-                                                                                name="yellow-check"></i></span></a>
-                                                                    <a href="#" name="orange"><span
-                                                                            class="card-label card-label-orange"
-                                                                            data-color="orange"><i class="fas fa-check"
-                                                                                name="orange-check"></i></span></a>
-                                                                    <a href="#" name="red"><span
-                                                                            class="card-label card-label-red"
-                                                                            data-color="red"><i class="fas fa-check"
-                                                                                name="red-check"></i></span></a>
-                                                                    <a href="#" name="purple"><span
-                                                                            class="card-label card-label-purple"
-                                                                            data-color="purple"><i class="fas fa-check"
-                                                                                name="purple-check"></i></span></a>
-                                                                    <a href="#" name="blue"><span
-                                                                            class="card-label card-label-blue"
-                                                                            data-color="blue"><i class="fas fa-check"
-                                                                                name="blue-check"></i></span></a>
-                                                                    <a href="#" name="sky"><span
-                                                                            class="card-label card-label-sky"
-                                                                            data-color="sky"><i class="fas fa-check"
-                                                                                name="sky-check"></i></span></a>
-                                                                    <a href="#" name="lime"><span
-                                                                            class="card-label card-label-lime"
-                                                                            data-color="lime"><i class="fas fa-check"
-                                                                                name="lime-check"></i></span></a>
-                                                                    <a href="#" name="pink"><span
-                                                                            class="card-label card-label-pink"
-                                                                            data-color="pink"><i class="fas fa-check"
-                                                                                name="pink-check"></i></span></a>
-                                                                    <a href="#" name="black"><span
-                                                                            class="card-label card-label-black"
-                                                                            data-color="black"><i class="fas fa-check"
-                                                                                name="black-check"></i></span></a>
-
-                                                                    <div class="label-edit-btn-set">
-                                                                        <button class="btn-save"
-                                                                            id="add-label-edit-btn">儲存</button>
-                                                                        <button class="btn-cancel"
-                                                                            id="cancel-label-edit-btn">刪除</button>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-                                                    <!--右邊的標籤點選編輯層結束-->
-                                                </div>
-
-                                                <div class="label-total">
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-green-a-right">
+                                                        <%= tags[a][1] %>
+                                                    </a>
+                                                    <% } else if (tags[a][2] == '#F2D600') { %>
                                                     <a href="#" class="label-color-yellow-a"
-                                                        onmousemove="removeClassType(this)">
-                                                        <span class="label-color-name">這是黃色</span>
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-yellow-a-right">
+                                                        <%= tags[a][1] %>
                                                     </a>
-                                                    <button class="label-color-edit-btn"><i
-                                                            class="fas fa-pen"></i></button>
-                                                </div>
-
-                                                <div class="label-total">
+                                                    <% } else if (tags[a][2] == '#FF9F1A') { %>
                                                     <a href="#" class="label-color-orange-a"
-                                                        onmousemove="removeClassType(this)">
-                                                        <span class="label-color-name">這是橘色</span>
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-orange-a-right">
+                                                        <%= tags[a][1] %>
                                                     </a>
-                                                    <button class="label-color-edit-btn"><i
-                                                            class="fas fa-pen"></i></button>
-                                                </div>
-
-                                                <div class="label-total">
+                                                    <% } else if (tags[a][2] == '#EB5A46') { %>
                                                     <a href="#" class="label-color-red-a"
-                                                        onmousemove="removeClassType(this)">
-                                                        <span class="label-color-name">這是紅色</span>
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-red-a-right">
+                                                        <%= tags[a][1] %>
                                                     </a>
-                                                    <button class="label-color-edit-btn"><i
-                                                            class="fas fa-pen"></i></button>
-                                                </div>
-
-                                                <div class="label-total">
+                                                    <% } else if (tags[a][2] == '#C377E0') { %>
                                                     <a href="#" class="label-color-purple-a"
-                                                        onmousemove="removeClassType(this)">
-                                                        <span class="label-color-name">這是紫色</span>
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-purple-a-right">
+                                                        <%= tags[a][1] %>
                                                     </a>
-                                                    <button class="label-color-edit-btn"><i
-                                                            class="fas fa-pen"></i></button>
-                                                </div>
-
-                                                <div class="label-total">
+                                                    <% } else if (tags[a][2] == '#0079BF') { %>
                                                     <a href="#" class="label-color-blue-a"
-                                                        onmousemove="removeClassType(this)">
-                                                        <span class="label-color-name">這是藍色</span>
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-blue-a-right">
+                                                        <%= tags[a][1] %>
                                                     </a>
-                                                    <button class="label-color-edit-btn"><i
-                                                            class="fas fa-pen"></i></button>
-                                                </div>
-
-                                            </div>
-                                            <!--建立新標籤-->
-                                            <div class="dropdown-add-right-new-label">
-
-                                                <a class="create-label-a" href="#" id="add-new-right-label">
-                                                    <div class="create-label">建立新標籤</div>
-                                                </a>
-
-                                                <div class="dropdown-content-add-right-label"
-                                                    data-stopPropagation="true">
-
-                                                    <span class="dropdown-label-header-title">新增標籤<a href="#"
-                                                            class="change-label-icon-a" id="add-label-right-off"><i
-                                                                class="fas fa-times change-label-icon"></i></a></span>
-
-                                                    <div class="label-color-total">
-
-                                                        <label class="label-name">名字</label>
-
-                                                        <input class="label-edit-input-search" type="text"
-                                                            id="get-add-input">
-
-                                                        <label class="label-name">選一個顏色</label>
-
-                                                        <div class="color-choice">
-
-                                                            <a href="#" name="green"><span
-                                                                    class="card-label card-label-green"
-                                                                    data-color="green"><i class="fas fa-check"
-                                                                        name="green-check"></i></span></a>
-                                                            <a href="#" name="yellow"><span
-                                                                    class="card-label card-label-yellow"
-                                                                    data-color="yellow"><i class="fas fa-check"
-                                                                        name="yellow-check"></i></span></a>
-                                                            <a href="#" name="orange"><span
-                                                                    class="card-label card-label-orange"
-                                                                    data-color="orange"><i class="fas fa-check"
-                                                                        name="orange-check"></i></span></a>
-                                                            <a href="#" name="red"><span
-                                                                    class="card-label card-label-red"
-                                                                    data-color="red"><i class="fas fa-check"
-                                                                        name="red-check"></i></span></a>
-                                                            <a href="#" name="purple"><span
-                                                                    class="card-label card-label-purple"
-                                                                    data-color="purple"><i class="fas fa-check"
-                                                                        name="purple-check"></i></span></a>
-                                                            <a href="#" name="blue"><span
-                                                                    class="card-label card-label-blue"
-                                                                    data-color="blue"><i class="fas fa-check"
-                                                                        name="blue-check"></i></span></a>
-                                                            <a href="#" name="sky"><span
-                                                                    class="card-label card-label-sky"
-                                                                    data-color="sky"><i class="fas fa-check"
-                                                                        name="sky-check"></i></span></a>
-                                                            <a href="#" name="lime"><span
-                                                                    class="card-label card-label-lime"
-                                                                    data-color="lime"><i class="fas fa-check"
-                                                                        name="lime-check"></i></span></a>
-                                                            <a href="#" name="pink"><span
-                                                                    class="card-label card-label-pink"
-                                                                    data-color="pink"><i class="fas fa-check"
-                                                                        name="pink-check"></i></span></a>
-                                                            <a href="#" name="black"><span
-                                                                    class="card-label card-label-black"
-                                                                    data-color="black"><i class="fas fa-check"
-                                                                        name="black-check"></i></span></a>
-
-                                                            <div class="label-edit-btn-set">
-                                                                <button class="btn-save" id="add-label-btn">儲存</button>
-                                                                <button class="btn-cancel"
-                                                                    id="cancel-label-btn">刪除</button>
+                                                    <% } %>
+                                                    <!--右側編輯標籤-->
+                                                    <div class="dropdown-edit">
+                                                        <button class="label-color-edit-btn"
+                                                            id="<%= 'edit-right-dropdown-' + (a + 1) %>">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <div class="dropdown-content-right" data-stopPropagation="true"
+                                                            id="<%= 'dropdown-content-right-' + (a + 1) %>">
+                                                            <span class="dropdown-label-header-title">
+                                                                改變標籤
+                                                                <a href="#" class="add-label-icon-a"
+                                                                    name="label-edit-off">
+                                                                    <i class="fas fa-times change-label-icon"></i>
+                                                                </a>
+                                                            </span>
+                                                            <div class="label-color-total">
+                                                                <label class="label-name">名字</label>
+                                                                <input class="label-edit-input-search"
+                                                                    id="<%= 'label-edit-input-search-right-' + (a + 1) %>"
+                                                                    type="text" value="<%= tags[a][1] %>">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        id="<%= 'add-label-edit-btn-right-' + (a + 1) %>">儲存</button>
+                                                                </div>
                                                             </div>
-
                                                         </div>
-
                                                     </div>
-
+                                                    <!--右側編輯標籤結束-->
                                                 </div>
+                                                <% } %>
 
                                             </div>
                                             <!--右邊新標籤結束-->
@@ -1081,27 +642,6 @@
                                             <span class="dropdown-label-header-title">移動卡片</span>
 
                                             <div class="move-card-modal">
-<<<<<<< HEAD
-=======
-
-                                                <div class="form-grid">
-
-                                                    <div class="button-drop-move">
-                                                        <span class="move-label">看板</span>
-                                                        <span class="move-value" id="kanboard"
-                                                            onmousemove="removeClassType(this)">我的計畫</span>
-                                                        <select id="kanboard-value" onchange="Kanboard_Value(this.id)">
-                                                            <optgroup label="計畫">
-                                                                <option>我的計畫</option>
-                                                                <option>專題製作</option>
-                                                                <option>文件製作</option>
-                                                            </optgroup>
-                                                        </select>
-                                                    </div>
-
-                                                </div>
-
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
                                                 <div class="form-grid">
 
                                                     <div class="button-drop-move-left">
@@ -1109,20 +649,9 @@
                                                         <span class="move-value" id="list-get"
                                                             onmousemove="removeClassType(this)">代辦事項:</span>
                                                         <select id="list-value" onchange="list_value(this.id)">
-                                                            <option>代辦事項: (目前的)</option>
-                                                            <option>今日應該完成</option>
-                                                            <option>已完成</option>
-                                                            <option>失敗</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="button-drop-move-right" style="margin-left: 0.5em;">
-                                                        <span class="move-label">位置</span>
-                                                        <span class="move-value" id="position-get"
-                                                            onmousemove="removeClassType(this)">1</span>
-                                                        <select id="position-value" onchange="position_value(this.id)">
-                                                            <option>1</option>
-                                                            <option>2</option>
+                                                            <% for (var l = 0; l < lists.length; l ++) { %>
+                                                            <option><%= lists[l][1] %></option>
+                                                            <% } %>
                                                         </select>
                                                     </div>
 
@@ -1181,44 +710,31 @@
                         <div class="member-modal-label-set">
                             <div class="member-modal-name">列表權限:</div>
                             <label class="switch">
-<<<<<<< HEAD
-                                <input type="checkbox" <%= projectPermission[0] ? 'checked' : '' %>>
-=======
-                                <input type="checkbox" checked>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
+                                <input id="listPermission" type="checkbox" <%= projectPermission[0] ? 'checked' : '' %>>
                                 <span class="slider round"></span>
                             </label>
                         </div>
                         <div class="member-modal-label-set">
                             <div class="member-modal-name">工作新增:</div>
                             <label class="switch">
-<<<<<<< HEAD
-                                <input type="checkbox" <%= projectPermission[1] ? 'checked' : '' %>>
-=======
-                                <input type="checkbox" checked>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
+                                <input id="addWorkPermission" type="checkbox"
+                                    <%= projectPermission[1] ? 'checked' : '' %>>
                                 <span class="slider round"></span>
                             </label>
                         </div>
                         <div class="member-modal-label-set">
                             <div class="member-modal-name">工作編輯:</div>
                             <label class="switch">
-<<<<<<< HEAD
-                                <input type="checkbox" <%= projectPermission[2] ? 'checked' : '' %>>
-=======
-                                <input type="checkbox" checked>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
+                                <input id="editWorkPermission" type="checkbox"
+                                    <%= projectPermission[2] ? 'checked' : '' %>>
                                 <span class="slider round"></span>
                             </label>
                         </div>
                         <div class="member-modal-label-set">
                             <div class="member-modal-name">工作刪除:</div>
                             <label class="switch">
-<<<<<<< HEAD
-                                <input type="checkbox" <%= projectPermission[3] ? 'checked' : '' %>>
-=======
-                                <input type="checkbox" checked>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
+                                <input id="deleteWorkPermission" type="checkbox"
+                                    <%= projectPermission[3] ? 'checked' : '' %>>
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -1252,65 +768,29 @@
                     </div>
 
                     <div class="modal-body">
-                        <div class="show-messenge">
-                            <div class="messenge">
-                                <div class="messenge-text">
-                                    請各位負責好自己的部分，謝謝。
-                                </div>
-                                <div class="time-show">
-                                    2019/07/25 下午03:47
-                                </div>
-                            </div>
-                            <hr class="hr-admin">
-                        </div>
+                        <% for (var p = 0; p < adminpush.length; p ++) { %>
+                        <% var now = SeparateDate(Date()) %>
+                        <% var pushStartData = SeparateDate(adminpush[p][1]) %>
+                        <% var pushEndData = SeparateDate(adminpush[p][2]) %>
 
-                        <div class="show-messenge">
+                        <% if (IsAdateNotArrived(pushEndData, Date())) { %>
+                        <div class="show-messenge clickShow">
                             <div class="messenge">
                                 <div class="messenge-text">
-                                    請各位負責好自己的部分，謝謝。
+                                    <%= adminpush[p][0] %>
                                 </div>
                                 <div class="time-show">
-                                    2019/07/25 下午03:47
+                                    <%= pushStartData[0] + '/' +
+                        (pushStartData[1] < 10 ? ('0' + pushStartData[1]) : pushStartData[1]) + '/' +
+                        (pushStartData[2] < 10 ? ('0' + pushStartData[2]) : pushStartData[2]) + ' ' +
+                        (pushStartData[3] >= 12 ? ('下午' + (pushStartData[3] - 12)) : ('上午' + pushStartData[3])) + ':' +
+                        (pushStartData[4] < 10 ? ('0' + pushStartData[4]) : pushStartData[4]) %>
                                 </div>
                             </div>
                             <hr class="hr-admin">
                         </div>
-
-                        <div class="show-messenge">
-                            <div class="messenge">
-                                <div class="messenge-text">
-                                    請各位負責好自己的部分，謝謝。
-                                </div>
-                                <div class="time-show">
-                                    2019/07/25 下午03:47
-                                </div>
-                            </div>
-                            <hr class="hr-admin">
-                        </div>
-
-                        <div class="show-messenge" name="modal-messenge-show">
-                            <div class="messenge">
-                                <div class="messenge-text">
-                                    請各位負責好自己的部分，謝謝。
-                                </div>
-                                <div class="time-show">
-                                    2019/07/25 下午03:47
-                                </div>
-                            </div>
-                            <hr class="hr-admin">
-                        </div>
-
-                        <div class="show-messenge" name="modal-messenge-show">
-                            <div class="messenge">
-                                <div class="messenge-text">
-                                    請各位負責好自己的部分，謝謝。
-                                </div>
-                                <div class="time-show">
-                                    2019/07/25 下午03:47
-                                </div>
-                            </div>
-                            <hr class="hr-admin">
-                        </div>
+                        <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -1346,111 +826,204 @@
                 </div>
             </div>
         </div>
+        <input id="isAdmin" type="hidden" value="<%= isAdmin %>">
+        <input id="permission_serno" type="hidden" value="<%= projectPermission[4] %>">
 
-    </div>
+        <!-----------------------------------scrpit-------------------------------------------->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        </script>
+        <script>
+            document.getElementById('listPermission').addEventListener('click', updatePermission);
+            document.getElementById('addWorkPermission').addEventListener('click', updatePermission);
+            document.getElementById('editWorkPermission').addEventListener('click', updatePermission);
+            document.getElementById('deleteWorkPermission').addEventListener('click', updatePermission);
+            document.cookie = 'isAdmin=' + $('#isAdmin').val()
 
-<<<<<<< HEAD
-    <!-----------------------------------scrpit-------------------------------------------->
-    <% function SeparateDate (date) { %>
-    <%     var result = [6]; %>
-    <%     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];   %>
-    <%     date = (date + "").substring(4, date.length); %>
-    <%     for (var i = 0; i < month.length; i ++) { %>
-    <%         if (date.substring(0,3).toLowerCase() == month[i].toLowerCase()) { %>
-    <%             result[1] = i + 1; %>
-    <%         } %>
-    <%     }   %>
-    <%     date = date.substring(4, date.length); %>
-    <%     result[2] = +date.substring(0,2); %>
-    <%     date = date.substring(3, date.length); %>
-    <%     result[0] = +date.substring(0,4); %>
-    <%     date = date.substring(5, date.length); %>
-    <%     result[3] = +date.substring(0,2); %>
-    <%     date = date.substring(3, date.length); %>
-    <%     result[4] = +date.substring(0,2); %>
-    <%     date = date.substring(3, date.length); %>
-    <%     result[5] = +date.substring(0,2); %>
-    <%  %>
-    <%     return result; %>
-    <% } %>
-    <script>
-        function SetWorkCard(data) {
-            //addMemberToWork principal work_deadline workInList work_title
-            $('#work_title').text(data.workData[1]);
-            $('#workInList').text(data.listname);
-            $('#work_deadline').text(data.workData[3]);
-            $('#principal').empty();
-            // console.log(data.teammember[0])
-            for (var a = 0; a < data.teammember.length; a++) {
-                if (data.teammember[a][0] == data.workData[11] || data.teammember[a][0] == data.workData[12]) {
-                    console.log(data.teammember[a])
-                    console.log('<img src="data:image/png;base64,' + data.teammember[a][2] + '" class="modal-member-photo">');
-                    $('#principal').append('<img src="data:image/png;base64,' + data.teammember[a][2] + '" class="modal-member-photo">');
+            function updatePermission() {
+                permission_serno = $('#permission_serno').val();
+                listPermission = $('#listPermission').get(0).checked;
+                addWorkPermission = $('#addWorkPermission').get(0).checked;
+                editWorkPermission = $('#editWorkPermission').get(0).checked;
+                deleteWorkPermission = $('#deleteWorkPermission').get(0).checked;
+                
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/updatePermission',
+                    datatype: "json",
+                    data: {
+                        permission_serno: permission_serno,
+                        listPermission: listPermission,
+                        addWorkPermission: addWorkPermission,
+                        editWorkPermission: editWorkPermission,
+                        deleteWorkPermission: deleteWorkPermission
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
+
+            function AddList() {
+                if ($('#add-list-input').val().trim() != '') {
+                    listIndex = $('.work-total').length;
+                    $('#add-list').parent().parent().before(
+                        '<div class="work-total"><div class="work-header"><input type="text" class="form-control input-style" placeholder="' +
+                        $('#add-list-input').val() +
+                        '"><div class="drpdown"><button class="btn btn-link btn-header" type="button" id="dropdownMenuLink" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button><div class="dropdown-menu" style="min-width: 12em !important;" aria-labelledby="dropdownMenuLink"><div class="drop-right-header-title"><span class="drop-right-title">列表動作</span></div><div class="dropdown-right-content"><div><div><ul class="dropdown-right-list"><li><a href="#">新增卡片</a></li><li><a href="#">刪除所有卡片</a></li><li><a href="#">刪除列表</a></li></ul></div></div></div></div></div></div><div class="work-body" id="work-body-move-1"><div class="card add-card"><textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea></div></div><div class="card-footer"><a href="#" class="a-footer add-card-textarea"><div class="footer-name"><i class="fas fa-plus"></i>新增另外一張卡片</div></a></div>'
+                    );
+                    //onclick="DeleteList("103", "1557986606376420", 1)"
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/addList',
+                        datatype: "json",
+                        data: {
+                            list_name: $('#add-list-input').val()
+                        },
+                        success: function (data) {
+                            $($('#add-list').parent().parent().prev().find('.dropdown-right-list a')[2])
+                                .attr('onclick', `DeleteList('` + data.list_id + `', ` + listIndex + `)`)
+                            browserRedirect();
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                    $('#add-list-input').val('');
                 }
             }
 
-        }
-        function Logout() {
-            document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
-            window.location.href = window.location.origin + '/login'
-        }
-    </script>
-=======
+            function DeleteList(list_id, index) {
+                $($('.work-total')[index]).remove();
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/deleteList',
+                    datatype: "json",
+                    data: {
+                        list_id: list_id
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
 
-    <!-----------------------------------scrpit-------------------------------------------->
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-<<<<<<< HEAD
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/js/jquery.ui.touch-punch.min.js"></script>
+            function SetWorkCard(data) {
+                //addMemberToWork principal work_deadline workInList work_title
+                console.log(data);
+                $('#work_title').text(data.workData[1]);
+                $('#workInList').text(data.listname);
+                $('#work_deadline').text(
+                    data.workData[3][1] + '月' + data.workData[3][2] + '日 ' +
+                    (data.workData[3][3] > 12 ? ('下午' + (data.workData[3][3] - 12) + '點') : ('上午' + data.workData[3]
+                        [
+                            3
+                        ] + '點')) +
+                    data.workData[3][4] + '分');
+                $('#principal').empty();
+                $('#addMemberToWork').empty();
+                $('#list-get').text(data.listname)
+                $('input.timeout-date').val(
+                    data.workData[3][0] + '-' +
+                    (data.workData[3][1] < 10 ? ('0' + data.workData[3][1]) : data.workData[3][1]) + '-' +
+                    (data.workData[3][2] < 10 ? ('0' + data.workData[3][2]) : data.workData[3][2]) + 'T' +
+                    (data.workData[3][3] < 10 ? ('0' + data.workData[3][3]) : data.workData[3][3]) + ':' +
+                    (data.workData[3][4] < 10 ? ('0' + data.workData[3][4]) : data.workData[3][4]) + ':' +
+                    (data.workData[3][5] < 10 ? ('0' + data.workData[3][5]) : data.workData[3][5])
+                )
+                // console.log(data.teammember[0])
+                for (var a = 0; a < data.teammember.length; a++) {
+                    $('#addMemberToWork').append(
+                        '<a class="dropdown-img-member-set" href="#"><img src="data:image/png;base64,' + data
+                        .teammember[a][2] +
+                        '" class="dropdown-member-img"><div class="member-name">' + data.teammember[a][1] +
+                        '</div></a>'
+                    )
+                    if (data.teammember[a][0] == data.workData[11] || data.teammember[a][0] == data.workData[12]) {
+                        $('#principal').append('<img src="data:image/png;base64,' + data.teammember[a][2] +
+                            '" class="modal-member-photo">');
 
-    <script src="/js/Plan_AddTextarea.js"></script>
-    <script src="/js/Plan_Draggable.js"></script>
-    <script src="/js/Plan_AddList.js"></script>
-    <script src="/js/Plan_CardLabelToggle.js"></script>
-    <script src="/js/Plan_ModalLabelLeft.js"></script>
-    <script src="/js/Plan_ModalLabelRight.js"></script>
-    <script src="/js/Plan_ModalMoveCard.js"></script>
-    <script src="/js/Plan_ModalDeleteCard.js"></script>
-    <script src="/js/Plan_ListDropdown.js"></script>
-    <script src="/js/Plan_MemberDelete.js"></script>
-    <script src="/js/Plan_AdminMessenge.js"></script>
-    <script src="/js/Plan_MoveHoverText.js"></script>
-    <script src="/js/Plan_StopPropagation.js"></script>
-    <script src="/js/Plan_Datetime.js"></script>
-=======
-    <!-- <script src="./js/jquery.ui.touch-punch.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!-- <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script> -->
-    <script src="/js/Sortable.js"></script>
-    <script src="/js/textarea.js"></script>
-    <script src="/js/add-list.js"></script>
-    <script src="/js/label.js"></script>
-    <script src="/js/text-show.js"></script>
-    <script src="/js/stop_dropdown.js"></script>
-    <script src="/js/add_label.js"></script>
-    <script src="/js/left-dropdown-show.js"></script>
-    <script src="/js/move_card.js"></script>
-    <script src="/js/member-delete.js"></script>
-    <script src="/js/dropdown-list.js"></script>
-    <script src="/js/modal-delete.js"></script>
-    <script src="/js/admin_messenge.js"></script>
->>>>>>> 885d6de2ad241b4e80ac3d2c4179662c448a509f
+                    }
+                }
+                $('#fixedTags').empty();
+                for (var i = 0; i < data.tags.length; i++) {
+                    for (var a = 4; a < 10; a++) {
+                        if (data.workData[a] == data.tags[i][0]) {
+                            if (data.tags[i][2] == '#61BD4F') {
+                                $('#fixedTags').append(
+                                    '<span class="modal-label-1"><span class="label-text" onmousemove="removeClassType(this)">' +
+                                    data.tags[i][1] + '</span></span>'
+                                )
+                            } else
+                            if (data.tags[i][2] == '#F2D600') {
+                                $('#fixedTags').append(
+                                    '<span class="modal-label-2"><span class="label-text" onmousemove="removeClassType(this)">' +
+                                    data.tags[i][1] + '</span></span>'
+                                )
+                            } else if (data.tags[i][2] == '#FF9F1A') {
+                                $('#fixedTags').append(
+                                    '<span class="modal-label-3"><span class="label-text" onmousemove="removeClassType(this)">' +
+                                    data.tags[i][1] + '</span></span>'
+                                )
+                            } else if (data.tags[i][2] == '#EB5A46') {
+                                $('#fixedTags').append(
+                                    '<span class="modal-label-4"><span class="label-text" onmousemove="removeClassType(this)">' +
+                                    data.tags[i][1] + '</span></span>'
+                                )
+                            } else if (data.tags[i][2] == '#C377E0') {
+                                $('#fixedTags').append(
+                                    '<span class="modal-label-5"><span class="label-text" onmousemove="removeClassType(this)">' +
+                                    data.tags[i][1] + '</span></span>'
+                                )
+                            } else if (data.tags[i][2] == '#0079BF') {
+                                $('#fixedTags').append(
+                                    '<span class="modal-label-6"><span class="label-text" onmousemove="removeClassType(this)">' +
+                                    data.tags[i][1] + '</span></span>'
+                                )
+                            }
+                        }
+                    }
+                }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            }
 
-    <!------------------------------------------------------------------------------------->
+            function Logout() {
+                document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+                window.location.href = window.location.origin + '/login'
+            }
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="/js/jquery.ui.touch-punch.min.js"></script>
+
+        <script src="/js/Plan_AddTextarea.js"></script>
+        <script src="/js/Plan_Draggable.js"></script>
+        <script src="/js/Plan_AddList.js"></script>
+        <script src="/js/Plan_CardLabelToggle.js"></script>
+        <script src="/js/Plan_ModalLabelLeft.js"></script>
+        <script src="/js/Plan_ModalLabelRight.js"></script>
+        <script src="/js/Plan_ModalMoveCard.js"></script>
+        <script src="/js/Plan_ModalDeleteCard.js"></script>
+        <script src="/js/Plan_ListDropdown.js"></script>
+        <script src="/js/Plan_MemberDelete.js"></script>
+        <script src="/js/Plan_AdminMessenge.js"></script>
+        <script src="/js/Plan_MoveHoverText.js"></script>
+        <script src="/js/Plan_StopPropagation.js"></script>
+        <script src="/js/Plan_Datetime.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!------------------------------------------------------------------------------------->
 </body>
 
 </html>
