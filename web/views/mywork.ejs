@@ -84,7 +84,8 @@
                 </div>
             </div>
             <form class="slider-btn">
-                <button type="button" class="btn btn-secondary button-submit" id="return">返回</button>
+                <button type="button" class="btn btn-secondary button-submit" id="return"
+                    onclick="javascript:$('option').remove();">返回</button>
                 <button type="button" class="btn btn-danger button-submit" style="margin-left:1em;"
                     onclick="javascript:UpdateListWork();">確定</button>
             </form>
@@ -126,8 +127,15 @@
                     <div class="header">
                         <div class="text"><%= items[i].project[p].project_name %></div>
                         <div class="switch-move-top">
+                            <% var result = ""; %>
+                            <% if (items[i].project[p].project_hint) {
+                                    result = "checked";
+                                }
+                            %>
                             <label class="switch-top">
-                                <input type="checkbox" checked>
+                                <input type="checkbox" id="projecthint" onclick="<%= "javascript:UpdateProjectLinebotPush('" + 
+                                    items[i].project[p].project_id + "', " + 
+                                    items[i].project[p].project_hint + ")" %>" <%= result %>>
                                 <span class="slider-top round-top"></span>
                             </label>
                         </div>
@@ -137,48 +145,66 @@
                     <div class="body-show">
                         <!----------------列表---------------->
                         <% for(var lw=0; lw<items[i].listwork.length; lw++) { %>
-                        <% for(var l=0; l<items[i].listwork[lw].list.length; l++) { %>
                         <a href="#" data-toggle="collapse" data-target=<%="#list-work-" + lw %> aria-expanded="true"
                             class="list-a" id="list-1">
                             <div class="card-list-1">
-                                <div class="list-header"><%= items[i].listwork[lw].list[l].list_name %></div>
+                                <div class="list-header"><%= items[i].listwork[lw].list.list_name %></div>
                                 <button class="btn btn-link card-list-btn" type="button" data-toggle="collapse"
                                     data-target=<%="#list-work-" + lw %> aria-expanded="true">
                                     <div class="triangle-1"></div>
                                 </button>
                             </div>
                         </a>
-                        <% } %>
                         <!----------------工作---------------->
                         <% for(var w=0; w<items[i].listwork[lw].work.length; w++) { %>
                         <div class="collapse show work-total" id=<%="list-work-" + lw %>>
                             <div class="card-content">
                                 <button class="btn btn-link btn-work" type="button" name="left-show" onclick="<%= "javascript:SetListInfo(" + 
-                                    items[i].options + ", '" + 
-                                    items[i].listwork[lw].list[0].list_name + "')" %>">
-                                    <% console.log(items[i].options) %>
+                                    JSON.stringify(items[i].options) + ", '" + 
+                                    items[i].listwork[lw].listwork_serno + "', '" + 
+                                    items[i].listwork[lw].list.list_name + "')" %>">
                                     <i class="fas fa-square"></i></button>
-                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal"
-                                    onmousemove="removeClassType(this)" onclick="
+                                <a href="#" class="work-a" data-toggle="modal" data-target="#exampleModal" onclick="
                                     <%= "javascript:SetWorkInfo('" + 
                                     items[i].listwork[lw].work[w].work_id + "', '" + 
                                     items[i].listwork[lw].work[w].work_title + "', '" + 
                                     items[i].listwork[lw].work[w].work_content + "', '" + 
                                     items[i].listwork[lw].work[w].deadline + "', '" + 
-                                    items[i].listwork[lw].work[w].tag + "', '" + 
+                                    items[i].listwork[lw].work[w].tagname1 + "', '" + 
+                                    items[i].listwork[lw].work[w].color1 + "', '" + 
+                                    items[i].listwork[lw].work[w].tagname2 + "', '" + 
+                                    items[i].listwork[lw].work[w].color2 + "', '" +
+                                    items[i].listwork[lw].work[w].tagname3 + "', '" + 
+                                    items[i].listwork[lw].work[w].color3 + "', '" +
+                                    items[i].listwork[lw].work[w].tagname4 + "', '" + 
+                                    items[i].listwork[lw].work[w].color4 + "', '" +
+                                    items[i].listwork[lw].work[w].tagname5 + "', '" + 
+                                    items[i].listwork[lw].work[w].color5 + "', '" +
+                                    items[i].listwork[lw].work[w].tagname6 + "', '" + 
+                                    items[i].listwork[lw].work[w].color6 + "', '" +
+                                    items[i].listwork[lw].work[w].file_name + "', '" + 
                                     items[i].listwork[lw].work[w].file + "', '" + 
-                                    items[i].listwork[lw].work[w].first_principal + "', '" + 
-                                    items[i].listwork[lw].work[w].second_principal + "')" %>
+                                    items[i].listwork[lw].work[w].principal_photo1 + "', '" + 
+                                    items[i].listwork[lw].work[w].principal_photo2 + "')" %>
                                     ">
                                     <%= items[i].listwork[lw].work[w].work_title %>
                                 </a>
                                 <div class="switch-move">
                                     <label class="upload_cover">
-                                        <input id="upload_input" type="file">
+                                        <% var work = JSON.stringify(items[i].listwork[lw].work[w]); %>
+                                        <input id="upload_input" type="file"
+                                            onchange="<%= "javascript:Upload(this" + "," + work + ")" %>">
                                         <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
                                     </label>
                                     <label class="switch">
-                                        <input type="checkbox" checked>
+                                        <% var result = ""; %>
+                                        <% if (items[i].listwork[lw].work[w].work_hint) {
+                                                    result = "checked";
+                                                }
+                                            %>
+                                        <input type="checkbox" id="workhint" onclick="<%= "javascript:UpdateWorkLinebotPush('" + 
+                                        items[i].listwork[lw].work[w].work_id + "', " + 
+                                        items[i].listwork[lw].work[w].work_hint + ")" %>" <%= result %>>
                                         <span class="slider round"></span>
                                     </label>
                                 </div>
@@ -217,11 +243,16 @@
                         <hr>
                         <p class="modal-text-name">標籤</p>
                         <div class="tag-edit">
-                            <a href="#" class="badge badge-warning" id="tag"></a>
+                            <a href="#" class="badge badge-warning" id="tag1"></a>
+                            <a href="#" class="badge badge-warning" id="tag2"></a>
+                            <a href="#" class="badge badge-warning" id="tag3"></a>
+                            <a href="#" class="badge badge-warning" id="tag4"></a>
+                            <a href="#" class="badge badge-warning" id="tag5"></a>
+                            <a href="#" class="badge badge-warning" id="tag6"></a>
                         </div>
                         <hr>
                         <p class="modal-text-name">檔案</p>
-                        <a class="modal-work-file" download href="./zip/測試資料夾.zip">
+                        <a class="modal-work-file" download>
                             <i class="fas fa-file-archive fa-lg" id="file"></i>
                         </a>
                         <hr>
@@ -240,32 +271,150 @@
     </div>
     <!-----------------------------------scrpit-------------------------------------------->
     <script>
-        function SetWorkInfo(workId, workTitle, workContent, deadline, tag, file, firstPrincipal, secondPrincipal) {
-            $('#work_id').text(workId);
-            $('#work_title').text(workTitle);
-            $('#work_content').text(workContent);
-            $('#deadline').text(deadline);
-            $('#tag').text(tag);
-            $('#file').text(file);
-            $('#first_principal').text(firstPrincipal);
-            $('#second_principal').text(secondPrincipal);
+        function UpdateProjectLinebotPush(project_id, value) {
+            if ($('#projecthint').is(":checked")) {
+                value = true;
+            } else {
+                value = false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'mywork/updateProjectLinebotPush',
+                data: { project_id: project_id, project_hint: value }
+            });
         }
 
-        function SetListInfo(options, listName) {
-            alert(1);
+        function UpdateWorkLinebotPush(work_id, value) {
+            if ($('#workhint').is(":checked")) {
+                value = true;
+            } else {
+                value = false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'mywork/updateWorkLinebotPush',
+                data: { work_id: work_id, work_hint: value }
+            });
+        }
+
+        function Upload(input, work) {
+            if (input.files && input.files[0]) {
+                if (input.files[0].type != "application/x-zip-compressed") {
+                    alert("只能上傳zip檔");
+                } else {
+                    console.log(input.files[0]);
+                    var type = input.files[0].type;
+                    var reader = new FileReader();
+
+                    // Closure to capture the file information.
+                    reader.onload = (function (file) {
+                        return function (e) {
+                            var base64Data = e.target.result;
+                            work.file = base64Data;
+                            work.file_name = input.files[0].name;
+                            $.ajax({
+                                type: 'POST',
+                                url: 'mywork/updateFile',
+                                data: { "workUpdate": work }
+                            });
+                        };
+                    })(input.files[0]);
+                    // Read in the file as a data URL.
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+        }
+
+        function SetListInfo(options, listwork_serno, listName) {
             var left = $('#slider-left').css("left");
-            console.log(typeof(options));
-            alert(options[0]);
 
             if (left == "0px") {
-                for (var i = 0; i < opt.length; i++) {
-                    if (opt[i] != listName) {
-                        $('#options').append("<option>" + opt[i] + "</option>");
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].list_name != listName) {
+                        $('#options').append("<option id='" + options[i].list_id + "' value='" + listwork_serno + "'>" + options[i].list_name + "</option>");
                     }
+                }
+                if ($('#options option').length == 0) {
+                    $('#options').append("<option value=''>無其他列表選項</option>");
                 }
                 $('#list_name').text(listName);
             } else {
                 $('option').remove();
+            }
+        }
+
+        function UpdateListWork() {
+            var canSubmit = true;
+            var s = document.getElementById('options');
+            var listwork_serno = s.options[s.selectedIndex].value;
+            var list_id = s.options[s.selectedIndex].id;
+
+            if (listwork_serno == "" && list_id == "") {
+                alert("無其他列表選項無法移動工作!");
+                canSubmit = false;
+            }
+
+            if (canSubmit) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'mywork/updateListWork',
+                    data: { listwork_serno: listwork_serno, list_id: list_id }
+                });
+            }
+        }
+
+        function SetWorkInfo(workId, workTitle, workContent, deadline, tagname1, color1, tagname2, color2, tagname3, color3, tagname4, color4, tagname5, color5, tagname6, color6, file_name, file, principal_photo1, principal_photo2) {
+            $('#work_id').text(workId);
+            $('#work_title').text(workTitle);
+            $('#work_content').text(workContent);
+            $('#deadline').text(deadline);
+            $('#file').text(file_name);
+            $('.modal-work-file').attr("href", file);
+            console.log(file);
+
+            if (tagname1 != "null") {
+                $('#tag1').text(tagname1);
+                $('#tag1').css("background", color1);
+            }
+
+            if (tagname2 != "null") {
+                $('#tag2').text(tagname2);
+                $('#tag2').css("background", color2);
+            }
+
+            if (tagname3 != "null") {
+                $('#tag3').text(tagname3);
+                $('#tag3').css("background", color3);
+            }
+
+            if (tagname4 != "null") {
+                $('#tag4').text(tagname4);
+                $('#tag4').css("background", color4);
+            }
+
+            if (tagname5 != "null") {
+                $('#tag5').text(tagname5);
+                $('#tag5').css("background", color5);
+            }
+
+            if (tagname6 != "null") {
+                $('#tag6').text(tagname6);
+                $('#tag6').css("background", color6);
+            }
+
+            if (principal_photo1 != "null") {
+                $('#first_principal').attr("src", 'data:image/png;base64,' + principal_photo1);
+            } else {
+                $('#first_principal').attr("src", 'imgs/people1.png');
+            }
+
+            if (principal_photo2 != "null") {
+                $('#second_principal').attr("src", 'data:image/png;base64,' + principal_photo2);
+            } else {
+                $('#second_principal').attr("src", 'imgs/people1.png');
             }
         }
     </script>

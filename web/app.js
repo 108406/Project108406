@@ -18,6 +18,9 @@ var member_delete = require('./routes/member_delete');
 var project = require('./routes/project');
 var mywork = require('./routes/mywork');
 var mywork_updateListWork = require('./routes/mywork_updateListWork');
+var mywork_updateProjectLinebotPush = require('./routes/mywork_updateProjectLinebotPush');
+var mywork_updateWorkLinebotPush = require('./routes/mywork_updateWorkLinebotPush');
+var mywork_updateFile = require('./routes/mywork_updateFile');
 
 var app = express();
 
@@ -49,6 +52,9 @@ app.use('/member/delete', member_delete);
 app.use('/project', project);
 app.use('/mywork', mywork);
 app.use('/mywork/updateListWork', mywork_updateListWork);
+app.use('/mywork/updateProjectLinebotPush', mywork_updateProjectLinebotPush);
+app.use('/mywork/updateWorkLinebotPush', mywork_updateWorkLinebotPush);
+app.use('/mywork/updateFile', mywork_updateFile);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

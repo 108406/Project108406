@@ -117,8 +117,8 @@ var updateWork = async function (work_update) {
     var result = [];
 
     //讀取資料庫
-    await query('update work set work_title = $2, work_content = $3, deadline = $4, tag = $5, file = $6, first_principal = $7, second_principal = $8 where work_id = $1'
-    , [work_update.work_id, work_update.work_title, work_update.work_content, work_update.deadline, work_update.tag, work_update.file, work_update.first_principal, work_update.second_principal])
+    await query('update work set work_title = $2, work_content = $3, deadline = $4, tag_id1 = $5, tag_id2 = $6, tag_id3 = $7, tag_id4 = $8, tag_id5 = $9, tag_id6 = $10, file = $11, first_principal = $12, second_principal = $13 where work_id = $1'
+    , [work_update.work_id, work_update.work_title, work_update.work_content, work_update.deadline, work_update.tag_id1, work_update.tag_id2, work_update.tag_id3, work_update.tag_id4, work_update.tag_id5, work_update.tag_id6, work_update.file, work_update.first_principal, work_update.second_principal])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功

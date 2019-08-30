@@ -29,7 +29,7 @@ var workWithUser = async function (user_id) {
     //存放結果
     var result = [];
 
-    await query("select member_name, project_id, project_name, list_id, list_name, work_id, work_title, work_content, deadline, tag, file, first_principal, second_principal from mywork_view where user_id = '" + user_id + "'")
+    await query("select member_name, project_id, project_name, project_hint, listwork_serno, list_id, list_name, work_id, work_title, work_content, deadline, tag_id1, tagname1, color1, tag_id2, tagname2, color2, tag_id3, tagname3, color3, tag_id4, tagname4, color4, tag_id5, tagname5, color5, tag_id6, tagname6, color6, file_name, file, first_principal, second_principal, principal_photo1, principal_photo2, work_hint from mywork_view where user_id = '" + user_id + "'")
         .then((data) => {
             if (data.rowCount > 0) {
                 result = data; //成功
