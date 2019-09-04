@@ -7,7 +7,7 @@
 
 html, body {
     font-family: 'Noto Serif TC', serif;
-    background: url(../imgs/背景1.png)center center fixed no-repeat;
+    /* background: url(../imgs/背景1.png)center center fixed no-repeat; */
     background-size: cover;
     height: 100%;
     overflow-x: hidden;
@@ -641,7 +641,6 @@ span.modal-label-1 {
     height: 30px;
     line-height: 30px;
     margin: 0 4px 4px 0;
-    background-color: #61bd4f;
     border-radius: 4px;
     color: rgb(255, 255, 255);
     display: block;
@@ -850,7 +849,7 @@ div.file-set {
     position: relative;
 }
 
-a.box-rar {
+a.box-zip {
     background-color: rgba(9, 30, 66, .08);
     background-position: 50%;
     border-radius: 3px;
@@ -865,7 +864,7 @@ a.box-rar {
     width: 112px;
 }
 
-span.box-rar-text {
+span.box-zip-text {
     color: #6b778c;
     display: block;
     font-size: 18px;

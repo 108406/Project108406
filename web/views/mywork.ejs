@@ -28,13 +28,13 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav">
                 <li>
-                    <a href="Member.html"> <i class="far fa-user fa-lg"></i>會員</a>
+                    <a href="\member"> <i class="far fa-user fa-lg"></i>會員</a>
                 </li>
                 <li>
-                    <a href="index.html"><i class="fas fa-book fa-lg"></i>計畫</a>
+                    <a href="\content"><i class="fas fa-book fa-lg"></i>計畫</a>
                 </li>
                 <li>
-                    <a href="Mywork.html"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                    <a href="\mywork"> <i class="far fa-edit fa-lg"></i>我的工作</a>
                 </li>
             </ul>
             <form class="search">
@@ -77,25 +77,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <select class="form-control btn-move-list">
-                                <option>這是列表一</option>
-                                <option>這是列表二</option>
-                                <option>這是列表三</option>
-                                <option>這是列表四</option>
+                            <select class="form-control" id="options">
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
             <form class="slider-btn">
-                <button type="button" class="btn btn-return button-submit" id="return"
+                <button type="button" class="btn btn-secondary button-submit" id="return"
                     onclick="javascript:$('option').remove();">返回</button>
-                <button type="button" class="btn btn-ok button-submit" style="margin-left:1em;"
+                <button type="button" class="btn btn-danger button-submit" style="margin-left:1em;"
                     onclick="javascript:UpdateListWork();">確定</button>
             </form>
 
         </div>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <!-- 新手教學 -->
+        <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -120,17 +117,27 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
+        </div> -->
+        <!-- 每項計畫-->
         <div class="content">
             <div class="typesetting">
                 <% for(var i=0; i<items.length; i++) { %>
                 <div class="card mywork">
                     <!-----------------------標題-------------------------------------->
+                    <% for(var p=0; p<items[i].project.length; p++) { %>
+                    <!-----------------------標題----------------------->
                     <div class="header">
-                        <div class="text">重修計畫</div>
+                        <div class="text"><%= items[i].project[p].project_name %></div>
                         <div class="switch-move-top">
+                            <% var result = ""; %>
+                            <% if (items[i].project[p].project_hint) {
+                                                result = "checked";
+                                            }
+                                        %>
                             <label class="switch-top">
-                                <input type="checkbox" checked>
+                                <input type="checkbox" id="projecthint" onclick="<%= "javascript:UpdateProjectLinebotPush('" + 
+                                                items[i].project[p].project_id + "', " + 
+                                                items[i].project[p].project_hint + ")" %>" <%= result %>>
                                 <span class="slider-top round-top"></span>
                             </label>
                         </div>
@@ -140,42 +147,81 @@
                     </center>
                     <div class="body-show">
                         <!-----------------------列表--------------------------------->
-                        <a href="#" data-toggle="collapse" data-target="#list-work-1" aria-expanded="true"
+                        <% for(var lw=0; lw<items[i].listwork.length; lw++) { %>
+                        <a href="#" data-toggle="collapse" data-target=<%="#list-work-" + lw %> aria-expanded="true"
                             class="list-a" id="list-1">
                             <div class="card-list-1">
-                                <div class="list-header">這是列表一</div>
+                                <div class="list-header"><%= items[i].listwork[lw].list.list_name %></div>
                                 <button class="btn btn-link card-list-btn" type="button" data-toggle="collapse"
-                                    data-target="#list-work-1" aria-expanded="true">
-                                    <!-- <i class="fas fa-caret-down fa-lg"></i> -->
+                                    data-target=<%="#list-work-" + lw %> aria-expanded="true">
                                     <div class="triangle-1"></div>
                                 </button>
                             </div>
                         </a>
                         <!------------------------列表裡工作------------------------------->
-                        <div class="collapse show work-total" id="list-work-1">
+                        <% for(var w=0; w<items[i].listwork[lw].work.length; w++) { %>
+                        <div class="collapse show work-total" id=<%="list-work-" + lw %>>
                             <div class="card-content">
-                                <button class="btn btn-link btn-work" type="button" name="left-show"><i
-                                        class="fas fa-square"></i></button>
-                                <a href="#" class="work-a" data-toggle="modal" data-target="#modalshow"
-                                    onmousemove="removeClassType(this)">
-                                    我要測試我的資料太長會發生甚麼問題
+                                <button class="btn btn-link btn-work" type="button" name="left-show" onclick="<%= "javascript:SetListInfo(" + 
+                                            JSON.stringify(items[i].options) + ", '" + 
+                                            items[i].listwork[lw].listwork_serno + "', '" + 
+                                            items[i].listwork[lw].list.list_name + "')" %>">
+                                    <i class="fas fa-square"></i></button>
+                                <a href="#" class="work-a" data-toggle="modal" data-target="#modalshow" onclick="
+                                            <%= "javascript:SetWorkInfo('" + 
+                                            items[i].project[p].project_id + "', '" + 
+                                            items[i].listwork[lw].work[w].work_id + "', '" + 
+                                            items[i].listwork[lw].work[w].work_title + "', '" + 
+                                            items[i].listwork[lw].work[w].work_content + "', '" + 
+                                            items[i].listwork[lw].work[w].deadline + "', '" + 
+                                            items[i].listwork[lw].work[w].tagname1 + "', '" + 
+                                            items[i].listwork[lw].work[w].color1 + "', '" + 
+                                            items[i].listwork[lw].work[w].tagname2 + "', '" + 
+                                            items[i].listwork[lw].work[w].color2 + "', '" +
+                                            items[i].listwork[lw].work[w].tagname3 + "', '" + 
+                                            items[i].listwork[lw].work[w].color3 + "', '" +
+                                            items[i].listwork[lw].work[w].tagname4 + "', '" + 
+                                            items[i].listwork[lw].work[w].color4 + "', '" +
+                                            items[i].listwork[lw].work[w].tagname5 + "', '" + 
+                                            items[i].listwork[lw].work[w].color5 + "', '" +
+                                            items[i].listwork[lw].work[w].tagname6 + "', '" + 
+                                            items[i].listwork[lw].work[w].color6 + "', '" +
+                                            items[i].listwork[lw].work[w].file_name + "', '" + 
+                                            items[i].listwork[lw].work[w].file + "', '" + 
+                                            items[i].listwork[lw].work[w].principal_photo1 + "', '" + 
+                                            items[i].listwork[lw].work[w].principal_photo2 + "')" %>
+                                            ">
+                                    <%= items[i].listwork[lw].work[w].work_title %>
                                 </a>
                                 <div class="switch-move">
                                     <label class="upload_cover">
-                                        <input id="upload_input" type="file">
+                                        <% var work = JSON.stringify(items[i].listwork[lw].work[w]); %>
+                                        <input id="upload_input" type="file"
+                                            onchange="<%= "javascript:Upload(this" + "," + work + ")" %>">
                                         <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
                                     </label>
                                     <label class="switch">
-                                        <input type="checkbox" checked>
+                                        <% var result = ""; %>
+                                        <% if (items[i].listwork[lw].work[w].work_hint) {
+                                                            result = "checked";
+                                                        }
+                                                    %>
+                                        <input type="checkbox" id="workhint" onclick="<%= "javascript:UpdateWorkLinebotPush('" + 
+                                                items[i].listwork[lw].work[w].work_id + "', " + 
+                                                items[i].listwork[lw].work[w].work_hint + ")" %>" <%= result %>>
                                         <span class="slider round"></span>
                                     </label>
                                 </div>
                             </div>
                         </div>
+                        <% } %>
+                        <% } %>
                         <div class="card-footer">
                         </div>
                     </div>
+                    <% } %>
                 </div>
+                <% } %>
             </div>
         </div>
         <!-- Modal 點選卡片出現 -->
@@ -186,7 +232,7 @@
                     <!--標題-->
                     <div class="modal-header">
                         <i class="far fa-credit-card fa-lg" style="font-size: 1.5em;"></i>
-                        <div class="modal-header-name">html 手機模式下列表會消失 修正問題</div>
+                        <div class="modal-header-name" id="work_content">html 手機模式下列表會消失 修正問題</div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -203,10 +249,10 @@
                                         <div class="modal-description-name">會員</div>
                                     </div>
                                     <div class="modal-member-show">
-                                        <img src="imgs/gray-cat.png" class="modal-member-photo">
+                                        <img src="imgs/gray-cat.png" class="modal-member-photo" id="first_principal">
+                                        <img src="imgs/gray-cat.png" class="modal-member-photo" id="second_principal">
                                     </div>
                                 </div>
-                                <!---->
                                 <!--標籤-->
                                 <div class="modal-label-left">
                                     <div class="modal-label-header">
@@ -215,14 +261,21 @@
                                     </div>
                                     <div class="label-set">
                                         <div class="modal-label" name="modal-label-show">
-                                            <span class="modal-label-1"><span class="label-text"
-                                                    onmousemove="removeClassType(this)">功能</span></span>
-                                            <span class="modal-label-1"><span class="label-text"
-                                                    onmousemove="removeClassType(this)">功能</span></span>
+                                            <span class="modal-label-1" id="tag1"><span class="label-text"
+                                                    onmousemove="removeClassType(this)"></span></span>
+                                            <span class="modal-label-1" id="tag2"><span class="label-text"
+                                                    onmousemove="removeClassType(this)"></span></span>
+                                            <span class="modal-label-1" id="tag3"><span class="label-text"
+                                                    onmousemove="removeClassType(this)"></span></span>
+                                            <span class="modal-label-1" id="tag4"><span class="label-text"
+                                                    onmousemove="removeClassType(this)"></span></span>
+                                            <span class="modal-label-1" id="tag5"><span class="label-text"
+                                                    onmousemove="removeClassType(this)"></span></span>
+                                            <span class="modal-label-1" id="tag6"><span class="label-text"
+                                                    onmousemove="removeClassType(this)"></span></span>
                                         </div>
                                     </div>
                                 </div>
-                                <!---->
                                 <!--到期日-->
                                 <div class="modal-timeout">
                                     <div class="modal-timeout-header">
@@ -230,10 +283,9 @@
                                         <div class="modal-timeout-name">到期日</div>
                                     </div>
                                     <div class="timeout">
-                                        <span class="deadtime"><i class="far fa-clock"></i>5月5日 下午7點12分</span>
+                                        <span class="deadtime" id="deadline"><i class="far fa-clock"></i></span>
                                     </div>
                                 </div>
-                                <!---->
                                 <!--檔案-->
                                 <div class="modal-file">
                                     <div class="modal-file-header">
@@ -241,19 +293,17 @@
                                         <div class="modal-file-name">下載附件</div>
                                     </div>
                                     <div class="file-set">
-                                        <a class="box-rar" download href="./test.rar">
-                                            <span class="box-rar-text">rar</span>
+                                        <a class="box-zip" id="file">
+                                            <span class="box-zip-text"></span>
                                         </a>
                                         <p class="file-set-show">
-                                            <a download href="./test.rar" class="file-name">2.0.rar</a>
+                                            <a class="file-name" id="file_name"></a>
                                         </p>
                                     </div>
                                 </div>
-                                <!---->
                                 <!--編輯按鈕-->
                                 <div class="edit-btn">
-                                    <button type="button" class="btn btn-edit"
-                                        onclick="location.href='Plan.html'">編輯</button>
+                                    <button type="button" class="btn btn-edit" onclick="gotoPlan(this.val);">編輯</button>
                                 </div>
                                 <!---->
                             </div>
@@ -264,6 +314,163 @@
         </div>
     </div>
     <!-----------------------------------scrpit-------------------------------------------->
+    <script>
+        function UpdateProjectLinebotPush(project_id, value) {
+            if ($('#projecthint').is(":checked")) {
+                value = true;
+            } else {
+                value = false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'mywork/updateProjectLinebotPush',
+                data: { project_id: project_id, project_hint: value }
+            });
+        }
+
+        function UpdateWorkLinebotPush(work_id, value) {
+            if ($('#workhint').is(":checked")) {
+                value = true;
+            } else {
+                value = false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'mywork/updateWorkLinebotPush',
+                data: { work_id: work_id, work_hint: value }
+            });
+        }
+
+        function Upload(input, work) {
+            if (input.files && input.files[0]) {
+                if (input.files[0].type != "application/x-zip-compressed") {
+                    alert("只能上傳zip檔");
+                } else {
+                    console.log(input.files[0]);
+                    var type = input.files[0].type;
+                    var reader = new FileReader();
+
+                    // Closure to capture the file information.
+                    reader.onload = (function (file) {
+                        return function (e) {
+                            var base64Data = e.target.result;
+                            work.file = base64Data;
+                            work.file_name = input.files[0].name;
+                            $.ajax({
+                                type: 'POST',
+                                url: 'mywork/updateFile',
+                                // data: { "workUpdate": work }
+                                data: { "work_id": work.work_id, "file": work.file }
+                            });
+                        };
+                    })(input.files[0]);
+                    // Read in the file as a data URL.
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+        }
+
+        function SetListInfo(options, listwork_serno, listName) {
+            var left = $('#slider-left').css("left");
+
+            if (left == "0px") {
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].list_name != listName) {
+                        $('#options').append("<option id='" + options[i].list_id + "' value='" + listwork_serno + "'>" + options[i].list_name + "</option>");
+                    }
+                }
+                if ($('#options option').length == 0) {
+                    $('#options').append("<option value=''>無其他列表選項</option>");
+                }
+                $('#list_name').text(listName);
+            } else {
+                $('option').remove();
+            }
+        }
+
+        function UpdateListWork() {
+            var canSubmit = true;
+            var s = document.getElementById('options');
+            var listwork_serno = s.options[s.selectedIndex].value;
+            var list_id = s.options[s.selectedIndex].id;
+
+            if (listwork_serno == "" && list_id == "") {
+                alert("無其他列表選項無法移動工作!");
+                canSubmit = false;
+            }
+
+            if (canSubmit) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'mywork/updateListWork',
+                    data: { listwork_serno: listwork_serno, list_id: list_id }
+                });
+            }
+        }
+
+        function SetWorkInfo(projectId, workId, workTitle, workContent, deadline, tagname1, color1, tagname2, color2, tagname3, color3, tagname4, color4, tagname5, color5, tagname6, color6, file_name, file, principal_photo1, principal_photo2) {
+            $('#work_id').text(workId);
+            $('#work_title').text(workTitle);
+            $('#work_content').text(workContent);
+            $('#deadline').text(deadline);
+            $('#file_name').text(file_name);
+            $('#file_name').attr("download");
+            $('#file_name').attr("href", file);
+            $('#file').attr("download");
+            $('#file').attr("href", file);
+            $('.btn-edit').val(projectId);
+
+            if (tagname1 != "null") {
+                $('#tag1').text(tagname1);
+                $('#tag1').css("background", color1);
+            }
+
+            if (tagname2 != "null") {
+                $('#tag2').text(tagname2);
+                $('#tag2').css("background", color2);
+            }
+
+            if (tagname3 != "null") {
+                $('#tag3').text(tagname3);
+                $('#tag3').css("background", color3);
+            }
+
+            if (tagname4 != "null") {
+                $('#tag4').text(tagname4);
+                $('#tag4').css("background", color4);
+            }
+
+            if (tagname5 != "null") {
+                $('#tag5').text(tagname5);
+                $('#tag5').css("background", color5);
+            }
+
+            if (tagname6 != "null") {
+                $('#tag6').text(tagname6);
+                $('#tag6').css("background", color6);
+            }
+
+            if (principal_photo1 != "null") {
+                $('#first_principal').attr("src", 'data:image/png;base64,' + principal_photo1);
+            } else {
+                $('#first_principal').attr("src", 'imgs/people.png');
+            }
+
+            if (principal_photo2 != "null") {
+                $('#second_principal').attr("src", 'data:image/png;base64,' + principal_photo2);
+            } else {
+                $('#second_principal').attr("src", 'imgs/people.png');
+            }
+        }
+
+        function gotoPlan(project_id) {
+            document.cookie = 'projectid=' + project_id;
+            window.location.href = window.location.origin + '/content/plan'
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
