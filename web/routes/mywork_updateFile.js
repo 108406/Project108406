@@ -4,8 +4,8 @@ var router = express.Router();
 const work = require('./utility/work');
 
 //接收GET請求
-router.post('/', function(req, res, next) {        
-    work.updateWork(req.body.workUpdate).then(data => {
+router.post('/', function(req, res, next) {
+    work.updateWorkFile(req.body.work_id, req.body.file).then(data => {
         if (data) {
             console.log("Successful!");
         }else {

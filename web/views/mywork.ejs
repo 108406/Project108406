@@ -317,7 +317,8 @@
                             $.ajax({
                                 type: 'POST',
                                 url: 'mywork/updateFile',
-                                data: { "workUpdate": work }
+                                // data: { "workUpdate": work }
+                                data: { "work_id": work.work_id, "file": work.file }
                             });
                         };
                     })(input.files[0]);

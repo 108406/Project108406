@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,6 +21,7 @@ var mywork_updateListWork = require('./routes/mywork_updateListWork');
 var mywork_updateProjectLinebotPush = require('./routes/mywork_updateProjectLinebotPush');
 var mywork_updateWorkLinebotPush = require('./routes/mywork_updateWorkLinebotPush');
 var mywork_updateFile = require('./routes/mywork_updateFile');
+var mywork_gotoPlan = require('/routes/mywork_gotoPlan');
 
 var app = express();
 
@@ -30,14 +31,14 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+//為了改變限制檔案的大小 所以註解
+// app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// parse application/json
-app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded 改變限制檔案大小
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -57,12 +58,12 @@ app.use('/mywork/updateWorkLinebotPush', mywork_updateWorkLinebotPush);
 app.use('/mywork/updateFile', mywork_updateFile);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

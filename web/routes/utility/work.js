@@ -188,5 +188,32 @@ var displayMyWork = async function (user_id) {
 //------------------------------------------
 
 
+//------------------------------------------
+// 更改工作檔案
+//------------------------------------------
+var updateWorkFile = async function (work_id, file) {
+    //存放結果
+    var result = [];
+
+    //讀取資料庫
+    await query('update work set file = $2 where work_id = $1'
+    , [work_id, file])
+        .then((data) => {
+            if (data.rowCount > 0) {
+                result = true;  //成功
+            } else {
+                result = false;
+            }
+        }, (error) => {
+            result = false;  //執行錯誤
+            console.log(error)
+        });
+
+    //回傳執行結果
+    return result;
+}
+//------------------------------------------
+
+
 //匯入
-module.exports = { displayWork, displayWorkTitle, addWork, deleteWork, updateWork, displayWrokPrincipal, displayMyWork }
+module.exports = { displayWork, displayWorkTitle, addWork, deleteWork, updateWork, displayWrokPrincipal, displayMyWork, updateWorkFile }
