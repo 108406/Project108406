@@ -110,4 +110,4 @@ var updateProjectName = async function (project_id, project_name, project_passwo
 
 
 //匯入
-module.exports = { fetchProject, addProject, deleteProject, updateProject }
+module.exports = { fetchProject, addProject, deleteProject, updateProjectName }
