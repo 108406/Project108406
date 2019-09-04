@@ -9,7 +9,9 @@
 html, body {
     font-family: 'Noto Serif TC', serif;
 }
-
+a {
+    cursor: pointer;
+}
 /*----------------------------------*/
 
 /*            navbar                */
@@ -17,9 +19,7 @@ html, body {
 /*----------------------------------*/
 
 nav.navbar {
-    position: fixed;
-	top:0;
-    left:0;
+    position: relative;
     background-color: #17294C;
     opacity: 1;
 }

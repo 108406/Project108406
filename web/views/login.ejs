@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+
+<head>
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/Login.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+    <style>
+        .warning {
+            color: red;
+            font-size: 0.8rem;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="background">
+    </div>
+    <div class="contain">
+
+        <!-- Outer Row -->
+        <center>
+            <div class="content">
+
+                <div class="col-xl-10 col-lg-12 col-md-9">
+
+                    <div class="card-set">
+
+                        <div class="row">
+
+                            <div class="col-lg-6 bg-login-image"></div>
+
+                            <div class="col-lg-6">
+
+                                <div class="card-content">
+
+                                    <div class="text-center">
+                                        <h1 class="text-set">登入</h1>
+
+                                    </div>
+                                    <hr class="hr-set">
+
+                                    <!-- <form class="user"> -->
+
+                                    <div class="form-group">
+                                        <input id="account" type="text" class="form-control form-control-user"
+                                            placeholder="請輸入帳號">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input id="password" type="password" class="form-control form-control-user"
+                                            placeholder="請輸入密碼">
+                                    </div>
+                                    <div class="warning">您輸入的帳號或密碼有錯誤。</div>
+
+                                    <a onclick="SignInWithAccount()" class="btn btn-primary btn-user btn-block">
+                                        Login
+                                    </a>
+
+                                    <hr>
+                                    <div class="login-effect">
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+
+                                        <a href="index.html" class="btn btn-line btn-user btn-block">
+                                            <i class="fab fa-line fa-fw"></i> Login with Line
+                                        </a>
+                                    </div>
+                                    <!-- </form> -->
+
+                                    <hr>
+                                    <div class="bottom">
+                                        <div class="text-center">
+                                            <a href="Forgot">忘記密碼？</a>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <a href="Register">還沒帳號？創建一個！</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </center>
+    </div>
+
+
+    <!------------scrpit----------->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    </script>
+    <script>
+        $("input").keydown(function (event) {
+            if (event.key == 'Enter') {
+                SignInWithAccount();
+            }
+        })
+
+        function SignInWithAccount() {
+            $.ajax({
+                method: 'POST',
+                url: "content",
+                data: {
+                    account: $('#account').val(),
+                    password: $('#password').val()
+                },
+                success: function (data) {
+                    if (data.status == 'not found!') {
+                        $('.warning').css({
+                            'display': 'block'
+                        })
+                    } else {
+                        $('.warning').css({
+                            'display': 'none'
+                        })
+                        document.cookie = 'userid=' + data.userid;
+                        window.location.href = window.location.origin + '/content'
+                    }
+                },
+                error: function (data) {
+                    alert('連接伺服器出現問題，請重試。')
+                    console.log('error: \n' + data.error)
+                }
+            })
+        }
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!------------------------------------------------------------------------------------->
+</body>
+
+</html>

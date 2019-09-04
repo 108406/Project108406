@@ -1,164 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="utf-8">
 
 <head>
-
     <title>Plan Yourself</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/content.css">
-
+    <link rel="stylesheet" href="css/Navbar.css">
+    <link rel="stylesheet" href="css/Content.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!--------------------上方導覽列------------------->
-    <nav class="navbar navbar-expand-lg navbar-dark top_navbar">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <!--------------------------navbar-------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+
+        <div class="nav-brand">PlanYourself</div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand h1" href="#">Navbar</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <form class="form-inline my-2 my-lg-0 mx-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0 search" type="submit">搜尋</button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav">
+                <li>
+                    <a href="/member"> <i class="far fa-user fa-lg"></i>會員</a>
+                </li>
+                <li>
+                    <a href="/content"><i class="fas fa-book fa-lg"></i>計畫</a>
+                </li>
+                <li>
+                    <a href="/mywork"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                </li>
+            </ul>
+
+            <form class="search">
+                <input class="search-input" type="text" name="search" placeholder="Search">
+                <a href="#"><i class="fas fa-search search-icon"></i></a>
             </form>
-            <form class="form-inline my-2 my-lg-0 mr-end">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">登出</button>
-            </form>
+            <div class="study-logout">
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel">教學<i
+                        class="fas fa-question-circle fa-lg" style="padding-left:5px;"></i></button>
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
+                    onclick="Logout()">登出</button>
+            </div>
         </div>
+
     </nav>
-    <!--------------------下方導覽---------------------->
-    <ul class="nav nav-tabs nav-pills nav-fill">
-        <li class="nav-item">
-            <a class="nav-link bg-light text-dark" href="member">會員</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active bg-light text-dark" href="content">專案列表</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link bg-light text-dark" href="mywork">我的工作</a>
-        </li>
-    </ul>
-    <!------------------------------------------------->
+    <!----------------------------------------------------------------->
     <div class="container-fluid">
         <!--~~~~~~~~~~~~~~~~~-->
         <div class="content">
             <!--尚未開始------------------------------->
-            <div class="row justify-content-md-center pt-3">
-                <div class="col-sm">
+            <div class="status">
+                <div class="label-status">
                     <% var count = 0; %>
                     <% for(var i=0; i<items.length; i++) { %>
-                        <% if (items[i].project_status == 0) {%>
-                            <% count ++; %>
-                        <% } %>
-                    <% } %>
-                    <button type="button" class="btn btn-dark label">
-                        尚未開始 <span class="badge badge-light"><%= count%></span>
-                        <span class="sr-only">unread messages</span>
-                    </button>
-                </div>
-            </div>
-            <!--尚未開始專案------------------------------->
-            <div class="card-deck mt-3">
-                <% for(var i=0; i<items.length; i++) { %>
                     <% if (items[i].project_status == 0) {%>
-                    <div class="card text-center card-set">
-                        <a class="card-link" href=<%="/project?project_id=" + items[i].project_id %>>
-                            <div class="card-body">
-                                <h5 class="card-title"><%= items[i].project_name %></h5>
+                    <% count ++; %>
+                    <% } %>
+                    <% } %>
+                    <span class="label-name">尚未開始</span>
+                    <span class="badge badge-light"><%= count%></span>
+                </div>
+                <div class="straight-line"></div>
+                <div class="label-status2"></div>
+            </div>
+
+            <!--尚未開始專案------------------------------->
+            <div class="card-deck">
+                <!-- card編號也要自動產生 -->
+                <% for(var i=0; i<items.length; i++) { %>
+                <% if (items[i].project_status == 0) {%>
+                <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
+                    <div class="card-color-body">
+                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
+                            <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
+                            <div class="block-card">
                             </div>
                         </a>
-                        <div class="card-footer">
-                            <a class="card-link" href="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
-                            items[i].project_id + "', '" + items[i].project_name + "', '" + 
-                            items[i].project_password + "')" %>" data-toggle="modal"><img
-                                    src="./imgs/cog-3x.png"></a>
-                        </div>
                     </div>
-                    <% } %>
-                <% } %>
-                <div class="card text-center card-set">
-                    <div class="card-body">
-                        <h5 class="card-title">Add new Project</h5>
-                    </div>
-                    <div class="card-footer">
-                            <a class="card-link" href="#" data-toggle="modal" data-target="#addproject"><img
-                                src="./imgs/plus-3x.png"></a>
+                    <div class="block-setting">
+                        <% startDate = items[i].project_startdate[0] + '-' + 
+                            (items[i].project_startdate[1] < 10 ? ('0' + items[i].project_startdate[1]) : items[i].project_startdate[1]) + '-' +
+                            (items[i].project_startdate[2] < 10 ? ('0' + items[i].project_startdate[2]) : items[i].project_startdate[2]) + 'T' + 
+                            (items[i].project_startdate[3] < 10 ? ('0' + items[i].project_startdate[3]) : items[i].project_startdate[3]) + ':' + 
+                            (items[i].project_startdate[4] < 10 ? ('0' + items[i].project_startdate[4]) : items[i].project_startdate[4]) %>
+                        <% endDate = items[i].project_enddate[0] + '-' + 
+                            (items[i].project_enddate[1] < 10 ? ('0' + items[i].project_enddate[1]) : items[i].project_enddate[1]) + '-' +
+                            (items[i].project_enddate[2] < 10 ? ('0' + items[i].project_enddate[2]) : items[i].project_enddate[2]) + 'T' + 
+                            (items[i].project_enddate[3] < 10 ? ('0' + items[i].project_enddate[3]) : items[i].project_enddate[3]) + ':' + 
+                            (items[i].project_enddate[4] < 10 ? ('0' + items[i].project_enddate[4]) : items[i].project_enddate[4]) %>
+                        <a class="card-setting" href="#" data-toggle="modal" data-target="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
+                        items[i].project_id + "', '" + items[i].project_password + "', '" + items[i].project_name + "', '" + 
+                        startDate + "', '" + endDate + "')" %>"><img src="./imgs/cog-3x.png"></a>
                     </div>
                 </div>
+                <% } %>
+                <% } %>
+
+                <div id="addProjectBlock" class="card" data-toggle="modal" data-target="#addproject">
+                    <div class="card-color-special">
+                        <a class="card-link" href="#"><img src="./imgs/plus-3x.png"></a>
+                    </div>
+                </div>
+
             </div>
             <!--執行中------------------------------->
-            <div class="row justify-content-md-center pt-3">
-                <div class="col-sm">
+            <div class="status">
+                <div class="label-status">
                     <% var count = 0; %>
                     <% for(var i=0; i<items.length; i++) { %>
-                        <% if (items[i].project_status == 1) {%>
-                            <% count ++; %>
-                        <% } %>
+                    <% if (items[i].project_status == 1) {%>
+                    <% count ++; %>
                     <% } %>
-                    <button type="button" class="btn btn-dark label">
-                        執行中 <span class="badge badge-light"><%= count%></span>
-                        <span class="sr-only">unread messages</span>
-                    </button>
+                    <% } %>
+                    <span class="label-name">執行中</span>
+                    <span class="badge badge-light"><%= count%></span>
                 </div>
+                <div class="straight-line"></div>
+                <div class="label-status2"></div>
             </div>
             <!--執行中專案------------------------------->
-            <div class="card-deck mt-3">
+            <div class="card-deck">
                 <% for(var i=0; i<items.length; i++) { %>
-                    <% if (items[i].project_status == 1) {%>
-                    <div class="card text-center card-set ">
-                        <a class="card-link text-white bg-primary" href=<%="/project?project_id=" + items[i].project_id %>>
-                            <div class="card-body card-color">
-                                <h5 class="card-title"><%= items[i].project_name %></h5>
+                <% if (items[i].project_status == 1) {%>
+                <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
+                    <div class="card-color-body-ing">
+                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
+                            <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
+                            <div class="block-card">
                             </div>
                         </a>
-                        <div class="card-footer card-color">
-                                <a class="card-link" href="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
-                                items[i].project_id + "', '" + items[i].project_name + "', '" + 
-                                items[i].project_password + "')" %>" data-toggle="modal"><img
-                                    src="./imgs/cog-3x.png"></a>
-                        </div>
                     </div>
-                    <% } %>
+                    <div class="block-setting">
+                        <% startDate = items[i].project_startdate[0] + '-' + 
+                        (items[i].project_startdate[1] < 10 ? ('0' + items[i].project_startdate[1]) : items[i].project_startdate[1]) + '-' +
+                        (items[i].project_startdate[2] < 10 ? ('0' + items[i].project_startdate[2]) : items[i].project_startdate[2]) + 'T' + 
+                        (items[i].project_startdate[3] < 10 ? ('0' + items[i].project_startdate[3]) : items[i].project_startdate[3]) + ':' + 
+                        (items[i].project_startdate[4] < 10 ? ('0' + items[i].project_startdate[4]) : items[i].project_startdate[4]) %>
+                        <% endDate = items[i].project_enddate[0] + '-' + 
+                        (items[i].project_enddate[1] < 10 ? ('0' + items[i].project_enddate[1]) : items[i].project_enddate[1]) + '-' +
+                        (items[i].project_enddate[2] < 10 ? ('0' + items[i].project_enddate[2]) : items[i].project_enddate[2]) + 'T' + 
+                        (items[i].project_enddate[3] < 10 ? ('0' + items[i].project_enddate[3]) : items[i].project_enddate[3]) + ':' + 
+                        (items[i].project_enddate[4] < 10 ? ('0' + items[i].project_enddate[4]) : items[i].project_enddate[4]) %>
+                        <a class="card-setting" href="#" data-toggle="modal" data-target="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
+                        items[i].project_id + "', '" + items[i].project_password + "', '" + items[i].project_name + "', '" + 
+                        startDate + "', '" + endDate + "')" %>"><img src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
+                <% } %>
                 <% } %>
             </div>
             <!--已完成------------------------------->
-            <div class="row justify-content-md-center pt-3">
-                <div class="col-sm">
+            <div class="status">
+                <div class="label-status">
                     <% var count = 0; %>
                     <% for(var i=0; i<items.length; i++) { %>
-                        <% if (items[i].project_status == 2) {%>
-                            <% count ++; %>
-                        <% } %>
+                    <% if (items[i].project_status == 2) {%>
+                    <% count ++; %>
                     <% } %>
-                    <button type="button" class="btn btn-dark label">
-                        已完成 <span class="badge badge-light"><%= count%></span>
-                        <span class="sr-only">unread messages</span>
-                    </button>
+                    <% } %>
+                    <span class="label-name">已完成</span>
+                    <span class="badge badge-light"><%= count%></span>
                 </div>
+                <div class="straight-line"></div>
+                <div class="label-status2"></div>
             </div>
             <!--已完成專案------------------------------->
-            <div class="card-deck mt-3">
+            <div class="card-deck">
                 <% for(var i=0; i<items.length; i++) { %>
-                    <% if (items[i].project_status == 2) {%>
-                    <div class="card text-center card-set ">
-                        <a class="card-link" href=<%="/project?project_id=" + items[i].project_id %>>
-                            <div class="card-body">
-                                <h5 class="card-title"><%= items[i].project_name %></h5>
+                <% if (items[i].project_status == 2) {%>
+                <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
+                    <div class="card-color-body-end">
+                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
+                            <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
+                            <div class="block-card">
                             </div>
                         </a>
-                        <div class="card-footer">
-                                <a class="card-link" href="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
-                                items[i].project_id + "', '" + items[i].project_name + "', '" + 
-                                items[i].project_password + "')" %>" data-toggle="modal"><img
-                                    src="./imgs/cog-3x.png"></a>
-                        </div>
                     </div>
-                    <% } %>
+                    <div class="block-setting">
+                        <% startDate = items[i].project_startdate[0] + '-' + 
+                            (items[i].project_startdate[1] < 10 ? ('0' + items[i].project_startdate[1]) : items[i].project_startdate[1]) + '-' +
+                            (items[i].project_startdate[2] < 10 ? ('0' + items[i].project_startdate[2]) : items[i].project_startdate[2]) + 'T' + 
+                            (items[i].project_startdate[3] < 10 ? ('0' + items[i].project_startdate[3]) : items[i].project_startdate[3]) + ':' + 
+                            (items[i].project_startdate[4] < 10 ? ('0' + items[i].project_startdate[4]) : items[i].project_startdate[4]) %>
+                        <% endDate = items[i].project_enddate[0] + '-' + 
+                            (items[i].project_enddate[1] < 10 ? ('0' + items[i].project_enddate[1]) : items[i].project_enddate[1]) + '-' +
+                            (items[i].project_enddate[2] < 10 ? ('0' + items[i].project_enddate[2]) : items[i].project_enddate[2]) + 'T' + 
+                            (items[i].project_enddate[3] < 10 ? ('0' + items[i].project_enddate[3]) : items[i].project_enddate[3]) + ':' + 
+                            (items[i].project_enddate[4] < 10 ? ('0' + items[i].project_enddate[4]) : items[i].project_enddate[4]) %>
+                        <a class="card-setting" href="#" data-toggle="modal" data-target="#projectset" onclick="<%= "javascript:SetProjectInfo('" + 
+                        items[i].project_id + "', '" + items[i].project_password + "', '" + items[i].project_name + "', '" + 
+                        startDate + "', '" + endDate + "')" %>"><img src="./imgs/cog-3x.png"></a>
+                    </div>
+                </div>
                 <% } %>
+                <% } %>
+            </div>
+            <div class="tub-set">
+                <a href='#' class="tub-set-a"><i class="fas fa-trash-alt" style="font-size:3em;"></i></a>
             </div>
             <!--專案齒輪設定內容---------------------------------->
             <div class="modal fade" id="projectset" tabindex="-1" role="dialog" aria-labelledby="projectset"
@@ -172,25 +219,34 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="content/updateProjectName" method="POST">
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">重新命名:</label>
-                                    <input type="text" class="form-control" value="123" id="project_name" name="project_name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">修改密碼:</label>
-                                    <input type="text" class="form-control" id="project_password" name="project_password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">專案代碼:</label>
-                                    <button onclick="myFunction()">Copy</button>
-                                    <input type="text" class="form-control" id="project_id" name="project_id">
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Send</button>
-                                </div>
-                            </form>
+                            <!-- <form action="content/updateProjectName" method="POST"> -->
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">重新命名:</label>
+                                <input id="project_name" type="text" class="form-control" name="">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">修改密碼:</label>
+                                <input id="project_password" type="text" class="form-control" name="">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">專案代碼:</label>
+                                <button onclick="myFunction()" class="modal-btn">copy</button>
+                                <input id="project_id" type="text" class="form-control" id="copy">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">開始日期:</label>
+                                <input id="project_startdate" type="datetime-local" name="">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">結束日期:</label>
+                                <input id="project_enddate" type="datetime-local" name="">
+                            </div>
+                            <div class="text-center">
+                                <button id="closeSetting" type="submit" class="close-btn"
+                                    data-dismiss="modal">關閉</button>
+                                <button type="submit" class="send-btn" onclick="UpdateProject()">送出</button>
+                            </div>
+                            <!-- </form> -->
                         </div>
                     </div>
                 </div>
@@ -211,65 +267,163 @@
                             <form action="content/addProject" method="POST">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">標題:</label>
-                                    <input type="text" class="form-control" id="project_name" name="project_name">
+                                    <input type="text" class="form-control" name="project_name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">密碼:</label>
-                                    <input type="text" class="form-control" id="project_password" name="project_password">
+                                    <label for="recipient-name" class="col-form-label">專案密碼:</label>
+                                    <input type="text" class="form-control" name="project_password">
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">開始日期:</label>
-                                    <input type="datetime-local" id="project_startdate" name="project_startdate">
+                                    <input type="datetime-local" name="project_startdate">
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">結束日期:</label>
-                                    <input type="datetime-local" id="project_enddate" name="project_enddate">
+                                    <input type="datetime-local" name="project_enddate">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Send</button>
+                                    <button type="submit" class="close-btn" data-dismiss="modal">關閉</button>
+                                    <button type="submit" class="send-btn">送出</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!------------------------------------>
         </div>
-        <!--~~~~~~~~~~~~~~~~~-->
-        <div class="footer">
-            <!--垃圾桶--------------------------->
-            <div class="row pt-2 justify-content-md-end">
-                <div class="col-sm-auto">
-                    <a href="#"><img src="./imgs/trash-8x.png" class="tub"></a>
-                </div>
-            </div>
-            <!--垃圾桶--------------------------->
-        </div>
-        <!--~~~~~~~~~~~~~~~~~-->
+        <!------------------------------------>
     </div>
-    <!--**************************-->
-    <!------------scrpit----------->
-    <script>
-        function SetProjectInfo (projectId, projectName, projectPassword) {
-            $('#project_id').val(projectId);
-            $('#project_name').val(projectName);
-            $('#project_password').val(projectPassword);
-        }        
+    <!-----------------------------------scrpit-------------------------------------------->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
-    <script src="js/copy.js"></script>
-    <script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    
+    <script>
+        function RedefineProject(data) {
+            className = [];
+            className[0] = 'card-color-body'
+            className[1] = 'card-color-body-ing'
+            className[2] = 'card-color-body-end'
 
+            let project_id = $('#project_id').val();
+            let project_name = $('#project_name').val();
+            let project_password = $('#project_password').val();
+            let startDate = data.project_startdate[0] + '-' +
+                (data.project_startdate[1] < 10 ? ('0' + data.project_startdate[1]) : data.project_startdate[1]) + '-' +
+                (data.project_startdate[2] < 10 ? ('0' + data.project_startdate[2]) : data.project_startdate[2]) + 'T' +
+                (data.project_startdate[3] < 10 ? ('0' + data.project_startdate[3]) : data.project_startdate[3]) + ':' +
+                (data.project_startdate[4] < 10 ? ('0' + data.project_startdate[4]) : data.project_startdate[4]);
+            let endDate = data.project_enddate[0] + '-' +
+                (data.project_enddate[1] < 10 ? ('0' + data.project_enddate[1]) : data.project_enddate[1]) + '-' +
+                (data.project_enddate[2] < 10 ? ('0' + data.project_enddate[2]) : data.project_enddate[2]) + 'T' +
+                (data.project_enddate[3] < 10 ? ('0' + data.project_enddate[3]) : data.project_enddate[3]) + ':' +
+                (data.project_enddate[4] < 10 ? ('0' + data.project_enddate[4]) : data.project_enddate[4]);
+
+            $('#' + project_id).remove();
+
+            if (data.status == 0) {
+                $('#' + addProjectBlock).before('<div class="card" name="delete-tub" id="' + project_id +
+                    '"><div class="' + className[data.status] +
+                    '"><a class="card-link" href="plan_work"><h5 class="card-title" onmousemove="removeClassType(this)">' +
+                    project_name +
+                    '</h5><div class="block-card"></div></a></div><div class="block-setting"><a class="card-setting" href="#" data-toggle="modal" data-target="#projectset" onclick="javascript:SetProjectInfo(`' +
+                    project_id + '`, `' + project_password + '`, `' + project_name + '`, `' + startDate + '`, `' +
+                    endDate +
+                    '`)"><img src="./imgs/cog-3x.png"></a></div></div>');
+            } else {
+                $($('.card-deck')[data.status]).append('<div class="card" name="delete-tub" id="' + project_id +
+                    '"><div class="' + className[data.status] +
+                    '"><a class="card-link" href="plan_work"><h5 class="card-title" onmousemove="removeClassType(this)">' +
+                    project_name +
+                    '</h5><div class="block-card"></div></a></div><div class="block-setting"><a class="card-setting" href="#" data-toggle="modal" data-target="#projectset" onclick="javascript:SetProjectInfo(`' +
+                    project_id + '`, `' + project_password + '`, `' + project_name + '`, `' + startDate + '`, `' +
+                    endDate +
+                    '`)"><img src="./imgs/cog-3x.png"></a></div></div>')
+            }
+        }
+        //document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+        function SetProjectInfo(projectId, projectPassword, projectName, projectStartdate, projectEnddate) {
+            $('#project_id').val(projectId);
+            $('#project_password').val(projectPassword);
+            $('#project_name').val(projectName);
+            $('#project_startdate').val(projectStartdate);
+            $('#project_enddate').val(projectEnddate);
+        }
+
+        function IntoProject(project_id) {
+            document.cookie = 'projectid=' + project_id;
+            window.location.href = window.location.origin + '/content/plan'
+        }
+
+        function UpdateProject() {
+            $('#project_id').attr('disabled', true);
+            $('#project_password').attr('disabled', true);
+            $('#project_name').attr('disabled', true);
+            $('#project_startdate').attr('disabled', true);
+            $('#project_enddate').attr('disabled', true);
+            $('#closeSetting').attr('disabled', true);
+            $.ajax({
+                method: 'POST',
+                url: "content/updateProjectName",
+                data: {
+                    project_id: $('#project_id').val(),
+                    project_name: $('#project_name').val(),
+                    project_password: $('#project_password').val(),
+                    project_startdate: $('#project_startdate').val(),
+                    project_enddate: $('#project_enddate').val()
+                },
+                success: function (data) {
+                    if (data.status == 'success!') {
+                        $('#project_id').attr('disabled', false);
+                        $('#project_password').attr('disabled', false);
+                        $('#project_name').attr('disabled', false);
+                        $('#project_startdate').attr('disabled', false);
+                        $('#project_enddate').attr('disabled', false);
+                        $('#closeSetting').attr('disabled', false);
+
+                        $('#projectset').modal('hide');
+
+                        value = {
+                            status: data.projectStatus,
+                            project_startdate: data.project_startdate,
+                            project_enddate: data.project_enddate
+                        }
+                        setTimeout(RedefineProject(value), 1000)
+                    } else {
+                        alert('寫入資料庫時發生錯誤。')
+                    }
+                },
+                error: function (data) {
+                    alert('連接伺服器出現問題，請重試。')
+                    console.log('error: \n' + data.error)
+                }
+            })
+        }
+
+        function Logout() {
+            document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+            window.location.href = window.location.origin + '/login'
+        }
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/js/jquery.ui.touch-punch.min.js"></script>
+
+    <script src="/js/Content_Copy.js"></script>
+    <script src="/js/Content_MoveHoverText.js"></script>
+    <script src="/js/Content_MoveDelete.js"></script>
+    <script src="/js/Width_Test.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!------------------------------------------------------------------------------------->
 </body>
 
 </html>

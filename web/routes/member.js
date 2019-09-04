@@ -6,7 +6,7 @@ const member = require('./utility/member');
 
 //接收GET請求
 router.get('/', function(req, res, next) {
-    member.displayMember('A001').then(data => {
+    member.displayMember(req.cookies.userid).then(data => {
         if(data){
             res.render('member.ejs', {items:data});  //將資料傳給顯示頁面            
         }else{

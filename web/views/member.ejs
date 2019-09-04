@@ -6,316 +6,322 @@
     <title>Plan Yourself</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/member.css">
+    <link rel="stylesheet" href="css/Navbar.css">
+    <link rel="stylesheet" href="css/Member.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 
 
 </head>
 
 <body>
-    <!--------------------上方導覽列------------------->
-    <nav class="navbar navbar-expand-lg navbar-dark top_navbar">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <!--------------------------navbar-------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+
+        <div class="nav-brand">PlanYourself</div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand h1" href="#">Plan Yourself</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <form class="form-inline my-2 my-lg-0 mx-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0 search" type="submit">搜尋</button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav">
+                <li>
+                    <a href="/Member"> <i class="far fa-user fa-lg"></i>會員</a>
+                </li>
+                <li>
+                    <a href="/content"><i class="fas fa-book fa-lg"></i>計畫</a>
+                </li>
+                <li>
+                    <a href="/Mywork"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                </li>
+            </ul>
+
+            <form class="search">
+                <input class="search-input" type="text" name="search" placeholder="Search">
+                <a href="#"><i class="fas fa-search search-icon"></i></a>
             </form>
-            <form class="form-inline my-2 my-lg-0 mr-end">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">登出</button>
-            </form>
+
+            <div class="study-logout">
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel">教學<i
+                        class="fas fa-question-circle fa-lg" style="padding-left:5px;"></i></button>
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
+                onclick="Logout()">登出</button>
+            </div>
+
         </div>
+
     </nav>
-    <!--------------------下方導覽---------------------->
-    <ul class="nav nav-tabs nav-pills nav-fill">
-        <li class="nav-item">
-            <a class="nav-link bg-light text-dark" href="member">會員</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active bg-light text-dark" href="content">專案列表</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link bg-light text-dark" href="mywork">我的工作</a>
-        </li>
-    </ul>
-    <!------------------------------------------------->
+    <!----------------------------------------------------------------->
     <div class="container-fluid">
         <!--~~~~~~~~~~~~~~~~~-->
-        <div class="row">
-            <!-- <h3>個人資料</h3> -->
-            <div class="col-3">
-
-            </div>
-            <div class="col-6 testcolor1">
-                <div class="text-center mt-5 test">
-                    <label class="upload_cover test1">
-                        <input id="upload_input" type="file" name="photo" enctype="multipart/form-data" onchange="readURL(this)">
+        <div class="content">
+            <div class="card card-set">
+                <div class="member-img">
+                    <label class="upload_cover">
+                        <input id="upload_input" type="file" onchange="readURL(this)">
                         <span class="upload_icon"><img src=<%= 'data:image/png;base64,' + items[0].photo %> class="photo"></span>
                     </label>
                 </div>
-                <form action="member/update" method="POST">
-                    <div class="form-group row justify-content-center mt-5">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">
-                            <h5>姓名:</h5>
-                        </label>
-                        <div class="col-sm-8">
-                            <input class="form-control" type="text" value=<%= items[0].member_name %> id="member_name">
-                        </div>
-                    </div>
-                    <div class="form-group row justify-content-center">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">
-                            <h5>信箱:</h5>
-                        </label>
-                        <div class="col-sm-8">
-                            <input type="email" class="form-control" id="email"
-                                aria-describedby="emailHelp" value=<%= items[0].email %>>
-                            <span style="color: red; font-size: 0.8rem; display: none" id="waning">這不是一個有效的Email格式。</span>
-                        </div>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="col-sm-3 ml-2">
-                            <label class=" col-form-label">
-                                <h5>linebot推播:</h5>
-                            </label>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="onoffswitch">
-                                <% var result = ""; %>
-                                <% if (items[0].linebotpush) {
-                                    result = "checked";
-                                } 
-                                %>
-                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" onclick="javascript:ChangeLineBotPush(<%= items[0].linebotpush %>)" id="myonoffswitch" <%= result %>>
-                                <label class="onoffswitch-label" for="myonoffswitch">
-                                    <span class="onoffswitch-inner"></span>
-                                    <span class="onoffswitch-switch"></span>
-                                </label>
+
+                <div class="card-body">
+                    <form>
+                        <div class="form-group-set">
+                            <div class="name-set">
+                                <div>姓</div>
+                                <div>名:</div>
+                            </div>
+                            <div class="input-set">
+                                <input id="member_name" type="email" class="form-control" placeholder="張智皓" value=<%= items[0].member_name %>>
                             </div>
                         </div>
+
+                        <div class="form-group-set">
+                            <div class="name-set">
+                                <div>信</div>
+                                <div>箱:</div>
+                            </div>
+                            <div class="input-set">
+                                <input id="email" type="email" class="form-control" placeholder="N1056444@ntub.edu.tw" value=<%= items[0].email %>>
+                            </div>
+                        </div>
+
+                        <div class="test-form-group-set">
+                            <div class="name-set">
+                                <div>L</div>
+                                <div>i</div>
+                                <div>n</div>
+                                <div>e</div>
+                                <div>B</div>
+                                <div>o</div>
+                                <div>t</div>
+                                <div>推</div>
+                                <div>播:</div>
+                            </div>
+                            <div class="on-off-set">
+                                <div class="onoffswitch">
+                                    <% var result = ""; %>
+                                    <% if (items[0].linebotpush) {
+                                        result = "checked";
+                                    } %>
+                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+                                    onclick="javascript:ChangeLineBotPush(<%= items[0].linebotpush %>)"
+                                        id="myonoffswitch" <%= result %>>
+                                    <label class="onoffswitch-label" for="myonoffswitch">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="btn-set">
+                    <button class="change-btn" onclick="javascript:SubmitData();">變更傳送</button>
+                    <button class="delete-btn" data-target="#delete" data-toggle="modal">刪除帳號</button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- Modal 刪除帳號-->
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete">刪除帳號</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body text-center">
+                        請確認是否真的要刪除帳號!
                     </div>
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-sm-3">
-                            <button type="button" class="btn btn-primary btn-lg" onclick="javascript:SubmitData();">變更傳送</button>
-                        </div>
-                        <div class="col-sm-3">
-                        </div>
-                        <div class="col-sm-3">
-                            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal"
-                                data-target="#delete">刪除帳號</button>
-                        </div>
+
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>
+                        <button onclick="javascript:DeleteAcount();" type="button" class="btn btn-secondary">確定</button>
                     </div>
                 </form>
             </div>
-            <div class="col-3 testcolor">
-                <!-- <h3>個人資料</h3> -->
-            </div>
-            <!--~~~~~~~~~~~~~~~~~-->
-            <div class="footer">
+        </div>
+    </div>
 
-            </div>
-            <!-- Modal 修改資料-->
-            <!-- <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editpassword">修改資料</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">名字:</label>
-                                    <input type="text" class="form-control" name="" placeholder="灰灰喵">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">請輸入信箱:</label>
-                                    <input type="text" class="form-control" name="" placeholder="Example@gmail.com">
-                                </div>
-                                <div class="modal-footer justify-content-center">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">返回</button>
-                                    <button type="button" class="btn btn-primary">確定</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- Modal 刪除帳號-->
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="delete">刪除帳號</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form>
-                            <div class="modal-body text-center">
-                                請確認是否真的要刪除帳號!
-                            </div>
-
-                            <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button>
-                                <button type="button" class="btn btn-secondary" onclick="javascript:DeleteAcount();">確定</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!--**************************-->
-            <!------------scrpit----------->
-            <script>
-
-            function SubmitData() {
-                var canSubmit = true;
-                if ($('#member_name').val().trim() == "") {
-                    $('#member_name').val("");
-                    $('#member_name').css({
-                        border : "1px solid red"
-                    });
-                    $('#member_name').attr('placeholder' , "請輸入您的姓名。");
-                    canSubmit = false;
-                } else {
-                    $('#member_name').css({
-                        border : "none"
-                    });
-                }
-                if ($('#email').val().trim() == "") {
-                    $('#email').val().trim("");
+    <!------------scrpit----------->
+    <script>
+        function SubmitData() {
+            var canSubmit = true;
+            if ($('#member_name').val().trim() == "") {
+                $('#member_name').val("");
+                $('#member_name').css({
+                    border: "1px solid red"
+                });
+                $('#member_name').attr('placeholder', "請輸入您的姓名。");
+                canSubmit = false;
+            } else {
+                $('#member_name').css({
+                    border: "none"
+                });
+            }
+            if ($('#email').val().trim() == "") {
+                $('#email').val().trim("");
+                $('#email').css({
+                    border: "1px solid red"
+                });
+                $('#email').attr('placeholder', "請輸入您的電子信箱。");
+                canSubmit = false;
+            } else {
+                var re = /\S+@\S+\.\S+/;
+                if (re.test($('#email').val().trim())) {
                     $('#email').css({
-                        border : "1px solid red"
+                        border: "none"
                     });
-                    $('#email').attr('placeholder' , "請輸入您的電子信箱。");
-                    canSubmit = false;
+                    $('#waning').css({
+                        display: "none"
+                    });
                 } else {
-                    var re = /\S+@\S+\.\S+/;
-                    if (re.test($('#email').val().trim())) {
-                        $('#email').css({
-                            border : "none"
-                        });
-                        $('#waning').css({
-                            display : "none"
-                        });
-                    } else {
-                        $('#email').css({
-                            border : "1px solid red"
-                        });
-                        $('#waning').css({
-                            display : "block"
-                        });
-                        canSubmit = false;
-                    }
+                    $('#email').css({
+                        border: "1px solid red"
+                    });
+                    $('#waning').css({
+                        display: "block"
+                    });
+                    canSubmit = false;
                 }
+            }
 
-                if (canSubmit) {
+            if (canSubmit) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'member/update',
+                    data: {
+                        email: $('#email').val().trim(),
+                        member_name: $('#member_name').val().trim()
+                    }
+                });
+            }
+        }
+        // Check for the File API support.
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            document.getElementById('upload_input').addEventListener('change', handleFileSelect, false);
+        } else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+
+        function Logout() {
+            document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+            window.location.href = window.location.origin + '/login'
+        }
+
+        function handleFileSelect(evt) {
+            var f = evt.target.files[0]; // FileList object
+            var type;
+            var reader = new FileReader();
+            if (f.type == 'image/jpeg') {
+                type = '.jpg';
+            } else if (f.type == 'image/png') {
+                type = '.png';
+            } else {
+                return;
+            }
+            if (f.size > 69632) {
+                return;
+            }
+
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    var binaryData = e.target.result;
+                    //Converting Binary Data to base 64
+                    var base64String = window.btoa(binaryData);
+                    //showing file converted to base64
                     $.ajax({
                         type: 'POST',
-                        url: 'member/update',
-                        data: {email : $('#email').val().trim(), member_name : $('#member_name').val().trim()}
+                        url: 'member/photo',
+                        data: {
+                            "photoContent": base64String,
+                            "photoType": type
+                        }
                     });
-                }
-            }
-                // Check for the File API support.
-            if (window.File && window.FileReader && window.FileList && window.Blob) {
-                document.getElementById('upload_input').addEventListener('change', handleFileSelect, false);
-            } else {
-                alert('The File APIs are not fully supported in this browser.');
-            }
+                };
+            })(f);
+            // Read in the image file as a data URL.
+            reader.readAsBinaryString(f);
 
-            function handleFileSelect(evt) {
-                var f = evt.target.files[0]; // FileList object
-                var type;
+        }
+
+        function ChangeLineBotPush(value) {
+            $.ajax({
+                type: 'POST',
+                url: 'member/linebotPush',
+                data: {
+                    "linebotPush": !value
+                }
+            });
+        }
+
+        function DeleteAcount() {
+            $.ajax({
+                type: 'POST',
+                url: 'member/delete',
+                data: {
+                    userId: "B001"
+                }
+            });
+        }
+
+        function readURL(input) {
+            if (input.files[0].type == 'image/jpeg') {
+                type = '.jpg';
+            } else if (input.files[0].type == 'image/png') {
+                type = '.png';
+            } else {
+                alert("無法支援此格式。僅支援jpg、png");
+                return;
+            }
+            if (input.files[0].size > 69632) {
+                alert("僅接受68KB以下大小的jpg、png檔");
+                return;
+            }
+            if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
-                if (f.type == 'image/jpeg') {
-                    type = '.jpg';
-                } else if (f.type == 'image/png') {
-                    type = '.png';
-                } else {
-                    return;
-                }
-                if (f.size > 69632) {
-                    return;
+                reader.onload = function (e) {
+                    $('.photo').attr('src', e.target.result);
                 }
 
-                // Closure to capture the file information.
-                reader.onload = (function(theFile) {
-                    return function(e) {
-                        var binaryData = e.target.result;
-                        //Converting Binary Data to base 64
-                        var base64String = window.btoa(binaryData);
-                        //showing file converted to base64
-                        $.ajax({
-                            type: 'POST',
-                            url: 'member/photo',
-                            data: {"photoContent" : base64String, "photoType" : type}
-                        });
-                    };
-                })(f);
-                // Read in the image file as a data URL.
-                reader.readAsBinaryString(f);
-                
+                reader.readAsDataURL(input.files[0]);
             }
-            function ChangeLineBotPush(value) {                
-                $.ajax({
-                    type: 'POST',
-                    url: 'member/linebotPush',
-                    data: {"linebotPush" : !value}
-                });
-            }
-            function DeleteAcount() {
-                $.ajax({
-                    type: 'POST',
-                    url: 'member/delete',
-                    data: {userId : "B001"}
-                });
-            }
-            function readURL(input) {
-                if (input.files[0].type == 'image/jpeg') {
-                    type = '.jpg';
-                } else if (input.files[0].type == 'image/png') {
-                    type = '.png';
-                } else {
-                    alert("無法支援此格式。僅支援jpg、png");
-                    return;
-                }
-                if (input.files[0].size > 69632) {
-                    alert("僅接受68KB以下大小的jpg、png檔");
-                    return;
-                }
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
 
-                    reader.onload = function(e) {
-                        $('.photo').attr('src', e.target.result);
-                    }
 
-                    reader.readAsDataURL(input.files[0]);
-                }
 
-                
-                                
-            }
-            </script>
-            <script
-                src="https://code.jquery.com/jquery-3.4.1.min.js"
-                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-                crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                crossorigin="anonymous"></script>
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/js/Width_Test.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>

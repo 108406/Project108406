@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
+/*----------------------------------*/
+
+/*            總體設定               */
+
+/*----------------------------------*/
+
+body, html {
+  font-family: 'Noto Serif TC', serif;
+  height: 100%;
+  width: 100%;
+}
+
+div.background {
+  width: 100%;
+  height: 100%;
+  /* background: url(../imgs/background-content.jpg); */
+  background:url(../imgs/background-1.jpg);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  background-size: cover;
+  background-attachment:fixed;
+  position: fixed;
+  z-index: 5;
+}
+
+div.content {
+  position: absolute;
+  top:0;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+/*----------------------------------*/
+
+/*            卡片設定               */
+
+/*----------------------------------*/
+
+div.card-set {
+  /* margin-bottom: 3rem; */
+  margin-top: 1rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+  border: 0;
+  position: relative;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  max-width: 56em;
+  min-height: 40.1em;
+  word-wrap: break-word;
+  background-color: rgb(255, 255, 255);
+  background-clip: border-box;
+  border-radius: 3rem;
+}
+
+/*----------------------------------*/
+
+/*            圖片設定               */
+
+/*----------------------------------*/
+
+.bg-login-image {
+  border-radius: 3rem;
+  position: relative;
+  left: 1.8%;
+  background: url("../imgs/logo-01.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-register-image {
+  border-radius: 3rem;
+  position: relative;
+  left: 1.8%;
+  background: url("../imgs/logo-01.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-password-image {
+  border-radius: 3rem;
+  position: relative;
+  left: 1.8%;
+  background: url("../imgs/logo-01.png");
+  background-position: center;
+  background-size: cover;
+}
+
+/*----------------------------------*/
+
+/*            右半部設定             */
+
+/*----------------------------------*/
+div.card-content-forgot{
+  padding:10em 3em;
+}
+div.card-content-register{
+  padding:2em 3em;
+}
+div.card-content {
+  padding:4.6em 3em;
+  /* padding: 3rem; */
+}
+div.text-center{
+  margin-top: 1em;
+}
+div.login-effect{
+  /* margin-top: 5em; */
+}
+div.bottom{
+  /* margin-top: 8.5em; */
+  /* padding-top: 8.5em; */
+}
+/*----------------------------------*/
+
+/*            大標設定             */
+
+/*----------------------------------*/
+
+h1.text-set {
+  margin-bottom: 1.5rem;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/*----------------------------------*/
+
+/*            hr設定              　*/
+
+/*----------------------------------*/
+
+.hr-set {
+  position: relative;
+  bottom: 1em;
+  margin-bottom: 1em;
+  max-width: 15em;
+  background-color: #2D4F41;
+  height: 5px;
+  border: none;
+  color: #d4d4d4;
+  border-radius: 50%;
+}
+
+/*----------------------------------*/
+
+/*            input設定             */
+
+/*----------------------------------*/
+
+.form-control-user {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 1.5rem 1rem;
+}
+
+/*----------------------------------*/
+
+/*            按鈕設定              */
+
+/*----------------------------------*/
+
+.btn-user {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 0.75rem 1rem;
+}
+
+.btn-google {
+  color: #fff;
+  background-color: #ea4335;
+  border-color: #fff;
+}
+
+.btn-google:hover {
+  color: #fff;
+  background-color: #e12717;
+  border-color: #e6e6e6;
+}
+
+.btn-google:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.btn-google.disabled {
+  color: #fff;
+  background-color: #ea4335;
+  border-color: #fff;
+}
+
+.btn-line {
+  color: #fff;
+  background-color: #00C300;
+  border-color: #fff;
+}
+
+.btn-line:hover {
+  color: #fff;
+  background-color: #00C300;
+  border-color: #e6e6e6;
+}
+
+.btn-line:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.btn-line.disabled {
+  color: #fff;
+  background-color: #00C300;
+  border-color: #fff;
+}
+
+/*----------------------------------*/
+
+/*            註冊頁面密碼設定       */
+
+/*----------------------------------*/
+
+.password-set {
+  margin-bottom: 1rem;
+}

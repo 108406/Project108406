@@ -10,6 +10,10 @@ var usersRouter = require('./routes/users');
 var content = require('./routes/content');
 var content_updateProjectName = require('./routes/content_updateProjectName');
 var content_addProject = require('./routes/content_addProject');
+var plan = require('./routes/plan');
+var addList = require('./routes/plan_addList');
+var deleteList = require('./routes/plan_deleteList');
+var updatePermission = require('./routes/plan_updatePermission');
 var member = require('./routes/member');
 var member_linebotPush = require('./routes/member_linebotPush');
 var member_photo = require('./routes/member_photo');
@@ -22,7 +26,9 @@ var mywork_updateProjectLinebotPush = require('./routes/mywork_updateProjectLine
 var mywork_updateWorkLinebotPush = require('./routes/mywork_updateWorkLinebotPush');
 var mywork_updateFile = require('./routes/mywork_updateFile');
 var mywork_gotoPlan = require('/routes/mywork_gotoPlan');
-
+var login = require('./routes/login');
+var forgot = require('./routes/forgot');
+var register = require('./routes/register');
 var app = express();
 
 // view engine setup
@@ -40,11 +46,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
+app.use('/login',login);
+app.use('/forgot',forgot);
+app.use('/register',register);
+app.use('/mywork',mywork);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/content', content);
 app.use('/content/updateProjectName', content_updateProjectName);
 app.use('/content/addProject', content_addProject);
+app.use('/content/plan', plan);
+app.use('/content/plan/addList', addList);
+app.use('/content/plan/deleteList', deleteList);
+app.use('/content/plan/updatePermission', updatePermission);
 app.use('/member', member);
 app.use('/member/linebotPush', member_linebotPush);
 app.use('/member/photo', member_photo);
