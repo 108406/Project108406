@@ -7,12 +7,11 @@ const view = require('./utility/view');
 //接收GET請求
 router.get('/', function (req, res, next) {
     var tampTime = Date.now();
-    view.workWithUser('A001').then(data => {
-        var user_id = 'A001'; //req.cookies.user_id
+    view.workWithUser(req.cookies.userid).then(data => {
         if (data == null) {
             res.render('error');  //導向錯誤頁面
         } else if (data.rows.length > 0) {
-            var result = SetProjectResult(data, user_id);
+            var result = SetProjectResult(data, req.cookies.userid);
 
             res.render('mywork.ejs', { "items": result });  //將資料傳給顯示頁面
             console.log(Date.now() - tampTime);

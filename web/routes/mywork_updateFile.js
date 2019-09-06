@@ -5,7 +5,7 @@ const work = require('./utility/work');
 
 //接收GET請求
 router.post('/', function(req, res, next) {
-    work.updateWorkFile(req.body.work_id, req.body.file).then(data => {
+    work.updateWorkFile(req.body.work_id, req.body.file, req.body.file_name).then(data => {
         if (data) {
             console.log("Successful!");
         }else {

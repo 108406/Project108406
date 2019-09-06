@@ -361,8 +361,8 @@
                             $.ajax({
                                 type: 'POST',
                                 url: 'mywork/updateFile',
-                                // data: { "workUpdate": work }
-                                data: { "work_id": work.work_id, "file": work.file }
+                                // data: { "workUpdate": work }  //整包沒有成功
+                                data: { "work_id": work.work_id, "file": work.file, "file_name": work.file_name }
                             });
                         };
                     })(input.files[0]);
@@ -417,9 +417,9 @@
             $('#work_content').text(workContent);
             $('#deadline').text(deadline);
             $('#file_name').text(file_name);
-            $('#file_name').attr("download");
+            $('#file_name').attr("download", file_name);
             $('#file_name').attr("href", file);
-            $('#file').attr("download");
+            $('#file').attr("download", file_name);
             $('#file').attr("href", file);
             $('.btn-edit').val(projectId);
 
