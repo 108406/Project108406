@@ -12,8 +12,12 @@ var content_updateProjectName = require('./routes/content_updateProjectName');
 var content_addProject = require('./routes/content_addProject');
 var plan = require('./routes/plan');
 var addList = require('./routes/plan_addList');
+var addTag = require('./routes/plan_addTag');
 var deleteList = require('./routes/plan_deleteList');
+var addAdminpush = require('./routes/plan_addAdminpush');
+var updateWork = require('./routes/plan_updateWork');
 var updatePermission = require('./routes/plan_updatePermission');
+var updateTag = require('./routes/plan_updateTag');
 var member = require('./routes/member');
 var member_linebotPush = require('./routes/member_linebotPush');
 var member_photo = require('./routes/member_photo');
@@ -31,15 +35,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({limit: '1mb'}));
+app.use(express.urlencoded({ extended: true ,limit: '1mb', parameterLimit : 3670016}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true ,limit: '1mb', parameterLimit : 3670016}));
 
 // parse application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1mb'}));
 
 app.use('/login',login);
 app.use('/forgot',forgot);
@@ -52,8 +56,12 @@ app.use('/content/updateProjectName', content_updateProjectName);
 app.use('/content/addProject', content_addProject);
 app.use('/content/plan', plan);
 app.use('/content/plan/addList', addList);
+app.use('/content/plan/addTag', addTag);
+app.use('/content/plan/addAdminpush', addAdminpush);
+app.use('/content/plan/updateWork', updateWork);
 app.use('/content/plan/deleteList', deleteList);
 app.use('/content/plan/updatePermission', updatePermission);
+app.use('/content/plan/updateTag', updateTag);
 app.use('/member', member);
 app.use('/member/linebotPush', member_linebotPush);
 app.use('/member/photo', member_photo);

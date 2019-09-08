@@ -38,7 +38,6 @@ var deleteAdminPush = async function(serno){
 
 var addAdminPush = async function(id, content, startDate, endDate){
     var result=[];
-    console.log(startDate);
     await sql(`insert into "adminpush" values (default, '` + id + `', '` + content + `', '` + startDate +`', '` + endDate + `')`)
         .then((data) => {
             if (data.rowCount > 0) {

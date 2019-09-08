@@ -4,14 +4,15 @@ var router = express.Router();
 //增加引用函式
 const view = require('./utility/view');
 const adminpush = require('./utility/adminpush');
+const tag = require('./utility/tag');
 const myFunction = require('./utility/myFunction');
 
 router.get('/', function (req, res, next) {
     if (req.cookies.userid != undefined) {
         view.projectAllData(req.cookies.projectid).then(data => {
-            if(data=='failed'){
-                res.render('error');  //導向錯誤頁面
-            }else{
+            if (data == 'failed') {
+                res.render('error'); //導向錯誤頁面
+            } else {
                 var projectPermission = SetProjectPermission(data);
                 var teammeber = SetTeammember(data);
                 var lists = SetList(data);
@@ -21,14 +22,31 @@ router.get('/', function (req, res, next) {
                 var isAdmin = setAdmin(teammeber, req.cookies.userid);
                 adminpush.fetchAdminPush(req.cookies.projectid).then(data2 => {
                     if (data2 != null) {
-                    res.render('plan.ejs', {project_name:data[0].project_name, projectPermission:projectPermission, teammember:teammeber,
-                        adminpush:SetAdminPush(data2), lists:lists, listwork:listwork, works:works, tags:tags, isAdmin:isAdmin});
+
+                        tag.displayTag(req.cookies.projectid).then(data3 => {
+                            if (data2 != null) {
+                                res.render('plan.ejs', {
+                                    project_name: data[0].project_name,
+                                    projectPermission: projectPermission,
+                                    teammember: teammeber,
+                                    adminpush: SetAdminPush(data2),
+                                    lists: lists,
+                                    listwork: listwork,
+                                    works: works,
+                                    tags: tags,
+                                    alltags: data3,
+                                    isAdmin: isAdmin
+                                });
+                            } else {
+                                res.render('error'); //導向錯誤頁面
+                            }
+                        })
                     } else {
-                        res.render('error');  //導向錯誤頁面
+                        res.render('error'); //導向錯誤頁面
                     }
                 })
-                
-            } 
+
+            }
         })
     } else {
         res.redirect('login');
@@ -49,7 +67,7 @@ function SetProjectPermission(data) {
 function SetTeammember(data) {
     result = [];
     userId = [];
-    for (var i = 0; i < data.length; i ++) {
+    for (var i = 0; i < data.length; i++) {
         user = [];
         if (!userId.includes(data[i].user_id)) {
             userId.push(data[i].user_id);
@@ -66,7 +84,7 @@ function SetTeammember(data) {
 function SetAdminPush(data) {
     result = [];
     adminpush_serno = [];
-    for (var i = 0; i < data.length; i ++) {
+    for (var i = 0; i < data.length; i++) {
         adminpushArray = [];
         if (!adminpush_serno.includes(data[i].adminpush_serno)) {
             adminpush_serno.push(data[i].adminpush_serno);
@@ -76,7 +94,7 @@ function SetAdminPush(data) {
             result.push(adminpushArray);
         }
     }
-    result.sort(function(a, b) {
+    result.sort(function (a, b) {
         return b[1] - a[1];
     });
     return result;
@@ -86,7 +104,7 @@ function SetList(data) {
     result = [];
     listid = [];
     listWork = [];
-    for (var i = 0; i < data.length; i ++) {
+    for (var i = 0; i < data.length; i++) {
         list = [];
         if (!listid.includes(data[i].list_id)) {
             listid.push(data[i].list_id);
@@ -95,16 +113,16 @@ function SetList(data) {
             result.push(list);
         }
     }
-    
+
     return result;
 }
 
 function SetListWork(data, list) {
     result = list;
     lw = [];
-    for (var l = 0; l < result.length; l ++) {
+    for (var l = 0; l < result.length; l++) {
         var tempWorks = [];
-        for (var d = 0; d < data.length; d ++) {
+        for (var d = 0; d < data.length; d++) {
             if (data[d].list_id == result[l][0]) {
                 if (!tempWorks.includes(data[d].work_id) && data[d].work_id != null) {
                     tempWorks.push(data[d].work_id);
@@ -119,7 +137,7 @@ function SetListWork(data, list) {
 function SetWork(data) {
     result = [];
     workSerno = [];
-    for (var i = 0; i < data.length; i ++) {
+    for (var i = 0; i < data.length; i++) {
         work = [];
         if (data[i].work_id != null) {
             if (!workSerno.includes(data[i].work_id)) {
@@ -127,7 +145,7 @@ function SetWork(data) {
                 work.push(data[i].work_id);
                 work.push(data[i].work_title);
                 work.push(data[i].work_content);
-                work.push(myFunction.SeparateDate(data[i].deadline));
+                work.push(data[i].deadline != null ? myFunction.SeparateDate(data[i].deadline) : '');
                 work.push(data[i].tag_id1);
                 work.push(data[i].tag_id2);
                 work.push(data[i].tag_id3);
@@ -135,6 +153,7 @@ function SetWork(data) {
                 work.push(data[i].tag_id5);
                 work.push(data[i].tag_id6);
                 work.push(data[i].file);
+                work.push(data[i].file_name);
                 work.push(data[i].first_principal);
                 work.push(data[i].second_principal);
                 result.push(work);
@@ -144,11 +163,11 @@ function SetWork(data) {
     return result;
 }
 
-function SetTag (data) {
+function SetTag(data) {
     allTag = [];
     tag_id = [];
     tagSetting = [];
-    for (var i = 0; i < data.length; i ++) {
+    for (var i = 0; i < data.length; i++) {
         if (!tag_id.includes(data[i].tag_id1) && data[i].tag_id1 != null) {
             tagSetting.push(data[i].tag_id1);
             tagSetting.push(data[i].tagname1);
@@ -157,7 +176,7 @@ function SetTag (data) {
             allTag.push(tagSetting);
             tagSetting = [];
         }
-        if (!tag_id.includes(data[i].tag_id2) && data[i].tag_id2 != null){
+        if (!tag_id.includes(data[i].tag_id2) && data[i].tag_id2 != null) {
             tagSetting.push(data[i].tag_id2);
             tagSetting.push(data[i].tagname2);
             tagSetting.push(data[i].color2);
@@ -165,7 +184,7 @@ function SetTag (data) {
             allTag.push(tagSetting);
             tagSetting = [];
         }
-        if (!tag_id.includes(data[i].tag_id3) && data[i].tag_id3 != null){
+        if (!tag_id.includes(data[i].tag_id3) && data[i].tag_id3 != null) {
             tagSetting.push(data[i].tag_id3);
             tagSetting.push(data[i].tagname3);
             tagSetting.push(data[i].color3);
@@ -173,7 +192,7 @@ function SetTag (data) {
             allTag.push(tagSetting);
             tagSetting = [];
         }
-        if (!tag_id.includes(data[i].tag_id4) && data[i].tag_id4 != null){
+        if (!tag_id.includes(data[i].tag_id4) && data[i].tag_id4 != null) {
             tagSetting.push(data[i].tag_id4);
             tagSetting.push(data[i].tagname4);
             tagSetting.push(data[i].color4);
@@ -181,7 +200,7 @@ function SetTag (data) {
             allTag.push(tagSetting);
             tagSetting = [];
         }
-        if (!tag_id.includes(data[i].tag_id5) && data[i].tag_id5 != null){
+        if (!tag_id.includes(data[i].tag_id5) && data[i].tag_id5 != null) {
             tagSetting.push(data[i].tag_id5);
             tagSetting.push(data[i].tagname5);
             tagSetting.push(data[i].color5);
@@ -189,7 +208,7 @@ function SetTag (data) {
             allTag.push(tagSetting);
             tagSetting = [];
         }
-        if (!tag_id.includes(data[i].tag_id6) && data[i].tag_id6 != null){
+        if (!tag_id.includes(data[i].tag_id6) && data[i].tag_id6 != null) {
             tagSetting.push(data[i].tag_id6);
             tagSetting.push(data[i].tagname6);
             tagSetting.push(data[i].color6);
@@ -204,7 +223,7 @@ function SetTag (data) {
 
 function setAdmin(data, userId) {
     var index;
-    for (var t = 0; t < data.length; t ++) {
+    for (var t = 0; t < data.length; t++) {
         if (data[t][0] == userId) {
             index = t;
         }

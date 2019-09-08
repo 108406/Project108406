@@ -101,13 +101,11 @@
 
         <!-----------------------------組會員&管理者--------------------------------->
         <div class="member-bottom" id="member">
-            <div class="administrator-total">
-                <div class="plan-name">
-                    <%= project_name %>
-                </div>
-                <div class="hr-set"></div>
-                <span class="admin-name">管理者</span>
+            <div class="plan-name">
+                <%= project_name %>
             </div>
+            <div class="hr-set"></div>
+            <div class="admin-name">管理者</div>
             <div class="administrator-img" id="admin-move">
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (teammember[i][3]) { %>
@@ -115,12 +113,10 @@
                 <% } %>
                 <% } %>
             </div>
-            <div class="hr-set">
+            <!-- <div class="hr-set">
                 <div class="hightline"></div>
-            </div>
-            <div class="member-total">
-                <span class="admin-name">成員</span>
-            </div>
+            </div> -->
+            <div class="admin-name">成員</div>
 
             <div class="member-img" id="member-move">
                 <% for (var i = 0; i < teammember.length; i ++) { %>
@@ -150,6 +146,7 @@
             <% for (var b = 0; b < tempTeammember.length; b ++) { %>
             <%     tempTeammember[b][2] = tempTeammember[b][2] != null ? new Buffer(tempTeammember[b][2], 'base64').toString() : null %>
             <% } %>
+            <% var allWorkIndex = 0; %>
             <% for (var listIndex = 0; listIndex < lists.length; listIndex ++) { %>
             <div class="work-total">
                 <div class="work-header">
@@ -181,16 +178,16 @@
                     </div>
                 </div>
                 <div class="work-body" id="work-body-move-1">
-
                     <% for (var workIndex = 0; workIndex < listwork[listIndex].length; workIndex ++) { %>
                     <% var thiswork = []; %>
                     <% for (var workDetail = 0; workDetail < works.length; workDetail ++) { %>
                     <% if (works[workDetail][0] == listwork[listIndex][workIndex]) { %>
                     <% thiswork = works[workDetail]; %>
+                    <% thiswork[10] = thiswork[10] != null ? new Buffer(thiswork[10], 'base64').toString() : null %>
                     <% } %>
                     <% } %>
                     <!--卡片-->
-                    <div class="card work-card" id="card-1">
+                    <div class="card work-card" id="<%= 'card-' + allWorkIndex %>">
                         <div class="work-card-header">
                             <% for (var i = 0; i < tags.length; i ++) { %>
                             <% for (var a = 4; a < 10; a ++) { %>
@@ -220,16 +217,19 @@
                             <% } %>
                         </div>
                         <% var tempWork = {listname:lists[listIndex][1], workData:thiswork, teammember: tempTeammember, tags: tags} %>
-                        <div onclick="<%= 'javascript:SetWorkCard(' + JSON.stringify(tempWork) + ')'%>">
+                        <div
+                            onclick="<%= 'javascript:SetWorkCard(' + JSON.stringify(tempWork) + ', ' + allWorkIndex + ')'%>">
                             <div class="work-name" data-toggle="modal" data-target="#show-modal">
                                 <%= thiswork[1] %>
                             </div>
                             <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                                <% if (thiswork[3] != '') { %>
                                 <span class="deadtime"><i
                                         class="far fa-clock"></i><%= thiswork[3][1] + '月' + thiswork[3][2] + '日' %></span>
+                                <% } %>
                                 <div class="work-img">
                                     <% for (var a = 0; a < teammember.length; a ++) { %>
-                                    <% if (teammember[a][0] == thiswork[11] || teammember[a][0] == thiswork[12]) { %>
+                                    <% if (teammember[a][0] == thiswork[12] || teammember[a][0] == thiswork[13]) { %>
                                     <img src=<%= 'data:image/png;base64,' + teammember[a][2] %> class="work-img-photo">
                                     <% } %>
                                     <% } %>
@@ -237,6 +237,7 @@
                             </div>
                         </div>
                     </div>
+                    <% allWorkIndex++ %>
                     <!--卡片-->
                     <% } %>
 
@@ -338,73 +339,210 @@
                                                     <div class="dropdown-label-header">
                                                         <span class="dropdown-label-header-title">標籤</span>
                                                     </div>
-                                                    <% for (var a = 0; a < tags.length; a ++) { %>
-                                                    <div class="label-total">
-                                                        <% if (tags[a][2] == '#61BD4F') { %>
-                                                        <a href="#" class="label-color-green-a"
-                                                            onmousemove="removeClassType(this)"
-                                                            id="label-color-green-a">
-                                                            <%= tags[a][1] %>
-                                                        </a>
-                                                        <% } else if (tags[a][2] == '#F2D600') { %>
-                                                        <a href="#" class="label-color-yellow-a"
-                                                            onmousemove="removeClassType(this)"
-                                                            id="label-color-yellow-a">
-                                                            <%= tags[a][1] %>
-                                                        </a>
-                                                        <% } else if (tags[a][2] == '#FF9F1A') { %>
-                                                        <a href="#" class="label-color-orange-a"
-                                                            onmousemove="removeClassType(this)"
-                                                            id="label-color-orange-a">
-                                                            <%= tags[a][1] %>
-                                                        </a>
-                                                        <% } else if (tags[a][2] == '#EB5A46') { %>
-                                                        <a href="#" class="label-color-red-a"
-                                                            onmousemove="removeClassType(this)" id="label-color-red-a">
-                                                            <%= tags[a][1] %>
-                                                        </a>
-                                                        <% } else if (tags[a][2] == '#C377E0') { %>
-                                                        <a href="#" class="label-color-purple-a"
-                                                            onmousemove="removeClassType(this)"
-                                                            id="label-color-purple-a">
-                                                            <%= tags[a][1] %>
-                                                        </a>
-                                                        <% } else if (tags[a][2] == '#0079BF') { %>
-                                                        <a href="#" class="label-color-blue-a"
-                                                            onmousemove="removeClassType(this)" id="label-color-blue-a">
-                                                            <%= tags[a][1] %>
-                                                        </a>
+                                                    <div class="label-color-all" name="label-color-all-right">
+                                                        <% var haveTag = [false, false, false, false, false, false]; %>
+                                                        <% var alltags_left = alltags %>
+                                                        <% for (var a = 0; a < 6; a ++) { %>
+                                                        <% try { %>
+                                                        <%     if (alltags_left[a].color != undefined) { %>
+                                                        <%     } %>
+                                                        <% } catch { %>
+                                                        <%     alltags_left[a] = {color: ''}; %>
                                                         <% } %>
-                                                        <!--左側編輯標籤-->
-                                                        <div class="dropdown-edit">
-                                                            <button class="label-color-edit-btn"
-                                                                id="<%= 'edit-label-dropdown-' + (a + 1) %>">
-                                                                <i class="fas fa-pen"></i>
-                                                            </button>
-                                                            <div class="dropdown-content" data-stopPropagation="true"
-                                                                id="<%= 'dropdown-content-' + (a + 1) %>">
-                                                                <span class="dropdown-label-header-title">
-                                                                    改變標籤
-                                                                    <a href="#" class="add-label-icon-a"
-                                                                        name="label-edit-off">
-                                                                        <i class="fas fa-times change-label-icon"></i>
-                                                                    </a>
-                                                                </span>
-                                                                <div class="label-color-total">
-                                                                    <label class="label-name">名字</label>
-                                                                    <input class="label-edit-input-search" type="text"
-                                                                        id="<%= 'label-edit-input-search-' + (a + 1) %>"
-                                                                        value="<%= tags[a][1] %>">
-                                                                    <div class="label-edit-btn-set">
-                                                                        <button class="btn-save"
-                                                                            id="<%= 'add-label-edit-btn-' + (a + 1) %>">儲存</button>
+                                                        <div class="label-total">
+                                                            <% if (haveTag[0] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#61BD4F') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-green-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-green-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-green-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-green-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[0] = true %>
+                                                            <% } else if (haveTag[1] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#F2D600') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-yellow-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-yellow-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-yellow-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-yellow-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[1] = true %>
+                                                            <% } else if (haveTag[2] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#FF9F1A') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-orange-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-orange-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-orange-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-orange-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[2] = true %>
+                                                            <% } else if (haveTag[3] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#EB5A46') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-red-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-red-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-red-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-red-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[3] = true %>
+                                                            <% } else if (haveTag[4] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#C377E0') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-purple-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-purple-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-purple-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-purple-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[4] = true %>
+                                                            <% } else if (haveTag[5] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#0079BF') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-blue-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-blue-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-blue-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-blue-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[5] = true %>
+                                                            <% } %>
+                                                            <!--左側編輯標籤-->
+                                                            <div class="dropdown-edit">
+                                                                <button class="label-color-edit-btn"
+                                                                    id="<%= 'edit-label-dropdown-' + (a + 1) %>">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
+                                                                <div class="dropdown-content"
+                                                                    data-stopPropagation="true"
+                                                                    id="<%= 'dropdown-content-' + (a + 1) %>">
+                                                                    <span class="dropdown-label-header-title">
+                                                                        改變標籤
+                                                                        <a href="#" class="add-label-icon-a"
+                                                                            name="label-edit-off">
+                                                                            <i
+                                                                                class="fas fa-times change-label-icon"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                    <div class="label-color-total">
+                                                                        <label class="label-name">名字</label>
+                                                                        <% let nowColor; %>
+                                                                        <% if (a == 0) { %>
+                                                                        <%     nowColor = '#61BD4F'; %>
+                                                                        <% } else if (a == 1) { %>
+                                                                        <%     nowColor = '#F2D600'; %>
+                                                                        <% } else if (a == 2) { %>
+                                                                        <%     nowColor = '#FF9F1A'; %>
+                                                                        <% } else if (a == 3) { %>
+                                                                        <%     nowColor = '#EB5A46'; %>
+                                                                        <% } else if (a == 4) { %>
+                                                                        <%     nowColor = '#C377E0';  %>
+                                                                        <% } else if (a == 5) { %>
+                                                                        <%     nowColor = '#0079BF'; %>
+                                                                        <% } %>
+                                                                        <% for (let n = 0; n < alltags.length ; n ++) { %>
+                                                                        <%     if (alltags[n].color == nowColor) { %>
+                                                                        <input class="label-edit-input-search"
+                                                                            type="text"
+                                                                            id="<%= 'label-edit-input-search-' + (a + 1) %>"
+                                                                            value="<%= alltags_left[n].tagname %>">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                onclick="<%= 'ChangeTagName(true, ' + (a + 1) + ', ' + alltags_left[n].tag_id + ')' %>"
+                                                                                id="<%= 'add-label-edit-btn-' + (a + 1) %>">儲存</button>
+                                                                        </div>
+                                                                        <%     } %>
+                                                                        <% } %>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <!--左側編輯標籤結束-->
                                                         </div>
-                                                        <!--左側編輯標籤結束-->
+                                                        <% } %>
+
                                                     </div>
-                                                    <% } %>
                                                 </div>
                                             </div>
                                             <!--左側點選新增標籤結束-->
@@ -444,11 +582,12 @@
                                         <div class="modal-file-name">下載附件</div>
                                     </div>
                                     <div class="file-set">
-                                        <a class="box-rar" download href="./test.rar">
+                                        <a id="downloadFileBlock" class="box-rar" download href="./test.rar">
                                             <span class="box-rar-text">rar</span>
                                         </a>
                                         <p class="file-set-show">
-                                            <a download href="./test.rar" class="file-name">2.0.rar</a>
+                                            <a id="downloadFileText" download href="./test.rar"
+                                                class="file-name">2.0.rar</a>
                                         </p>
                                     </div>
                                 </div>
@@ -505,53 +644,165 @@
 
                                             <div class="label-color-all" name="label-color-all-right">
 
-                                                <% for (var a = 0; a < tags.length; a ++) { %>
+                                                <% var haveTag_right = [false, false, false, false, false, false]; %>
+                                                <% var alltags_right = alltags %>
+                                                <% for (var c = 0; c < 6; c ++) { %>
+                                                <% try { %>
+                                                <%     if (alltags_right[c].color != undefined) { %>
+                                                <%     } %>
+                                                <% } catch { %>
+                                                <%     alltags_right[c] = {color: ''}; %>
+                                                <% } %>
                                                 <div class="label-total">
-                                                    <% if (tags[a][2] == '#61BD4F') { %>
+
+                                                    <% if (haveTag_right[0] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#61BD4F') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
                                                     <a href="#" class="label-color-green-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-green-a-right">
-                                                        <%= tags[a][1] %>
+                                                        <%= alltags_right[nameIndex].tagname %>
                                                     </a>
-                                                    <% } else if (tags[a][2] == '#F2D600') { %>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-green-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-green-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[0] = true %>
+                                                    <% } else if (haveTag_right[1] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#F2D600') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
                                                     <a href="#" class="label-color-yellow-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-yellow-a-right">
-                                                        <%= tags[a][1] %>
+                                                        <%= alltags_right[nameIndex].tagname %>
                                                     </a>
-                                                    <% } else if (tags[a][2] == '#FF9F1A') { %>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-yellow-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-yellow-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[1] = true %>
+                                                    <% } else if (haveTag_right[2] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#FF9F1A') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
                                                     <a href="#" class="label-color-orange-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-orange-a-right">
-                                                        <%= tags[a][1] %>
+                                                        <%= alltags_right[nameIndex].tagname %>
                                                     </a>
-                                                    <% } else if (tags[a][2] == '#EB5A46') { %>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-orange-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-orange-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[2] = true %>
+                                                    <% } else if (haveTag_right[3] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#EB5A46') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
                                                     <a href="#" class="label-color-red-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-red-a-right">
-                                                        <%= tags[a][1] %>
+                                                        <%= alltags_right[nameIndex].tagname %>
                                                     </a>
-                                                    <% } else if (tags[a][2] == '#C377E0') { %>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-red-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-red-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[3] = true %>
+                                                    <% } else if (haveTag_right[4] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#C377E0') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
                                                     <a href="#" class="label-color-purple-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-purple-a-right">
-                                                        <%= tags[a][1] %>
+                                                        <%= alltags_right[nameIndex].tagname %>
                                                     </a>
-                                                    <% } else if (tags[a][2] == '#0079BF') { %>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-purple-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-purple-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[4] = true %>
+                                                    <% } else if (haveTag_right[5] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#0079BF') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
                                                     <a href="#" class="label-color-blue-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-blue-a-right">
-                                                        <%= tags[a][1] %>
+                                                        <%= alltags_right[nameIndex].tagname %>
                                                     </a>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-blue-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-blue-a-right"></a>
                                                     <% } %>
+                                                    <% haveTag_right[5] = true %>
+                                                    <% } %>
+
                                                     <!--右側編輯標籤-->
                                                     <div class="dropdown-edit">
                                                         <button class="label-color-edit-btn"
-                                                            id="<%= 'edit-right-dropdown-' + (a + 1) %>">
+                                                            id="<%= 'edit-right-dropdown-' + (c + 1) %>">
                                                             <i class="fas fa-pen"></i>
                                                         </button>
                                                         <div class="dropdown-content-right" data-stopPropagation="true"
-                                                            id="<%= 'dropdown-content-right-' + (a + 1) %>">
+                                                            id="<%= 'dropdown-content-right-' + (c + 1) %>">
                                                             <span class="dropdown-label-header-title">
                                                                 改變標籤
                                                                 <a href="#" class="add-label-icon-a"
@@ -561,13 +812,32 @@
                                                             </span>
                                                             <div class="label-color-total">
                                                                 <label class="label-name">名字</label>
+                                                                <% let nowColor; %>
+                                                                <% if (c == 0) { %>
+                                                                <%     nowColor = '#61BD4F'; %>
+                                                                <% } else if (c == 1) { %>
+                                                                <%     nowColor = '#F2D600'; %>
+                                                                <% } else if (c == 2) { %>
+                                                                <%     nowColor = '#FF9F1A'; %>
+                                                                <% } else if (c == 3) { %>
+                                                                <%     nowColor = '#EB5A46'; %>
+                                                                <% } else if (c == 4) { %>
+                                                                <%     nowColor = '#C377E0';  %>
+                                                                <% } else if (c == 5) { %>
+                                                                <%     nowColor = '#0079BF'; %>
+                                                                <% } %>
+                                                                <% for (let n = 0; n < alltags.length ; n ++) { %>
+                                                                <%     if (alltags[n].color == nowColor) { %>
                                                                 <input class="label-edit-input-search"
-                                                                    id="<%= 'label-edit-input-search-right-' + (a + 1) %>"
-                                                                    type="text" value="<%= tags[a][1] %>">
+                                                                    id="<%= 'label-edit-input-search-right-' + (c + 1) %>"
+                                                                    type="text" value="<%= alltags_right[n].tagname %>">
                                                                 <div class="label-edit-btn-set">
                                                                     <button class="btn-save"
-                                                                        id="<%= 'add-label-edit-btn-right-' + (a + 1) %>">儲存</button>
+                                                                        onclick="<%= 'ChangeTagName(false, ' + (c + 1) + ', ' + alltags_right[n].tag_id + ')' %>"
+                                                                        id="<%= 'add-label-edit-btn-right-' + (c + 1) %>">儲存</button>
                                                                 </div>
+                                                                <% } %>
+                                                                <% } %>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -600,8 +870,8 @@
                                                 <input type="datetime-local" class="timeout-date">
 
                                                 <div class="label-edit-btn-set">
-                                                    <button class="btn-save">儲存</button>
-                                                    <button class="btn-cancel">刪除</button>
+                                                    <button onclick="SaveDeadline()" class="btn-save">儲存</button>
+                                                    <button onclick="ClearDeadline();" class="btn-cancel">刪除</button>
                                                 </div>
                                             </div>
 
@@ -616,7 +886,7 @@
                                     <label class="upload_cover">
                                         <span class="upload_cover_span"><i class="far fa-file"
                                                 style="margin-right: 0.65em;"></i>上傳附件</span>
-                                        <input id="upload_input" type="file">
+                                        <input id="upload_input" type="file" onchange="uploadFile(this)">
                                     </label>
                                     <!---->
 
@@ -656,7 +926,7 @@
                                                     </div>
 
                                                 </div>
-                                                <button class="move-btn">移動</button>
+                                                <button id="MoveWorkToList" class="move-btn">移動</button>
 
                                             </div>
 
@@ -808,26 +1078,25 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">時間:</label>
-                                <input type="datetime-local" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">訊息:</label>
-                                <textarea class="form-control"></textarea>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">時間:</label>
+                            <input id="adminpushEndDate" type="datetime-local" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">訊息:</label>
+                            <textarea id="adminpushContent" class="form-control"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">關閉</button>
-                        <button type="button" class="btn btn-light">送出</button>
+                        <button type="button" class="btn btn-light" onclick="AddAdminpush();">送出</button>
                     </div>
                 </div>
             </div>
         </div>
         <input id="isAdmin" type="hidden" value="<%= isAdmin %>">
         <input id="permission_serno" type="hidden" value="<%= projectPermission[4] %>">
+        <input id="tags" type="hidden" value="<%= JSON.stringify(alltags) %>">
 
         <!-----------------------------------scrpit-------------------------------------------->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -838,7 +1107,10 @@
             document.getElementById('addWorkPermission').addEventListener('click', updatePermission);
             document.getElementById('editWorkPermission').addEventListener('click', updatePermission);
             document.getElementById('deleteWorkPermission').addEventListener('click', updatePermission);
-            document.cookie = 'isAdmin=' + $('#isAdmin').val()
+            document.cookie = 'isAdmin=' + $('#isAdmin').val();
+            var exceptPrincipal1 = '';
+            var exceptPrincipal2 = '';
+            var nowWorkData;
 
             function updatePermission() {
                 permission_serno = $('#permission_serno').val();
@@ -846,7 +1118,7 @@
                 addWorkPermission = $('#addWorkPermission').get(0).checked;
                 editWorkPermission = $('#editWorkPermission').get(0).checked;
                 deleteWorkPermission = $('#deleteWorkPermission').get(0).checked;
-                
+
                 $.ajax({
                     method: 'POST',
                     url: '/content/plan/updatePermission',
@@ -865,13 +1137,47 @@
                 })
             }
 
+            function AddAdminpush() {
+                // content/plan/addAdminpush
+                // adminpushEndDate
+                // adminpushContent
+                adminpushContent = $('#adminpushContent').val();
+                adminpushEndDate = $('#adminpushEndDate').val();
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/addAdminpush',
+                    datatype: "json",
+                    data: {
+                        adminpushContent: adminpushContent,
+                        adminpushEndDate: adminpushEndDate
+                    },
+                    success: function (data) {
+                        location.reload();
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
+
             function AddList() {
                 if ($('#add-list-input').val().trim() != '') {
                     listIndex = $('.work-total').length;
                     $('#add-list').parent().parent().before(
                         '<div class="work-total"><div class="work-header"><input type="text" class="form-control input-style" placeholder="' +
                         $('#add-list-input').val() +
-                        '"><div class="drpdown"><button class="btn btn-link btn-header" type="button" id="dropdownMenuLink" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button><div class="dropdown-menu" style="min-width: 12em !important;" aria-labelledby="dropdownMenuLink"><div class="drop-right-header-title"><span class="drop-right-title">列表動作</span></div><div class="dropdown-right-content"><div><div><ul class="dropdown-right-list"><li><a href="#">新增卡片</a></li><li><a href="#">刪除所有卡片</a></li><li><a href="#">刪除列表</a></li></ul></div></div></div></div></div></div><div class="work-body" id="work-body-move-1"><div class="card add-card"><textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea></div></div><div class="card-footer"><a href="#" class="a-footer add-card-textarea"><div class="footer-name"><i class="fas fa-plus"></i>新增另外一張卡片</div></a></div>'
+                        '"><div class="drpdown"><button class="btn btn-link btn-header" type="button" id="dropdownMenuLink" data-toggle="dropdown"\n\
+                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button><div class="dropdown-menu" \n\
+                            style="min-width: 12em !important;" aria-labelledby="dropdownMenuLink"><div class="drop-right-header-title"><span \n\
+                            class="drop-right-title">列表動作</span></div><div class="dropdown-right-content"><div><div><ul\n\
+                            class="dropdown-right-list"><li><a href="#">新增卡片</a></li><li><a href="#">刪除所有卡片</a></li><li><a\n\
+                            href="#">刪除列表</a></li></ul></div></div></div></div></div></div><div class="work-body"\n\
+                            id="work-body-move-1"><div class="card add-card"><textarea class="card-add-text card-textarea"\n\
+                            placeholder="為這張卡片輸入標題..."></textarea></div></div><div class="card-footer"><a href="#"\n\
+                            class="a-footer add-card-textarea"><div class="footer-name"><i class="fas fa-plus">\n\
+                            </i>新增另外一張卡片</div></a></div>'
                     );
                     //onclick="DeleteList("103", "1557986606376420", 1)"
                     $.ajax({
@@ -911,18 +1217,31 @@
                 })
             }
 
-            function SetWorkCard(data) {
+            function SetWorkCard(data, cardNo) {
                 //addMemberToWork principal work_deadline workInList work_title
-                console.log(data);
+                nowWorkData = data;
                 $('#work_title').text(data.workData[1]);
                 $('#workInList').text(data.listname);
-                $('#work_deadline').text(
-                    data.workData[3][1] + '月' + data.workData[3][2] + '日 ' +
-                    (data.workData[3][3] > 12 ? ('下午' + (data.workData[3][3] - 12) + '點') : ('上午' + data.workData[3]
-                        [
-                            3
-                        ] + '點')) +
-                    data.workData[3][4] + '分');
+                if (data.workData[3] != '') {
+                    deadlineText = data.workData[3][1] + '月' + data.workData[3][2] + '日 ' +
+                        (data.workData[3][3] > 12 ? ('下午' + (data.workData[3][3] - 12) + '點') : ('上午' + data.workData[3]
+                            [
+                                3
+                            ] + '點')) +
+                        data.workData[3][4] + '分';
+                    if ($('.modal-timeout').length > 0) {
+                        $('#work_deadline').text(deadlineText);
+                    } else {
+                        $($('.modal-label-left')[0]).after(
+                            '<div class="modal-timeout"><div class="modal-timeout-header">\n\
+                        <i class="far fa-clock timeout-icon fa-lg"></i><div class="modal-timeout-name">到期日</div></div>\n\
+                        <div class="timeout"><span class="deadtime"><i class="far fa-clock"></i><span id="work_deadline">' +
+                            deadlineText + '\n\
+                        </span></span></div></div>')
+                    }
+                } else {
+                    $('#work_deadline').parent().parent().parent().remove();
+                }
                 $('#principal').empty();
                 $('#addMemberToWork').empty();
                 $('#list-get').text(data.listname)
@@ -934,18 +1253,56 @@
                     (data.workData[3][4] < 10 ? ('0' + data.workData[3][4]) : data.workData[3][4]) + ':' +
                     (data.workData[3][5] < 10 ? ('0' + data.workData[3][5]) : data.workData[3][5])
                 )
+
+                if (data.workData[10] != '') {
+                    let MIMEType = data.workData[11].split('.')[data.workData[11].split('.').length - 1] == 'zip' ?
+                        'application/x-zip-compressed' :
+                        data.workData[11].split('.')[data.workData[11].split('.').length - 1] == 'tar' ?
+                        'application/x-tar' :
+                        data.workData[11].split('.')[data.workData[11].split('.').length - 1] == 'gz' ?
+                        'application/x-gzip' : '';
+
+                    let fileDataUrl = 'data:' + MIMEType + ';base64,' + data.workData[10];
+                    if ($('.modal-file').length > 0) {
+                        $('#downloadFileBlock').attr('href', fileDataUrl)
+                        $('#downloadFileBlock').attr('download', data.workData[11])
+                        $('#downloadFileText').attr('download', data.workData[11]);
+                    } else {
+                        $('.col-md-8').append('<div class="modal-file"><div class="modal-file-header"><i class="far fa-file icon-file fa-lg"></i><div \n\
+                        class="modal-file-name">下載附件</div></div><div class="file-set"><a id="downloadFileBlock" class="box-rar" \n\
+                        download="' + data.workData[11] + '" href="' + fileDataUrl +
+                            '"><span class="box-rar-text">' +
+                            data.workData[11].split('.')[data.workData[11].split('.').length - 1] + '</span></a><p \n\
+                        class="file-set-show"><a id="downloadFileText" download="' + data.workData[11] + '" href="' +
+                            fileDataUrl + '" \n\
+                        class="file-name"></a></p></div></div>')
+                    }
+                    $('#downloadFileText').text(data.workData[11]);
+                    $('#downloadFileText').attr('href', fileDataUrl)
+                    $('#downloadFileBlock').children()[0].innerHTML = data.workData[11].split('.')[data.workData[11]
+                        .split('.').length - 1]
+                } else {
+                    $('.modal-file').remove();
+                }
+
                 // console.log(data.teammember[0])
                 for (var a = 0; a < data.teammember.length; a++) {
+                    var addMemberToWorkData = {
+                        teammember: data.teammember[a],
+                        workData: data.workData
+                    }
                     $('#addMemberToWork').append(
-                        '<a class="dropdown-img-member-set" href="#"><img src="data:image/png;base64,' + data
+                        `<a class="dropdown-img-member-set" onclick='AddMemberToWork(` + JSON.stringify(
+                            addMemberToWorkData) + `, ` + cardNo + `)'><img src="data:image/png;base64,` + data
                         .teammember[a][2] +
                         '" class="dropdown-member-img"><div class="member-name">' + data.teammember[a][1] +
                         '</div></a>'
                     )
-                    if (data.teammember[a][0] == data.workData[11] || data.teammember[a][0] == data.workData[12]) {
-                        $('#principal').append('<img src="data:image/png;base64,' + data.teammember[a][2] +
-                            '" class="modal-member-photo">');
-
+                    if (data.teammember[a][0] == data.workData[12] || data.teammember[a][0] == data.workData[13]) {
+                        if (data.teammember[a][0] != exceptPrincipal1 && data.teammember[a][0] != exceptPrincipal2) {
+                            $('#principal').append('<img src="data:image/png;base64,' + data.teammember[a][2] +
+                                '" class="modal-member-photo">');
+                        }
                     }
                 }
                 $('#fixedTags').empty();
@@ -988,6 +1345,539 @@
                     }
                 }
 
+                $('#MoveWorkToList').attr('onclick', 'MoveWorkToList(' + JSON.stringify(data) + ', ' + cardNo + ')')
+
+            }
+
+            function AddMemberToWork(data, cardNo) {
+                var newWorkData = data.workData;
+                let dontAppend = false;
+
+                if (data.workData[12] == data.teammember[0] || data.workData[13] == data.teammember[0]) {
+                    if (data.workData[12] == data.teammember[0]) {
+                        newWorkData[12] = null;
+                        $($('#principal img')[0]).remove();
+                        $($('#card-' + cardNo + ' div.work-img img')[0]).remove();
+                        exceptPrincipal1 = data.teammember[0];
+                    } else if (data.workData[13] == data.teammember[0]) {
+                        newWorkData[13] = null;
+                        $($('#principal img')[1]).remove();
+                        $($('#card-' + cardNo + ' div.work-img img')[1]).remove();
+                        exceptPrincipal2 = data.teammember[0];
+                    }
+                    dontAppend = true;
+                } else {
+                    if (data.workData[12] == null) {
+                        newWorkData[12] = data.teammember[0];
+                    } else if (data.workData[13] == null) {
+                        newWorkData[13] = data.teammember[0];
+                    } else {
+                        console.log("一個工作最多只能分配兩個負責人。");
+                        return;
+                    }
+                }
+                if (!dontAppend) {
+                    $('#card-' + cardNo + ' div.work-img').append('<img src="data:image/png;base64,' + data.teammember[
+                            2] +
+                        '" class="work-img-photo">')
+
+                    $('#principal').append('<img src="data:image/png;base64,' + data.teammember[2] +
+                        '" class="modal-member-photo">');
+                }
+                let deadline = newWorkData[3][0] + '-' +
+                    (newWorkData[3][1] < 10 ? ('0' + newWorkData[3][1]) : newWorkData[3][1]) + '-' +
+                    (newWorkData[3][2] < 10 ? ('0' + newWorkData[3][2]) : newWorkData[3][2]) + ' ' +
+                    (newWorkData[3][3] < 10 ? ('0' + newWorkData[3][3]) : newWorkData[3][3]) + ':' +
+                    (newWorkData[3][4] < 10 ? ('0' + newWorkData[3][4]) : newWorkData[3][4]) + ':' +
+                    (newWorkData[3][5] < 10 ? ('0' + newWorkData[3][5]) : newWorkData[3][5]);
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/updateWork',
+                    datatype: "json",
+                    data: {
+                        work_id: +newWorkData[0],
+                        work_title: newWorkData[1],
+                        work_content: newWorkData[2],
+                        deadline: deadline,
+                        tag_id1: +newWorkData[4],
+                        tag_id2: +newWorkData[5],
+                        tag_id3: +newWorkData[6],
+                        tag_id4: +newWorkData[7],
+                        tag_id5: +newWorkData[8],
+                        tag_id6: +newWorkData[9],
+                        file: newWorkData[10],
+                        file_name: newWorkData[11],
+                        first_principal: newWorkData[12],
+                        second_principal: newWorkData[13]
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
+
+            function ChangeTagName(isLeft, index, tag_id) {
+                let newValue;
+                if (isLeft) {
+                    newValue = $('#label-edit-input-search-' + index).val();
+                    $('#label-edit-input-search-right-' + index).val(newValue);
+                } else {
+                    newValue = $('#label-edit-input-search-right-' + index).val();
+                    $('#label-edit-input-search-' + index).val(newValue);
+                }
+                $('.modal-label-' + index).children().text(newValue);
+                $('.modal-label-' + index).children().attr('title', newValue);
+                $('.card-label-' + index).children().text(newValue);
+                $('.card-label-' + index).children().attr('title', newValue);
+                $($($('.label-total')[index - 1]).children()[0]).text(newValue);
+                $($($('.label-total')[index - 1]).children()[0]).attr('title', newValue);
+                $($($('.label-total')[index + 5]).children()[0]).text(newValue);
+                $($($('.label-total')[index + 5]).children()[0]).attr('title', newValue);
+                if (isLeft) {
+                    $('#dropdown-content-' + index).hide();
+                } else {
+                    $('#dropdown-content-right-' + index).hide();
+                }
+                if (tag_id != undefined) {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/updateTag',
+                        datatype: "json",
+                        data: {
+                            tag_id: tag_id,
+                            tagname: newValue
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                } else {
+                    let color;
+                    switch (index) {
+                        case 1:
+                            color = '#61BD4F';
+                            break;
+                        case 2:
+                            color = '#F2D600';
+                            break;
+                        case 3:
+                            color = '#FF9F1A';
+                            break;
+                        case 4:
+                            color = '#EB5A46';
+                            break;
+                        case 5:
+                            color = '#C377E0';
+                            break;
+                        case 6:
+                            color = '#0079BF';
+                            break;
+                        default:
+                            alert('標籤索引值出錯');
+                            break;
+                    }
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/addTag',
+                        datatype: "json",
+                        data: {
+                            tagname: newValue,
+                            color: color
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                }
+            }
+
+            function ChangeTag(id, color) {
+                let allTags = JSON.parse($('#tags').val());
+                let status = 0;
+                let removeIndex = -1;
+                if (id.indexOf('green') != -1) {
+                    status = 1;
+                } else if (id.indexOf('yellow') != -1) {
+                    status = 2;
+                } else if (id.indexOf('orange') != -1) {
+                    status = 3;
+                } else if (id.indexOf('red') != -1) {
+                    status = 4;
+                } else if (id.indexOf('purple') != -1) {
+                    status = 5;
+                } else if (id.indexOf('blue') != -1) {
+                    status = 6;
+                } else {
+                    status = 7;
+                }
+                if (status > 0 && status < 7) {
+                    for (let a = 0; a < $('#fixedTags').children().length; a++) {
+                        let className = $('#fixedTags').children()[a].className;
+                        if (className == 'modal-label-' + status) {
+                            removeIndex = status;
+                        }
+                    }
+                } else {
+                    alert("標籤取得發生錯誤")
+                    console.log("標籤取得發生錯誤");
+                    return;
+                }
+
+                if (removeIndex == -1) {
+                    let textValue = $('#' + id).text();
+                    $('#fixedTags').append('<span class="modal-label-' + status +
+                        '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                        '</span></span>')
+                    let workIndex = -1;
+                    for (let i = 0; i < $('.work-name').length; i++) {
+                        if ($($('.work-name')[i]).text().trim() == $('#work_title').text()) {
+                            workIndex = i;
+                        }
+                    }
+                    $($('#card-' + workIndex).children()[0]).append('<span class="card-label-' + status +
+                        '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                        '</span></span>');
+                    let newTagArray = [];
+                    for (let s = 1; s < 7; s++) {
+                        if (s == status) {
+                            let newTagIndex = -1;
+                            for (var t = 0; t < allTags.length; t++) {
+                                if ($('#' + id).attr('title') == allTags[t].tagname) {
+                                    newTagIndex = t;
+                                }
+                            }
+                            newTagArray.push(allTags[newTagIndex].tag_id)
+                        } else {
+                            newTagArray.push(+nowWorkData.workData[s + 3])
+                        }
+                    }
+                    let deadline = nowWorkData.workData[3][0] + '-' +
+                        (nowWorkData.workData[3][1] < 10 ? ('0' + nowWorkData.workData[3][1]) : nowWorkData.workData[3][
+                            1
+                        ]) + '-' +
+                        (nowWorkData.workData[3][2] < 10 ? ('0' + nowWorkData.workData[3][2]) : nowWorkData.workData[3][
+                            2
+                        ]) + ' ' +
+                        (nowWorkData.workData[3][3] < 10 ? ('0' + nowWorkData.workData[3][3]) : nowWorkData.workData[3][
+                            3
+                        ]) + ':' +
+                        (nowWorkData.workData[3][4] < 10 ? ('0' + nowWorkData.workData[3][4]) : nowWorkData.workData[3][
+                            4
+                        ]) + ':' +
+                        (nowWorkData.workData[3][5] < 10 ? ('0' + nowWorkData.workData[3][5]) : nowWorkData.workData[3][
+                            5
+                        ]);
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/updateWork',
+                        datatype: "json",
+                        data: {
+                            work_id: +nowWorkData.workData[0],
+                            work_title: nowWorkData.workData[1],
+                            work_content: nowWorkData.workData[2],
+                            deadline: deadline,
+                            tag_id1: +newTagArray[0],
+                            tag_id2: +newTagArray[1],
+                            tag_id3: +newTagArray[2],
+                            tag_id4: +newTagArray[3],
+                            tag_id5: +newTagArray[4],
+                            tag_id6: +newTagArray[5],
+                            file: nowWorkData.workData[10],
+                            file_name: nowWorkData.workData[11],
+                            first_principal: nowWorkData.workData[12],
+                            second_principal: nowWorkData.workData[13]
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                } else {
+                    $('.modal-label-' + removeIndex).remove();
+                    let workIndex = -1;
+                    for (let i = 0; i < $('.work-name').length; i++) {
+                        if ($($('.work-name')[i]).text().trim() == $('#work_title').text()) {
+                            workIndex = i;
+                        }
+                    }
+                    $($('#card-' + workIndex).children()[0]).children().closest('.card-label-' + removeIndex).remove();
+
+                    let newTagArray = [];
+                    for (let s = 1; s < 7; s++) {
+                        newTagArray.push(+nowWorkData.workData[s + 3])
+                    }
+                    let setZeroIndex = -1;
+                    if (color == '#61BD4F') {
+                        setZeroIndex = 0;
+                    } else if (color == '#F2D600') {
+                        setZeroIndex = 1;
+                    } else if (color == '#FF9F1A') {
+                        setZeroIndex = 2;
+                    } else if (color == '#EB5A46') {
+                        setZeroIndex = 3;
+                    } else if (color == '#C377E0') {
+                        setZeroIndex = 4;
+                    } else if (color == '#0079BF') {
+                        setZeroIndex = 5;
+                    }
+                    newTagArray[setZeroIndex] = 0;
+                    let deadline = nowWorkData.workData[3][0] + '-' +
+                        (nowWorkData.workData[3][1] < 10 ? ('0' + nowWorkData.workData[3][1]) : nowWorkData.workData[3][
+                            1
+                        ]) + '-' +
+                        (nowWorkData.workData[3][2] < 10 ? ('0' + nowWorkData.workData[3][2]) : nowWorkData.workData[3][
+                            2
+                        ]) + ' ' +
+                        (nowWorkData.workData[3][3] < 10 ? ('0' + nowWorkData.workData[3][3]) : nowWorkData.workData[3][
+                            3
+                        ]) + ':' +
+                        (nowWorkData.workData[3][4] < 10 ? ('0' + nowWorkData.workData[3][4]) : nowWorkData.workData[3][
+                            4
+                        ]) + ':' +
+                        (nowWorkData.workData[3][5] < 10 ? ('0' + nowWorkData.workData[3][5]) : nowWorkData.workData[3][
+                            5
+                        ]);
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/updateWork',
+                        datatype: "json",
+                        data: {
+                            work_id: +nowWorkData.workData[0],
+                            work_title: nowWorkData.workData[1],
+                            work_content: nowWorkData.workData[2],
+                            deadline: deadline,
+                            tag_id1: +newTagArray[0],
+                            tag_id2: +newTagArray[1],
+                            tag_id3: +newTagArray[2],
+                            tag_id4: +newTagArray[3],
+                            tag_id5: +newTagArray[4],
+                            tag_id6: +newTagArray[5],
+                            file: nowWorkData.workData[10],
+                            file_name: nowWorkData.workData[11],
+                            first_principal: nowWorkData.workData[12],
+                            second_principal: nowWorkData.workData[13]
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                }
+            }
+
+            function SaveDeadline() {
+                let newDeadline = $('input.timeout-date').val().replace('T', ' ');
+                let newDeadlineSplit = newDeadline.replace(/-/g, ',');
+                newDeadlineSplit = newDeadlineSplit.replace(/:/g, ',');
+                newDeadlineSplit = newDeadlineSplit.replace(/ /g, ',');
+                let newDeadlineArray = newDeadlineSplit.split(',');
+
+                deadlineText = +newDeadlineArray[1] + '月' + +newDeadlineArray[2] + '日 ' +
+                    (+newDeadlineArray[3] > 12 ? ('下午' + (+newDeadlineArray[3] - 12) + '點') : ('上午' + +newDeadlineArray[
+                            3] +
+                        '點')) + +newDeadlineArray[4] + '分';
+                if ($('.modal-timeout').length > 0) {
+                    $('#work_deadline').text(deadlineText);
+                } else {
+                    $($('.modal-label-left')[0]).after(
+                        '<div class="modal-timeout"><div class="modal-timeout-header">\n\
+                        <i class="far fa-clock timeout-icon fa-lg"></i><div class="modal-timeout-name">到期日</div></div>\n\
+                        <div class="timeout"><span class="deadtime"><i class="far fa-clock"></i><span id="work_deadline">' +
+                        deadlineText + '\n\
+                        </span></span></div></div>')
+                }
+                let workIndex = -1;
+                for (let i = 0; i < $('.work-name').length; i++) {
+                    if ($($('.work-name')[i]).text().trim() == $('#work_title').text()) {
+                        workIndex = i;
+                    }
+                }
+                if ($($('.work-name')[workIndex]).next().find('span.deadtime').length > 0) {
+                    $($('.work-name')[workIndex]).next().find('span.deadtime').html('<i class="far fa-clock"></i>' + +
+                        newDeadlineArray[1] + '月' + +newDeadlineArray[2] + '日')
+                } else {
+                    if ($($('.work-name')[workIndex]).next().find('div.work-img').length > 0) {
+                        $($('.work-name')[workIndex]).next().find('div.work-img').before(
+                            '<span class="deadtime"><i class="far fa-clock"></i>' + +newDeadlineArray[1] + '月' + +
+                            newDeadlineArray[2] + '日' + '</span>');
+                    } else {
+                        $($('.work-name')[workIndex]).next().append(
+                            '<span class="deadtime"><i class="far fa-clock"></i>' + +newDeadlineArray[1] + '月' + +
+                            newDeadlineArray[2] + '日' + '</span>');
+                    }
+                }
+
+                // return;
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/updateWork',
+                    datatype: "json",
+                    data: {
+                        work_id: +nowWorkData.workData[0],
+                        work_title: nowWorkData.workData[1],
+                        work_content: nowWorkData.workData[2],
+                        deadline: newDeadline,
+                        tag_id1: +nowWorkData.workData[4],
+                        tag_id2: +nowWorkData.workData[5],
+                        tag_id3: +nowWorkData.workData[6],
+                        tag_id4: +nowWorkData.workData[7],
+                        tag_id5: +nowWorkData.workData[8],
+                        tag_id6: +nowWorkData.workData[9],
+                        file: nowWorkData.workData[10],
+                        file_name: nowWorkData.workData[11],
+                        first_principal: nowWorkData.workData[12],
+                        second_principal: nowWorkData.workData[13]
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
+
+            function ClearDeadline() {
+                $('input.timeout-date').val('');
+                $('#work_deadline').parent().parent().parent().remove()
+                let workIndex = -1;
+                for (let i = 0; i < $('.work-name').length; i++) {
+                    if ($($('.work-name')[i]).text().trim() == $('#work_title').text()) {
+                        workIndex = i;
+                    }
+                }
+                if ($($('.work-name')[workIndex]).next().find('span.deadtime').length > 0) {
+                    $($('.work-name')[workIndex]).next().find('span.deadtime').remove();
+                }
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/updateWork',
+                    datatype: "json",
+                    data: {
+                        work_id: +nowWorkData.workData[0],
+                        work_title: nowWorkData.workData[1],
+                        work_content: nowWorkData.workData[2],
+                        deadline: null,
+                        tag_id1: +nowWorkData.workData[4],
+                        tag_id2: +nowWorkData.workData[5],
+                        tag_id3: +nowWorkData.workData[6],
+                        tag_id4: +nowWorkData.workData[7],
+                        tag_id5: +nowWorkData.workData[8],
+                        tag_id6: +nowWorkData.workData[9],
+                        file: nowWorkData.workData[10],
+                        file_name: nowWorkData.workData[11],
+                        first_principal: nowWorkData.workData[12],
+                        second_principal: nowWorkData.workData[13]
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
+
+            function uploadFile(file) {
+                if (file.files[0] != undefined) {
+                    let fileType;
+                    let fileName = file.files[0].name;
+                    let isCompressedFile = false;
+                    if (file.files[0].type != '') {
+                        fileType = file.files[0].type.split('/')[1]
+                    } else {
+                        alert('僅支援以下壓縮檔格式。（ .zip .tar .gz ）');
+                        return;
+                    }
+
+                    if (fileType == 'x-zip-compressed' || fileType == 'x-gzip' || fileType == 'x-tar') {
+                        let reader = new FileReader();
+                        // Closure to capture the file information.
+                        reader.onload = (function (theFile) {
+                            return function (e) {
+                                var binaryData = e.target.result;
+                                //Converting Binary Data to base 64
+                                //showing file converted to base64
+                                let fileUrl = window.btoa(binaryData);
+
+                                let fileDataUrl = 'data:' + theFile.type + ';base64,' + fileUrl;
+                                if (fileUrl.length >= 734000) {
+                                    alert('檔案過大。僅傳送512K以下之檔案。')
+                                    return;
+                                }
+
+                                if ($('.modal-file').length > 0) {
+                                    $('#downloadFileBlock').attr('href', fileDataUrl)
+                                    $('#downloadFileBlock').attr('download', fileName)
+                                    $('#downloadFileText').attr('download', fileName);
+                                } else {
+                                    $('.col-md-8').append('<div class="modal-file"><div class="modal-file-header"><i class="far fa-file icon-file fa-lg"></i><div \n\
+                                    class="modal-file-name">下載附件</div></div><div class="file-set"><a id="downloadFileBlock" class="box-rar" \n\
+                                    download="' + fileName + '" href="' + fileDataUrl +
+                                        '"><span class="box-rar-text">' +
+                                        fileName.split('.')[fileName.split('.').length - 1] + '</span></a><p class="file-set-show"><a \n\
+                                    id="downloadFileText" download="' + fileName + '" href="' + fileDataUrl + '" \n\
+                                    class="file-name"></a></p></div></div>')
+                                }
+                                $('#downloadFileText').text(fileName);
+                                $('#downloadFileText').attr('href', fileDataUrl);
+                                $('#downloadFileBlock').children()[0].innerHTML = fileName.split('.')[
+                                    fileName.split('.').length - 1];
+                                $.ajax({
+                                    method: 'POST',
+                                    url: '/content/plan/updateWork',
+                                    datatype: "json",
+                                    data: {
+                                        work_id: +nowWorkData.workData[0],
+                                        work_title: nowWorkData.workData[1],
+                                        work_content: nowWorkData.workData[2],
+                                        deadline: nowWorkData.workData[3],
+                                        tag_id1: +nowWorkData.workData[4],
+                                        tag_id2: +nowWorkData.workData[5],
+                                        tag_id3: +nowWorkData.workData[6],
+                                        tag_id4: +nowWorkData.workData[7],
+                                        tag_id5: +nowWorkData.workData[8],
+                                        tag_id6: +nowWorkData.workData[9],
+                                        file: fileUrl,
+                                        file_name: fileName,
+                                        first_principal: nowWorkData.workData[12],
+                                        second_principal: nowWorkData.workData[13]
+                                    },
+                                    error: function (data) {
+                                        alert('連接伺服器出現問題，請重試。')
+                                        location.reload();
+                                    }
+                                })
+                            };
+                        })(file.files[0]);
+                        reader.readAsBinaryString(file.files[0]);
+
+                    } else {
+                        alert('僅支援以下壓縮檔格式。（ .zip .tar .gz ）');
+                        return;
+                    }
+                }
+            }
+
+            function MoveWorkToList(data, cardNo) {
+                let workData = data.workData
+                let list_id = $('#list-value').val();
+                let listIndex = -1;
+                let workIndex = -1;
+                for (let a = 0 ; a < $('.work-header').length; a ++) {
+                    if ($($($('.work-header')[a]).children()[0]).attr('placeholder') == list_id) {
+                        listIndex = a;
+                    }
+                }
+                for (let b = 0; b < $('.card.work-card').length; b ++) {
+                    if ($($($($('.card.work-card')[b]).children()[1]).children()[0]).text().trim() == workData[1]) {
+                        workIndex = b;
+                    }
+                }
+                let cloneWork = $($('.card.work-card')[workIndex]).clone();
+                $($('.card.work-card')[workIndex]).remove();
+                $($('.card.add-card')[listIndex]).before(cloneWork)
             }
 
             function Logout() {

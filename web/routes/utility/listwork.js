@@ -60,12 +60,12 @@ var fetchListWorkW = async function (list_serno) {
 //------------------------------------------
 // 新增列表工作資料
 //------------------------------------------
-var addListWork = async function (list_serno, work_serno) {
+var addListWork = async function (list_id, work_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('insert into listwork (list_serno, work_serno) values ($1, $2)', [list_serno, work_serno])
+    await query('insert into listwork (list_id, work_id) values ($1, $2)', [list_id, work_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -86,12 +86,12 @@ var addListWork = async function (list_serno, work_serno) {
 //------------------------------------------
 // 刪除專案列表資料
 //------------------------------------------
-var deleteListWork = async function (listwork_serno) {
+var deleteListWork = async function (list_id, work_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('delete from listwork where listwork_serno = $1', [listwork_serno])
+    await query('delete from listwork where list_id = $1 and work_id = $2', [list_id, work_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
