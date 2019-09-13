@@ -85,12 +85,12 @@ var addTeamMember = async function (user_id, project_id, group_id, isadmin) {
 //------------------------------------------
 // 刪除成員資料
 //------------------------------------------
-var deleteTeamMember = async function (teammember_serno) {
+var deleteTeamMember = async function (user_id, project_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('delete from teammember where teammember_serno = $1', [teammember_serno])
+    await query('delete from teammember where user_id = $1 and project_id = $2', [user_id, project_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功

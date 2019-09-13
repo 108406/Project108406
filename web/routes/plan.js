@@ -113,6 +113,7 @@ function SetList(data) {
             result.push(list);
         }
     }
+    result.sort();
 
     return result;
 }

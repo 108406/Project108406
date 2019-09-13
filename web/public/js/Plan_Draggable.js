@@ -10,7 +10,16 @@ function browserRedirect() {
     var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
     //成員管理者移動
     $("#admin-move,#member-move").sortable({
-        axis: "x", connectWith: "#admin-move,#member-move", opacity: 0.7, items: ".member-img-trash"
+        axis: "x",
+        connectWith: "#admin-move,#member-move",
+        opacity: 0.7,
+        items: ".member-img-trash",
+        update: function (event, ui) {
+            if (event.handleObj.type == 'mouseup') {
+                console.log(ui);
+                console.log(event.target);
+            }
+        }
     });
     //input、textarea可以點選拖曳也可以編輯
     $('input').on('click', function () {
@@ -28,16 +37,25 @@ function browserRedirect() {
                 clearTimeout(this.downTimer);
                 this.downTimer = setTimeout(function () {
                     console.log('a')
-                    $("#work-body-move-1,#work-body-move-2").sortable({
+                    let workbodymoveString = '';
+                    for (let a = 0; a < $('.work-body').length; a++) {
+                        if (workbodymoveString != '') {
+                            workbodymoveString += ','
+                        }
+                        workbodymoveString += ('#work-body-move-' + (a + 1))
+                    }
+                    console.log(workbodymoveString)
+                    $(workbodymoveString).sortable({
                         disabled: false,
-                        connectWith: "#work-body-move-1,#work-body-move-2", stop: function (event, ui) {
-                            $("#work-body-move-1,#work-body-move-2").sortable("disable");
+                        connectWith: workbodymoveString,
+                        stop: function (event, ui) {
+                            $(workbodymoveString).sortable("disable");
                         }
                     });
-                    $("#work-body-move-1,#work-body-move-2").disableSelection();
+                    $(workbodymoveString).disableSelection();
                     this.downTimer2 = setTimeout(function () {
                         console.log('bac')
-                        $("#work-body-move-1,#work-body-move-2").sortable("disable");
+                        $(workbodymoveString).sortable("disable");
                     }, 3000)
                 }, 1000);
             };
@@ -46,23 +64,43 @@ function browserRedirect() {
             };
         }
         $("#work-total-move").sortable({
-            axis: "x", items: ".work-total", cancel: ".drpdown", handle: ".card-footer"
+            axis: "x",
+            items: ".work-total",
+            cancel: ".drpdown",
+            handle: ".card-footer"
         });
         $("#work-total-move").disableSelection();
 
     } else {
-        $("#work-body-move-1,#work-body-move-2").sortable({
-            connectWith: "#work-body-move-1,#work-body-move-2"
+        let workbodymoveString = '';
+        for (let a = 0; a < $('.work-body').length; a++) {
+            if (workbodymoveString != '') {
+                workbodymoveString += ','
+            }
+            workbodymoveString += ('#work-body-move-' + (a + 1))
+        }
+        $(workbodymoveString).sortable({
+            connectWith: workbodymoveString,
+            update: function (event, ui) {
+                if (ui.sender != null) {
+                    DragWorkToList(event.target, ui.sender[0], ui.item[0])
+                }
+            }
         });
-        $("#work-body-move-1,#work-body-move-2").disableSelection();
+        $(workbodymoveString).disableSelection();
         //列表移動
 
         $("#work-total-move").sortable({
-            axis: "x", items: ".work-total", cancel: ".drpdown"
+            axis: "x",
+            items: ".work-total",
+            cancel: ".drpdown",
+            update: function (event, ui) {
+                if (event.handleObj.type == 'mouseup') {
+                }
+            }
         });
         $("#work-total-move").disableSelection();
     }
 }
 
 browserRedirect();
-

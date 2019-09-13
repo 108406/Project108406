@@ -59,13 +59,14 @@ var displayWorkTitle = async function (work_serno) {
 //------------------------------------------
 // 新增工作資料
 //------------------------------------------
-var addWork = async function (work_add) {
+var addWork = async function (work_id, work_title) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('insert into work (work_title, work_content, deadline, tag, file, first_principal, second_principal) values ($1, $2, $3, $4, $5, $6, $7)'
-    , [work_add.work_title, work_add.work_content, work_add.deadline, work_add.tag, work_add.file, work_add.first_principal, work_add.second_principal])
+    // await query('insert into work (work_title, work_content, deadline, tag, file, first_principal, second_principal) values ($1, $2, $3, $4, $5, $6, $7)'
+    // , [work_add.work_title, work_add.work_content, work_add.deadline, work_add.tag, work_add.file, work_add.first_principal, work_add.second_principal])
+    await query('insert into work (work_id, work_title) values ($1, $2)', [work_id, work_title])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -91,7 +92,7 @@ var deleteWork = async function (work_serno) {
     var result = [];
 
     //讀取資料庫
-    await query('delete from work where work_serno = $1', [work_serno])
+    await query('delete from work where work_id = $1', [work_serno])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功

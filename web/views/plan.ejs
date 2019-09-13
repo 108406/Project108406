@@ -95,8 +95,6 @@
     </nav>
     <!----------------------------------------------------------------->
 
-
-
     <div class="container-fluid">
 
         <!-----------------------------組會員&管理者--------------------------------->
@@ -124,7 +122,7 @@
                 <% if (teammember[i][2] != null) { %>
                 <div class="member-img-trash">
                     <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
-                    <a href="#"><i class="fas fa-times-circle member-delete-icon"></i></a>
+                    <a onclick="<%= `DeleceMember(this, '` + teammember[i][0] + `')` %>"><i class="fas fa-times-circle member-delete-icon"></i></a>
                 </div>
                 <% } %>
                 <% } %>
@@ -150,7 +148,8 @@
             <% for (var listIndex = 0; listIndex < lists.length; listIndex ++) { %>
             <div class="work-total">
                 <div class="work-header">
-                    <input type="text" class="form-control input-style" placeholder="<%= lists[listIndex][1] %>">
+                    <input type="text" class="form-control input-style listname"
+                        placeholder="<%= lists[listIndex][1] %>">
                     <div class="drpdown">
                         <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -177,7 +176,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="work-body" id="work-body-move-1">
+                <div class="work-body" id="<%= 'work-body-move-' + (listIndex + 1) %>">
                     <% for (var workIndex = 0; workIndex < listwork[listIndex].length; workIndex ++) { %>
                     <% var thiswork = []; %>
                     <% for (var workDetail = 0; workDetail < works.length; workDetail ++) { %>
@@ -342,13 +341,16 @@
                                                     <div class="label-color-all" name="label-color-all-right">
                                                         <% var haveTag = [false, false, false, false, false, false]; %>
                                                         <% var alltags_left = alltags %>
-                                                        <% for (var a = 0; a < 6; a ++) { %>
+                                                        <% for (var x = 0; x < 6; x ++) { %>
                                                         <% try { %>
-                                                        <%     if (alltags_left[a].color != undefined) { %>
+                                                        <%     if (alltags_left[x].color != undefined) { %>
                                                         <%     } %>
                                                         <% } catch { %>
-                                                        <%     alltags_left[a] = {color: ''}; %>
+                                                        <%     alltags_left[x] = {tag_id: 0,color: '', tagname: ''}; %>
                                                         <% } %>
+                                                        <% } %>
+                                                        <% for (var a = 0; a < 6; a ++) { %>
+
                                                         <div class="label-total">
                                                             <% if (haveTag[0] == false) { %>
                                                             <% let putin = false; %>
@@ -368,7 +370,7 @@
                                                             </a>
                                                             <% } else { %>
                                                             <a href="#" class="label-color-green-a"
-                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onclick="ChangeTag(this.id, '#61BD4F')"
                                                                 onmousemove="removeClassType(this)"
                                                                 id="label-color-green-a"></a>
                                                             <% } %>
@@ -391,7 +393,7 @@
                                                             </a>
                                                             <% } else { %>
                                                             <a href="#" class="label-color-yellow-a"
-                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onclick="ChangeTag(this.id, '#F2D600')"
                                                                 onmousemove="removeClassType(this)"
                                                                 id="label-color-yellow-a"></a>
                                                             <% } %>
@@ -414,7 +416,7 @@
                                                             </a>
                                                             <% } else { %>
                                                             <a href="#" class="label-color-orange-a"
-                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onclick="ChangeTag(this.id, '#FF9F1A')"
                                                                 onmousemove="removeClassType(this)"
                                                                 id="label-color-orange-a"></a>
                                                             <% } %>
@@ -437,7 +439,7 @@
                                                             </a>
                                                             <% } else { %>
                                                             <a href="#" class="label-color-red-a"
-                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onclick="ChangeTag(this.id, '#EB5A46')"
                                                                 onmousemove="removeClassType(this)"
                                                                 id="label-color-red-a"></a>
                                                             <% } %>
@@ -460,7 +462,7 @@
                                                             </a>
                                                             <% } else { %>
                                                             <a href="#" class="label-color-purple-a"
-                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onclick="ChangeTag(this.id, '#C377E0')"
                                                                 onmousemove="removeClassType(this)"
                                                                 id="label-color-purple-a"></a>
                                                             <% } %>
@@ -483,7 +485,7 @@
                                                             </a>
                                                             <% } else { %>
                                                             <a href="#" class="label-color-blue-a"
-                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onclick="ChangeTag(this.id, '#0079BF')"
                                                                 onmousemove="removeClassType(this)"
                                                                 id="label-color-blue-a"></a>
                                                             <% } %>
@@ -509,6 +511,7 @@
                                                                     <div class="label-color-total">
                                                                         <label class="label-name">名字</label>
                                                                         <% let nowColor; %>
+                                                                        <% let nothing = true %>
                                                                         <% if (a == 0) { %>
                                                                         <%     nowColor = '#61BD4F'; %>
                                                                         <% } else if (a == 1) { %>
@@ -533,7 +536,18 @@
                                                                                 onclick="<%= 'ChangeTagName(true, ' + (a + 1) + ', ' + alltags_left[n].tag_id + ')' %>"
                                                                                 id="<%= 'add-label-edit-btn-' + (a + 1) %>">儲存</button>
                                                                         </div>
+                                                                        <% nothing = false; %>
                                                                         <%     } %>
+                                                                        <% } %>
+                                                                        <% if (nothing) { %>
+                                                                        <input class="label-edit-input-search"
+                                                                            id="<%= 'label-edit-input-search-right-' + (a + 1) %>"
+                                                                            type="text" value="">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                onclick="<%= 'ChangeTagName(false, ' + (a + 1) + ', undefined)' %>"
+                                                                                id="<%= 'add-label-edit-btn-right-' + (a + 1) %>">儲存</button>
+                                                                        </div>
                                                                         <% } %>
                                                                     </div>
                                                                 </div>
@@ -646,13 +660,15 @@
 
                                                 <% var haveTag_right = [false, false, false, false, false, false]; %>
                                                 <% var alltags_right = alltags %>
-                                                <% for (var c = 0; c < 6; c ++) { %>
+                                                <% for (var x = 0; x < 6; x ++) { %>
                                                 <% try { %>
-                                                <%     if (alltags_right[c].color != undefined) { %>
+                                                <%     if (alltags_right[x].color != undefined) { %>
                                                 <%     } %>
                                                 <% } catch { %>
-                                                <%     alltags_right[c] = {color: ''}; %>
+                                                <%     alltags_right[x] = {tag_id: 0,color: '', tagname: ''}; %>
                                                 <% } %>
+                                                <% } %>
+                                                <% for (var c = 0; c < 6; c ++) { %>
                                                 <div class="label-total">
 
                                                     <% if (haveTag_right[0] == false) { %>
@@ -673,7 +689,7 @@
                                                     </a>
                                                     <% } else { %>
                                                     <a href="#" class="label-color-green-a"
-                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onclick="ChangeTag(this.id, '#61BD4F')"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-green-a-right"></a>
                                                     <% } %>
@@ -696,7 +712,7 @@
                                                     </a>
                                                     <% } else { %>
                                                     <a href="#" class="label-color-yellow-a"
-                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onclick="ChangeTag(this.id, '#F2D600')"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-yellow-a-right"></a>
                                                     <% } %>
@@ -719,7 +735,7 @@
                                                     </a>
                                                     <% } else { %>
                                                     <a href="#" class="label-color-orange-a"
-                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onclick="ChangeTag(this.id, '#FF9F1A')"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-orange-a-right"></a>
                                                     <% } %>
@@ -742,7 +758,7 @@
                                                     </a>
                                                     <% } else { %>
                                                     <a href="#" class="label-color-red-a"
-                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onclick="ChangeTag(this.id, '#EB5A46')"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-red-a-right"></a>
                                                     <% } %>
@@ -765,7 +781,7 @@
                                                     </a>
                                                     <% } else { %>
                                                     <a href="#" class="label-color-purple-a"
-                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onclick="ChangeTag(this.id, '#C377E0')"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-purple-a-right"></a>
                                                     <% } %>
@@ -788,7 +804,7 @@
                                                     </a>
                                                     <% } else { %>
                                                     <a href="#" class="label-color-blue-a"
-                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onclick="ChangeTag(this.id, '#0079BF')"
                                                         onmousemove="removeClassType(this)"
                                                         id="label-color-blue-a-right"></a>
                                                     <% } %>
@@ -813,6 +829,7 @@
                                                             <div class="label-color-total">
                                                                 <label class="label-name">名字</label>
                                                                 <% let nowColor; %>
+                                                                <% let nothing = true %>
                                                                 <% if (c == 0) { %>
                                                                 <%     nowColor = '#61BD4F'; %>
                                                                 <% } else if (c == 1) { %>
@@ -836,7 +853,18 @@
                                                                         onclick="<%= 'ChangeTagName(false, ' + (c + 1) + ', ' + alltags_right[n].tag_id + ')' %>"
                                                                         id="<%= 'add-label-edit-btn-right-' + (c + 1) %>">儲存</button>
                                                                 </div>
+                                                                <% nothing = false; %>
                                                                 <% } %>
+                                                                <% } %>
+                                                                <% if (nothing) { %>
+                                                                <input class="label-edit-input-search"
+                                                                    id="<%= 'label-edit-input-search-right-' + (c + 1) %>"
+                                                                    type="text" value="">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        onclick="<%= 'ChangeTagName(false, ' + (c + 1) + ', undefined)' %>"
+                                                                        id="<%= 'add-label-edit-btn-right-' + (c + 1) %>">儲存</button>
+                                                                </div>
                                                                 <% } %>
                                                             </div>
                                                         </div>
@@ -941,7 +969,7 @@
                                                 style="margin-left: 0.5em;"><i class="fas fa-ban"
                                                     style="margin-right: 0.45em;"></i>刪除</span></a>
 
-                                        <a class="button-link change-card-deletes-check" href="#"><span
+                                        <a id="deleteWork" class="button-link change-card-deletes-check"><span
                                                 style="margin-left: 0.5em;"><i class="fas fa-ban"
                                                     style="margin-right: 0.45em;"></i>刪除卡片</span></a>
                                         <button type="button" class="btn-delete-close">取消</button>
@@ -1097,6 +1125,8 @@
         <input id="isAdmin" type="hidden" value="<%= isAdmin %>">
         <input id="permission_serno" type="hidden" value="<%= projectPermission[4] %>">
         <input id="tags" type="hidden" value="<%= JSON.stringify(alltags) %>">
+        <input id="lists" type="hidden" value="<%= JSON.stringify(lists) %>">
+        <input id="works" type="hidden" value="<%= JSON.stringify(works) %>">
 
         <!-----------------------------------scrpit-------------------------------------------->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -1111,6 +1141,12 @@
             var exceptPrincipal1 = '';
             var exceptPrincipal2 = '';
             var nowWorkData;
+
+            $(document).ready(function () {
+                $('.listname').each(function () {
+                    $(this).get(0).addEventListener('blur', UpdateListname)
+                })
+            })
 
             function updatePermission() {
                 permission_serno = $('#permission_serno').val();
@@ -1135,6 +1171,34 @@
                         location.reload();
                     }
                 })
+            }
+
+            function UpdateListname(event) {
+                let lists = JSON.parse($('#lists').val());
+                let listIndex;
+                let list_id;
+                let list_name = event.target.value;
+                for (let a = 0; a < lists.length; a++) {
+                    if (lists[a][1] == event.target.placeholder) {
+                        listIndex = a;
+                    }
+                }
+                list_id = lists[listIndex][0];
+                if (event.target.value != '') {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/updateList',
+                        datatype: "json",
+                        data: {
+                            list_id: list_id,
+                            list_name: list_name
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                }
             }
 
             function AddAdminpush() {
@@ -1174,11 +1238,12 @@
                             class="drop-right-title">列表動作</span></div><div class="dropdown-right-content"><div><div><ul\n\
                             class="dropdown-right-list"><li><a href="#">新增卡片</a></li><li><a href="#">刪除所有卡片</a></li><li><a\n\
                             href="#">刪除列表</a></li></ul></div></div></div></div></div></div><div class="work-body"\n\
-                            id="work-body-move-1"><div class="card add-card"><textarea class="card-add-text card-textarea"\n\
+                            id="work-body-move-' + (listIndex + 1) + '"><div class="card add-card"><textarea class="card-add-text card-textarea"\n\
                             placeholder="為這張卡片輸入標題..."></textarea></div></div><div class="card-footer"><a href="#"\n\
                             class="a-footer add-card-textarea"><div class="footer-name"><i class="fas fa-plus">\n\
                             </i>新增另外一張卡片</div></a></div>'
                     );
+                    browserRedirect();
                     //onclick="DeleteList("103", "1557986606376420", 1)"
                     $.ajax({
                         method: 'POST',
@@ -1253,8 +1318,7 @@
                     (data.workData[3][4] < 10 ? ('0' + data.workData[3][4]) : data.workData[3][4]) + ':' +
                     (data.workData[3][5] < 10 ? ('0' + data.workData[3][5]) : data.workData[3][5])
                 )
-
-                if (data.workData[10] != '') {
+                if (data.workData[10] != '' && data.workData[10] != null && data.workData[10] != undefined) {
                     let MIMEType = data.workData[11].split('.')[data.workData[11].split('.').length - 1] == 'zip' ?
                         'application/x-zip-compressed' :
                         data.workData[11].split('.')[data.workData[11].split('.').length - 1] == 'tar' ?
@@ -1347,6 +1411,8 @@
 
                 $('#MoveWorkToList').attr('onclick', 'MoveWorkToList(' + JSON.stringify(data) + ', ' + cardNo + ')')
 
+                $('#deleteWork').attr('onclick', 'DeleteWork(' + data.workData[0] + ', "' + data.workData[1] + '", ' +
+                    cardNo + ')')
             }
 
             function AddMemberToWork(data, cardNo) {
@@ -1384,12 +1450,17 @@
                     $('#principal').append('<img src="data:image/png;base64,' + data.teammember[2] +
                         '" class="modal-member-photo">');
                 }
-                let deadline = newWorkData[3][0] + '-' +
-                    (newWorkData[3][1] < 10 ? ('0' + newWorkData[3][1]) : newWorkData[3][1]) + '-' +
-                    (newWorkData[3][2] < 10 ? ('0' + newWorkData[3][2]) : newWorkData[3][2]) + ' ' +
-                    (newWorkData[3][3] < 10 ? ('0' + newWorkData[3][3]) : newWorkData[3][3]) + ':' +
-                    (newWorkData[3][4] < 10 ? ('0' + newWorkData[3][4]) : newWorkData[3][4]) + ':' +
-                    (newWorkData[3][5] < 10 ? ('0' + newWorkData[3][5]) : newWorkData[3][5]);
+                let deadline;
+                if (newWorkData[3].length != 6) {
+                    deadline = null;
+                } else {
+                    deadline = newWorkData[3][0] + '-' +
+                        (newWorkData[3][1] < 10 ? ('0' + newWorkData[3][1]) : newWorkData[3][1]) + '-' +
+                        (newWorkData[3][2] < 10 ? ('0' + newWorkData[3][2]) : newWorkData[3][2]) + ' ' +
+                        (newWorkData[3][3] < 10 ? ('0' + newWorkData[3][3]) : newWorkData[3][3]) + ':' +
+                        (newWorkData[3][4] < 10 ? ('0' + newWorkData[3][4]) : newWorkData[3][4]) + ':' +
+                        (newWorkData[3][5] < 10 ? ('0' + newWorkData[3][5]) : newWorkData[3][5]);
+                }
                 $.ajax({
                     method: 'POST',
                     url: '/content/plan/updateWork',
@@ -1545,7 +1616,12 @@
                         if (s == status) {
                             let newTagIndex = -1;
                             for (var t = 0; t < allTags.length; t++) {
-                                if ($('#' + id).attr('title') == allTags[t].tagname) {
+                                if ((status == 1 && allTags[t].color == '#61BD4F') ||
+                                    (status == 2 && allTags[t].color == '#F2D600') ||
+                                    (status == 3 && allTags[t].color == '#FF9F1A') ||
+                                    (status == 4 && allTags[t].color == '#EB5A46') ||
+                                    (status == 5 && allTags[t].color == '#C377E0') ||
+                                    (status == 6 && allTags[t].color == '#0079BF')) {
                                     newTagIndex = t;
                                 }
                             }
@@ -1554,23 +1630,32 @@
                             newTagArray.push(+nowWorkData.workData[s + 3])
                         }
                     }
-                    let deadline = nowWorkData.workData[3][0] + '-' +
-                        (nowWorkData.workData[3][1] < 10 ? ('0' + nowWorkData.workData[3][1]) : nowWorkData.workData[3][
-                            1
-                        ]) + '-' +
-                        (nowWorkData.workData[3][2] < 10 ? ('0' + nowWorkData.workData[3][2]) : nowWorkData.workData[3][
-                            2
-                        ]) + ' ' +
-                        (nowWorkData.workData[3][3] < 10 ? ('0' + nowWorkData.workData[3][3]) : nowWorkData.workData[3][
-                            3
-                        ]) + ':' +
-                        (nowWorkData.workData[3][4] < 10 ? ('0' + nowWorkData.workData[3][4]) : nowWorkData.workData[3][
-                            4
-                        ]) + ':' +
-                        (nowWorkData.workData[3][5] < 10 ? ('0' + nowWorkData.workData[3][5]) : nowWorkData.workData[3][
-                            5
-                        ]);
-
+                    let deadline;
+                    if (nowWorkData.workData[3].length != 6) {
+                        deadline = null;
+                    } else {
+                        deadline = nowWorkData.workData[3][0] + '-' +
+                            (nowWorkData.workData[3][1] < 10 ? ('0' + nowWorkData.workData[3][1]) : nowWorkData
+                                .workData[3][
+                                    1
+                                ]) + '-' +
+                            (nowWorkData.workData[3][2] < 10 ? ('0' + nowWorkData.workData[3][2]) : nowWorkData
+                                .workData[3][
+                                    2
+                                ]) + ' ' +
+                            (nowWorkData.workData[3][3] < 10 ? ('0' + nowWorkData.workData[3][3]) : nowWorkData
+                                .workData[3][
+                                    3
+                                ]) + ':' +
+                            (nowWorkData.workData[3][4] < 10 ? ('0' + nowWorkData.workData[3][4]) : nowWorkData
+                                .workData[3][
+                                    4
+                                ]) + ':' +
+                            (nowWorkData.workData[3][5] < 10 ? ('0' + nowWorkData.workData[3][5]) : nowWorkData
+                                .workData[3][
+                                    5
+                                ]);
+                    }
                     $.ajax({
                         method: 'POST',
                         url: '/content/plan/updateWork',
@@ -1625,22 +1710,32 @@
                         setZeroIndex = 5;
                     }
                     newTagArray[setZeroIndex] = 0;
-                    let deadline = nowWorkData.workData[3][0] + '-' +
-                        (nowWorkData.workData[3][1] < 10 ? ('0' + nowWorkData.workData[3][1]) : nowWorkData.workData[3][
-                            1
-                        ]) + '-' +
-                        (nowWorkData.workData[3][2] < 10 ? ('0' + nowWorkData.workData[3][2]) : nowWorkData.workData[3][
-                            2
-                        ]) + ' ' +
-                        (nowWorkData.workData[3][3] < 10 ? ('0' + nowWorkData.workData[3][3]) : nowWorkData.workData[3][
-                            3
-                        ]) + ':' +
-                        (nowWorkData.workData[3][4] < 10 ? ('0' + nowWorkData.workData[3][4]) : nowWorkData.workData[3][
-                            4
-                        ]) + ':' +
-                        (nowWorkData.workData[3][5] < 10 ? ('0' + nowWorkData.workData[3][5]) : nowWorkData.workData[3][
-                            5
-                        ]);
+                    let deadline;
+                    if (nowWorkData.workData[3].length != 6) {
+                        deadline = null;
+                    } else {
+                        deadline = nowWorkData.workData[3][0] + '-' +
+                            (nowWorkData.workData[3][1] < 10 ? ('0' + nowWorkData.workData[3][1]) : nowWorkData
+                                .workData[3][
+                                    1
+                                ]) + '-' +
+                            (nowWorkData.workData[3][2] < 10 ? ('0' + nowWorkData.workData[3][2]) : nowWorkData
+                                .workData[3][
+                                    2
+                                ]) + ' ' +
+                            (nowWorkData.workData[3][3] < 10 ? ('0' + nowWorkData.workData[3][3]) : nowWorkData
+                                .workData[3][
+                                    3
+                                ]) + ':' +
+                            (nowWorkData.workData[3][4] < 10 ? ('0' + nowWorkData.workData[3][4]) : nowWorkData
+                                .workData[3][
+                                    4
+                                ]) + ':' +
+                            (nowWorkData.workData[3][5] < 10 ? ('0' + nowWorkData.workData[3][5]) : nowWorkData
+                                .workData[3][
+                                    5
+                                ]);
+                    }
                     $.ajax({
                         method: 'POST',
                         url: '/content/plan/updateWork',
@@ -1861,23 +1956,177 @@
             }
 
             function MoveWorkToList(data, cardNo) {
-                let workData = data.workData
+                let workData = data.workData;
+                let allLists = JSON.parse($('#lists').val());
+                let allWorks = JSON.parse($('#works').val());
                 let list_id = $('#list-value').val();
                 let listIndex = -1;
                 let workIndex = -1;
-                for (let a = 0 ; a < $('.work-header').length; a ++) {
+                for (let a = 0; a < $('.work-header').length; a++) {
                     if ($($($('.work-header')[a]).children()[0]).attr('placeholder') == list_id) {
                         listIndex = a;
                     }
                 }
-                for (let b = 0; b < $('.card.work-card').length; b ++) {
+                for (let b = 0; b < $('.card.work-card').length; b++) {
                     if ($($($($('.card.work-card')[b]).children()[1]).children()[0]).text().trim() == workData[1]) {
                         workIndex = b;
                     }
                 }
                 let cloneWork = $($('.card.work-card')[workIndex]).clone();
+                let toListName = $($($('.card.add-card')[listIndex]).parent().prev().children()[0]).attr('placeholder');
+                let fromListName = $($($('.card.work-card')[workIndex]).parent().prev().children()[0]).attr(
+                    'placeholder')
+                let thisWorkName = $($($($('.card.work-card')[workIndex]).children()[1]).children()[0]).text().trim();
                 $($('.card.work-card')[workIndex]).remove();
-                $($('.card.add-card')[listIndex]).before(cloneWork)
+                $($('.card.add-card')[listIndex]).before(cloneWork);
+
+                let toListId;
+                let fromListId;
+                let thisWorkId;
+                for (let c = 0; c < allLists.length; c++) {
+                    if (allLists[c][1] == toListName) {
+                        toListId = allLists[c][0];
+                    }
+                    if (allLists[c][1] == fromListName) {
+                        fromListId = allLists[c][0];
+                    }
+                }
+                for (let c = 0; c < allWorks.length; c++) {
+                    if (allWorks[c][1] == thisWorkName) {
+                        thisWorkId = allWorks[c][0];
+                    }
+                }
+
+                if (toListId != fromListId) {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/updateListwork',
+                        datatype: "json",
+                        data: {
+                            toListId: toListId,
+                            fromListId: fromListId,
+                            thisWorkId: thisWorkId
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                }
+            }
+
+            function DragWorkToList(toListElement, fromListElement, workElement) {
+                let allLists = JSON.parse($('#lists').val());
+                let allWorks = JSON.parse($('#works').val());
+                let toListName = $($(toListElement).prev().children()[0]).attr('placeholder');
+                let fromListName = $($(fromListElement).prev().children()[0]).attr('placeholder');
+                let thisWorkName = $($($(workElement).children()[1]).children()[0]).text().trim();
+                let toListId;
+                let fromListId;
+                let thisWorkId;
+                for (let c = 0; c < allLists.length; c++) {
+                    if (allLists[c][1] == toListName) {
+                        toListId = allLists[c][0];
+                    }
+                    if (allLists[c][1] == fromListName) {
+                        fromListId = allLists[c][0];
+                    }
+                }
+                for (let c = 0; c < allWorks.length; c++) {
+                    if (allWorks[c][1] == thisWorkName) {
+                        thisWorkId = allWorks[c][0];
+                    }
+                }
+
+                if (toListId != fromListId) {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/updateListwork',
+                        datatype: "json",
+                        data: {
+                            toListId: toListId,
+                            fromListId: fromListId,
+                            thisWorkId: thisWorkId
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                }
+            }
+
+            // 新增卡片用的function
+            function AddCard(index, title) {
+                let allLists = JSON.parse($('#lists').val());
+                let listname = $($($('.work-header')[index]).children()[0]).attr('placeholder')
+                let listId;
+                let workLength = $('.card.work-card').length;
+                let newCardData = {
+                    listname: listname,
+                    tags: [],
+                    teammember: [],
+                    workData: [
+                        "", title, "", "", null, null, null, null, null, null, "", "", "", ""
+                    ]
+                }
+                $($('.card.add-card')[index]).before(`\n\
+    <div class="card work-card" id="card-` + workLength + `" style="position: relative; left: 0px; top: 0px;">\n\
+    <div class="work-card-header"></div><div onclick='javascript:SetWorkCard(` + JSON.stringify(newCardData) + `, ` +
+                    index + `)'>\n\
+    <div class="work-name" data-toggle="modal" data-target="#show-modal">` + title + `</div>\n\
+    <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal"><div class="work-img">\n\
+    </div></div></div></div>`)
+                for (let c = 0; c < allLists.length; c++) {
+                    if (allLists[c][1] == listname) {
+                        listId = allLists[c][0];
+                    }
+                }
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/addWork',
+                    datatype: "json",
+                    data: {
+                        work_title: title,
+                        list_id: listId
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
+
+            function DeleteWork(work_id, work_title, workIndex) {
+                $('#card-' + workIndex).remove();
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/deleteWork',
+                    datatype: "json",
+                    data: {
+                        work_id: work_id,
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
+
+            function DeleceMember(element, user_id) {
+                $(element).parent().remove();
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/deleteMember',
+                    datatype: "json",
+                    data: {
+                        user_id: user_id,
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
             }
 
             function Logout() {

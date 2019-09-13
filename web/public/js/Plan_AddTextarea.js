@@ -43,8 +43,3 @@ document.addEventListener('click', function (event) {
         }
     }
 })
-
-// 新增卡片用的function
-function AddCard(index, title) {
-    console.log('index: ' + index + ', title: ' + title)
-}
