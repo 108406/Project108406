@@ -9,18 +9,19 @@ function browserRedirect() {
     var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
     var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
     //成員管理者移動
-    $("#admin-move,#member-move").sortable({
-        axis: "x",
-        connectWith: "#admin-move,#member-move",
-        opacity: 0.7,
-        items: ".member-img-trash",
-        update: function (event, ui) {
-            if (event.handleObj.type == 'mouseup') {
-                console.log(ui);
-                console.log(event.target);
+    if ($('#isAdmin').val() == 'true') {
+        $("#admin-move,#member-move").sortable({
+            axis: "x",
+            connectWith: "#admin-move,#member-move",
+            opacity: 0.7,
+            items: ".member-img-trash",
+            update: function (event, ui) {
+                if (ui.sender != null) {
+                    MoveMember(event.target, ui.sender[0], ui.item[0])
+                }
             }
-        }
-    });
+        });
+    }
     //input、textarea可以點選拖曳也可以編輯
     $('input').on('click', function () {
         $(this).focus();
@@ -79,14 +80,16 @@ function browserRedirect() {
             }
             workbodymoveString += ('#work-body-move-' + (a + 1))
         }
-        $(workbodymoveString).sortable({
-            connectWith: workbodymoveString,
-            update: function (event, ui) {
-                if (ui.sender != null) {
-                    DragWorkToList(event.target, ui.sender[0], ui.item[0])
+        if ($('#isAdmin').val() == 'true' || $('#projectPermission').val().split(',')[2] == 'true') {
+            $(workbodymoveString).sortable({
+                connectWith: workbodymoveString,
+                update: function (event, ui) {
+                    if (ui.sender != null) {
+                        DragWorkToList(event.target, ui.sender[0], ui.item[0])
+                    }
                 }
-            }
-        });
+            });
+        }
         $(workbodymoveString).disableSelection();
         //列表移動
 
@@ -95,8 +98,7 @@ function browserRedirect() {
             items: ".work-total",
             cancel: ".drpdown",
             update: function (event, ui) {
-                if (event.handleObj.type == 'mouseup') {
-                }
+                if (ui.sender != null) {}
             }
         });
         $("#work-total-move").disableSelection();

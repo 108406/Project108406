@@ -107,7 +107,9 @@
             <div class="administrator-img" id="admin-move">
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (teammember[i][3]) { %>
-                <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
+                <div id="<%= teammember[i][0] %>" class="member-img-trash">
+                    <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
+                </div>
                 <% } %>
                 <% } %>
             </div>
@@ -120,21 +122,23 @@
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (!teammember[i][3]) { %>
                 <% if (teammember[i][2] != null) { %>
-                <div class="member-img-trash">
+                <div id="<%= teammember[i][0] %>" class="member-img-trash">
                     <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
-                    <a onclick="<%= `DeleceMember(this, '` + teammember[i][0] + `')` %>"><i class="fas fa-times-circle member-delete-icon"></i></a>
+                    <a onclick="<%= `DeleceMember(this, '` + teammember[i][0] + `')` %>"><i
+                            class="fas fa-times-circle member-delete-icon"></i></a>
                 </div>
                 <% } %>
                 <% } %>
                 <% } %>
             </div>
-
+            <% if (isAdmin) { %>
             <div class="admin-set">
                 <button class="btn btn-light btn-admin-set" data-toggle="modal" data-target="#member-set">設定<i
                         class="fas fa-cog fa-lg" style="padding-left:5px;"></i></button>
                 <button class="btn btn-light btn-admin-set" id="member-delete">刪除<i class="fas fa-trash-alt fa-lg"
                         style="padding-left:5px;"></i></button>
             </div>
+            <% } %>
         </div>
         <!-----------------------------bottom結束--------------------------------->
         <!--列表-->
@@ -148,8 +152,14 @@
             <% for (var listIndex = 0; listIndex < lists.length; listIndex ++) { %>
             <div class="work-total">
                 <div class="work-header">
+
+                    <% if (isAdmin || projectPermission[0]) { %>
                     <input type="text" class="form-control input-style listname"
                         placeholder="<%= lists[listIndex][1] %>">
+                    <% } else { %>
+                    <div class="form-control input-style listname" style="line-height: 0;"><%= lists[listIndex][1] %>
+                    </div>
+                    <% } %>
                     <div class="drpdown">
                         <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -166,9 +176,11 @@
                                         <ul class="dropdown-right-list">
                                             <li><a href="#">新增卡片</a></li>
                                             <li><a href="#">刪除所有卡片</a></li>
+                                            <% if (isAdmin || projectPermission[0]) { %>
                                             <li><a href="#"
                                                     onclick="<%= 'DeleteList("' + lists[listIndex][0] + '", ' + listIndex + ')' %>">刪除列表</a>
                                             </li>
+                                            <% } %>
                                         </ul>
                                     </div>
                                 </div>
@@ -229,7 +241,8 @@
                                 <div class="work-img">
                                     <% for (var a = 0; a < teammember.length; a ++) { %>
                                     <% if (teammember[a][0] == thiswork[12] || teammember[a][0] == thiswork[13]) { %>
-                                    <img src=<%= 'data:image/png;base64,' + teammember[a][2] %> class="work-img-photo">
+                                    <img alt="<%= 'workPrincipal_' + teammember[a][0] %>"
+                                        src=<%= 'data:image/png;base64,' + teammember[a][2] %> class="work-img-photo">
                                     <% } %>
                                     <% } %>
                                 </div>
@@ -241,15 +254,18 @@
                     <% } %>
 
 
+                    <% if (isAdmin || projectPermission[1]) { %>
                     <!--點選新增卡片出現的框架##可以刪除-->
                     <div class="card add-card">
                         <textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
                     </div>
                     <!---->
+                    <% } %>
                 </div>
                 <!---->
 
                 <!--列表尾部-->
+                <% if (isAdmin || projectPermission[1]) { %>
                 <div class="card-footer">
                     <a href="#" class="a-footer add-card-textarea">
                         <div class="footer-name">
@@ -258,11 +274,13 @@
                         </div>
                     </a>
                 </div>
+                <% } %>
                 <!---->
             </div>
             <% } %>
             <!-- 列表結束 -->
             <!--新增列表-->
+            <% if (isAdmin || projectPermission[0]) { %>
             <div class="add-list">
                 <div class="add-list-header">
                     <a href="#" id="add-list">
@@ -276,11 +294,12 @@
                             <i class="fas fa-times fa-lg"></i>
                         </a>
                     </div>
-                    <!--組長推播-->
-                    <a href="#" class="admin-push-text" data-target="#modal-admin-push" data-toggle="modal"><i
-                            class="fas fa-bell"></i></a>
                 </div>
             </div>
+            <!--組長推播-->
+            <% } %>
+            <a href="#" class="admin-push-text" data-target="#modal-admin-push" data-toggle="modal"><i
+                    class="fas fa-bell"></i></a>
         </div>
 
 
@@ -610,6 +629,7 @@
                             </div>
                             <!--右側區塊-->
                             <div class="col-md-4">
+                                <% if (isAdmin || projectPermission[2]) { %>
                                 <!--新增至卡片區塊-->
                                 <div class="add-to-card">
 
@@ -920,12 +940,14 @@
 
                                 </div>
                                 <hr>
+                                <% } %>
                                 <!--動作區塊-->
                                 <div class="modal-action">
-
+                                    <% if (isAdmin || (!(!projectPermission[2] && !projectPermission[3]))) { %>
                                     <div class="add-to-card-name">動作</div>
+                                    <% } %>
 
-
+                                    <% if (isAdmin || projectPermission[2]) { %>
                                     <!--移動卡片-->
                                     <div class="dropdown">
 
@@ -962,7 +984,8 @@
 
                                     </div>
                                     <!---->
-
+                                    <% } %>
+                                    <% if (isAdmin || projectPermission[3]) { %>
                                     <!--刪除卡片-->
                                     <div class="delete-card">
                                         <a class="button-link change-card-deletes" href="#"><span
@@ -974,8 +997,8 @@
                                                     style="margin-right: 0.45em;"></i>刪除卡片</span></a>
                                         <button type="button" class="btn-delete-close">取消</button>
                                     </div>
-
                                     <!---->
+                                    <% } %>
 
                                 </div>
                             </div>
@@ -1055,10 +1078,12 @@
                     <div class="modal-header modal-header-admin-push">
                         <h5 class="modal-title">前三公告</h5>
                         <div class="admin-icon-set">
+                            <% if (isAdmin) { %>
                             <div class="plus-square-admin">
                                 <a href="#"><i class="far fa-plus-square fa-lg" data-toggle="modal"
                                         data-target="#admin-text"></i></a>
                             </div>
+                            <% } %>
                             <div class="double-down-member">
                                 <a href="#" id="admin-text-show"><i class="fas fa-angle-double-down fa-lg"></i></a>
                             </div>
@@ -1122,11 +1147,13 @@
                 </div>
             </div>
         </div>
-        <input id="isAdmin" type="hidden" value="<%= isAdmin %>">
         <input id="permission_serno" type="hidden" value="<%= projectPermission[4] %>">
-        <input id="tags" type="hidden" value="<%= JSON.stringify(alltags) %>">
+        <input id="teammember" type="hidden" value="<%= JSON.stringify(teammember) %>">
         <input id="lists" type="hidden" value="<%= JSON.stringify(lists) %>">
         <input id="works" type="hidden" value="<%= JSON.stringify(works) %>">
+        <input id="tags" type="hidden" value="<%= JSON.stringify(alltags) %>">
+        <input id="isAdmin" type="hidden" value="<%= isAdmin %>">
+        <input id="projectPermission" type="hidden" value="<%= projectPermission %>">
 
         <!-----------------------------------scrpit-------------------------------------------->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -1138,13 +1165,15 @@
             document.getElementById('editWorkPermission').addEventListener('click', updatePermission);
             document.getElementById('deleteWorkPermission').addEventListener('click', updatePermission);
             document.cookie = 'isAdmin=' + $('#isAdmin').val();
-            var exceptPrincipal1 = '';
-            var exceptPrincipal2 = '';
             var nowWorkData;
 
             $(document).ready(function () {
                 $('.listname').each(function () {
                     $(this).get(0).addEventListener('blur', UpdateListname)
+                    $(this).get(0).addEventListener('focus', WriteListname)
+                })
+                $('.listname')[0].addEventListener('focus', function () {
+                    $($('.listname')[0]).val($($('.listname')[0]).attr('placeholder'))
                 })
             })
 
@@ -1154,7 +1183,13 @@
                 addWorkPermission = $('#addWorkPermission').get(0).checked;
                 editWorkPermission = $('#editWorkPermission').get(0).checked;
                 deleteWorkPermission = $('#deleteWorkPermission').get(0).checked;
-
+                let newProjectPermission = $('#projectPermission').val().split(',');
+                newProjectPermission[0] = listPermission
+                newProjectPermission[1] = addWorkPermission
+                newProjectPermission[2] = editWorkPermission
+                newProjectPermission[3] = deleteWorkPermission
+                newProjectPermission[4] = permission_serno
+                $('#projectPermission').val(newProjectPermission)
                 $.ajax({
                     method: 'POST',
                     url: '/content/plan/updatePermission',
@@ -1185,6 +1220,8 @@
                 }
                 list_id = lists[listIndex][0];
                 if (event.target.value != '') {
+                    event.target.placeholder = event.target.value;
+                    event.target.value = '';
                     $.ajax({
                         method: 'POST',
                         url: '/content/plan/updateList',
@@ -1198,6 +1235,12 @@
                             location.reload();
                         }
                     })
+                }
+            }
+
+            function WriteListname(event) {
+                if ($('#isAdmin').val() == 'true') {
+                    event.target.value = event.target.placeholder;
                 }
             }
 
@@ -1231,7 +1274,7 @@
                     listIndex = $('.work-total').length;
                     $('#add-list').parent().parent().before(
                         '<div class="work-total"><div class="work-header"><input type="text" class="form-control input-style" placeholder="' +
-                        $('#add-list-input').val() +
+                        $('#add-list-input').val().trim() +
                         '"><div class="drpdown"><button class="btn btn-link btn-header" type="button" id="dropdownMenuLink" data-toggle="dropdown"\n\
                             aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button><div class="dropdown-menu" \n\
                             style="min-width: 12em !important;" aria-labelledby="dropdownMenuLink"><div class="drop-right-header-title"><span \n\
@@ -1243,6 +1286,7 @@
                             class="a-footer add-card-textarea"><div class="footer-name"><i class="fas fa-plus">\n\
                             </i>新增另外一張卡片</div></a></div>'
                     );
+                    $('#list-value').append('<option>' + $('#add-list-input').val().trim() + '</option>')
                     browserRedirect();
                     //onclick="DeleteList("103", "1557986606376420", 1)"
                     $.ajax({
@@ -1250,7 +1294,7 @@
                         url: '/content/plan/addList',
                         datatype: "json",
                         data: {
-                            list_name: $('#add-list-input').val()
+                            list_name: $('#add-list-input').val().trim()
                         },
                         success: function (data) {
                             $($('#add-list').parent().parent().prev().find('.dropdown-right-list a')[2])
@@ -1283,11 +1327,12 @@
             }
 
             function SetWorkCard(data, cardNo) {
+                console.log(data);
                 //addMemberToWork principal work_deadline workInList work_title
                 nowWorkData = data;
                 $('#work_title').text(data.workData[1]);
                 $('#workInList').text(data.listname);
-                if (data.workData[3] != '') {
+                if (data.workData[3] != '' && data.workData[3] != null) {
                     deadlineText = data.workData[3][1] + '月' + data.workData[3][2] + '日 ' +
                         (data.workData[3][3] > 12 ? ('下午' + (data.workData[3][3] - 12) + '點') : ('上午' + data.workData[3]
                             [
@@ -1310,14 +1355,18 @@
                 $('#principal').empty();
                 $('#addMemberToWork').empty();
                 $('#list-get').text(data.listname)
-                $('input.timeout-date').val(
-                    data.workData[3][0] + '-' +
-                    (data.workData[3][1] < 10 ? ('0' + data.workData[3][1]) : data.workData[3][1]) + '-' +
-                    (data.workData[3][2] < 10 ? ('0' + data.workData[3][2]) : data.workData[3][2]) + 'T' +
-                    (data.workData[3][3] < 10 ? ('0' + data.workData[3][3]) : data.workData[3][3]) + ':' +
-                    (data.workData[3][4] < 10 ? ('0' + data.workData[3][4]) : data.workData[3][4]) + ':' +
-                    (data.workData[3][5] < 10 ? ('0' + data.workData[3][5]) : data.workData[3][5])
-                )
+                if (data.workData[3] != '' && data.workData[3] != null) {
+                    $('input.timeout-date').val(
+                        +data.workData[3][0] + '-' +
+                        (+data.workData[3][1] < 10 ? ('0' + +data.workData[3][1]) : +data.workData[3][1]) + '-' +
+                        (+data.workData[3][2] < 10 ? ('0' + +data.workData[3][2]) : +data.workData[3][2]) + 'T' +
+                        (+data.workData[3][3] < 10 ? ('0' + +data.workData[3][3]) : +data.workData[3][3]) + ':' +
+                        (+data.workData[3][4] < 10 ? ('0' + +data.workData[3][4]) : +data.workData[3][4]) + ':' +
+                        (+data.workData[3][5] < 10 ? ('0' + +data.workData[3][5]) : +data.workData[3][5])
+                    )
+                } else {
+                    $('input.timeout-date').val('')
+                }
                 if (data.workData[10] != '' && data.workData[10] != null && data.workData[10] != undefined) {
                     let MIMEType = data.workData[11].split('.')[data.workData[11].split('.').length - 1] == 'zip' ?
                         'application/x-zip-compressed' :
@@ -1356,17 +1405,17 @@
                         workData: data.workData
                     }
                     $('#addMemberToWork').append(
-                        `<a class="dropdown-img-member-set" onclick='AddMemberToWork(` + JSON.stringify(
+                        `<a id="addMemberButton_` + data.teammember[a][0] +
+                        `" class="dropdown-img-member-set" onclick='AddMemberToWork(` + JSON.stringify(
                             addMemberToWorkData) + `, ` + cardNo + `)'><img src="data:image/png;base64,` + data
                         .teammember[a][2] +
                         '" class="dropdown-member-img"><div class="member-name">' + data.teammember[a][1] +
                         '</div></a>'
                     )
                     if (data.teammember[a][0] == data.workData[12] || data.teammember[a][0] == data.workData[13]) {
-                        if (data.teammember[a][0] != exceptPrincipal1 && data.teammember[a][0] != exceptPrincipal2) {
-                            $('#principal').append('<img src="data:image/png;base64,' + data.teammember[a][2] +
-                                '" class="modal-member-photo">');
-                        }
+                        $('#principal').append('<img id="principal_' + data.teammember[a][0] +
+                            '" src="data:image/png;base64,' + data.teammember[a][2] +
+                            '" class="modal-member-photo">');
                     }
                 }
                 $('#fixedTags').empty();
@@ -1416,20 +1465,30 @@
             }
 
             function AddMemberToWork(data, cardNo) {
-                var newWorkData = data.workData;
+                let allteammember = JSON.parse($('#teammember').val());
+                let newWorkData = data.workData;
                 let dontAppend = false;
-
                 if (data.workData[12] == data.teammember[0] || data.workData[13] == data.teammember[0]) {
                     if (data.workData[12] == data.teammember[0]) {
                         newWorkData[12] = null;
-                        $($('#principal img')[0]).remove();
-                        $($('#card-' + cardNo + ' div.work-img img')[0]).remove();
-                        exceptPrincipal1 = data.teammember[0];
+                        $('#principal_' + data.teammember[0]).remove();
+                        for (let h = 0; h < $('#card-' + cardNo + ' div.work-img').children().length; h++) {
+                            let workPrincipalAlt = $('#card-' + cardNo + ' div.work-img').children()[h].getAttribute(
+                                'alt');
+                            if (workPrincipalAlt.substr(14, workPrincipalAlt.length) == data.teammember[0]) {
+                                $($('#card-' + cardNo + ' div.work-img').children()[h]).remove();
+                            }
+                        }
                     } else if (data.workData[13] == data.teammember[0]) {
                         newWorkData[13] = null;
-                        $($('#principal img')[1]).remove();
-                        $($('#card-' + cardNo + ' div.work-img img')[1]).remove();
-                        exceptPrincipal2 = data.teammember[0];
+                        $('#principal_' + data.teammember[0]).remove();
+                        for (let h = 0; h < $('#card-' + cardNo + ' div.work-img').children().length; h++) {
+                            let workPrincipalAlt = $('#card-' + cardNo + ' div.work-img').children()[h].getAttribute(
+                                'alt');
+                            if (workPrincipalAlt.substr(14, workPrincipalAlt.length) == data.teammember[0]) {
+                                $($('#card-' + cardNo + ' div.work-img').children()[h]).remove();
+                            }
+                        }
                     }
                     dontAppend = true;
                 } else {
@@ -1443,11 +1502,13 @@
                     }
                 }
                 if (!dontAppend) {
-                    $('#card-' + cardNo + ' div.work-img').append('<img src="data:image/png;base64,' + data.teammember[
+                    $('#card-' + cardNo + ' div.work-img').append('<img alt="workPrincipal_' + data.teammember[0] +
+                        '" src="data:image/png;base64,' + data.teammember[
                             2] +
                         '" class="work-img-photo">')
 
-                    $('#principal').append('<img src="data:image/png;base64,' + data.teammember[2] +
+                    $('#principal').append('<img id="principal_' + data.teammember[0] +
+                        '" src="data:image/png;base64,' + data.teammember[2] +
                         '" class="modal-member-photo">');
                 }
                 let deadline;
@@ -1461,6 +1522,29 @@
                         (newWorkData[3][4] < 10 ? ('0' + newWorkData[3][4]) : newWorkData[3][4]) + ':' +
                         (newWorkData[3][5] < 10 ? ('0' + newWorkData[3][5]) : newWorkData[3][5]);
                 }
+
+                let newWorkCard = {
+                    listname: nowWorkData.listname,
+                    tags: nowWorkData.tags,
+                    teammember: allteammember,
+                    workData: newWorkData
+                }
+
+                $('.dropdown-img-member-set').each(function (index) {
+                    var addMemberToWorkData = {
+                        teammember: allteammember[index],
+                        workData: newWorkData
+                    }
+                    let thisElemntId = $(this).attr('id');
+                    let thisUserId = thisElemntId.substr(16, thisElemntId.length)
+                    $(this).attr('onclick', `AddMemberToWork(` + JSON.stringify(
+                        addMemberToWorkData) + `, ` + cardNo + `)`)
+                })
+
+                $($('#card-' + cardNo).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+                    newWorkCard) + `, ` + cardNo + `)`)
+
+                nowWorkData = newWorkCard;
                 $.ajax({
                     method: 'POST',
                     url: '/content/plan/updateWork',
@@ -1510,6 +1594,37 @@
                 } else {
                     $('#dropdown-content-right-' + index).hide();
                 }
+                let color;
+                switch (index) {
+                    case 1:
+                        color = '#61BD4F';
+                        break;
+                    case 2:
+                        color = '#F2D600';
+                        break;
+                    case 3:
+                        color = '#FF9F1A';
+                        break;
+                    case 4:
+                        color = '#EB5A46';
+                        break;
+                    case 5:
+                        color = '#C377E0';
+                        break;
+                    case 6:
+                        color = '#0079BF';
+                        break;
+                    default:
+                        alert('標籤索引值出錯');
+                        break;
+                }
+                let newTags = JSON.parse($('#tags').val());
+                for (let g = 0 ; g < newTags.length; g ++) {
+                    if (newTags[g].color == color) {
+                        newTags[g].tagname = newValue;
+                    }
+                }
+                $('#tags').val(JSON.stringify(newTags))
                 if (tag_id != undefined) {
                     $.ajax({
                         method: 'POST',
@@ -1525,30 +1640,7 @@
                         }
                     })
                 } else {
-                    let color;
-                    switch (index) {
-                        case 1:
-                            color = '#61BD4F';
-                            break;
-                        case 2:
-                            color = '#F2D600';
-                            break;
-                        case 3:
-                            color = '#FF9F1A';
-                            break;
-                        case 4:
-                            color = '#EB5A46';
-                            break;
-                        case 5:
-                            color = '#C377E0';
-                            break;
-                        case 6:
-                            color = '#0079BF';
-                            break;
-                        default:
-                            alert('標籤索引值出錯');
-                            break;
-                    }
+
                     $.ajax({
                         method: 'POST',
                         url: '/content/plan/addTag',
@@ -1567,6 +1659,7 @@
 
             function ChangeTag(id, color) {
                 let allTags = JSON.parse($('#tags').val());
+                let allWorks = JSON.parse($('#works').val());
                 let status = 0;
                 let removeIndex = -1;
                 if (id.indexOf('green') != -1) {
@@ -1599,18 +1692,76 @@
 
                 if (removeIndex == -1) {
                     let textValue = $('#' + id).text();
-                    $('#fixedTags').append('<span class="modal-label-' + status +
-                        '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
-                        '</span></span>')
+                    if ($('#fixedTags').children().length > 0) {
+                        let tagsInFixedTags = $('#fixedTags').children();
+                        let beforeIndex = -1;
+                        let tagsIndexArray = [];
+                        for (let x = 0; x < $(tagsInFixedTags).length; x++) {
+                            tagsIndexArray.push(+$(tagsInFixedTags)[x].className.substr($(tagsInFixedTags)[x]
+                                .className.indexOf('modal-label-') + 12, 1));
+                        }
+                        tagsIndexArray.sort();
+
+                        for (let y = 0; y < tagsIndexArray.length; y++) {
+                            if (tagsIndexArray[y] > status) {
+                                beforeIndex = tagsIndexArray[y];
+                                break;
+                            }
+                        }
+                        if (beforeIndex != -1) {
+                            $('#fixedTags').children().closest('.modal-label-' + beforeIndex).before(
+                                '<span class="modal-label-' + status +
+                                '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                                '</span></span>')
+                        } else {
+                            $('#fixedTags').append('<span class="modal-label-' + status +
+                                '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                                '</span></span>')
+                        }
+                    } else {
+                        $('#fixedTags').append('<span class="modal-label-' + status +
+                            '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                            '</span></span>')
+                    }
                     let workIndex = -1;
                     for (let i = 0; i < $('.work-name').length; i++) {
                         if ($($('.work-name')[i]).text().trim() == $('#work_title').text()) {
                             workIndex = i;
                         }
                     }
-                    $($('#card-' + workIndex).children()[0]).append('<span class="card-label-' + status +
-                        '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
-                        '</span></span>');
+                    if ($('#card-' + workIndex).children().length > 0) {
+                        let tagsInFixedTags = $($('#card-' + workIndex).children()[0]).children();
+                        let beforeIndex = -1;
+                        let tagsIndexArray = [];
+                        for (let x = 0; x < $(tagsInFixedTags).length; x++) {
+                            tagsIndexArray.push(+$(tagsInFixedTags)[x].className.substr($(tagsInFixedTags)[x]
+                                .className.indexOf('card-label-') + 11, 1));
+                        }
+                        tagsIndexArray.sort();
+                        for (let y = 0; y < tagsIndexArray.length; y++) {
+                            if (tagsIndexArray[y] > status) {
+                                beforeIndex = tagsIndexArray[y];
+                                break;
+                            }
+                        }
+
+                        if (beforeIndex != -1) {
+                            $($('#card-' + workIndex).children()[0]).children().closest('.card-label-' + beforeIndex)
+                                .before(
+                                    '<span class="card-label-' + status +
+                                    '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                                    '</span></span>')
+                        } else {
+                            $($('#card-' + workIndex).children()[0]).append('<span class="card-label-' + status +
+                                '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                                '</span></span>');
+                        }
+
+                    } else {
+                        $($('#card-' + workIndex).children()[0]).append('<span class="card-label-' + status +
+                            '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                            '</span></span>');
+                    }
                     let newTagArray = [];
                     for (let s = 1; s < 7; s++) {
                         if (s == status) {
@@ -1656,6 +1807,46 @@
                                     5
                                 ]);
                     }
+
+                    // Reset SetWorkCard
+                    let tagsInFixedTags = $($('#card-' + workIndex).children()[0]).children();
+                    let tagsIndexArray = [];
+                    let newTagsData = [];
+                    let thisWorkData = nowWorkData.workData;
+
+                    for (let x = 0; x < $(tagsInFixedTags).length; x++) {
+                        tagsIndexArray.push(+$(tagsInFixedTags)[x].className.substr($(tagsInFixedTags)[x]
+                            .className.indexOf('modal-label-') + 12, 1));
+                    }
+                    for (let y = 0; y < tagsIndexArray.length; y++) {
+                        let pushIndex;
+                        let newTag = [];
+                        for (let z = 0; z < allTags.length; z++) {
+                            if ((tagsIndexArray[y] == 1 && allTags[z].color == '#61BD4F') ||
+                                (tagsIndexArray[y] == 2 && allTags[z].color == '#F2D600') ||
+                                (tagsIndexArray[y] == 3 && allTags[z].color == '#FF9F1A') ||
+                                (tagsIndexArray[y] == 4 && allTags[z].color == '#EB5A46') ||
+                                (tagsIndexArray[y] == 5 && allTags[z].color == '#C377E0') ||
+                                (tagsIndexArray[y] == 6 && allTags[z].color == '#0079BF')) {
+                                pushIndex = z;
+                                thisWorkData[tagsIndexArray[y] + 3] = allTags[z].tag_id;
+                                newTag.push(allTags[z].tag_id)
+                                newTag.push(allTags[z].tagname)
+                                newTag.push(allTags[z].color)
+                            }
+                        }
+                        newTagsData.push(newTag)
+                    }
+                    let newWorkCard = {
+                        listname: nowWorkData.listname,
+                        tags: newTagsData,
+                        teammember: JSON.parse($('#teammember').val()),
+                        workData: thisWorkData
+                    }
+                    $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+                        newWorkCard) + `, ` + workIndex + `)`)
+
+                    nowWorkData = newWorkCard;
                     $.ajax({
                         method: 'POST',
                         url: '/content/plan/updateWork',
@@ -1665,12 +1856,12 @@
                             work_title: nowWorkData.workData[1],
                             work_content: nowWorkData.workData[2],
                             deadline: deadline,
-                            tag_id1: +newTagArray[0],
-                            tag_id2: +newTagArray[1],
-                            tag_id3: +newTagArray[2],
-                            tag_id4: +newTagArray[3],
-                            tag_id5: +newTagArray[4],
-                            tag_id6: +newTagArray[5],
+                            tag_id1: +nowWorkData.workData[4],
+                            tag_id2: +nowWorkData.workData[5],
+                            tag_id3: +nowWorkData.workData[6],
+                            tag_id4: +nowWorkData.workData[7],
+                            tag_id5: +nowWorkData.workData[8],
+                            tag_id6: +nowWorkData.workData[9],
                             file: nowWorkData.workData[10],
                             file_name: nowWorkData.workData[11],
                             first_principal: nowWorkData.workData[12],
@@ -1736,6 +1927,47 @@
                                     5
                                 ]);
                     }
+
+                    // Reset SetWorkCard
+                    let tagsInFixedTags = $($('#card-' + workIndex).children()[0]).children();
+                    let tagsIndexArray = [];
+                    let newTagsData = [];
+                    let thisWorkData = nowWorkData.workData;
+                    for (let c = 0; c < 6; c++) {
+                        thisWorkData[c + 4] = newTagArray[c];
+                    }
+                    for (let x = 0; x < $(tagsInFixedTags).length; x++) {
+                        tagsIndexArray.push(+$(tagsInFixedTags)[x].className.substr($(tagsInFixedTags)[x]
+                            .className.indexOf('modal-label-') + 12, 1));
+                    }
+                    for (let y = 0; y < tagsIndexArray.length; y++) {
+                        let pushIndex;
+                        let newTag = [];
+                        for (let z = 0; z < allTags.length; z++) {
+                            if ((tagsIndexArray[y] == 1 && allTags[z].color == '#61BD4F') ||
+                                (tagsIndexArray[y] == 2 && allTags[z].color == '#F2D600') ||
+                                (tagsIndexArray[y] == 3 && allTags[z].color == '#FF9F1A') ||
+                                (tagsIndexArray[y] == 4 && allTags[z].color == '#EB5A46') ||
+                                (tagsIndexArray[y] == 5 && allTags[z].color == '#C377E0') ||
+                                (tagsIndexArray[y] == 6 && allTags[z].color == '#0079BF')) {
+                                pushIndex = z;
+                                newTag.push(allTags[z].tag_id)
+                                newTag.push(allTags[z].tagname)
+                                newTag.push(allTags[z].color)
+                            }
+                        }
+                        newTagsData.push(newTag)
+                    }
+                    let newWorkCard = {
+                        listname: nowWorkData.listname,
+                        tags: newTagsData,
+                        teammember: JSON.parse($('#teammember').val()),
+                        workData: thisWorkData
+                    }
+                    $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+                        newWorkCard) + `, ` + workIndex + `)`)
+
+                    nowWorkData = newWorkCard;
                     $.ajax({
                         method: 'POST',
                         url: '/content/plan/updateWork',
@@ -1745,12 +1977,12 @@
                             work_title: nowWorkData.workData[1],
                             work_content: nowWorkData.workData[2],
                             deadline: deadline,
-                            tag_id1: +newTagArray[0],
-                            tag_id2: +newTagArray[1],
-                            tag_id3: +newTagArray[2],
-                            tag_id4: +newTagArray[3],
-                            tag_id5: +newTagArray[4],
-                            tag_id6: +newTagArray[5],
+                            tag_id1: +nowWorkData.workData[4],
+                            tag_id2: +nowWorkData.workData[5],
+                            tag_id3: +nowWorkData.workData[6],
+                            tag_id4: +nowWorkData.workData[7],
+                            tag_id5: +nowWorkData.workData[8],
+                            tag_id6: +nowWorkData.workData[9],
                             file: nowWorkData.workData[10],
                             file_name: nowWorkData.workData[11],
                             first_principal: nowWorkData.workData[12],
@@ -1762,9 +1994,11 @@
                         }
                     })
                 }
+
             }
 
             function SaveDeadline() {
+                let thisWorkData = nowWorkData.workData;
                 let newDeadline = $('input.timeout-date').val().replace('T', ' ');
                 let newDeadlineSplit = newDeadline.replace(/-/g, ',');
                 newDeadlineSplit = newDeadlineSplit.replace(/:/g, ',');
@@ -1805,8 +2039,21 @@
                             newDeadlineArray[2] + '日' + '</span>');
                     }
                 }
+                let updateDeadlineArray = newDeadlineArray.slice();
+                updateDeadlineArray.push("0");
+                console.log(updateDeadlineArray)
+                thisWorkData[3] = updateDeadlineArray;
+                let newWorkCard = {
+                    listname: nowWorkData.listname,
+                    tags: nowWorkData.tags,
+                    teammember: JSON.parse($('#teammember').val()),
+                    workData: thisWorkData
+                }
+                $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+                    newWorkCard) + `, ` + workIndex + `)`)
 
-                // return;
+                nowWorkData = newWorkCard;
+
                 $.ajax({
                     method: 'POST',
                     url: '/content/plan/updateWork',
@@ -1835,6 +2082,7 @@
             }
 
             function ClearDeadline() {
+                let thisWorkData = nowWorkData.workData;
                 $('input.timeout-date').val('');
                 $('#work_deadline').parent().parent().parent().remove()
                 let workIndex = -1;
@@ -1846,6 +2094,17 @@
                 if ($($('.work-name')[workIndex]).next().find('span.deadtime').length > 0) {
                     $($('.work-name')[workIndex]).next().find('span.deadtime').remove();
                 }
+                thisWorkData[3] = null
+                let newWorkCard = {
+                    listname: nowWorkData.listname,
+                    tags: nowWorkData.tags,
+                    teammember: JSON.parse($('#teammember').val()),
+                    workData: thisWorkData
+                }
+                $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+                    newWorkCard) + `, ` + workIndex + `)`)
+
+                nowWorkData = newWorkCard;
 
                 $.ajax({
                     method: 'POST',
@@ -1875,6 +2134,7 @@
             }
 
             function uploadFile(file) {
+                let thisWorkData = nowWorkData.workData;
                 if (file.files[0] != undefined) {
                     let fileType;
                     let fileName = file.files[0].name;
@@ -1919,6 +2179,26 @@
                                 $('#downloadFileText').attr('href', fileDataUrl);
                                 $('#downloadFileBlock').children()[0].innerHTML = fileName.split('.')[
                                     fileName.split('.').length - 1];
+
+                                let workIndex = -1;
+                                for (let i = 0; i < $('.work-name').length; i++) {
+                                    if ($($('.work-name')[i]).text().trim() == $('#work_title').text()) {
+                                        workIndex = i;
+                                    }
+                                }
+                                thisWorkData[10] = fileUrl;
+                                thisWorkData[11] = fileName;
+                                let newWorkCard = {
+                                    listname: nowWorkData.listname,
+                                    tags: nowWorkData.tags,
+                                    teammember: JSON.parse($('#teammember').val()),
+                                    workData: thisWorkData
+                                }
+                                $($('#card-' + workIndex).children()[1]).attr('onclick',
+                                    `javascript:SetWorkCard(` + JSON.stringify(
+                                        newWorkCard) + `, ` + workIndex + `)`)
+
+                                nowWorkData = newWorkCard;
                                 $.ajax({
                                     method: 'POST',
                                     url: '/content/plan/updateWork',
@@ -2073,7 +2353,7 @@
                 $($('.card.add-card')[index]).before(`\n\
     <div class="card work-card" id="card-` + workLength + `" style="position: relative; left: 0px; top: 0px;">\n\
     <div class="work-card-header"></div><div onclick='javascript:SetWorkCard(` + JSON.stringify(newCardData) + `, ` +
-                    index + `)'>\n\
+                    workLength + `)'>\n\
     <div class="work-name" data-toggle="modal" data-target="#show-modal">` + title + `</div>\n\
     <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal"><div class="work-img">\n\
     </div></div></div></div>`)
@@ -2127,6 +2407,38 @@
                         location.reload();
                     }
                 })
+            }
+
+            function MoveMember(toMemberElement, fromMemberElement, memberElement) {
+                let teammember = JSON.parse($('#teammember').val())
+                let user_id = memberElement.id;
+                let changeToAdmin = false;
+                let memberIndex = -1;
+                if (toMemberElement.id == 'admin-move') {
+                    changeToAdmin = true;
+                }
+                for (let a = 0; a < teammember.length; a++) {
+                    if (teammember[a][0] == user_id) {
+                        memberIndex = a;
+                    }
+                }
+
+                if (toMemberElement.id != fromMemberElement.id) {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/content/plan/updateMember',
+                        datatype: "json",
+                        data: {
+                            user_id: user_id,
+                            group_id: teammember[memberIndex][4],
+                            isAdmin: changeToAdmin
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。')
+                            location.reload();
+                        }
+                    })
+                }
             }
 
             function Logout() {

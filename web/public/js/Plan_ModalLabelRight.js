@@ -140,8 +140,8 @@ $(document).ready(function () {
             isTrue6 = true;
         }
         $(document).on("click", function () {
-            $('#dropdown-content-right-5').css({ 'display': 'none' });
-            isTrue5 = true;
+            $('#dropdown-content-right-6').css({ 'display': 'none' });
+            isTrue6 = true;
         })
         e.stopPropagation();
         $("[name='label-edit-off']").on('click', function (e) {

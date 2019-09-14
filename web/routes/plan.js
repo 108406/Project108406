@@ -75,6 +75,7 @@ function SetTeammember(data) {
             user.push(data[i].member_name);
             user.push(data[i].photo);
             user.push(data[i].isadmin);
+            user.push(data[i].group_id);
             result.push(user);
         }
     }
