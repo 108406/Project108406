@@ -3,6 +3,7 @@ var router = express.Router();
 
 //增加引用函式
 const view = require('./utility/view');
+const myFunction = require('./utility/myFunction');
 
 //接收GET請求
 router.get('/', function (req, res, next) {
@@ -103,35 +104,36 @@ function SetWorkResult(data, list_id) {
     var list_id;
     var result = [];
     var workId = [];
+    var tag = [];
+    var tags = [];
+    var deadline;
 
     for (var j = 0; j < data.rowCount; j++) {
         if (data.rows[j].list_id == list_id) { //確認同一個list
             if (data.rows[j].work_id != null) {
+                deadline = setDateFormat(myFunction.SeparateDate(data.rows[j].deadline));
                 workId.push(data.rows[j].work_id);
+                // 整理tag
+                if (data.rows[j].tag_id1 != null) {
+                    tags.push([data.rows[j].tag_id1, data.rows[j].tagname1, data.rows[j].color1]);
+                } else if(data.rows[j].tag_id2 != null) {
+                    tags.push([data.rows[j].tag_id2, data.rows[j].tagname2, data.rows[j].color2]);
+                } else if(data.rows[j].tag_id3 != null) {
+                    tags.push([data.rows[j].tag_id3, data.rows[j].tagname3, data.rows[j].color3]);
+                } else if(data.rows[j].tag_id4 != null) {
+                    tags.push([data.rows[j].tag_id4, data.rows[j].tagname4, data.rows[j].color4]);
+                } else if(data.rows[j].tag_id5 != null) {
+                    tags.push([data.rows[j].tag_id5, data.rows[j].tagname5, data.rows[j].color5]);
+                } else if(data.rows[j].tag_id6 != null) {
+                    tags.push([data.rows[j].tag_id6, data.rows[j].tagname6, data.rows[j].color6]);
+                }
                 result.push({
                     "work_id": data.rows[j].work_id,
                     "work_hint": data.rows[j].work_hint,
                     "work_title": data.rows[j].work_title,
                     "work_content": data.rows[j].work_content,
-                    "deadline": data.rows[j].deadline,
-                    "tag_id1": data.rows[j].tag_id1,
-                    "tagname1": data.rows[j].tagname1,
-                    "color1": data.rows[j].color1,
-                    "tag_id2": data.rows[j].tag_id2,
-                    "tagname2": data.rows[j].tagname2,
-                    "color2": data.rows[j].color2,
-                    "tag_id3": data.rows[j].tag_id3,
-                    "tagname3": data.rows[j].tagname3,
-                    "color3": data.rows[j].color3,
-                    "tag_id4": data.rows[j].tag_id4,
-                    "tagname4": data.rows[j].tagname4,
-                    "color4": data.rows[j].color4,
-                    "tag_id5": data.rows[j].tag_id5,
-                    "tagname5": data.rows[j].tagname5,
-                    "color5": data.rows[j].color5,
-                    "tag_id6": data.rows[j].tag_id6,
-                    "tagname6": data.rows[j].tagname6,
-                    "color6": data.rows[j].color6,
+                    "deadline": deadline,
+                    "tags": tags,
                     "file_name": data.rows[j].file_name,
                     "file": data.rows[j].file,
                     "first_principal": data.rows[j].first_principal,
@@ -144,6 +146,17 @@ function SetWorkResult(data, list_id) {
     }
 
     return result;
+}
+
+function setDateFormat(date) {
+    date.splice(1, 0, "/");
+    date.splice(3, 0, "/");
+    date.splice(5, 0, " ");
+    date.splice(7, 0, ":");
+    date.pop();
+    var d = date.join("");
+
+    return d;
 }
 
 module.exports = router;

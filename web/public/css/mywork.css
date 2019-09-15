@@ -4,10 +4,14 @@
 /*            總體設定               */
 
 /*----------------------------------*/
-
+p.u-inline-block {
+    font-size: 0.9em;
+    margin-left: 11%;
+    color: #999999;
+}
 html, body {
     font-family: 'Noto Serif TC', serif;
-    /* background: url(../imgs/背景1.png)center center fixed no-repeat; */
+    background: url(../imgs/背景1.png)center center fixed no-repeat;
     background-size: cover;
     height: 100%;
     overflow-x: hidden;
@@ -139,26 +143,6 @@ button.button-submit {
 
 /*----------------------------------*/
 
-/* div.mywork {
-    box-sizing: border-box;
-    min-width: 25%;
-    max-width: 25%;
-    margin-left: 4%;
-    margin-right: 4%;
-    min-width: 20em;
-    max-width: 20em;
-    margin-left: 1em;
-    margin-right: 1em;
-    min-height: 30em;
-    max-height: 30em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    background: rgb(235, 235, 235);
-    border: none;
-    overflow-y: hidden;
-    overflow-x: hidden;
-} */
-
 div.work-total {
     border-radius: 8px;
     margin: 0.5em;
@@ -200,17 +184,24 @@ hr.highlight {
 /*            card列表              */
 
 /*----------------------------------*/
-
 div.card-list {
     display: flex;
     align-items: center;
-    background: #343a40;
+    background: rgb(36, 50, 73);
+    width:90%;
+    margin-left: 5%;
     margin-top: 0.6em;
-    margin-left: 0.75em;
-    margin-right: 0.75em;
     height: 2em;
     padding: 0.5em;
     border-radius: 8px;
+}
+
+.triangle{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7px 8px 7px;
+    border-color:  transparent transparent rgb(192, 192, 192) transparent;
 }
 
 div.list-header {
@@ -321,7 +312,6 @@ label.upload_cover {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     margin-bottom: 0;
-    /* margin:80px 0 5px 0; */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -550,7 +540,28 @@ div.modal-title {
     display: flex;
     width: 100%;
 }
-
+div.modal-header-name{
+    width: 100%;
+    margin-bottom: 1em;
+    overflow: hidden;
+    opacity: 0.89;
+    caret-color: #2D4F41;
+    cursor: text;
+    border: none;
+    background: transparent;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    margin: -4px 4px;
+    min-height: 24px;
+    padding: 4px 8px;
+    resize: none;
+}
+/* div.modal-header-name {
+    min-height: 30px;
+}
 div.modal-header-name {
     margin-left: 0.5em;
     font-size: 20px;
@@ -560,7 +571,7 @@ div.modal-header-name {
     min-height: 24px;
     height: 34px;
     margin-left: 2%;
-}
+} */
 
 /* textarea.mod-card-back-title {
     background: transparent;
@@ -641,6 +652,7 @@ span.modal-label-1 {
     height: 30px;
     line-height: 30px;
     margin: 0 4px 4px 0;
+    background-color: #61bd4f;
     border-radius: 4px;
     color: rgb(255, 255, 255);
     display: block;
@@ -849,7 +861,7 @@ div.file-set {
     position: relative;
 }
 
-a.box-zip {
+a.box-rar {
     background-color: rgba(9, 30, 66, .08);
     background-position: 50%;
     border-radius: 3px;
@@ -864,7 +876,7 @@ a.box-zip {
     width: 112px;
 }
 
-span.box-zip-text {
+span.box-rar-text {
     color: #6b778c;
     display: block;
     font-size: 18px;

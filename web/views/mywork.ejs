@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/myworkNavbar.css">
-    <link rel="stylesheet" href="css/mywork.css">
+    <link rel="stylesheet" href="css/Mywork.css">
     <link rel="stylesheet" href="css/triangle.css">
     <link rel="stylesheet" href="css/card-list-color.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
@@ -148,44 +148,34 @@
                     <div class="body-show">
                         <!-----------------------列表--------------------------------->
                         <% for(var lw=0; lw<items[i].listwork.length; lw++) { %>
-                        <a href="#" data-toggle="collapse" data-target=<%="#list-work-" + lw %> aria-expanded="true"
+                        <a href="#" data-toggle="collapse" data-target=<%="#list-work-" + i + lw %> aria-expanded="true"
                             class="list-a" id="list-1">
-                            <div class="card-list-1">
+                            <div class="card-list">
                                 <div class="list-header"><%= items[i].listwork[lw].list.list_name %></div>
                                 <button class="btn btn-link card-list-btn" type="button" data-toggle="collapse"
                                     data-target=<%="#list-work-" + lw %> aria-expanded="true">
-                                    <div class="triangle-1"></div>
+                                    <div class="triangle"></div>
                                 </button>
                             </div>
                         </a>
                         <!------------------------列表裡工作------------------------------->
                         <% for(var w=0; w<items[i].listwork[lw].work.length; w++) { %>
-                        <div class="collapse show work-total" id=<%="list-work-" + lw %>>
+                        <div class="collapse show work-total" id=<%="list-work-"+ i + lw %>>
                             <div class="card-content">
                                 <button class="btn btn-link btn-work" type="button" name="left-show" onclick="<%= "javascript:SetListInfo(" + 
                                             JSON.stringify(items[i].options) + ", '" + 
                                             items[i].listwork[lw].listwork_serno + "', '" + 
                                             items[i].listwork[lw].list.list_name + "')" %>">
                                     <i class="fas fa-square"></i></button>
+                                <% var tags = JSON.stringify(items[i].listwork[lw].work[w].tags); %>
                                 <a href="#" class="work-a" data-toggle="modal" data-target="#modalshow" onclick="
                                             <%= "javascript:SetWorkInfo('" + 
                                             items[i].project[p].project_id + "', '" + 
                                             items[i].listwork[lw].work[w].work_id + "', '" + 
                                             items[i].listwork[lw].work[w].work_title + "', '" + 
                                             items[i].listwork[lw].work[w].work_content + "', '" + 
-                                            items[i].listwork[lw].work[w].deadline + "', '" + 
-                                            items[i].listwork[lw].work[w].tagname1 + "', '" + 
-                                            items[i].listwork[lw].work[w].color1 + "', '" + 
-                                            items[i].listwork[lw].work[w].tagname2 + "', '" + 
-                                            items[i].listwork[lw].work[w].color2 + "', '" +
-                                            items[i].listwork[lw].work[w].tagname3 + "', '" + 
-                                            items[i].listwork[lw].work[w].color3 + "', '" +
-                                            items[i].listwork[lw].work[w].tagname4 + "', '" + 
-                                            items[i].listwork[lw].work[w].color4 + "', '" +
-                                            items[i].listwork[lw].work[w].tagname5 + "', '" + 
-                                            items[i].listwork[lw].work[w].color5 + "', '" +
-                                            items[i].listwork[lw].work[w].tagname6 + "', '" + 
-                                            items[i].listwork[lw].work[w].color6 + "', '" +
+                                            items[i].listwork[lw].work[w].deadline + "', " + 
+                                            tags + ", '" + 
                                             items[i].listwork[lw].work[w].file_name + "', '" + 
                                             items[i].listwork[lw].work[w].file + "', '" + 
                                             items[i].listwork[lw].work[w].principal_photo1 + "', '" + 
@@ -232,11 +222,20 @@
                     <!--標題-->
                     <div class="modal-header">
                         <i class="far fa-credit-card fa-lg" style="font-size: 1.5em;"></i>
-                        <div class="modal-header-name" id="work_content">html 手機模式下列表會消失 修正問題</div>
+                        <div class="modal-header-name" role="textbox" id="work_content">html 手機模式下列表會消失 修正問題</div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <!--狀態位置-->
+                    <p class="u-inline-block">
+                        在「
+                        <a href="#">
+                            <u id="workInList">尚未完成</u>
+                        </a>
+                        」列表中
+                    </p>
+                    <!---->
                     <!--畫面分割-->
                     <div class="modal-body">
                         <div class="row no-gutters">
@@ -261,18 +260,6 @@
                                     </div>
                                     <div class="label-set">
                                         <div class="modal-label" name="modal-label-show">
-                                            <span class="modal-label-1" id="tag1"><span class="label-text"
-                                                    onmousemove="removeClassType(this)"></span></span>
-                                            <span class="modal-label-1" id="tag2"><span class="label-text"
-                                                    onmousemove="removeClassType(this)"></span></span>
-                                            <span class="modal-label-1" id="tag3"><span class="label-text"
-                                                    onmousemove="removeClassType(this)"></span></span>
-                                            <span class="modal-label-1" id="tag4"><span class="label-text"
-                                                    onmousemove="removeClassType(this)"></span></span>
-                                            <span class="modal-label-1" id="tag5"><span class="label-text"
-                                                    onmousemove="removeClassType(this)"></span></span>
-                                            <span class="modal-label-1" id="tag6"><span class="label-text"
-                                                    onmousemove="removeClassType(this)"></span></span>
                                         </div>
                                     </div>
                                 </div>
@@ -293,8 +280,8 @@
                                         <div class="modal-file-name">下載附件</div>
                                     </div>
                                     <div class="file-set">
-                                        <a class="box-zip" id="file">
-                                            <span class="box-zip-text"></span>
+                                        <a class="box-rar" id="file">
+                                            <span class="box-rar-text"></span>
                                         </a>
                                         <p class="file-set-show">
                                             <a class="file-name" id="file_name"></a>
@@ -376,19 +363,16 @@
         function SetListInfo(options, listwork_serno, listName) {
             var left = $('#slider-left').css("left");
 
-            if (left == "0px") {
-                for (var i = 0; i < options.length; i++) {
-                    if (options[i].list_name != listName) {
-                        $('#options').append("<option id='" + options[i].list_id + "' value='" + listwork_serno + "'>" + options[i].list_name + "</option>");
-                    }
+            $('#options').empty();
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].list_name != listName) {
+                    $('#options').append("<option id='" + options[i].list_id + "' value='" + listwork_serno + "'>" + options[i].list_name + "</option>");
                 }
-                if ($('#options option').length == 0) {
-                    $('#options').append("<option value=''>無其他列表選項</option>");
-                }
-                $('#list_name').text(listName);
-            } else {
-                $('option').remove();
             }
+            if ($('#options option').length == 0) {
+                $('#options').append("<option value=''>無其他列表選項</option>");
+            }
+            $('#list_name').text(listName);
         }
 
         function UpdateListWork() {
@@ -411,7 +395,7 @@
             }
         }
 
-        function SetWorkInfo(projectId, workId, workTitle, workContent, deadline, tagname1, color1, tagname2, color2, tagname3, color3, tagname4, color4, tagname5, color5, tagname6, color6, file_name, file, principal_photo1, principal_photo2) {
+        function SetWorkInfo(projectId, workId, workTitle, workContent, deadline, tags, file_name, file, principal_photo1, principal_photo2) {
             $('#work_id').text(workId);
             $('#work_title').text(workTitle);
             $('#work_content').text(workContent);
@@ -423,34 +407,11 @@
             $('#file').attr("href", file);
             $('.btn-edit').val(projectId);
 
-            if (tagname1 != "null") {
-                $('#tag1').text(tagname1);
-                $('#tag1').css("background", color1);
-            }
-
-            if (tagname2 != "null") {
-                $('#tag2').text(tagname2);
-                $('#tag2').css("background", color2);
-            }
-
-            if (tagname3 != "null") {
-                $('#tag3').text(tagname3);
-                $('#tag3').css("background", color3);
-            }
-
-            if (tagname4 != "null") {
-                $('#tag4').text(tagname4);
-                $('#tag4').css("background", color4);
-            }
-
-            if (tagname5 != "null") {
-                $('#tag5').text(tagname5);
-                $('#tag5').css("background", color5);
-            }
-
-            if (tagname6 != "null") {
-                $('#tag6').text(tagname6);
-                $('#tag6').css("background", color6);
+            $('.modal-label').empty();
+            for (var i = 0; i < tags.length; i++) {
+                $('.modal-label').append('<span class="modal-label-1" id="tag' + i + '"><span class="label-text" onmousemove="removeClassType(this)"></span></span>');
+                $('#tag' + i).text(tags[0][1]);
+                $('#tag' + i).css("background", tags[0][2]);
             }
 
             if (principal_photo1 != "null") {
