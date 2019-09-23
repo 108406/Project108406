@@ -38,32 +38,17 @@
                 </li>
             </ul>
             <div class="search">
-                <div class="test">
-                    <input class="search-input" type="text" name="search" placeholder="查詢計畫(#123456)">
-                    <a href="#" id="SearchForBox"><i class="fas fa-search search-icon"></i></a>
-                </div>
+                <input id="projectId" class="search-input" type="text" name="search" placeholder="查詢計畫(#123456)">
+                <a href="#" id="SearchForBox"><i class="fas fa-search search-icon"></i></a>
                 <div class="Search_Box">
-                    <span class="badge ProjectNameTitle">計畫名稱</span>
-                    <br>
-                    <div class="ProjectName">
-                        計畫名稱顯示這邊
-                    </div>
-                    <hr class="ProjectHr">
-                    <span class="badge ProjectNameTitle">輸入計畫密碼</span>
-                    <input class="Search_Box_Password" type="text" placeholder="輸入專案密碼">
-                    <br>
-                    <div class="ButtonGroup">
-                        <button type="button" class="btn btn-warning BtnSend">送出</button>
-                        <button type="button" class="btn btn-danger BtnCancel">取消</button>
-                    </div>
                 </div>
             </div>
+
             <div class="study-logout">
                 <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel"><i
                         class="fas fa-question-circle fa-lg" style="padding-right:5px;"></i>教學</button>
                 <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
-                    onclick="location.href='login.html'"><i class="fas fa-sign-out-alt"
-                        style="padding-right:5px;"></i>登出</button>
+                    onclick="Logout()"><i class="fas fa-sign-out-alt" style="padding-right:5px;"></i>登出</button>
             </div>
         </div>
     </nav>
@@ -107,10 +92,18 @@
                 <button type="button" class="btn btn-danger button-submit" style="margin-left:1em;"
                     onclick="javascript:UpdateListWork();">確定</button>
             </form>
-
         </div>
-        <!-- 新手教學 -->
-        <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <!--~~~~~~~~~~~~~~~~~-->
+        <!--測試成功&失敗訊息-->
+        <div class="alert alert-success SuccessMessenge" role="alert">
+            成功加入
+        </div>
+        <div class="alert alert-danger FailMessenge" role="alert">
+            失敗
+        </div>
+        <!---->
+        <!--輪播-->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -135,7 +128,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div> -->
+        </div>
         <!-- 每項計畫-->
         <div class="content">
             <div class="typesetting">
@@ -456,18 +449,20 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./js/jquery.ui.touch-punch.min.js"></script>
-    <script src="./js/Mywork_SliderLeft.js"></script>
-    <script src="./js/Mywork_ListOnClick.js"></script>
-    <script src="./js/Mywork_Carousel.js"></script>
-    <script src="./js/Mywork_MoveHoverText.js"></script>
+    <script src="/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/js/Mywork_SliderLeft.js"></script>
+    <script src="/js/Mywork_ListOnClick.js"></script>
+    <script src="/js/Mywork_Carousel.js"></script>
+    <script src="/js/Mywork_MoveHoverText.js"></script>
+    <script src="/js/SearchBox.js"></script>
+    <script src="/js/AlertMessenge.js"></script>
+    <script src="/js/Common.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!------------------------------------------------------------------------------------->
 </body>
 

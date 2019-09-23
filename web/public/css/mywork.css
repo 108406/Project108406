@@ -4,11 +4,31 @@
 /*            總體設定               */
 
 /*----------------------------------*/
+
+.SuccessMessenge {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    display: none;
+    z-index: 1040;
+}
+
+.FailMessenge {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    display: none;
+    z-index: 1040;
+}
+
 p.u-inline-block {
     font-size: 0.9em;
     margin-left: 11%;
     color: #999999;
 }
+
 html, body {
     font-family: 'Noto Serif TC', serif;
     background: url(../imgs/背景1.png)center center fixed no-repeat;
@@ -49,6 +69,39 @@ div.typesetting {
     margin-right: auto;
     flex-wrap: wrap;
     justify-content: flex-start;
+}
+
+/*----------------------------------*/
+
+/*            Loding               */
+
+/*----------------------------------*/
+
+.LoadingShow {
+    /* display: none; */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+/*----------------------------------*/
+
+/*            遮罩                  */
+
+/*----------------------------------*/
+
+div.searchMask {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(126, 125, 125, 0.3);
+    z-index: 20;
 }
 
 /*----------------------------------*/
@@ -184,11 +237,12 @@ hr.highlight {
 /*            card列表              */
 
 /*----------------------------------*/
+
 div.card-list {
     display: flex;
     align-items: center;
     background: rgb(36, 50, 73);
-    width:90%;
+    width: 90%;
     margin-left: 5%;
     margin-top: 0.6em;
     height: 2em;
@@ -196,12 +250,12 @@ div.card-list {
     border-radius: 8px;
 }
 
-.triangle{
+.triangle {
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 0 7px 8px 7px;
-    border-color:  transparent transparent rgb(192, 192, 192) transparent;
+    border-color: transparent transparent rgb(192, 192, 192) transparent;
 }
 
 div.list-header {
@@ -319,6 +373,7 @@ label.upload_cover {
     border-radius: 4px;
     background: rgb(143, 143, 143);
 } */
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -335,6 +390,7 @@ label.upload_cover {
     border-radius: 4px;
     background: #808080;
 }
+
 /*----------------------------------*/
 
 /*            ON/OFF 上方           */
@@ -555,7 +611,8 @@ div.modal-title {
     display: flex;
     width: 100%;
 }
-div.modal-header-name{
+
+div.modal-header-name {
     width: 100%;
     margin-bottom: 1em;
     overflow: hidden;
@@ -574,6 +631,7 @@ div.modal-header-name{
     padding: 4px 8px;
     resize: none;
 }
+
 /* div.modal-header-name {
     min-height: 30px;
 }
@@ -1019,9 +1077,9 @@ a.modal-btn-set:hover {
         overflow-y: hidden;
         overflow-x: hidden;
     }
-    div.slider-left{
+    div.slider-left {
         top: 3.8em;
-        zoom:0.8;
+        zoom: 0.8;
     }
 }
 
@@ -1041,9 +1099,9 @@ a.modal-btn-set:hover {
         overflow-y: hidden;
         overflow-x: hidden;
     }
-    div.slider-left{
+    div.slider-left {
         top: 4.2em;
-        zoom:0.8;
+        zoom: 0.8;
     }
 }
 
