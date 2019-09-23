@@ -5,14 +5,14 @@ const query = require('./asyncDB');
 
 
 //------------------------------------------
-// 用work_serno查詢專案
+// 用work_id查詢專案
 //------------------------------------------
-var fetchListWorkL = async function (work_serno) {
+var fetchListWorkL = async function (work_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('select * from listwork where work_serno = $1', [work_serno])
+    await query('select * from listwork where work_id = $1', [work_id])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案列表資料(物件)
@@ -31,14 +31,14 @@ var fetchListWorkL = async function (work_serno) {
 
 
 //------------------------------------------
-// 用list_serno查詢工作
+// 用list_id查詢工作
 //------------------------------------------
-var fetchListWorkW = async function (list_serno) {
+var fetchListWorkW = async function (list_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('select * from listwork where list_serno = $1', [list_serno])
+    await query('select * from listwork where list_id = $1', [list_id])
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案列表資料(物件)
@@ -109,5 +109,31 @@ var deleteListWork = async function (list_id, work_id) {
 //------------------------------------------
 
 
+//------------------------------------------
+// 更改列表工作
+//------------------------------------------
+var updateListWork = async function (listwork_serno, list_id) {
+    //存放結果
+    var result = [];
+
+    //讀取資料庫
+    await query('update listwork set list_id = $2 where listwork_serno = $1', [listwork_serno, list_id])
+        .then((data) => {
+            if (data.rowCount > 0) {
+                result = true;
+            } else {
+                result = false;
+            }
+        }, (error) => {
+            result = false;  //執行錯誤
+            console.log(error)
+        });
+
+    //回傳執行結果
+    return result;
+}
+//------------------------------------------
+
+
 //匯入
-module.exports = { fetchListWorkL, fetchListWorkW, addListWork, deleteListWork }
+module.exports = { fetchListWorkL, fetchListWorkW, addListWork, deleteListWork, updateListWork }

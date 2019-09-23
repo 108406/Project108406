@@ -4,10 +4,15 @@
 /*            總體設定               */
 
 /*----------------------------------*/
-
+p.u-inline-block {
+    font-size: 0.9em;
+    margin-left: 11%;
+    color: #999999;
+}
 html, body {
     font-family: 'Noto Serif TC', serif;
-    background: rgb(255, 255, 255);
+    background: url(../imgs/背景1.png)center center fixed no-repeat;
+    background-size: cover;
     height: 100%;
     overflow-x: hidden;
 }
@@ -15,21 +20,25 @@ html, body {
 div.container-fluid {
     padding: 0 !important;
     margin: 0 !important;
-    position: absolute;
+    position: relative;
     top: 3.5em;
     height: 100%;
 }
 
 div.content {
     width: 100%;
+    transform: scale(0.8);
+    transform-origin: top center;
 }
+
 a {
-    color: black;
+    color: rgb(36, 50, 73);
     text-decoration: none;
     background-color: transparent;
 }
+
 a:hover {
-    color: black;
+    color: rgb(243, 171, 76);
     text-decoration: none;
 }
 
@@ -51,17 +60,18 @@ div.typesetting {
 div.slider-left {
     position: fixed;
     float: left;
-    top: 3.5em;
+    top: 3.3em;
     left: 0;
     margin-left: -100%;
     width: 300px;
     height: 100%;
     z-index: 10000000;
-    background: rgb(219, 219, 219);
+    background: rgba(0, 63, 163, 0.4);
 }
 
 div.slider-header-name {
-    font-size: 1.2em;
+    color: rgb(255, 255, 255);
+    font-size: 1em;
     text-align: center;
     margin-top: 0.5em;
     margin-bottom: 0.75em;
@@ -72,7 +82,7 @@ div.slider-card-list {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #343a40;
+    background: rgba(255, 232, 158, 0.9);
     margin-left: 0.75em;
     margin-right: 0.75em;
     height: 2em;
@@ -81,7 +91,7 @@ div.slider-card-list {
 }
 
 div.left-header-list {
-    color: #FFF8DC;
+    color: rgb(0, 0, 0);
     padding-left: 0.25em;
     font-size: 1em;
     height: 12px;
@@ -99,6 +109,16 @@ button.button-submit {
     padding: 0.5em !important;
 }
 
+.btn-return, .btn-return:hover {
+    color: #fff;
+    background-color: rgb(36, 50, 73);
+}
+
+.btn-ok, .btn-ok:hover {
+    color: #fff;
+    background-color: rgb(221, 152, 62);
+}
+
 /*----------------------------------*/
 
 /*                輪播              */
@@ -106,7 +126,7 @@ button.button-submit {
 /*----------------------------------*/
 
 .carousel {
-    /* margin-top: 5em; */
+    margin-top: -0.5em;
 }
 
 .carousel-item {
@@ -122,26 +142,6 @@ button.button-submit {
 /*            card框架              */
 
 /*----------------------------------*/
-
-/* div.mywork {
-    box-sizing: border-box;
-    min-width: 25%;
-    max-width: 25%;
-    margin-left: 4%;
-    margin-right: 4%;
-    min-width: 20em;
-    max-width: 20em;
-    margin-left: 1em;
-    margin-right: 1em;
-    min-height: 30em;
-    max-height: 30em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    background: rgb(235, 235, 235);
-    border: none;
-    overflow-y: hidden;
-    overflow-x: hidden;
-} */
 
 div.work-total {
     border-radius: 8px;
@@ -184,21 +184,28 @@ hr.highlight {
 /*            card列表              */
 
 /*----------------------------------*/
-
 div.card-list {
     display: flex;
     align-items: center;
-    background: #343a40;
+    background: rgb(36, 50, 73);
+    width:90%;
+    margin-left: 5%;
     margin-top: 0.6em;
-    margin-left: 0.75em;
-    margin-right: 0.75em;
     height: 2em;
     padding: 0.5em;
     border-radius: 8px;
 }
 
+.triangle{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7px 8px 7px;
+    border-color:  transparent transparent rgb(192, 192, 192) transparent;
+}
+
 div.list-header {
-    color: #FFF8DC;
+    color: rgb(255, 255, 255);
     padding-left: 0.25em;
     display: flex;
     font-size: 1em;
@@ -232,7 +239,7 @@ a.work-a {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    color: black;
+    color: rgb(36, 50, 73);
     text-decoration: none !important;
 }
 
@@ -247,7 +254,7 @@ button.btn-work {
 }
 
 button.btn-work:hover {
-    color: #3F62A6;
+    color: rgb(243, 171, 76);
 }
 
 a.work-a :hover {
@@ -297,7 +304,7 @@ label.upload_cover {
 
 /*----------------------------------*/
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 5px;
 }
 
@@ -305,15 +312,29 @@ label.upload_cover {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     margin-bottom: 0;
-    /* margin:80px 0 5px 0; */
 }
 
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 4px;
     border-radius: 4px;
     background: rgb(143, 143, 143);
+} */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 0px 0 5px 0;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: #808080;
+}
 /*----------------------------------*/
 
 /*            ON/OFF 上方           */
@@ -351,7 +372,7 @@ span.slider-top {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: rgb(204, 204, 204);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -486,6 +507,7 @@ span.slider:before, span.round:before {
         width: 100%; */
     background-color: #f4f5f7;
     height: auto !important;
+    zoom: 0.9;
     /* min-height: 80% !important; */
     /* min-height: 100% !important; */
 }
@@ -534,6 +556,28 @@ div.modal-title {
     width: 100%;
 }
 div.modal-header-name{
+    width: 100%;
+    margin-bottom: 1em;
+    overflow: hidden;
+    opacity: 0.89;
+    caret-color: #2D4F41;
+    cursor: text;
+    border: none;
+    background: transparent;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    margin: -4px 4px;
+    min-height: 24px;
+    padding: 4px 8px;
+    resize: none;
+}
+/* div.modal-header-name {
+    min-height: 30px;
+}
+div.modal-header-name {
     margin-left: 0.5em;
     font-size: 20px;
     font-weight: 600;
@@ -542,7 +586,8 @@ div.modal-header-name{
     min-height: 24px;
     height: 34px;
     margin-left: 2%;
-}
+} */
+
 /* textarea.mod-card-back-title {
     background: transparent;
     border-radius: 3px;
@@ -560,12 +605,6 @@ div.modal-header-name{
     border: none;
 } */
 
-p.u-inline-block {
-    font-size: 0.9em;
-    margin-left: 7%;
-    color: #000000;
-}
-
 /*----------------------------------*/
 
 /*            modal標籤              */
@@ -582,6 +621,7 @@ div.label-set {
     margin-left: 2em;
     padding-right: 2em;
 }
+
 span.label-text {
     height: 5px;
     line-height: 5px;
@@ -627,7 +667,7 @@ span.modal-label-1 {
     height: 30px;
     line-height: 30px;
     margin: 0 4px 4px 0;
-    background-color: #ff807c;
+    background-color: #61bd4f;
     border-radius: 4px;
     color: rgb(255, 255, 255);
     display: block;
@@ -637,7 +677,110 @@ span.modal-label-1 {
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 45px;
-    max-width: 45px;
+    /* max-width: 60px; */
+    text-align: center;
+}
+
+span.modal-label-2 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #f2d600;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 60px; */
+    text-align: center;
+}
+
+span.modal-label-3 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #ff9f1a;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 60px; */
+    text-align: center;
+}
+
+span.modal-label-4 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #eb5a46;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 45px; */
+}
+
+span.modal-label-5 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #c377e0;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 45px; */
+}
+
+span.modal-label-6 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #0079bf;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 45px; */
 }
 
 /*----------------------------------*/
@@ -649,13 +792,15 @@ span.modal-label-1 {
 div.modal-timeout {
     margin-left: 1.2em;
 }
+
 span.deadtime {
     background: #17294C;
     color: #ffffff;
     border-radius: 4px;
     padding: 0.3em 0.35em;
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
+
 i.timeout-icon {
     margin-right: 0.5em;
 }
@@ -806,23 +951,32 @@ img.modal-member-photo {
     width: 3em;
     margin: 0.75em 0.35em;
 }
+
 /*----------------------------------*/
 
 /*            modal編輯按鈕          */
 
 /*----------------------------------*/
-.edit-btn{
+
+.edit-btn {
     display: flex;
     justify-content: flex-end;
     margin-right: 2.6em;
     margin-bottom: 1.5em;
 }
-a.modal-btn-set{
+
+a.modal-btn-set {
     background: #3F62A6;
     color: #fff;
 }
-a.modal-btn-set:hover{
-    color:#fff;
+
+a.modal-btn-set:hover {
+    color: #fff;
+}
+
+.btn-edit, .btn-edit:hover {
+    color: #fff;
+    background-color: rgb(221, 152, 62);
 }
 
 /*----------------------------------*/
@@ -852,10 +1006,10 @@ a.modal-btn-set:hover{
 @media screen and (max-width:1299px) {
     div.mywork {
         box-sizing: border-box;
-        min-width: 40%;
-        max-width: 40%;
-        margin-left: 4.75%;
-        margin-right: 4.75%;
+        min-width: 30%;
+        max-width: 30%;
+        margin-left: 1.5%;
+        margin-right: 1.5%;
         min-height: 30em;
         max-height: 30em;
         margin-top: 1em;
@@ -864,6 +1018,10 @@ a.modal-btn-set:hover{
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
+    }
+    div.slider-left{
+        top: 3.8em;
+        zoom:0.8;
     }
 }
 
@@ -882,6 +1040,10 @@ a.modal-btn-set:hover{
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
+    }
+    div.slider-left{
+        top: 4.2em;
+        zoom:0.8;
     }
 }
 

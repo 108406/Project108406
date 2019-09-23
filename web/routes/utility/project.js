@@ -64,7 +64,7 @@ var addProject = async function (projects) {
 
     //讀取資料庫
     await query('insert into project (project_id, project_password, project_name, project_startdate, project_enddate) values ($1, $2, $3, $4, $5)'
-    , [projects.project_id, projects.project_password, projects.project_name, projects.project_startdate, projects.project_enddate])
+        , [projects.project_id, projects.project_password, projects.project_name, projects.project_startdate, projects.project_enddate])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -109,7 +109,7 @@ var deleteProject = async function (project_id) {
 
 
 //------------------------------------------
-// 更改專案名稱
+// 更改專案
 //------------------------------------------
 var updateProjectName = async function (project_id, project_name, project_password, project_startdate, project_enddate) {
     //存放結果

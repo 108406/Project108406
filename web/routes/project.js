@@ -5,20 +5,26 @@ var router = express.Router();
 const view = require('./utility/view');
 
 router.get('/', function(req, res, next) {
-    var tempTime = Date.now();
+    // console.log(Date.now() * 1000 + Math.floor(Math.random() * 1000));
     view.projectAllData(req.query.project_id).then(data => {
         if(data==null){
             res.render('error');  //導向錯誤頁面
         }else{
+            // 0 => list_permission, 1 => add_work, 2 => edit_work, 3 => delete_work
             var projectPermission = SetProjectPermission(data);
             var teammeber = SetTeammember(data);
             var adminpush = SetAdminPush(data);
             var lists = SetList(data);
             var listwork = SetListWork(data, lists);
             var works = SetWork(data);
-            console.log(Date.now() - tempTime);
-            res.render('project_list_work.ejs', {projectPermission:projectPermission, teammeber:teammeber,
-                adminpush:adminpush, lists:lists, listwork:listwork, works:works});
+
+            console.log(projectPermission);
+            console.log(teammeber);
+            console.log(adminpush);
+            console.log(listwork);
+            console.log(lists);
+            console.log(works);
+            res.render('project_list_work.ejs', {items:data});
         } 
     })
 });
