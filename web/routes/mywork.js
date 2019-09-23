@@ -111,20 +111,22 @@ function SetWorkResult(data, list_id) {
     for (var j = 0; j < data.rowCount; j++) {
         if (data.rows[j].list_id == list_id) { //確認同一個list
             if (data.rows[j].work_id != null) {
-                deadline = setDateFormat(myFunction.SeparateDate(data.rows[j].deadline));
+                if (deadline != null) {
+                    deadline = setDateFormat(myFunction.SeparateDate(data.rows[j].deadline));
+                }
                 workId.push(data.rows[j].work_id);
                 // 整理tag
                 if (data.rows[j].tag_id1 != null) {
                     tags.push([data.rows[j].tag_id1, data.rows[j].tagname1, data.rows[j].color1]);
-                } else if(data.rows[j].tag_id2 != null) {
+                } else if (data.rows[j].tag_id2 != null) {
                     tags.push([data.rows[j].tag_id2, data.rows[j].tagname2, data.rows[j].color2]);
-                } else if(data.rows[j].tag_id3 != null) {
+                } else if (data.rows[j].tag_id3 != null) {
                     tags.push([data.rows[j].tag_id3, data.rows[j].tagname3, data.rows[j].color3]);
-                } else if(data.rows[j].tag_id4 != null) {
+                } else if (data.rows[j].tag_id4 != null) {
                     tags.push([data.rows[j].tag_id4, data.rows[j].tagname4, data.rows[j].color4]);
-                } else if(data.rows[j].tag_id5 != null) {
+                } else if (data.rows[j].tag_id5 != null) {
                     tags.push([data.rows[j].tag_id5, data.rows[j].tagname5, data.rows[j].color5]);
-                } else if(data.rows[j].tag_id6 != null) {
+                } else if (data.rows[j].tag_id6 != null) {
                     tags.push([data.rows[j].tag_id6, data.rows[j].tagname6, data.rows[j].color6]);
                 }
                 result.push({

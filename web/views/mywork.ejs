@@ -28,24 +28,42 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav">
                 <li>
-                    <a href="\member"> <i class="far fa-user fa-lg"></i>會員</a>
+                    <a href="Member.html"> <i class="far fa-user fa-lg"></i>會員</a>
                 </li>
                 <li>
-                    <a href="\content"><i class="fas fa-book fa-lg"></i>計畫</a>
+                    <a href="Content.html"><i class="fas fa-book fa-lg"></i>計畫</a>
                 </li>
                 <li>
-                    <a href="\mywork"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                    <a href="Mywork.html"> <i class="far fa-edit fa-lg"></i>我的工作</a>
                 </li>
             </ul>
-            <form class="search">
-                <input class="search-input" type="text" name="search" placeholder="#計畫代碼">
-                <a href="#"><i class="fas fa-search search-icon"></i></a>
-            </form>
+            <div class="search">
+                <div class="test">
+                    <input class="search-input" type="text" name="search" placeholder="查詢計畫(#123456)">
+                    <a href="#" id="SearchForBox"><i class="fas fa-search search-icon"></i></a>
+                </div>
+                <div class="Search_Box">
+                    <span class="badge ProjectNameTitle">計畫名稱</span>
+                    <br>
+                    <div class="ProjectName">
+                        計畫名稱顯示這邊
+                    </div>
+                    <hr class="ProjectHr">
+                    <span class="badge ProjectNameTitle">輸入計畫密碼</span>
+                    <input class="Search_Box_Password" type="text" placeholder="輸入專案密碼">
+                    <br>
+                    <div class="ButtonGroup">
+                        <button type="button" class="btn btn-warning BtnSend">送出</button>
+                        <button type="button" class="btn btn-danger BtnCancel">取消</button>
+                    </div>
+                </div>
+            </div>
             <div class="study-logout">
-                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel">教學<i
-                        class="fas fa-question-circle fa-lg" style="padding-left:5px;"></i></button>
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel"><i
+                        class="fas fa-question-circle fa-lg" style="padding-right:5px;"></i>教學</button>
                 <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
-                    onclick="location.href='Login.html'">登出</button>
+                    onclick="location.href='login.html'"><i class="fas fa-sign-out-alt"
+                        style="padding-right:5px;"></i>登出</button>
             </div>
         </div>
     </nav>
@@ -56,7 +74,7 @@
                 <div class="slider-header-name">
                     目前所在位置:
                 </div>
-                <div class="card mx-auto" style="width: 18rem; height:5rem;">
+                <div class="card mx-auto">
                     <div class="card-body">
                         <div class="card-title">
                             <div class="slider-card-list">
@@ -69,7 +87,7 @@
             <hr>
             <div class="slider-header-name">移動到:</div>
             <div class="left-bottom">
-                <div class="card text-center mx-auto" style="width: 18rem;">
+                <div class="card text-center mx-auto">
                     <div class="card-body">
                         <div class="card-title">
                             <div class="slider-card-list">
