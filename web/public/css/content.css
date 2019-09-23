@@ -4,9 +4,11 @@
 /*            總體設定               */
 
 /*----------------------------------*/
+
 html, body {
     font-family: 'Noto Serif TC', serif;
-    background: rgb(255, 255, 255);
+    background: url(../imgs/背景1.png)center center fixed no-repeat;
+    background-size: cover;
     height: 100%;
     overflow-x: hidden;
 }
@@ -22,9 +24,29 @@ div.container-fluid {
     width: 75%;
     margin: 0 auto;
 }
+
 a:hover {
     text-decoration: none;
 }
+
+/*----------------------------------*/
+
+/*                輪播              */
+
+/*----------------------------------*/
+
+.carousel {
+    margin-top: -0.5em;
+}
+
+.carousel-item {
+    height: 30em;
+}
+
+.carousel-item img {
+    height: 30em;
+}
+
 /*----------------------------------*/
 
 /*            scroll                */
@@ -39,6 +61,7 @@ a:hover {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     margin-bottom: 0;
+    background-color: rgb(221, 219, 219);
     /* margin:80px 0 5px 0; */
 }
 
@@ -54,13 +77,16 @@ a:hover {
     width: 100%;
     margin-top: 2em;
     position: relative;
+    transform: scale(0.9);
 }
-.label-name{
-    font-weight: 700; 
-    font-size: 1.1em;
+
+.label-name {
+    font-weight: 700;
+    font-size: 1em;
     letter-spacing: 0.5em;
     color: #ffffff;
 }
+
 .label-status {
     position: relative;
     width: 13em;
@@ -68,7 +94,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(46, 45, 71, 1);
+    background-color: rgb(36, 50, 73);
     color: #f3dfd4;
     z-index: 2;
 }
@@ -80,7 +106,7 @@ a:hover {
     top: 0.5em;
     left: 0.8em;
     z-index: 1;
-    background-color: rgb(255, 187, 97);
+    background-color: rgb(243, 171, 76);
 }
 
 .straight-line {
@@ -88,12 +114,12 @@ a:hover {
     top: 50%;
     width: 100%;
     padding: 0;
-    border-top: 1.5px solid #a25421;
+    border-top: 1.5px solid rgb(36, 50, 73);
 }
 
 .badge-light {
     margin-left: 0.8em;
-    font-size:0.9em;
+    font-size: 0.9em;
     font-weight: 700;
 }
 
@@ -108,10 +134,12 @@ a:hover {
 .card {
     max-width: 16em;
     min-width: 16em;
-    height: 8em;    
+    height: 8em;
     margin-top: 2em;
     padding: 0;
     border: none;
+    transform: scale(0.8);
+    transform-origin: top left;
 }
 
 .card:hover .block-setting {
@@ -131,29 +159,29 @@ a:hover {
 .card-link {
     height: 100%;
     width: 100%;
-    color: black;
+    color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .card-link:hover {
-    color: black;
+    color: rgb(221, 152, 62);
     text-decoration: none;
 }
 
 .card-title {
-    width:85%;
+    width: 85%;
     position: relative;
-    top:0.5em;
+    top: 0.5em;
     z-index: 10;
     text-align: center;
-    overflow : hidden;
-    letter-spacing:0.2em;
+    overflow: hidden;
+    letter-spacing: 0.2em;
     font-weight: 700;
     padding-bottom: 0.5em;
-    text-overflow : ellipsis;
-    white-space : nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .block-setting {
@@ -165,7 +193,7 @@ a:hover {
     right: 0px;
     top: 0;
     right: 1%;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(228, 227, 226, 0.753);
 }
 
 .card-setting {
@@ -178,53 +206,58 @@ a:hover {
 .card-color-body {
     height: 100%;
     width: 100%;
-    background: #fdd1d0;
+    background: rgb(61, 85, 124);
 }
 
 .card-color-body-ing {
     height: 100%;
     width: 100%;
-    background: #fda2a9;
+    background: rgb(61, 85, 124);
 }
 
 .card-color-body-end {
     height: 100%;
     width: 100%;
-    background: #f0a0a9;
+    background: rgb(61, 85, 124);
 }
 
 .card-color-special {
     width: 100%;
     height: 100%;
-    background: rgba(223, 223, 223, 0.3);
+    background: rgb(233, 232, 232);
     border: 2px #ffffff solid;
     cursor: pointer;
 }
 
 /**tub垃圾桶設定-------------------**/
 
-.tub-set{
+.tub-set {
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     right: 0;
     bottom: 0;
-    width:150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     font-size: 1em;
 }
-.tub-set-a{
+
+.tub-set-a {
     color: black;
 }
-.tub-set-a:hover{
+
+.tub-set-a:hover {
     color: black;
 }
-.ui-state-hover{
-    background: rgba(214, 214, 214, 0.397);   
+
+.ui-state-hover {
+    background: rgba(214, 214, 214, 0.397);
     font-size: 1.1em;
 }
+
 /**-------專案設定-----------**/
+
 .modal-body {
     position: relative;
     -ms-flex: 1 1 auto;
@@ -232,8 +265,9 @@ a:hover {
     padding: 1rem;
     margin: 0 2em;
 }
+
 .modal-btn {
-    background: rgba(68, 78, 226, 0.788);
+    background: rgb(36, 50, 73);
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -246,7 +280,7 @@ a:hover {
     color: #ffffff;
     border: none;
     border-radius: 4px;
-    background: rgb(161, 161, 161);
+    background: rgb(36, 50, 73);
 }
 
 .send-btn {
@@ -256,20 +290,43 @@ a:hover {
     color: #ffffff;
     border: none;
     border-radius: 4px;
-    background: rgb(238, 124, 71);
+    background: rgb(255, 186, 97);
 }
 
 .modal-btn:hover {
     background: rgba(129, 136, 240, 0.788);
 }
 
-.datetime-local-set{
-    height:1.8em;
-    width: 50%;
-    height: 1.8em;
+.datetime-local-set {
+    width: 100%;
 }
 
-@media screen and (max-width:1720px){
+/* @media(max-width:1280px){
+    .card{
+        max-width: 14em;
+        min-width: 14em;
+        height: 6em;    
+        margin-top: 2em;
+        padding: 0;
+        border: none;
+    }
+    .card-title {
+        width: 85%;
+        position: relative;
+        top: 0.5em;
+        z-index: 10;
+        text-align: center;
+        overflow: hidden;
+        letter-spacing: 0.2em;
+        font-weight: 700;
+        padding-bottom: 0.5em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size:1em;
+    }
+} */
+
+/* @media screen and (max-width:1720px){
     .card {
         max-width: 16em;
         min-width: 16em;
@@ -368,7 +425,8 @@ a:hover {
         padding: 0;
         border: none;
     }
-}
+} */
+
 @media screen and (max-width:667px) {
     .card {
         max-width: 80%;
@@ -378,14 +436,14 @@ a:hover {
         padding: 0;
         border: none;
     }
-    .tub-set{
+    .tub-set {
         position: fixed;
         display: flex;
         align-items: center;
         justify-content: center;
         right: 0;
         bottom: 0;
-        width:100px;
+        width: 100px;
         height: 100px;
         font-size: 1em;
     }

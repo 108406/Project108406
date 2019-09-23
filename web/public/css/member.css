@@ -4,74 +4,160 @@
 /*            總體設定               */
 
 /*----------------------------------*/
-
+.SuccessMessenge{
+    position: fixed;
+    width: 100%;
+    top:0;
+    text-align: center;
+    display:none;
+    z-index:1040;
+}
+.FailMessenge{
+    position: fixed;
+    width: 100%;
+    top:0;
+    text-align: center;
+    display:none;
+    z-index:1040;
+}
 html, body {
     font-family: 'Noto Serif TC', serif;
-    /* background: rgb(255, 255, 255); */
-    /* background: url(../imgs/background-content.jpg); */
-    /* background-repeat: no-repeat; */
-    /* background-position: 40%; */
-    /* background-size: cover; */
+    background: url(../imgs/背景1.png)center center fixed no-repeat;
+    background-size: cover;
     height: 100%;
     overflow-x: hidden;
-    
 }
 
 div.container-fluid {
     padding: 0 !important;
     margin: 0 !important;
-    position: absolute;
-    top: 3.3em;
+    height: 100%;
 }
-div.content{
-    width:30%;
-    margin: 6em auto;
+
+div.content {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
-a:hover{
+
+a:hover {
     text-decoration: none;
 }
+    /*----------------------------------*/
+
+    /*                輪播              */
+
+    /*----------------------------------*/
+
+    .carousel {
+        margin-top: -0.5em;
+    }
+
+    .carousel-item {
+        height: 30em;
+    }
+
+    .carousel-item img {
+        height: 30em;
+    }
+/*----------------------------------*/
+
+/*            Loding               */
+
+/*----------------------------------*/
+.LoadingShow{
+    /* display: none; */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+  /*----------------------------------*/
+  
+  /*            遮罩                  */
+  
+  /*----------------------------------*/
+  div.searchMask {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(126, 125, 125, 0.3);
+    z-index:20;
+  }
 /*----------------------------------*/
 
 /*            卡片設定               */
 
 /*----------------------------------*/
-div.card-set{
-    border:none;
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+
+div.card-set {
+    width: 33%;
+    border: none;
+    margin: 0em auto;
+    box-shadow: 0 1rem 3rem rgba(247, 4, 4, 0.175);
 }
-.card-body{
+
+.card-body {
     display: flex;
     justify-content: center;
-
 }
 
-div.member-img{
+div.member-img {
     display: flex;
     justify-content: center;
     margin-top: 1.2em;
 }
-div.form-group-set{
+
+div.form-group-set {
     display: flex;
     align-items: center;
     margin-top: 1.5em;
 }
-div.name-set{
+
+div.name-set {
     width: 8em;
     display: flex;
     justify-content: space-between;
 }
-.form-control{
+
+div.color {
+    color: rgb(36, 50, 73);
+}
+
+.form-control {
     margin-left: 0.5em;
 }
-div.on-off-set{
+
+div.on-off-set {
     margin-top: 0.5em;
     margin-left: 0.5em;
 }
-div.test-form-group-set{
+
+div.test-form-group-set {
     display: flex;
     align-items: center;
     margin-top: 1.5em;
+}
 
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-clip: padding-box;
+    border: 1px solid rgb(36, 50, 73);
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    background-color: rgba(235, 235, 235, 0.9);
 }
 
 /*----------------------------------*/
@@ -79,33 +165,47 @@ div.test-form-group-set{
 /*            按鈕設定               */
 
 /*----------------------------------*/
-div.btn-set{
+
+div.btn-set {
     margin-top: 5em;
-    padding-bottom:8%;
+    padding-bottom: 8%;
     display: flex;
     justify-content: center;
 }
-button.change-btn{
-    width:6em;
-    height:3em;
-    border:none;
+
+button.change-btn {
+    width: 6em;
+    height: 3em;
+    border: none;
     color: #FFF;
-    background: rgba(24, 45, 233, 0.733);
+    background: rgb(36, 50, 73);
     border-radius: 4px;
-    margin:0 0.5em;
+    margin: 0 0.5em;
 }
-button.delete-btn{
-    width:6em;
-    height:3em;
-    border:none;
+
+button.delete-btn {
+    width: 6em;
+    height: 3em;
+    border: none;
     color: #FFF;
-    background: rgba(218, 13, 13, 0.836);
+    background: rgb(221, 152, 62);
     border-radius: 4px;
-    margin:0 0.5em;
+    margin: 0 0.5em;
 }
+
+.btn-close, .btn-close:hover {
+    color: #FFF;
+    background-color: rgb(36, 50, 73);
+}
+
+.btn-ok, .btn-ok:hover {
+    color: #fff;
+    background-color: rgb(221, 152, 62);
+}
+
 /*----------------------------------*/
 
-/*            ON/OFF                */
+/*              ON/OFF              */
 
 /*----------------------------------*/
 
@@ -136,8 +236,7 @@ button.delete-btn{
     transition: margin 0.3s ease-in 0s;
 }
 
-.onoffswitch-inner:before,
-.onoffswitch-inner:after {
+.onoffswitch-inner:before, .onoffswitch-inner:after {
     display: block;
     float: left;
     width: 50%;
@@ -186,8 +285,9 @@ button.delete-btn{
 
 .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
     right: 0px;
-    background-color: #27A1CA;
+    background-color: rgb(10, 139, 182);
 }
+
 /*----------------------------------*/
 
 /*            大頭貼                */
@@ -199,6 +299,7 @@ button.delete-btn{
     width: 125px;
     height: 125px;
 }
+
 /*----------------------------------*/
 
 /*            file                 */
@@ -237,77 +338,111 @@ button.delete-btn{
     transition: opacity 1s;
 }
 
-
-@media screen and (min-width:2100px){
-    div.content{
-        width:20%;
+@media screen and (min-width:2100px) {
+    div.card-set {
+        width: 33%;
+        border: none;
         margin: 0em auto;
-    }
-}
-@media screen and (max-width:1880px){
-    div.content{
-        width:25%;
-        margin: 0em auto;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+        zoom: 0.9;
     }
 }
 
-@media screen and (max-width:1680px){
-    div.content{
-        width:33%;
+@media screen and (max-width:1880px) {
+    div.card-set {
+        width: 33%;
+        border: none;
+        margin: 0em auto;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+        zoom: 0.9;
+    }
+}
+
+@media screen and (max-width:1680px) {
+    div.card-set {
+        width: 33%;
+        border: none;
+        margin: 0em auto;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+        zoom: 0.9;
+    }
+}
+
+@media screen and (max-width:1350px) {
+    div.card-set {
+        width: 33%;
+        border: none;
+        margin: 0em auto;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+        zoom: 0.8;
+    }
+}
+
+@media screen and (max-width:1150px) {
+    div.card-set {
+        width: 40%;
+        border: none;
+        margin: 0em auto;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+        zoom: 0.8;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    div.card-set {
+        width: 40%;
+        border: none;
+        margin: 0em auto;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+        zoom: 0.8;
+    }
+}
+
+@media screen and (max-width:901px) {
+    div.content {
+        width: 100%;
+        margin: 0em auto;
+        zoom: 0.8;
+    }
+}
+
+@media screen and (max-width:850px) {
+    div.card-set {
+        width: 100%;
+        border: none;
+        margin: 0em auto;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+        zoom: 0.8;
+    }
+}
+
+@media screen and (max-width:750px) {
+    div.card-set {
+        width: 100%;
+        border: none;
+        margin: 0em auto;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+        zoom: 0.8;
+    }
+}
+
+@media screen and (max-width:450px) {
+    div.content {
+        width: 100%;
         margin: 0em auto;
     }
 }
-@media screen and (max-width:1350px){
-    div.content{
-        width:38%;
+
+@media screen and (max-width:400px) {
+    div.content {
+        width: 100%;
         margin: 0em auto;
     }
 }
-@media screen and (max-width:1150px){
-    div.content{
-        width:45%;
-        margin: 0em auto;
-    }
-}
-@media screen and (max-width:1024px){
-    div.content{
-        width:50%;
-        margin: 0em auto;
-    }
-}
-@media screen and (max-width:901px){
-    div.content{
-        width:55%;
-        margin: 0em auto;
-    }
-}
-@media screen and (max-width:801px){
-    div.content{
-        width:60%;
-        margin: 0em auto;
-    }
-}
-@media screen and (max-width:701px){
-    div.content{
-        width:65%;
-        margin: 0em auto;
-    }
-}
-@media screen and (max-width:450px){
-    div.content{
-        width:100%;
-        margin: 0em auto;
-    }
-}
-@media screen and (max-width:400px){
-    div.content{
-        width:100%;
-        margin: 0em auto;
-    }
-}
-@media screen and (max-width:320px){
-    div.content{
-        width:100%;
+
+@media screen and (max-width:320px) {
+    div.content {
+        width: 100%;
         margin: 0em auto;
     }
 }

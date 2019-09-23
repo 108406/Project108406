@@ -9,6 +9,8 @@
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/kendo.common-material.min.css">
+    <link rel="stylesheet" href="css/kendo.material.min.css">
     <link rel="stylesheet" href="css/Navbar.css">
     <link rel="stylesheet" href="css/Content.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
@@ -40,22 +42,55 @@
                 </li>
             </ul>
 
-            <form class="search">
-                <input class="search-input" type="text" name="search" placeholder="Search">
-                <a href="#"><i class="fas fa-search search-icon"></i></a>
-            </form>
-            <div class="study-logout">
-                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel">教學<i
-                        class="fas fa-question-circle fa-lg" style="padding-left:5px;"></i></button>
-                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
-                    onclick="Logout()">登出</button>
+            <div class="search">
+                <input id="projectId" class="search-input" type="text" name="search" placeholder="查詢計畫(#123456)">
+                <a href="#" id="SearchForBox"><i class="fas fa-search search-icon"></i></a>
+                <div class="Search_Box">
+                </div>
             </div>
+
+            <div class="study-logout">
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel"><i
+                        class="fas fa-question-circle fa-lg" style="padding-right:5px;"></i>教學</button>
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
+                    onclick="Logout()"><i class="fas fa-sign-out-alt" style="padding-right:5px;"></i>登出</button>
+            </div>
+
         </div>
 
     </nav>
     <!----------------------------------------------------------------->
     <div class="container-fluid">
         <!--~~~~~~~~~~~~~~~~~-->
+
+        <!--輪播-->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./imgs/photo-1.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./imgs/photo-2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./imgs/photo-3.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <!---->
         <div class="content">
             <!--尚未開始------------------------------->
             <div class="status">
@@ -80,7 +115,7 @@
                 <% if (items[i].project_status == 0) {%>
                 <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
                     <div class="card-color-body">
-                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
+                        <a class="card-link">
                             <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
                             <div class="block-card">
                             </div>
@@ -133,7 +168,7 @@
                 <% if (items[i].project_status == 1) {%>
                 <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
                     <div class="card-color-body-ing">
-                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
+                        <a class="card-link">
                             <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
                             <div class="block-card">
                             </div>
@@ -179,7 +214,7 @@
                 <% if (items[i].project_status == 2) {%>
                 <div class="card" name="delete-tub" id="<%= items[i].project_id %>">
                     <div class="card-color-body-end">
-                        <a class="card-link" onclick="IntoProject('<%= items[i].project_id %>')">
+                        <a class="card-link">
                             <h5 class="card-title" onmousemove="removeClassType(this)"><%= items[i].project_name %></h5>
                             <div class="block-card">
                             </div>
@@ -275,11 +310,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">開始日期:</label>
-                                    <input type="datetime-local" name="project_startdate">
+                                    <input id="AddStartTime" class="datetime-local-set" name="project_startdate">
                                 </div>
                                 <div class="form-group">
                                     <label for="message-text" class="col-form-label">結束日期:</label>
-                                    <input type="datetime-local" name="project_enddate">
+                                    <input id="AddEndTime" class="datetime-local-set" name="project_enddate">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="close-btn" data-dismiss="modal">關閉</button>
@@ -297,123 +332,21 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
-    <script>
-        function RedefineProject(data) {
-            className = [];
-            className[0] = 'card-color-body'
-            className[1] = 'card-color-body-ing'
-            className[2] = 'card-color-body-end'
-
-            let project_id = $('#project_id').val();
-            let project_name = $('#project_name').val();
-            let project_password = $('#project_password').val();
-            let startDate = data.project_startdate[0] + '-' +
-                (data.project_startdate[1] < 10 ? ('0' + data.project_startdate[1]) : data.project_startdate[1]) + '-' +
-                (data.project_startdate[2] < 10 ? ('0' + data.project_startdate[2]) : data.project_startdate[2]) + 'T' +
-                (data.project_startdate[3] < 10 ? ('0' + data.project_startdate[3]) : data.project_startdate[3]) + ':' +
-                (data.project_startdate[4] < 10 ? ('0' + data.project_startdate[4]) : data.project_startdate[4]);
-            let endDate = data.project_enddate[0] + '-' +
-                (data.project_enddate[1] < 10 ? ('0' + data.project_enddate[1]) : data.project_enddate[1]) + '-' +
-                (data.project_enddate[2] < 10 ? ('0' + data.project_enddate[2]) : data.project_enddate[2]) + 'T' +
-                (data.project_enddate[3] < 10 ? ('0' + data.project_enddate[3]) : data.project_enddate[3]) + ':' +
-                (data.project_enddate[4] < 10 ? ('0' + data.project_enddate[4]) : data.project_enddate[4]);
-
-            $('#' + project_id).remove();
-
-            if (data.status == 0) {
-                $('#' + addProjectBlock).before('<div class="card" name="delete-tub" id="' + project_id +
-                    '"><div class="' + className[data.status] +
-                    '"><a class="card-link" href="plan_work"><h5 class="card-title" onmousemove="removeClassType(this)">' +
-                    project_name +
-                    '</h5><div class="block-card"></div></a></div><div class="block-setting"><a class="card-setting" href="#" data-toggle="modal" data-target="#projectset" onclick="javascript:SetProjectInfo(`' +
-                    project_id + '`, `' + project_password + '`, `' + project_name + '`, `' + startDate + '`, `' +
-                    endDate +
-                    '`)"><img src="./imgs/cog-3x.png"></a></div></div>');
-            } else {
-                $($('.card-deck')[data.status]).append('<div class="card" name="delete-tub" id="' + project_id +
-                    '"><div class="' + className[data.status] +
-                    '"><a class="card-link" href="plan_work"><h5 class="card-title" onmousemove="removeClassType(this)">' +
-                    project_name +
-                    '</h5><div class="block-card"></div></a></div><div class="block-setting"><a class="card-setting" href="#" data-toggle="modal" data-target="#projectset" onclick="javascript:SetProjectInfo(`' +
-                    project_id + '`, `' + project_password + '`, `' + project_name + '`, `' + startDate + '`, `' +
-                    endDate +
-                    '`)"><img src="./imgs/cog-3x.png"></a></div></div>')
-            }
-        }
-        //document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-
-        function SetProjectInfo(projectId, projectPassword, projectName, projectStartdate, projectEnddate) {
-            $('#project_id').val(projectId);
-            $('#project_password').val(projectPassword);
-            $('#project_name').val(projectName);
-            $('#project_startdate').val(projectStartdate);
-            $('#project_enddate').val(projectEnddate);
-        }
-
-        function IntoProject(project_id) {
-            document.cookie = 'projectid=' + project_id;
-            window.location.href = window.location.origin + '/content/plan'
-        }
-
-        function UpdateProject() {
-            $('#project_id').attr('disabled', true);
-            $('#project_password').attr('disabled', true);
-            $('#project_name').attr('disabled', true);
-            $('#project_startdate').attr('disabled', true);
-            $('#project_enddate').attr('disabled', true);
-            $('#closeSetting').attr('disabled', true);
-            $.ajax({
-                method: 'POST',
-                url: "content/updateProjectName",
-                data: {
-                    project_id: $('#project_id').val(),
-                    project_name: $('#project_name').val(),
-                    project_password: $('#project_password').val(),
-                    project_startdate: $('#project_startdate').val(),
-                    project_enddate: $('#project_enddate').val()
-                },
-                success: function (data) {
-                    if (data.status == 'success!') {
-                        $('#project_id').attr('disabled', false);
-                        $('#project_password').attr('disabled', false);
-                        $('#project_name').attr('disabled', false);
-                        $('#project_startdate').attr('disabled', false);
-                        $('#project_enddate').attr('disabled', false);
-                        $('#closeSetting').attr('disabled', false);
-
-                        $('#projectset').modal('hide');
-
-                        value = {
-                            status: data.projectStatus,
-                            project_startdate: data.project_startdate,
-                            project_enddate: data.project_enddate
-                        }
-                        setTimeout(RedefineProject(value), 1000)
-                    } else {
-                        alert('寫入資料庫時發生錯誤。')
-                    }
-                },
-                error: function (data) {
-                    alert('連接伺服器出現問題，請重試。')
-                    console.log('error: \n' + data.error)
-                }
-            })
-        }
-
-        function Logout() {
-            document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
-            window.location.href = window.location.origin + '/login'
-        }
-    </script>
+    <script src="/js/BackEnd_Content.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
 
     <script src="/js/Content_Copy.js"></script>
     <script src="/js/Content_MoveHoverText.js"></script>
     <script src="/js/Content_MoveDelete.js"></script>
-    <script src="/js/Width_Test.js"></script>
+    <script src="/js/Content_KendoDatePicker.js"></script>
+    <script src="/js/SearchBox.js"></script>
+    <script src="/js/AlertMessenge.js"></script>
+    <script src="/js/Mywork_Carousel.js"></script>
+    <script src="/js/Common.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
@@ -421,7 +354,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!------------------------------------------------------------------------------------->
 </body>

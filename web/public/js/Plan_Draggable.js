@@ -17,7 +17,12 @@ function browserRedirect() {
             items: ".member-img-trash",
             update: function (event, ui) {
                 if (ui.sender != null) {
-                    MoveMember(event.target, ui.sender[0], ui.item[0])
+                    if (ui.sender[0].id == 'admin-move' && $(ui.sender[0]).children().length <= 0) {
+                        alert('一個專案必須至少存在一位管理者。')
+                        $("#admin-move").sortable("cancel");
+                    } else {
+                        MoveMember(event.target, ui.sender[0], ui.item[0]);
+                    }
                 }
             }
         });

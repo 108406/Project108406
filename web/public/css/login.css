@@ -1,41 +1,79 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
+
 /*----------------------------------*/
 
 /*            總體設定               */
 
 /*----------------------------------*/
-
 body, html {
   font-family: 'Noto Serif TC', serif;
   height: 100%;
   width: 100%;
+  background: url(../imgs/背景.png);
+  zoom: 0.85;
 }
 
-div.background {
-  width: 100%;
-  height: 100%;
-  /* background: url(../imgs/background-content.jpg); */
-  background:url(../imgs/background-1.jpg);
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-  background-size: cover;
-  background-attachment:fixed;
-  position: fixed;
-  z-index: 5;
+
+
+div.contain {
+  display: flex;
+  align-self: center;
 }
 
 div.content {
   position: absolute;
-  top:0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 100%;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   z-index: 10;
 }
 
+div.TitleHeader {
+  font-size: 2em;
+  position: absolute;
+  top:5em;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #2D4F41;
+  font-weight: bolder;
+    text-align: center !important;
+    font-size: 2em;
+    color: rgb(53, 24, 24);
+    margin-top: 0.5em;
+    text-shadow: shadow1, shadow2, shadow3;
+    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0, 0, 0, 0.15);
+}
+/*----------------------------------*/
+
+/*            Loding               */
+
+/*----------------------------------*/
+.LoadingShow{
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 510;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+/*----------------------------------*/
+
+/*            遮罩                  */
+
+/*----------------------------------*/
+div.background {
+  display: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(126, 125, 125, 0.3);
+  z-index:500;
+}
 /*----------------------------------*/
 
 /*            卡片設定               */
@@ -43,8 +81,8 @@ div.content {
 /*----------------------------------*/
 
 div.card-set {
-  /* margin-bottom: 3rem; */
-  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
   border: 0;
   position: relative;
@@ -66,29 +104,35 @@ div.card-set {
 /*----------------------------------*/
 
 .bg-login-image {
-  border-radius: 3rem;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
   position: relative;
-  left: 1.8%;
-  background: url("../imgs/logo-01.png");
+  left: 20px;
+  top: 5px;
+  background: url(../imgs/logo.png);
   background-position: center;
   background-size: cover;
 }
 
 .bg-register-image {
-  border-radius: 3rem;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
   position: relative;
-  left: 1.8%;
-  background: url("../imgs/logo-01.png");
+  left: 20px;
+  top: 5px;
+  background: url(../imgs/logo.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .bg-password-image {
-  border-radius: 3rem;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
   position: relative;
-  left: 1.8%;
-  background: url("../imgs/logo-01.png");
+  left: 20px;
+  top: 5px;
+  background: url(../imgs/logo.png);
   background-position: center;
   background-size: cover;
 }
@@ -98,26 +142,33 @@ div.card-set {
 /*            右半部設定             */
 
 /*----------------------------------*/
-div.card-content-forgot{
-  padding:10em 3em;
+
+div.card-content-forgot {
+  padding: 10em 3em;
 }
-div.card-content-register{
-  padding:2em 3em;
+
+div.card-content-register {
+  padding: 2em 3em;
 }
+
 div.card-content {
-  padding:4.6em 3em;
+  padding: 4.6em 3em;
   /* padding: 3rem; */
 }
-div.text-center{
+
+div.text-center {
   margin-top: 1em;
 }
-div.login-effect{
+
+div.login-effect {
   /* margin-top: 5em; */
 }
-div.bottom{
+
+div.bottom {
   /* margin-top: 8.5em; */
   /* padding-top: 8.5em; */
 }
+
 /*----------------------------------*/
 
 /*            大標設定             */
@@ -228,4 +279,24 @@ h1.text-set {
 
 .password-set {
   margin-bottom: 1rem;
+}
+
+/*----------------------------------*/
+
+/*            line                 */
+
+/*----------------------------------*/
+
+.LineImg {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  z-index: 20;
+}
+
+.LineLoginImg {
+  cursor: pointer;
+  width: 21em;
 }

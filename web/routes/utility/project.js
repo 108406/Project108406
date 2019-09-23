@@ -29,6 +29,31 @@ var fetchProject = async function (project_id) {
 }
 //------------------------------------------
 
+//------------------------------------------
+// 用project_id查詢
+//------------------------------------------
+var VerificationProject = async function (project_id, project_password) {
+    //存放結果
+    var result = [];
+
+    //讀取資料庫
+    await query('select * from project where project_id = $1 and project_password = $2', [project_id, project_password])
+        .then((data) => {
+            if (data.rows.length > 0) {
+                result = data.rows;  //專案資料(物件)
+            } else {
+                result = false;  //找不到資料
+            }
+        }, (error) => {
+            result = false;  //執行錯誤
+            console.log(error)
+        });
+
+    //回傳執行結果
+    return result;
+}
+//------------------------------------------
+
 
 //------------------------------------------
 // 新增專案資料
@@ -110,4 +135,4 @@ var updateProjectName = async function (project_id, project_name, project_passwo
 
 
 //匯入
-module.exports = { fetchProject, addProject, deleteProject, updateProjectName }
+module.exports = { fetchProject, VerificationProject, addProject, deleteProject, updateProjectName }

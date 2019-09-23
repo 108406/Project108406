@@ -8,6 +8,7 @@ var bodyParser = require('body-parser')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var content = require('./routes/content');
+var content_leaveProject = require('./routes/content_leaveProject');
 var content_updateProjectName = require('./routes/content_updateProjectName');
 var content_addProject = require('./routes/content_addProject');
 var plan = require('./routes/plan');
@@ -29,6 +30,8 @@ var member_linebotPush = require('./routes/member_linebotPush');
 var member_photo = require('./routes/member_photo');
 var member_update = require('./routes/member_update');
 var member_delete = require('./routes/member_delete');
+var searchProject = require('./routes/searchProject');
+var addToProject = require('./routes/addToProject');
 var project = require('./routes/project');
 var mywork = require('./routes/mywork');
 var login = require('./routes/login');
@@ -58,6 +61,7 @@ app.use('/mywork',mywork);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/content', content);
+app.use('/content/leaveProject', content_leaveProject);
 app.use('/content/updateProjectName', content_updateProjectName);
 app.use('/content/addProject', content_addProject);
 app.use('/content/plan', plan);
@@ -80,6 +84,8 @@ app.use('/member/photo', member_photo);
 app.use('/member/update', member_update);
 app.use('/member/delete', member_delete);
 app.use('/project', project);
+app.use('/searchProject', searchProject);
+app.use('/addToProject', addToProject);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

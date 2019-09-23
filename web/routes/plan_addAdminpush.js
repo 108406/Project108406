@@ -8,14 +8,11 @@ const myFunction = require('./utility/myFunction');
 router.post('/', function (req, res, next) {
     if (req.cookies.userid != undefined) {
         var nowDate = myFunction.nowTimeToDB();
-        console.log(req.cookies.projectid)
-        console.log(req.body.adminpushContent)
-        console.log(nowDate)
-        console.log(req.body.adminpushEndDate)
         adminpush.addAdminPush(req.cookies.projectid, req.body.adminpushContent, nowDate, req.body.adminpushEndDate).then(data => {
             if (data) {
                 return res.status(200).send({
-                    message: '推播新增成功。'
+                    message: '推播新增成功。',
+                    nowDate: nowDate
                 });
             } else {
                 console.log('新增推播時發生錯誤。')
