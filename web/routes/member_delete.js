@@ -5,7 +5,7 @@ const member = require('./utility/member');
 
 //接收GET請求
 router.post('/', function(req, res, next) {        
-    member.deleteMember(req.body.userId).then(data => {
+    member.deleteMember(req.cookies.userid).then(data => {
         if (data) {
             // 將使用者上傳的檔案匯入伺服器端
             // var path = 'public/imgs/';

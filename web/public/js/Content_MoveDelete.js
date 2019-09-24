@@ -1,9 +1,12 @@
 let isDragging = false;
 $('document').ready(function () {
     $(function () {
-        $("[name='delete-tub']").click(function () {
+        $("[name='delete-tub']").click(function (event) {
             if (!isDragging) {
-                IntoProject(this.id)
+                if (!(event.target.className == 'card-setting' || 
+                $(event.target).parent().get(0).className == 'card-setting')) {
+                    IntoProject(this.id)
+                }
             }
         })
         $("[name='delete-tub']").draggable({

@@ -9,12 +9,12 @@ function RedefineProject(data) {
     let project_password = $('#project_password').val();
     let startDate = data.project_startdate[0] + '-' +
         (data.project_startdate[1] < 10 ? ('0' + data.project_startdate[1]) : data.project_startdate[1]) + '-' +
-        (data.project_startdate[2] < 10 ? ('0' + data.project_startdate[2]) : data.project_startdate[2]) + 'T' +
+        (data.project_startdate[2] < 10 ? ('0' + data.project_startdate[2]) : data.project_startdate[2]) + ' ' +
         (data.project_startdate[3] < 10 ? ('0' + data.project_startdate[3]) : data.project_startdate[3]) + ':' +
         (data.project_startdate[4] < 10 ? ('0' + data.project_startdate[4]) : data.project_startdate[4]);
     let endDate = data.project_enddate[0] + '-' +
         (data.project_enddate[1] < 10 ? ('0' + data.project_enddate[1]) : data.project_enddate[1]) + '-' +
-        (data.project_enddate[2] < 10 ? ('0' + data.project_enddate[2]) : data.project_enddate[2]) + 'T' +
+        (data.project_enddate[2] < 10 ? ('0' + data.project_enddate[2]) : data.project_enddate[2]) + ' ' +
         (data.project_enddate[3] < 10 ? ('0' + data.project_enddate[3]) : data.project_enddate[3]) + ':' +
         (data.project_enddate[4] < 10 ? ('0' + data.project_enddate[4]) : data.project_enddate[4]);
 
@@ -62,6 +62,7 @@ function UpdateProject() {
     $('#project_startdate').attr('disabled', true);
     $('#project_enddate').attr('disabled', true);
     $('#closeSetting').attr('disabled', true);
+    ajaxing ++;
     $.ajax({
         method: 'POST',
         url: "content/updateProjectName",
@@ -92,6 +93,7 @@ function UpdateProject() {
             } else {
                 alert('寫入資料庫時發生錯誤。')
             }
+            ajaxing --;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -101,6 +103,7 @@ function UpdateProject() {
 }
 
 function LeaveProject(projectId) {
+    ajaxing ++;
     $.ajax({
         method: 'POST',
         url: "content/leaveProject",
@@ -108,7 +111,7 @@ function LeaveProject(projectId) {
             project_id: projectId
         },
         success: function (data) {
-            
+            ajaxing--;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')

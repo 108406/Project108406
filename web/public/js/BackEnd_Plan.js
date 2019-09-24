@@ -14,10 +14,13 @@ $(document).ready(function () {
     $('.listname').each(function () {
         $(this).get(0).addEventListener('blur', UpdateListname)
         $(this).get(0).addEventListener('focus', WriteListname)
-        $(this).get(0).addEventListener('keydown', UpdateListname)
+        $(this).get(0).addEventListener('keydown', UpdateListnameK)
     })
     $('.listname')[0].addEventListener('focus', function () {
         $($('.listname')[0]).val($($('.listname')[0]).attr('placeholder'))
+    })
+    $('.card-textarea').each(function () {
+        $(this).get(0).addEventListener('keydown', AddCardK)
     })
 
     $('.label-edit-input-search').keydown(function (event) {
@@ -71,6 +74,7 @@ function UpdateWorkTitle(event) {
             newWorkCard) + `, ` + workIndex + `)`)
 
         nowWorkData = newWorkCard;
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/updateWork',
@@ -90,6 +94,10 @@ function UpdateWorkTitle(event) {
                 file_name: newWorkData[11],
                 first_principal: newWorkData[12],
                 second_principal: newWorkData[13]
+            },
+            success: function (data) {
+
+                ajaxing--;
             },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
@@ -112,6 +120,7 @@ function updatePermission() {
     newProjectPermission[3] = deleteWorkPermission
     newProjectPermission[4] = permission_serno
     $('#projectPermission').val(newProjectPermission)
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: '/content/plan/updatePermission',
@@ -123,6 +132,10 @@ function updatePermission() {
             editWorkPermission: editWorkPermission,
             deleteWorkPermission: deleteWorkPermission
         },
+        success: function (data) {
+
+            ajaxing--;
+        },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
             location.reload();
@@ -130,8 +143,13 @@ function updatePermission() {
     })
 }
 
+function UpdateListnameK(event) {
+    if (event.key == 'Enter') {
+        $(event.target).blur();
+    }
+}
+
 function UpdateListname(event) {
-    console.log(event)
     let lists = JSON.parse($('#lists').val());
     let listIndex;
     let list_id;
@@ -143,8 +161,11 @@ function UpdateListname(event) {
     }
     list_id = lists[listIndex][0];
     if (event.target.value != '' && event.target.placeholder != event.target.value) {
+        lists[listIndex][1] = event.target.value;
+        $('#lists').val(JSON.stringify(lists))
         event.target.placeholder = event.target.value;
         event.target.value = '';
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/updateList',
@@ -152,6 +173,10 @@ function UpdateListname(event) {
             data: {
                 list_id: list_id,
                 list_name: list_name
+            },
+            success: function (data) {
+
+                ajaxing--;
             },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
@@ -176,6 +201,7 @@ function AddAdminpush() {
     adminpushContent = adminpushContent.trim();
     if (adminpushContent != '') {
         $('#admin-text').modal('hide');
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/addAdminpush',
@@ -200,6 +226,7 @@ function AddAdminpush() {
                     adminpushContent + '</div><div class="time-show">' + startDataText +
                     '</div></div><hr class="hr-admin"></div>')
 
+                ajaxing--;
             },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
@@ -231,6 +258,7 @@ function AddList() {
         );
         $('#list-value').append('<option>' + list_name + '</option>')
         browserRedirect();
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/addList',
@@ -245,6 +273,7 @@ function AddList() {
                 let allLists = JSON.parse($('#lists').val());
                 allLists.push(newList);
                 $('#lists').val(JSON.stringify(allLists))
+                ajaxing--;
             },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
@@ -275,12 +304,17 @@ function DeleteList(list_id, index) {
         }
     }
     $($('#list-value').children()[optionIndex]).remove();
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: '/content/plan/deleteList',
         datatype: "json",
         data: {
             list_id: list_id
+        },
+        success: function (data) {
+
+            ajaxing--;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -532,6 +566,7 @@ function AddMemberToWork(data, cardNo) {
         newWorkCard) + `, ` + cardNo + `)`)
 
     nowWorkData = newWorkCard;
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: '/content/plan/updateWork',
@@ -551,6 +586,10 @@ function AddMemberToWork(data, cardNo) {
             file_name: newWorkData[11],
             first_principal: newWorkData[12],
             second_principal: newWorkData[13]
+        },
+        success: function (data) {
+
+            ajaxing--;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -613,6 +652,7 @@ function ChangeTagName(isLeft, index, tag_id) {
     }
     $('#tags').val(JSON.stringify(newTags))
     if (tag_id != undefined) {
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/updateTag',
@@ -621,6 +661,10 @@ function ChangeTagName(isLeft, index, tag_id) {
                 tag_id: tag_id,
                 tagname: newValue
             },
+            success: function (data) {
+
+                ajaxing--;
+            },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
                 location.reload();
@@ -628,6 +672,7 @@ function ChangeTagName(isLeft, index, tag_id) {
         })
     } else {
 
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/addTag',
@@ -635,6 +680,10 @@ function ChangeTagName(isLeft, index, tag_id) {
             data: {
                 tagname: newValue,
                 color: color
+            },
+            success: function (data) {
+
+                ajaxing--;
             },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
@@ -834,6 +883,7 @@ function ChangeTag(id, color) {
             newWorkCard) + `, ` + workIndex + `)`)
 
         nowWorkData = newWorkCard;
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/updateWork',
@@ -853,6 +903,10 @@ function ChangeTag(id, color) {
                 file_name: nowWorkData.workData[11],
                 first_principal: nowWorkData.workData[12],
                 second_principal: nowWorkData.workData[13]
+            },
+            success: function (data) {
+
+                ajaxing--;
             },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
@@ -955,6 +1009,7 @@ function ChangeTag(id, color) {
             newWorkCard) + `, ` + workIndex + `)`)
 
         nowWorkData = newWorkCard;
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/updateWork',
@@ -974,6 +1029,10 @@ function ChangeTag(id, color) {
                 file_name: nowWorkData.workData[11],
                 first_principal: nowWorkData.workData[12],
                 second_principal: nowWorkData.workData[13]
+            },
+            success: function (data) {
+
+                ajaxing--;
             },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
@@ -1040,6 +1099,7 @@ function SaveDeadline() {
 
     nowWorkData = newWorkCard;
 
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: '/content/plan/updateWork',
@@ -1059,6 +1119,10 @@ function SaveDeadline() {
             file_name: nowWorkData.workData[11],
             first_principal: nowWorkData.workData[12],
             second_principal: nowWorkData.workData[13]
+        },
+        success: function (data) {
+
+            ajaxing--;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -1092,6 +1156,7 @@ function ClearDeadline() {
 
     nowWorkData = newWorkCard;
 
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: '/content/plan/updateWork',
@@ -1111,6 +1176,10 @@ function ClearDeadline() {
             file_name: nowWorkData.workData[11],
             first_principal: nowWorkData.workData[12],
             second_principal: nowWorkData.workData[13]
+        },
+        success: function (data) {
+
+            ajaxing--;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -1221,6 +1290,7 @@ function uploadFile(file) {
                             newWorkCard) + `, ` + workIndex + `)`)
 
                     nowWorkData = newWorkCard;
+                    ajaxing++;
                     $.ajax({
                         method: 'POST',
                         url: '/content/plan/updateWork',
@@ -1240,6 +1310,10 @@ function uploadFile(file) {
                             file_name: fileName,
                             first_principal: nowWorkData.workData[12],
                             second_principal: nowWorkData.workData[13]
+                        },
+                        success: function (data) {
+
+                            ajaxing--;
                         },
                         error: function (data) {
                             alert('連接伺服器出現問題，請重試。')
@@ -1340,6 +1414,7 @@ function MoveWorkToList(data, cardNo) {
 
         $('#show-modal').modal('hide');
         if (toListId != fromListId) {
+            ajaxing++;
             $.ajax({
                 method: 'POST',
                 url: '/content/plan/updateListwork',
@@ -1348,6 +1423,10 @@ function MoveWorkToList(data, cardNo) {
                     toListId: toListId,
                     fromListId: fromListId,
                     thisWorkId: thisWorkId
+                },
+                success: function (data) {
+
+                    ajaxing--;
                 },
                 error: function (data) {
                     alert('連接伺服器出現問題，請重試。')
@@ -1430,6 +1509,7 @@ function DragWorkToList(toListElement, fromListElement, workElement) {
 
         $('#show-modal').modal('hide');
         if (toListId != fromListId) {
+            ajaxing++;
             $.ajax({
                 method: 'POST',
                 url: '/content/plan/updateListwork',
@@ -1438,6 +1518,10 @@ function DragWorkToList(toListElement, fromListElement, workElement) {
                     toListId: toListId,
                     fromListId: fromListId,
                     thisWorkId: thisWorkId
+                },
+                success: function (data) {
+
+                    ajaxing--;
                 },
                 error: function (data) {
                     alert('連接伺服器出現問題，請重試。')
@@ -1448,8 +1532,35 @@ function DragWorkToList(toListElement, fromListElement, workElement) {
     }
 }
 
+function AddCardK(event) {
+    if (event.key == 'Enter' && !event.shiftKey) {
+        var somethingAdd = false;
+        var addIndex = -1;
+        var addTitle = '';
+        $('.add-card').each(function (index) {
+            $(this).hide();
+            if ($($('.card-add-text')[index]).val() != '') {
+                somethingAdd = true;
+                addIndex = index;
+                addTitle = $($('.card-add-text')[index]).val();
+                $($('.card-add-text')[index]).val('')
+            }
+        });
+        if (somethingAdd) {
+            AddCard(addIndex, addTitle);
+        }
+    }
+}
+
 // 新增卡片用的function
 function AddCard(index, title) {
+    let checkAllWorks = JSON.parse($('#works').val());
+    for (let a = 0;a < checkAllWorks.length; a ++) {
+        if (checkAllWorks[a][1] == title) {
+            alert('已有相同的卡片名稱。');
+            return;
+        }
+    }
     let allLists = JSON.parse($('#lists').val());
     let listname = $($($('.work-header')[index]).children()[0]).attr('placeholder')
     let listId;
@@ -1475,6 +1586,7 @@ function AddCard(index, title) {
             listId = allLists[c][0];
         }
     }
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: '/content/plan/addWork',
@@ -1497,6 +1609,7 @@ function AddCard(index, title) {
                 `javascript:SetWorkCard(` + JSON.stringify(newCardData) + `, ` +
                 workLength + `)`)
             $('#works').val(JSON.stringify(allWorks));
+            ajaxing--;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -1510,6 +1623,7 @@ function DeleteWork(work_id, work_title, workIndex) {
     let newWorks = allWorks.slice();
     $('#card-' + workIndex).remove();
     $('#show-modal').modal('hide');
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: '/content/plan/deleteWork',
@@ -1524,6 +1638,7 @@ function DeleteWork(work_id, work_title, workIndex) {
                 }
             }
             $('#works').val(JSON.stringify(newWorks));
+            ajaxing--;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -1613,6 +1728,7 @@ function DeleteMember(element, user_id) {
                     ]);
         }
 
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/updateWork',
@@ -1633,6 +1749,10 @@ function DeleteMember(element, user_id) {
                 first_principal: thisSetWorkCard.workData[12],
                 second_principal: thisSetWorkCard.workData[13]
             },
+            success: function (data) {
+
+                ajaxing--;
+            },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
                 location.reload();
@@ -1645,12 +1765,17 @@ function DeleteMember(element, user_id) {
     $(element).parent().remove();
     $('img[alt=workPrincipal_' + user_id + ']').remove();
 
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: '/content/plan/deleteMember',
         datatype: "json",
         data: {
             user_id: user_id,
+        },
+        success: function (data) {
+
+            ajaxing--;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -1674,6 +1799,7 @@ function MoveMember(toMemberElement, fromMemberElement, memberElement) {
     }
 
     if (toMemberElement.id != fromMemberElement.id) {
+        ajaxing++;
         $.ajax({
             method: 'POST',
             url: '/content/plan/updateMember',
@@ -1682,6 +1808,10 @@ function MoveMember(toMemberElement, fromMemberElement, memberElement) {
                 user_id: user_id,
                 group_id: teammember[memberIndex][4],
                 isAdmin: changeToAdmin
+            },
+            success: function (data) {
+
+                ajaxing--;
             },
             error: function (data) {
                 alert('連接伺服器出現問題，請重試。')
