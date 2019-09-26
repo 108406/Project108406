@@ -9,6 +9,7 @@ const myFunction = require('./utility/myFunction');
 
 router.get('/', function (req, res, next) {
     if (req.cookies.userid != undefined) {
+        let startTime = Date.now();
         view.projectAllData(req.cookies.projectid).then(data => {
             if (data == 'failed') {
                 res.render('error'); //導向錯誤頁面
@@ -37,6 +38,7 @@ router.get('/', function (req, res, next) {
                                     alltags: data3,
                                     isAdmin: isAdmin
                                 });
+                                console.log(Date.now() - startTime)
                             } else {
                                 res.render('error'); //導向錯誤頁面
                             }

@@ -40,12 +40,16 @@ function SubmitData() {
     }
 
     if (canSubmit) {
+        ajaxing ++;
         $.ajax({
             type: 'POST',
             url: 'member/update',
             data: {
                 email: $('#email').val().trim(),
                 member_name: $('#member_name').val().trim()
+            },
+            success: function () {
+                ajaxing --;
             }
         });
     }
@@ -79,12 +83,16 @@ function handleFileSelect(evt) {
             //Converting Binary Data to base 64
             var base64String = window.btoa(binaryData);
             //showing file converted to base64
+            ajaxing ++;
             $.ajax({
                 type: 'POST',
                 url: 'member/photo',
                 data: {
                     "photoContent": base64String,
                     "photoType": type
+                }, 
+                success: function() {
+                    ajaxing --;
                 }
             });
         };
@@ -95,21 +103,26 @@ function handleFileSelect(evt) {
 }
 
 function ChangeLineBotPush(value) {
+    ajaxing ++;
     $.ajax({
         type: 'POST',
         url: 'member/linebotPush',
         data: {
             "linebotPush": !value
+        },
+        success: function () {
+            ajaxing --;
         }
     });
 }
 
 function DeleteAcount() {
+    ajaxing ++;
     $.ajax({
         type: 'POST',
         url: 'member/delete',
-        data: {
-            userId: "B001"
+        success: function () {
+            ajaxing --;
         }
     });
 }
