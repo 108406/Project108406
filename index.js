@@ -137,7 +137,7 @@ function CheckMember(event) {
 					photo: null,
 					member_name: profile.displayName,
 					email: null,
-					member_password: null,
+					member_password: '',
 					linebotpush: true
 				}
 				member.addMember(memberData).then(data2 => {
