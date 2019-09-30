@@ -72,7 +72,7 @@ let a = 0;
 let push = setInterval(function () {
 	
     var userId = 'U30986dc43eb2232855acbb5718be7c87';
-	var sendMsg = a;
+	var sendMsg = 'message: ' + a;
 	// member.displayMember('A001').then(data => {
 	// 	if (data) {
 	// 		console.log(data);
