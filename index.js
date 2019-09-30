@@ -74,7 +74,7 @@ setTimeout(function () {
 	var sendMsg = "push hands up ";
 	member.displayMember('A001').then(data => {
 		if (data) {
-			console.log('data: ' + data);
+			console.log(data);
 		}
 	})
     // bot.push(userId, [sendMsg]);
