@@ -93,7 +93,7 @@ function _bot() {
 		var command = msg.replace(/\s+/g, "");
 		var replyMsg = '愛你唷 <3';
 			// CheckMember(event);
-		event.source.member().then(function (member) {
+		event.source.member(function (member) {
 			console.log(member)
 		});
 		/*
