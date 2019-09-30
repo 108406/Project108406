@@ -96,9 +96,9 @@ function _bot() {
 		event.source.profile().then(function (profile) {
 			console.log(profile)
 		});
-		event.source.member().then(function (member) {
-			console.log(member)
-		});
+		// event.source.member().then(function (member) {
+		// 	console.log(member)
+		// });
 		/*
     if (event.message.type == 'text') {
       var containCount = 0;
