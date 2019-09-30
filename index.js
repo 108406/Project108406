@@ -132,7 +132,7 @@ function CheckMember(event) {
 	event.source.profile().then(function (profile) {
 		member.displayMember(event.source.userId).then(data => {
 			if (data == false) {
-				let member = {
+				let memberData = {
 					user_id: event.source.userId,
 					photo: null,
 					member_name: profile.displayName,
@@ -140,7 +140,7 @@ function CheckMember(event) {
 					member_password: null,
 					linebotpush: true
 				}
-				member.addMember(member).then(data2 => {
+				member.addMember(memberData).then(data2 => {
 					if (data2) {
 						console.log('成功寫入資料庫');
 					} else {
