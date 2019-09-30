@@ -105,7 +105,7 @@ function _bot() {
       console.log(PoS);
     }
 */
-		replyMsg = msg;
+
 		if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
 			if (event.source.groupId == undefined) {
 				//傳送訊息
@@ -142,19 +142,18 @@ function CheckMember(event) {
 				}
 				member.addMember(memberData).then(data2 => {
 					if (data2) {
-						console.log('成功寫入資料庫');
+						let replyMsg = '你好，感謝你加我為朋友'
+						event.reply(replyMsg).then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
 					} else {
 						console.log('寫入資料庫時發生問題');
 						return;
 					}
 				})
 			}
-			let replyMsg = '你好，感謝你加我為朋友'
-			event.reply(replyMsg).then(function (data) {
-				console.log(replyMsg);
-			}).catch(function (error) {
-				console.log('error');
-			});
 		})
 	});
 
