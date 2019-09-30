@@ -69,6 +69,14 @@ function getPoSAmountAndPosition(message, sort) {
   return amountAndPosition;
 }
 
+setTimeout(function () {
+    var userId = 'U30986dc43eb2232855acbb5718be7c87';
+    var sendMsg = "push hands up ";
+    bot.push(userId, [sendMsg]);
+    console.log('userId: ' + userId);
+    console.log('send: ' + sendMsg);
+}, 3000);
+
 function _bot() {
   bot.on('message', function(event) {
     var msg = event.message.text;
