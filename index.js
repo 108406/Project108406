@@ -149,8 +149,12 @@ function CheckMember(event) {
 					}
 				})
 			}
-			let sendMsg = '你好，感謝你加我為朋友'
-			bot.push(userId, [sendMsg]);
+			let replyMsg = '你好，感謝你加我為朋友'
+			event.reply(replyMsg).then(function (data) {
+				console.log(replyMsg);
+			}).catch(function (error) {
+				console.log('error');
+			});
 		})
 	});
 
