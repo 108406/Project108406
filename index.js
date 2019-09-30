@@ -68,19 +68,24 @@ function getPoSAmountAndPosition(message, sort) {
   }
   return amountAndPosition;
 }
-
-setTimeout(function () {
+let a = 0;
+let push = setInterval(function () {
+	
     var userId = 'U30986dc43eb2232855acbb5718be7c87';
-	var sendMsg = "push hands up ";
-	member.displayMember('A001').then(data => {
-		if (data) {
-			console.log(data);
-		}
-	})
-    // bot.push(userId, [sendMsg]);
+	var sendMsg = a;
+	// member.displayMember('A001').then(data => {
+	// 	if (data) {
+	// 		console.log(data);
+	// 	}
+	// })
+	bot.push(userId, [sendMsg]);
+	a ++
+	if (a > 5) {
+		clearInterval(push)
+	}
     // console.log('userId: ' + userId);
     // console.log('send: ' + sendMsg);
-}, 3000);
+}, 10000);
 
 function _bot() {
   bot.on('message', function(event) {
