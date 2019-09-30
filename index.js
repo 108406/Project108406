@@ -69,23 +69,23 @@ function getPoSAmountAndPosition(message, sort) {
 	return amountAndPosition;
 }
 let a = 0;
-let push = setInterval(function () {
+// let push = setInterval(function () {
 
-	var userId = 'U30986dc43eb2232855acbb5718be7c87';
-	var sendMsg = 'message: ' + a;
-	// member.displayMember('A001').then(data => {
-	// 	if (data) {
-	// 		console.log(data);
-	// 	}
-	// })
-	bot.push(userId, [sendMsg]);
-	a++
-	if (a > 5) {
-		clearInterval(push)
-	}
-	console.log('userId: ' + userId);
-	console.log('send: ' + sendMsg);
-}, 10000);
+// 	var userId = 'U30986dc43eb2232855acbb5718be7c87';
+// 	var sendMsg = 'message: ' + a;
+// 	// member.displayMember('A001').then(data => {
+// 	// 	if (data) {
+// 	// 		console.log(data);
+// 	// 	}
+// 	// })
+// 	bot.push(userId, [sendMsg]);
+// 	a++
+// 	if (a > 5) {
+// 		clearInterval(push)
+// 	}
+// 	console.log('userId: ' + userId);
+// 	console.log('send: ' + sendMsg);
+// }, 10000);
 
 function _bot() {
 	bot.on('message', function (event) {
@@ -93,8 +93,12 @@ function _bot() {
 		var command = msg.replace(/\s+/g, "");
 		var replyMsg = '愛你唷 <3';
 		// CheckMember(event.source.userId);
-		console.log(event.source.profile)
-		console.log(event.source.member)
+		event.source.profile().then(function (profile) {
+			console.log(profile)
+		});
+		event.source.member().then(function (member) {
+			console.log(member)
+		});
 		/*
     if (event.message.type == 'text') {
       var containCount = 0;
