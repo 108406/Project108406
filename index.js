@@ -108,12 +108,15 @@ function _bot() {
 
 		if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
 			if (event.source.groupId == undefined) {
+				member.displayMember(event.source.userId).then(data => {
+					console.log(data)
+				})
 				//傳送訊息
-				event.reply(replyMsg).then(function (data) {
-					console.log(replyMsg);
-				}).catch(function (error) {
-					console.log('error');
-				});
+				// event.reply(replyMsg).then(function (data) {
+				// 	console.log(replyMsg);
+				// }).catch(function (error) {
+				// 	console.log('error');
+				// });
 			}
 			//重新讀取資料
 			if (msg == '//getAIData') {
