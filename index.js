@@ -92,13 +92,10 @@ function _bot() {
 		var msg = event.message.text;
 		var command = msg.replace(/\s+/g, "");
 		var replyMsg = '愛你唷 <3';
-		// CheckMember(event.source.userId);
-		event.source.profile().then(function (profile) {
-			console.log(profile)
+			// CheckMember(event);
+		event.source.member().then(function (member) {
+			console.log(member)
 		});
-		// event.source.member().then(function (member) {
-		// 	console.log(member)
-		// });
 		/*
     if (event.message.type == 'text') {
       var containCount = 0;
@@ -128,31 +125,38 @@ function _bot() {
 		}
 
 	});
-	
-	bot.on('follow', function (event) {
-		CheckMember(event.source.userId);
-	});
+
+	// bot.on('follow', function (event) {
+	// 	CheckMember(event);
+	// });
 }
 
-function CheckMember(userId) {
-	member.displayMember(userId).then(data => {
-		if (data == false) {
-			let member = {
-				user_id : userId
-
-			}
-			member.addMember().then(data2 => {
-				if (data2) {
-
-				} else {
-					console.log('寫入資料庫時發生問題');
-					return;
+function CheckMember(event) {
+	event.source.profile().then(function (profile) {
+		member.displayMember(event.source.userId).then(data => {
+			if (data == false) {
+				let member = {
+					user_id: event.source.userId,
+					photo: null,
+					member_name: profile.displayName,
+					email: null,
+					member_password: null,
+					linebotpush: true
 				}
-			})
-		}
-		let sendMsg = '你好，感謝你加我為朋友'
-		bot.push(userId, [sendMsg]);
-	})
+				member.addMember(member).then(data2 => {
+					if (data2) {
+	
+					} else {
+						console.log('寫入資料庫時發生問題');
+						return;
+					}
+				})
+			}
+			let sendMsg = '你好，感謝你加我為朋友'
+			bot.push(userId, [sendMsg]);
+		})
+	});
+	
 
 }
 
