@@ -5,31 +5,31 @@ var googleAuth = require('google-auth-library');
 var member = require('./routes/utility/member');
 
 var bot = linebot({
-  channelId: '1627582693',
-  channelSecret: '7e8291f8ca70e509c82447b342850c26',
-  channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
+	channelId: '1627582693',
+	channelSecret: '7e8291f8ca70e509c82447b342850c26',
+	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
 
 var myClientSecret = {
-  "installed": {
-    "client_id": "826945543828-bkch7mebbit467p84hkc2h1t88vmk0ul.apps.googleusercontent.com",
-    "project_id": "phonic-agility-178912",
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://accounts.google.com/o/oauth2/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "9BZXk3XPV_hWCeFZP7whFBoS",
-    "redirect_uris": ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"]
-  }
+	"installed": {
+		"client_id": "826945543828-bkch7mebbit467p84hkc2h1t88vmk0ul.apps.googleusercontent.com",
+		"project_id": "phonic-agility-178912",
+		"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+		"token_uri": "https://accounts.google.com/o/oauth2/token",
+		"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+		"client_secret": "9BZXk3XPV_hWCeFZP7whFBoS",
+		"redirect_uris": ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"]
+	}
 };
 
 var auth = new googleAuth();
 var oauth2Client = new auth.OAuth2(myClientSecret.installed.client_id, myClientSecret.installed.client_secret, myClientSecret.installed.redirect_uris[0]);
 
 oauth2Client.credentials = {
-  "access_token": "ya29.GltrBUPv62sRXPU_WI2iGkqNhpXnmSq511j-G-JNTiWNj8uBbHrxLVySEkrTqDh-WOwG3eacrcSiFlXB-mVelkEISTyiAW5aeRIc7AuO5JEKlJMKJyM2NMzprknZ",
-  "refresh_token": "1/FYb8760SodoyLtuX5yrnbbaulbW4l5JcxO4SyrPuOfg",
-  "token_type": "Bearer",
-  "expiry_date": 1519378285674
+	"access_token": "ya29.GltrBUPv62sRXPU_WI2iGkqNhpXnmSq511j-G-JNTiWNj8uBbHrxLVySEkrTqDh-WOwG3eacrcSiFlXB-mVelkEISTyiAW5aeRIc7AuO5JEKlJMKJyM2NMzprknZ",
+	"refresh_token": "1/FYb8760SodoyLtuX5yrnbbaulbW4l5JcxO4SyrPuOfg",
+	"token_type": "Bearer",
+	"expiry_date": 1519378285674
 };
 
 var mySheetId = '1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
@@ -47,31 +47,31 @@ const linebotParser = bot.parser();
 app.post('/', linebotParser);
 
 //因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
-var server = app.listen(process.env.PORT || 8080, function() {
-  var port = server.address().port;
-  console.log("App now running on port", port);
+var server = app.listen(process.env.PORT || 8080, function () {
+	var port = server.address().port;
+	console.log("App now running on port", port);
 });
 
 
 function _Start() {
-  getAIDatas();
+	getAIDatas();
 }
 
 function getPoSAmountAndPosition(message, sort) {
-  var amountAndPosition = [];
-  for (var i = 0; i <= message.length - 1; i++) {
-    for (var a = 1; a <= aiDB[sort].length - 1; a++) {
-      if (message.substr(i, 1) == aiDB[sort][a]) {
-        amountAndPosition.push(i);
-      }
-    }
-  }
-  return amountAndPosition;
+	var amountAndPosition = [];
+	for (var i = 0; i <= message.length - 1; i++) {
+		for (var a = 1; a <= aiDB[sort].length - 1; a++) {
+			if (message.substr(i, 1) == aiDB[sort][a]) {
+				amountAndPosition.push(i);
+			}
+		}
+	}
+	return amountAndPosition;
 }
 let a = 0;
 let push = setInterval(function () {
-	
-    var userId = 'U30986dc43eb2232855acbb5718be7c87';
+
+	var userId = 'U30986dc43eb2232855acbb5718be7c87';
 	var sendMsg = 'message: ' + a;
 	// member.displayMember('A001').then(data => {
 	// 	if (data) {
@@ -79,21 +79,23 @@ let push = setInterval(function () {
 	// 	}
 	// })
 	bot.push(userId, [sendMsg]);
-	a ++
+	a++
 	if (a > 5) {
 		clearInterval(push)
 	}
-    // console.log('userId: ' + userId);
-    // console.log('send: ' + sendMsg);
+	console.log('userId: ' + userId);
+	console.log('send: ' + sendMsg);
 }, 10000);
 
 function _bot() {
-  bot.on('message', function(event) {
-    var msg = event.message.text;
-    var command = msg.replace(/\s+/g, "");
-	var replyMsg = '';
-	console.log(event)
-	/*
+	bot.on('message', function (event) {
+		var msg = event.message.text;
+		var command = msg.replace(/\s+/g, "");
+		var replyMsg = '愛你唷 <3';
+		// CheckMember(event.source.userId);
+		console.log(event.source.profile)
+		console.log(event.source.member)
+		/*
     if (event.message.type == 'text') {
       var containCount = 0;
       var PoS = [];
@@ -105,46 +107,72 @@ function _bot() {
       console.log(PoS);
     }
 */
-	replyMsg = msg;
-    if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
-      if (event.source.groupId == undefined) {
-        //傳送訊息
-        event.reply(replyMsg).then(function(data) {
-          console.log(replyMsg);
-        }).catch(function(error) {
-          console.log('error');
-        });
-      }
-      //重新讀取資料
-      if (msg == '//getAIData') {
-        getAIDatas();
-      }
-    }
+		replyMsg = msg;
+		if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
+			if (event.source.groupId == undefined) {
+				//傳送訊息
+				event.reply(replyMsg).then(function (data) {
+					console.log(replyMsg);
+				}).catch(function (error) {
+					console.log('error');
+				});
+			}
+			//重新讀取資料
+			if (msg == '//getAIData') {
+				getAIDatas();
+			}
+		}
 
-  });
+	});
+	
+	bot.on('follow', function (event) {
+		CheckMember(event.source.userId);
+	});
+}
+
+function CheckMember(userId) {
+	member.displayMember(userId).then(data => {
+		if (data == false) {
+			let member = {
+				user_id : userId
+
+			}
+			member.addMember().then(data2 => {
+				if (data2) {
+
+				} else {
+					console.log('寫入資料庫時發生問題');
+					return;
+				}
+			})
+		}
+		let sendMsg = '你好，感謝你加我為朋友'
+		bot.push(userId, [sendMsg]);
+	})
+
 }
 
 function getAIDatas() {
-  var sheets = google.sheets('v4');
-  sheets.spreadsheets.values.get({
-    auth: oauth2Client,
-    spreadsheetId: mySheetId,
-    range: encodeURI('AITest'),
-  }, function(err, response) {
-    if (err) {
-      console.log('讀取問題檔的API產生問題：' + err);
-      return;
-    }
-    var rows = response.values;
-    if (rows.length == 0) {
-      console.log('No data found.');
-    } else {
-      var DBlength = rows.length;
-      for (i = 0; i < DBlength; i++) {
-        aiDB[i] = rows[i];
-      }
-    }
-  });
+	var sheets = google.sheets('v4');
+	sheets.spreadsheets.values.get({
+		auth: oauth2Client,
+		spreadsheetId: mySheetId,
+		range: encodeURI('AITest'),
+	}, function (err, response) {
+		if (err) {
+			console.log('讀取問題檔的API產生問題：' + err);
+			return;
+		}
+		var rows = response.values;
+		if (rows.length == 0) {
+			console.log('No data found.');
+		} else {
+			var DBlength = rows.length;
+			for (i = 0; i < DBlength; i++) {
+				aiDB[i] = rows[i];
+			}
+		}
+	});
 }
 
 //●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為原始程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
