@@ -92,8 +92,7 @@ function _bot() {
 		var msg = event.message.text;
 		var command = msg.replace(/\s+/g, "");
 		var replyMsg = '愛你唷 <3';
-			// CheckMember(event);
-		console.log(event)
+		CheckMember(event);
 		/*
     if (event.message.type == 'text') {
       var containCount = 0;
@@ -107,7 +106,7 @@ function _bot() {
     }
 */
 		replyMsg = msg;
-		if (event.source.userId == 'U6e7d4242219e379cb8dfa26b62cda593') {
+		if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
 			if (event.source.groupId == undefined) {
 				//傳送訊息
 				event.reply(replyMsg).then(function (data) {
@@ -125,8 +124,7 @@ function _bot() {
 	});
 
 	bot.on('follow', function (event) {
-		console.log(event)
-		// CheckMember(event);
+		CheckMember(event);
 	});
 }
 
@@ -144,7 +142,7 @@ function CheckMember(event) {
 				}
 				member.addMember(member).then(data2 => {
 					if (data2) {
-	
+						console.log('成功寫入資料庫');
 					} else {
 						console.log('寫入資料庫時發生問題');
 						return;
@@ -155,7 +153,7 @@ function CheckMember(event) {
 			bot.push(userId, [sendMsg]);
 		})
 	});
-	
+
 
 }
 
