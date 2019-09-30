@@ -5,9 +5,9 @@ var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
 var bot = linebot({
-  channelId: '1558887838',
-  channelSecret: '1a4c4b7f22416496c44b76d566c45576',
-  channelAccessToken: 'L3JExeBE/B0vkQMnZFbhxtLijIQHcecDl2LRQV1N6EgeVO4P5vq1WRcklQ5aDK4ZE+gO00BOmPq3d/C5qmg2eEZc9T09ELM3j6DZPI1pYVy2zDMrh2zd0TCCFSYcyolYWavgPmKd31Qj+NFWk1Fz7QdB04t89/1O/w1cDnyilFU='
+  channelId: '1627582693',
+  channelSecret: '7e8291f8ca70e509c82447b342850c26',
+  channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
 
 var myClientSecret = {
@@ -73,7 +73,8 @@ function _bot() {
   bot.on('message', function(event) {
     var msg = event.message.text;
     var command = msg.replace(/\s+/g, "");
-    var replyMsg = '';
+	var replyMsg = '';
+	console.log(msg)
 	/*
     if (event.message.type == 'text') {
       var containCount = 0;
