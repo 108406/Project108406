@@ -74,7 +74,7 @@ function _bot() {
     var msg = event.message.text;
     var command = msg.replace(/\s+/g, "");
 	var replyMsg = '';
-	console.log(msg)
+	console.log(event)
 	/*
     if (event.message.type == 'text') {
       var containCount = 0;
