@@ -3,6 +3,7 @@ var router = express.Router();
 
 //增加引用函式
 const project = require('./utility/project');
+const projecthint = require('./utility/projecthint');
 const teammember = require('./utility/teammember');
 
 router.post('/', function (req, res, next) {
@@ -12,8 +13,10 @@ router.post('/', function (req, res, next) {
                 teammember.VerificationTeamMember(req.cookies.userid, req.body.projectId).then(result => {
                     if (!result) {
                         teammember.addTeamMember(req.cookies.userid, req.body.projectId, null, false).then(data2 => {
-                            return res.status(200).send({
-                                success: true,
+                            projecthint.addProjectHint(req.cookies.userid, req.body.projectId, true).then(data2 => {
+                                return res.status(200).send({
+                                    success: true,
+                                });
                             });
                         });
                     } else {
@@ -31,7 +34,7 @@ router.post('/', function (req, res, next) {
             }
         })
     } else {
-        res.redirect('login');
+        res.redirect('/login');
     }
 });
 

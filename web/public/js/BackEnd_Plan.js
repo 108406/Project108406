@@ -531,6 +531,42 @@ function AddMemberToWork(data, cardNo) {
         $('#principal').append('<img id="principal_' + data.teammember[0] +
             '" src="data:image/png;base64,' + data.teammember[2] +
             '" class="modal-member-photo">');
+        ajaxing++;
+        $.ajax({
+            method: 'POST',
+            url: '/content/plan/addWorkHint',
+            datatype: "json",
+            data: {
+                work_id: +newWorkData[0],
+                user_id: data.teammember[0]
+            },
+            success: function (data) {
+                ajaxing--;
+            },
+            error: function (data) {
+                alert('連接伺服器出現問題，請重試。')
+                location.reload();
+            }
+        })
+    } else {
+
+        ajaxing++;
+        $.ajax({
+            method: 'POST',
+            url: '/content/plan/deleteWorkHint',
+            datatype: "json",
+            data: {
+                work_id: +newWorkData[0],
+                user_id: data.teammember[0]
+            },
+            success: function (data) {
+                ajaxing--;
+            },
+            error: function (data) {
+                alert('連接伺服器出現問題，請重試。')
+                location.reload();
+            }
+        })
     }
     let deadline;
     if (newWorkData[3].length != 6) {
@@ -695,7 +731,6 @@ function ChangeTagName(isLeft, index, tag_id) {
 
 function ChangeTag(id, color) {
     let allTags = JSON.parse($('#tags').val());
-    let allWorks = JSON.parse($('#works').val());
     let status = 0;
     let removeIndex = -1;
     if (id.indexOf('green') != -1) {
@@ -1555,8 +1590,8 @@ function AddCardK(event) {
 // 新增卡片用的function
 function AddCard(index, title) {
     let checkAllWorks = JSON.parse($('#works').val());
-    for (let a = 0;a < checkAllWorks.length; a ++) {
-        if (checkAllWorks[a][1] == title) {
+    for (let a = 0; a < checkAllWorks.length; a++) {
+        if (checkAllWorks[a][1] == title.replace(/(\r\n|\n|\r)/gm, " ")) {
             alert('已有相同的卡片名稱。');
             return;
         }
@@ -1565,7 +1600,7 @@ function AddCard(index, title) {
     let listname = $($($('.work-header')[index]).children()[0]).attr('placeholder')
     let listId;
     let workLength = $('.card.work-card').length;
-    let workData = ["", title, "", "", null, null, null, null, null, null, "", "", "",
+    let workData = ["", title.replace(/(\r\n|\n|\r)/gm, " "), "", "", null, null, null, null, null, null, "", "", "",
         ""
     ]
     let newCardData = {
@@ -1578,7 +1613,7 @@ function AddCard(index, title) {
 <div class="card work-card" id="card-` + workLength + `" style="position: relative; left: 0px; top: 0px;">\n\
 <div class="work-card-header"></div><div onclick='javascript:SetWorkCard(` + JSON.stringify(newCardData) + `, ` +
         workLength + `)'>\n\
-<div class="work-name" data-toggle="modal" data-target="#show-modal">` + title + `</div>\n\
+<div class="work-name" data-toggle="modal" data-target="#show-modal">` + title.replace(/(\r\n|\n|\r)/gm, " ") + `</div>\n\
 <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal"><div class="work-img">\n\
 </div></div></div></div>`)
     for (let c = 0; c < allLists.length; c++) {
@@ -1592,12 +1627,13 @@ function AddCard(index, title) {
         url: '/content/plan/addWork',
         datatype: "json",
         data: {
-            work_title: title,
+            work_title: title.replace(/(\r\n|\n|\r)/gm, " "),
             list_id: listId
         },
         success: function (data) {
             let allWorks = JSON.parse($('#works').val());
             workData[0] = "" + data.work_id;
+            workData[1] = workData[1].replace(/(\r\n|\n|\r)/gm, " ");
             allWorks.push(workData)
             newCardData = {
                 listname: listname,

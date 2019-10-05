@@ -18,10 +18,10 @@ var displayWorkHint = async function(work_id){
     return result;
 }
 
-var deleteWorkHint = async function(workhint_serno){
+var deleteWorkHint = async function(user_id, work_id){
     var result=[];
 	
-    await sql(`delete from "workhint" where "workhint_serno" = ` + workhint_serno)
+    await sql(`delete from "workhint" where "user_id" = $1 and "work_id" = $2` + [user_id, work_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;
