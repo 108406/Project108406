@@ -69,24 +69,31 @@ function getPoSAmountAndPosition(message, sort) {
 	}
 	return amountAndPosition;
 }
-let a = 0;
-// let push = setInterval(function () {
+let time = [2019, 10, 5, 6, 28, 0];
+let push = setInterval(function () {
 
-// 	var userId = 'U30986dc43eb2232855acbb5718be7c87';
-// 	var sendMsg = 'message: ' + a;
-// 	// member.displayMember('A001').then(data => {
-// 	// 	if (data) {
-// 	// 		console.log(data);
-// 	// 	}
-// 	// })
-// 	bot.push(userId, [sendMsg]);
-// 	a++
-// 	if (a > 5) {
-// 		clearInterval(push)
-// 	}
-// 	console.log('userId: ' + userId);
-// 	console.log('send: ' + sendMsg);
-// }, 10000);
+	var userId = 'U30986dc43eb2232855acbb5718be7c87';
+	let nowDateArray = myFunction.SeparateDate(Date());
+	var sendMsg = nowDateArray[0] + '年' + nowDateArray[1] + '月' + nowDateArray[2] + '日 ' +
+		(nowDateArray[3] + 8) + '點' + nowDateArray[4] + '分' + nowDateArray[5] + '秒';
+	// member.displayMember('A001').then(data => {
+	// 	if (data) {
+	// 		console.log(data);
+	// 	}
+	// })
+	let isNow = true;
+	for (let a = 0;a < time.length; a ++) {
+		if (nowDateArray[a] != time[a]) {
+			isNow = false;
+		}
+	}
+	if (isNow) {
+		bot.push(userId, [sendMsg]);
+		console.log('userId: ' + userId);
+		console.log('send: ' + sendMsg);
+	}
+	
+}, 1000);
 
 function _bot() {
 	bot.on('message', function (event) {
@@ -112,7 +119,6 @@ function _bot() {
 				member.displayMember(event.source.userId).then(data => {
 					console.log(data[0].member_name)
 				})
-				console.log(myFunction.SeparateDate(Date()));
 				//傳送訊息
 				// event.reply(replyMsg).then(function (data) {
 				// 	console.log(replyMsg);
