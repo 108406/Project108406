@@ -82,7 +82,7 @@ let UpdateAllWorkData = setInterval(function() {
 }, 600000)
 view.myWorkAllData().then(data => {
 	allWorkData = data;
-	console.log(allWorkData)
+	console.log(allWorkData[0])
 })
 let time = [2019, 10, 5, 6, 45, 0];
 let push = setInterval(function () {
