@@ -77,6 +77,7 @@ var server = app.listen(process.env.PORT || 8080, function () {
 function UpdateAllWorkData() {
 	view.myWorkAllData().then(data => {
 		allWorkData = [];
+		stringAllWorkData = [];
 		for (let a = 0; a < data.length; a++) {
 			let project_enddate = myFunction.SeparateDate(data[a].project_enddate + '')
 			let deadline = data[a].deadline != null ? myFunction.SeparateDate(data[a].deadline + '') : null
@@ -91,7 +92,11 @@ function UpdateAllWorkData() {
 				deadline: deadline,
 				work_hint: data[a].work_hint
 			}
-			allWorkData.push(workData)
+			
+			if (!stringAllWorkData.includes(JSON.stringify(workData))) {
+				stringAllWorkData.push(JSON.stringify(workData))
+				allWorkData.push(workData)				
+			}
 
 		}
 		console.log(allWorkData)
