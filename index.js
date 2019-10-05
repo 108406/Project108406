@@ -79,7 +79,7 @@ function UpdateAllWorkData() {
 		allWorkData = [];
 		for (let a = 0; a < data.length; a ++) {
 			let project_enddate = myFunction.SeparateDate(data[a].project_enddate + '')
-			let deadline = myFunction.SeparateDate(data[a].deadline + '')
+			let deadline = deadline != null ? myFunction.SeparateDate(data[a].deadline + '') : null
 			let workData = {
 				user_id: data[a].user_id,
 				member_name: data[a].member_name,
