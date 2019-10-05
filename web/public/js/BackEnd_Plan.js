@@ -1571,7 +1571,7 @@ function DragWorkToList(toListElement, fromListElement, workElement) {
 }
 
 function AddCardK(event) {
-    if (event.key == 'Enter' && !event.shiftKey) {
+    if (event.key == 'Enter'/* && !event.shiftKey */) {
         var somethingAdd = false;
         var addIndex = -1;
         var addTitle = '';
