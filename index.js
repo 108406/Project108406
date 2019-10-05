@@ -94,13 +94,6 @@ function UpdateAllWorkData() {
 			allWorkData.push(workData)
 
 		}
-		allWorkData = allWorkData.filter(item => {
-			if (!(item.user_id == workData.user_id &&
-					item.project_name == workData.project_name &&
-					item.work_title == workData.work_title)) {
-				return item
-			}
-		})
 		console.log(allWorkData)
 	})
 }
