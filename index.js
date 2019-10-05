@@ -133,6 +133,7 @@ let push = setInterval(function () {
 			if (hintHour == nowDateArray[3] && hintDay == nowDateArray[2]) {
 				for (let a = 0; a < 6; a++) {
 					if (a != 3 && a != 2) {
+						console.log('nowDateArray[a]: ' + nowDateArray[a] + ', project_enddate[a]: ' + project_enddate[a])
 						if (nowDateArray[a] != project_enddate[a]) {
 							pushMessage = false;
 						}
@@ -140,8 +141,6 @@ let push = setInterval(function () {
 				}
 			}
 			if (pushMessage) {
-				console.log(nowDateArray)
-				console.log(project_enddate)
 				pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 					'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 					project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
