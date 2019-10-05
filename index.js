@@ -77,7 +77,7 @@ var server = app.listen(process.env.PORT || 8080, function () {
 function UpdateAllWorkData() {
 	view.myWorkAllData().then(data => {
 		allWorkData = [];
-		for (let a = 0; a < data.length; a ++) {
+		for (let a = 0; a < data.length; a++) {
 			let project_enddate = myFunction.SeparateDate(data[a].project_enddate + '')
 			let deadline = data[a].deadline != null ? myFunction.SeparateDate(data[a].deadline + '') : null
 			let workData = {
@@ -91,14 +91,16 @@ function UpdateAllWorkData() {
 				deadline: deadline,
 				work_hint: data[a].work_hint
 			}
-			allWorkData.filter(item => {
-				if (!(item.user_id == workData.user_id &&
+			allWorkData.push(workData)
+
+		}
+		allWorkData = allWorkData.filter(item => {
+			if (!(item.user_id == workData.user_id &&
 					item.project_name == workData.project_name &&
 					item.work_title == workData.work_title)) {
-						allWorkData.push(workData)
-					}
-			})
-		}
+				return item
+			}
+		})
 		console.log(allWorkData)
 	})
 }
@@ -116,19 +118,19 @@ let push = setInterval(function () {
 	var sendMsg = nowDateArray[0] + '年' + nowDateArray[1] + '月' + nowDateArray[2] + '日 ' +
 		(nowDateArray[3] + 8) + '點' + nowDateArray[4] + '分' + nowDateArray[5] + '秒';
 	let isNow = true;
-	for (let a = 0;a < time.length; a ++) {
+	for (let a = 0; a < time.length; a++) {
 		if (nowDateArray[a] != time[a]) {
 			isNow = false;
 		}
 	}
 	if (isNow) {
-		for (let b = 0;b < userId.length; b ++) {
+		for (let b = 0; b < userId.length; b++) {
 			bot.push(userId[b], [sendMsg]);
 			console.log('userId: ' + userId[b]);
 			console.log('send: ' + sendMsg);
 		}
 	}
-	
+
 }, 1000);
 
 function _bot() {
