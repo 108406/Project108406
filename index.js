@@ -201,13 +201,13 @@ let push = setInterval(function () {
 					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
+						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束'
 				}
 			}
 		} 
-		console.log('pushProjectMessage: ' + pushProjectMessage)
 		if (pushProjectMessage != '' || pushWorkMessage != '') {
 			userId = allWorkData[allDataIndex].userId;
+			console.log(userId)
 			bot.push(userId, [pushProjectMessage]);
 		}
 	}
