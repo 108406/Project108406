@@ -270,7 +270,7 @@ function _bot() {
 		CheckMember(event);
 	});
 }
-
+ 
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
 		member.displayMember(event.source.userId).then(data => {
