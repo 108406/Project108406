@@ -531,42 +531,6 @@ function AddMemberToWork(data, cardNo) {
         $('#principal').append('<img id="principal_' + data.teammember[0] +
             '" src="data:image/png;base64,' + data.teammember[2] +
             '" class="modal-member-photo">');
-        ajaxing++;
-        $.ajax({
-            method: 'POST',
-            url: '/content/plan/addWorkHint',
-            datatype: "json",
-            data: {
-                work_id: +newWorkData[0],
-                user_id: data.teammember[0]
-            },
-            success: function (data) {
-                ajaxing--;
-            },
-            error: function (data) {
-                alert('連接伺服器出現問題，請重試。')
-                location.reload();
-            }
-        })
-    } else {
-
-        ajaxing++;
-        $.ajax({
-            method: 'POST',
-            url: '/content/plan/deleteWorkHint',
-            datatype: "json",
-            data: {
-                work_id: +newWorkData[0],
-                user_id: data.teammember[0]
-            },
-            success: function (data) {
-                ajaxing--;
-            },
-            error: function (data) {
-                alert('連接伺服器出現問題，請重試。')
-                location.reload();
-            }
-        })
     }
     let deadline;
     if (newWorkData[3].length != 6) {
@@ -623,9 +587,48 @@ function AddMemberToWork(data, cardNo) {
             first_principal: newWorkData[12],
             second_principal: newWorkData[13]
         },
-        success: function (data) {
-
+        success: function (data2) {
             ajaxing--;
+            if (!dontAppend) {
+                ajaxing++;
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/addWorkHint',
+                    datatype: "json",
+                    data: {
+                        work_id: +newWorkData[0],
+                        user_id: data.teammember[0]
+                    },
+                    success: function (data) {
+                        ajaxing--;
+                        return;
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            } else {
+                ajaxing++;
+                $.ajax({
+                    method: 'POST',
+                    url: '/content/plan/deleteWorkHint',
+                    datatype: "json",
+                    data: {
+                        work_id: +newWorkData[0],
+                        user_id: data.teammember[0]
+                    },
+                    success: function (data) {
+                        ajaxing--;
+                        return;
+                    },
+                    error: function (data) {
+                        alert('連接伺服器出現問題，請重試。')
+                        location.reload();
+                    }
+                })
+            }
+            return;
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
