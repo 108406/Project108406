@@ -206,7 +206,7 @@ let push = setInterval(function () {
 			}
 		} 
 		if (pushProjectMessage != '' || pushWorkMessage != '') {
-			userId = allWorkData[allDataIndex].userId;
+			userId = allWorkData[allDataIndex].user_id;
 			console.log(userId)
 			bot.push(userId, [pushProjectMessage]);
 		}
