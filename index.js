@@ -137,6 +137,7 @@ let push = setInterval(function () {
 				// 	}
 				// }
 			}
+			console.log(nowDateArray)
 			console.log(project_enddate)
 			if (pushMessage) {
 				pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
