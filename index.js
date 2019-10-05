@@ -132,8 +132,10 @@ let push = setInterval(function () {
 			}
 			if (hintHour == nowDateArray[3] && hintDay == nowDateArray[2]) {
 				for (let a = 0; a < 6; a++) {
-					if (a != 3 && a != 2 && nowDateArray[a] != project_enddate[a]) {
-						pushMessage = false;
+					if (a != 3 && a != 2) {
+						if (nowDateArray[a] != project_enddate[a]) {
+							pushMessage = false;
+						}
 					}
 				}
 			}
@@ -272,7 +274,7 @@ function _bot() {
 		CheckMember(event);
 	});
 }
- 
+
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
 		member.displayMember(event.source.userId).then(data => {
