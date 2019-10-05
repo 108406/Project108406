@@ -6,7 +6,7 @@ var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
 var myFunction = require('./routes/utility/myFunction');
 
-var allWorkData;
+var allWorkData = [];
 
 var bot = linebot({
 	channelId: '1627582693',
@@ -74,16 +74,32 @@ var server = app.listen(process.env.PORT || 8080, function () {
 // }
 
 // 每十分鐘更新一次資料
-let UpdateAllWorkData = setInterval(function() {
+function UpdateAllWorkData() {
 	view.myWorkAllData().then(data => {
-		allWorkData = data;
+		allWorkData = [];
+		for (let a = 0; a < data.length; a ++) {
+			let workData = {
+				user_id: data[a].user_id,
+				member_name: data[a].member_name,
+				linebotpush: data[a].linebotpush,
+				project_name: data[a].project_name,
+				project_hint: data[a].project_hint,
+				project_enddate: data[a].project_enddate,
+				work_title: data[a].work_title,
+				deadline: data[a].deadline,
+				work_hint: data[a].work_hint
+			}
+			allWorkData.push(workData)
+		}
 		console.log(allWorkData)
 	})
-}, 600000)
-view.myWorkAllData().then(data => {
-	allWorkData = data;
-	console.log(allWorkData[0])
-})
+}
+
+UpdateAllWorkData();
+
+let updataData = setInterval(UpdateAllWorkData, 600000);
+
+
 let time = [2019, 10, 5, 6, 45, 0];
 let push = setInterval(function () {
 
