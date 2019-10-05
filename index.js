@@ -89,6 +89,7 @@ function UpdateAllWorkData() {
 				deadline: data[a].deadline,
 				work_hint: data[a].work_hint
 			}
+			console.log(allWorkData.includes(workData))
 			allWorkData.push(workData)
 		}
 		console.log(allWorkData)
