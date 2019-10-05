@@ -131,13 +131,13 @@ let push = setInterval(function () {
 				hintDay = project_enddate[2];
 			}
 			if (hintHour == nowDateArray[3] && hintDay == nowDateArray[2]) {
-				for (let a = 0; a < 6; a++) {
-					if (a != 3 && a != 2 && nowDateArray[a] != project_enddate[a]) {
-						pushMessage = false;
-					}
-				}
+				// for (let a = 0; a < 6; a++) {
+				// 	if (a != 3 && a != 2 && nowDateArray[a] != project_enddate[a]) {
+				// 		pushMessage = false;
+				// 	}
+				// }
 			}
-			console.log('pushMessage: ' + pushMessage)
+			console.log(project_enddate)
 			if (pushMessage) {
 				pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 					'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
