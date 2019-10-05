@@ -58,5 +58,22 @@ var workWithUser = async function (user_id) {
     return result;
 }
 
+var myWorkAllData = async function () {
+    //存放結果
+    var result = [];
+    //讀取資料庫
+    await query("select * from mywork_view")
+        .then((data) => {
+            result = data.rows; //成功
+            // console.log(data.rows);
+        }, (error) => {
+            result = 'failed'; //執行錯誤
+            console.log(error)
+        });
+
+    //回傳執行結果
+    return result;
+}
+
 //匯入
-module.exports = { projectWithUser, projectAllData, workWithUser }
+module.exports = { projectWithUser, projectAllData, workWithUser, myWorkAllData }

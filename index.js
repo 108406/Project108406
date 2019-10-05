@@ -3,7 +3,10 @@ var express = require('express');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 var member = require('./routes/utility/member');
+var view = require('./routes/utility/view');
 var myFunction = require('./routes/utility/myFunction');
+
+var allWorkData;
 
 var bot = linebot({
 	channelId: '1627582693',
@@ -39,8 +42,8 @@ var mySheetId = '1uVOVQFbClX6BTZDEEzrKMT5Rq7wQX7CkApYMlMcvXpo';
 
 //●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●以下為ＡＩ程式●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 
-var aiDB = [];
-_Start();
+// var aiDB = [];
+// _Start();
 _bot();
 
 const app = express();
@@ -54,21 +57,30 @@ var server = app.listen(process.env.PORT || 8080, function () {
 });
 
 
-function _Start() {
-	getAIDatas();
-}
+// function _Start() {
+// 	getAIDatas();
+// }
 
-function getPoSAmountAndPosition(message, sort) {
-	var amountAndPosition = [];
-	for (var i = 0; i <= message.length - 1; i++) {
-		for (var a = 1; a <= aiDB[sort].length - 1; a++) {
-			if (message.substr(i, 1) == aiDB[sort][a]) {
-				amountAndPosition.push(i);
-			}
-		}
-	}
-	return amountAndPosition;
-}
+// function getPoSAmountAndPosition(message, sort) {
+// 	var amountAndPosition = [];
+// 	for (var i = 0; i <= message.length - 1; i++) {
+// 		for (var a = 1; a <= aiDB[sort].length - 1; a++) {
+// 			if (message.substr(i, 1) == aiDB[sort][a]) {
+// 				amountAndPosition.push(i);
+// 			}
+// 		}
+// 	}
+// 	return amountAndPosition;
+// }
+
+// 每十分鐘更新一次資料
+let UpdateAllWorkData = setInterval(function() {
+	view.myWorkAllData().then(data => {
+		allWorkData = data;
+		console.log(allWorkData)
+	})
+}, 600000)
+
 let time = [2019, 10, 5, 6, 45, 0];
 let push = setInterval(function () {
 
@@ -76,11 +88,6 @@ let push = setInterval(function () {
 	let nowDateArray = myFunction.SeparateDate(Date());
 	var sendMsg = nowDateArray[0] + '年' + nowDateArray[1] + '月' + nowDateArray[2] + '日 ' +
 		(nowDateArray[3] + 8) + '點' + nowDateArray[4] + '分' + nowDateArray[5] + '秒';
-	// member.displayMember('A001').then(data => {
-	// 	if (data) {
-	// 		console.log(data);
-	// 	}
-	// })
 	let isNow = true;
 	for (let a = 0;a < time.length; a ++) {
 		if (nowDateArray[a] != time[a]) {
