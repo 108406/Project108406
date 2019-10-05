@@ -139,6 +139,7 @@ let push = setInterval(function () {
 						}
 					}
 				}
+				console.log(pushMessage)
 			}
 			if (pushMessage) {
 				pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
