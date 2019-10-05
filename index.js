@@ -78,15 +78,17 @@ function UpdateAllWorkData() {
 	view.myWorkAllData().then(data => {
 		allWorkData = [];
 		for (let a = 0; a < data.length; a ++) {
+			let project_enddate = myFunction.SeparateDate(data[a].project_enddate)
+			let deadline = myFunction.SeparateDate(data[a].deadline)
 			let workData = {
 				user_id: data[a].user_id,
 				member_name: data[a].member_name,
 				linebotpush: data[a].linebotpush,
 				project_name: data[a].project_name,
 				project_hint: data[a].project_hint,
-				project_enddate: data[a].project_enddate + '',
+				project_enddate: project_enddate,
 				work_title: data[a].work_title,
-				deadline: data[a].deadline + '',
+				deadline: deadline,
 				work_hint: data[a].work_hint
 			}
 			console.log(allWorkData.includes(workData))
