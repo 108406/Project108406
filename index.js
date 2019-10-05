@@ -92,10 +92,10 @@ function UpdateAllWorkData() {
 				deadline: deadline,
 				work_hint: data[a].work_hint
 			}
-			
+
 			if (!stringAllWorkData.includes(JSON.stringify(workData))) {
 				stringAllWorkData.push(JSON.stringify(workData))
-				allWorkData.push(workData)				
+				allWorkData.push(workData)
 			}
 
 		}
@@ -110,24 +110,126 @@ let updataData = setInterval(UpdateAllWorkData, 600000);
 
 let time = [2019, 10, 5, 6, 45, 0];
 let push = setInterval(function () {
-
-	var userId = ['U30986dc43eb2232855acbb5718be7c87', 'U48fc817916ce8d7737e6b13d657c333f'];
 	let nowDateArray = myFunction.SeparateDate(Date());
-	var sendMsg = nowDateArray[0] + '年' + nowDateArray[1] + '月' + nowDateArray[2] + '日 ' +
-		(nowDateArray[3] + 8) + '點' + nowDateArray[4] + '分' + nowDateArray[5] + '秒';
-	let isNow = true;
-	for (let a = 0; a < time.length; a++) {
-		if (nowDateArray[a] != time[a]) {
-			isNow = false;
+	nowDateArray[3] += 8;
+	for (let allDataIndex = 0; allDataIndex < allWorkData.length; allDataIndex++) {
+		let project_enddate = allWorkData[allDataIndex].project_enddate;
+		let deadline = allWorkData[allDataIndex].deadline;
+		let pushProjectMessage = '';
+		let pushWorkMessage = '';
+
+		// 在12小時以前提醒專案到期
+		(function () {
+			if (pushProjectMessage == '') {
+				let pushMessage = true;
+				let hintHour;
+				let hintDay;
+				if (project_enddate[3] - 12 < 0) {
+					hintHour = 24 - Math.abs(project_enddate[3] - 12);
+					hintDay = project_enddate[2] - 1;
+				} else {
+					hintHour = project_enddate[3] - 12;
+					hintDay = project_enddate[2];
+				}
+				if (hintHour == nowDateArray[3] && hintDay == nowDateArray[2]) {
+					for (let a = 0; a < 6; a++) {
+						if (a != 3 && a != 2 && nowDateArray[a] != project_enddate[a]) {
+							pushMessage = false;
+						}
+					}
+				}
+				if (pushMessage) {
+					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
+						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
+						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
+						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
+				}
+			}
+		})()
+
+		// 在一個禮拜以前提醒專案到期
+		(function () {
+			if (pushProjectMessage == '') {
+				let pushMessage = true;
+				let hintDay;
+				let hintMonth;
+				if (project_enddate[2] - 7 < 0) {
+					if (project_enddate[1] - 1 == 2) {
+						hintDay = 28 - Math.abs(project_enddate[2] - 7);
+						hintMonth = 2;
+					} else {
+						hintDay = 30 - Math.abs(project_enddate[2] - 7);
+						hintMonth = project_enddate[1] - 1;
+					}
+				} else {
+					hintDay = project_enddate[2] - 7;
+					hintMonth = project_enddate[1];
+				}
+				if (hintMonth == nowDateArray[1] && hintDay == nowDateArray[2]) {
+					for (let a = 0; a < 6; a++) {
+						if (a != 1 && a != 2 && nowDateArray[a] != project_enddate[a]) {
+							pushMessage = false;
+						}
+					}
+				}
+				if (pushMessage) {
+					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
+						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
+						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
+						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
+				}
+			}
+		})()
+
+		// 在一個月以前提醒專案到期
+		(function () {
+			if (pushProjectMessage == '') {
+				let pushMessage = true;
+				let hintMonth;
+				let hintYear;
+				if (project_enddate[1] - 1 > 0) {
+					hintMonth = project_enddate[1] - 1;
+					hintYear = project_enddate[0];
+				} else {
+					hintMonth = 12;
+					hintYear = project_enddate[0] - 1;
+				}
+				if (hintYear == nowDateArray[0] && hintMonth == nowDateArray[1]) {
+					for (let a = 0; a < 6; a++) {
+						if (a != 1 && nowDateArray[a] != project_enddate[a]) {
+							pushMessage = false;
+						}
+					}
+				}
+				if (pushMessage) {
+					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
+						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
+						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
+						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
+				}
+			}
+		})()
+		if (pushProjectMessage != '' || pushWorkMessage != '') {
+			userId = allWorkData[allDataIndex].userId;
+			bot.push(userId, [pushProjectMessage]);
 		}
 	}
-	if (isNow) {
-		for (let b = 0; b < userId.length; b++) {
-			bot.push(userId[b], [sendMsg]);
-			console.log('userId: ' + userId[b]);
-			console.log('send: ' + sendMsg);
-		}
-	}
+	// var userId = ['U30986dc43eb2232855acbb5718be7c87', 'U48fc817916ce8d7737e6b13d657c333f'];
+	// var sendMsg = nowDateArray[0] + '年' + nowDateArray[1] + '月' + nowDateArray[2] + '日 ' +
+	// 	(nowDateArray[3] + 8) + '點' + nowDateArray[4] + '分' + nowDateArray[5] + '秒';
+	// let isNow = true;
+	// for (let a = 0; a < time.length; a++) {
+	// 	if (nowDateArray[a] != time[a]) {
+	// 		isNow = false;
+	// 	}
+	// }
+	// if (isNow) {
+	// 	for (let b = 0; b < userId.length; b++) {
+	// 		bot.push(userId[b], [sendMsg]);
+	// 		console.log('userId: ' + userId[b]);
+	// 		console.log('send: ' + sendMsg);
+	// 	}
+	// }
 
 }, 1000);
 
