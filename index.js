@@ -84,9 +84,9 @@ function UpdateAllWorkData() {
 				linebotpush: data[a].linebotpush,
 				project_name: data[a].project_name,
 				project_hint: data[a].project_hint,
-				project_enddate: data[a].project_enddate.toString(),
+				project_enddate: data[a].project_enddate + '',
 				work_title: data[a].work_title,
-				deadline: data[a].deadline.toString(),
+				deadline: data[a].deadline + '',
 				work_hint: data[a].work_hint
 			}
 			console.log(allWorkData.includes(workData))
