@@ -3,6 +3,7 @@ var express = require('express');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 var member = require('./routes/utility/member');
+var myFunction = require('./routes/utility/myFunction');
 
 var bot = linebot({
 	channelId: '1627582693',
@@ -111,6 +112,7 @@ function _bot() {
 				member.displayMember(event.source.userId).then(data => {
 					console.log(data[0].member_name)
 				})
+				console.log(myFunction.SeparateDate(Date()));
 				//傳送訊息
 				// event.reply(replyMsg).then(function (data) {
 				// 	console.log(replyMsg);
