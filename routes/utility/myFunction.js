@@ -47,8 +47,50 @@ var nowTimeToDB = function () {
     return result;
 }
 
+// theDate = [2019, 10, 5, 21, 39, 0]
+// before = [0, 0, 1, 0, 0, 0];
+// result = [2019, 10, 4, 21, 39, 0];
+var BeforeDate = function (theDate, before) {
+    let maxDate = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    for (let a = 0; a < 6; a++) {
+        theDate[a] -= before[a];
+    }
+    if (theDate[5] < 0) {
+        theDate[5] += 60;
+        theDate[4]--;
+    }
+    if (theDate[4] < 0) {
+        theDate[4] += 60;
+        theDate[3]--;
+    }
+    if (theDate[3] < 0) {
+        theDate[3] += 24;
+        theDate[2]--;
+    }
+    if (theDate[2] <= 0) {
+        let month;
+        let index;
+        if (theDate[1] - 1 > 0) {
+            month = theDate[1] - 1;
+            index = month - 1;
+        } else {
+            month = 12;
+            index = 11;
+            theDate[0]--;
+        }
+        theDate[2] += maxDate[index];
+        theDate[1] = month;
+    }
+    if (theDate[1] <= 0) {
+        theDate[1] += 12;
+        theDate[0]--;
+    }
+    return theDate;
+}
+
 module.exports = {
     SeparateDate,
     IsAdateNotArrived,
-    nowTimeToDB
+    nowTimeToDB,
+    BeforeDate
 };

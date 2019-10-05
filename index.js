@@ -115,101 +115,86 @@ let push = setInterval(function () {
 	for (let allDataIndex = 0; allDataIndex < allWorkData.length; allDataIndex++) {
 		let project_enddate = allWorkData[allDataIndex].project_enddate;
 		let deadline = allWorkData[allDataIndex].deadline;
-		let pushProjectMessage = '';
-		let pushWorkMessage = '';
+		let pushProjectText = '';
+		let pushWorkText = '';
 
+		// =================================專案提醒判斷================================
 		// 在12小時以前提醒專案到期
-		if (pushProjectMessage == '') {
-			let pushMessage = true;
-			let hintHour;
-			let hintDay;
-			if (project_enddate[3] - 12 < 0) {
-				hintHour = 24 - Math.abs(project_enddate[3] - 12);
-				hintDay = project_enddate[2] - 1;
-			} else {
-				hintHour = project_enddate[3] - 12;
-				hintDay = project_enddate[2];
+		let projectPushTime_12h = myFunction.BeforeDate(project_enddate, [0, 0, 0, 12, 0, 0]);
+		let projectPushMessage_12h = true;
+		for (let a = 0; a < 6; a++) {
+			if (nowDateArray[a] != projectPushTime_12h[a]) {
+				projectPushMessage_12h = false;
 			}
-			if (hintHour == nowDateArray[3] && hintDay == nowDateArray[2]) {
-				for (let a = 0; a < 6; a++) {
-					if (a != 3 && a != 2) {
-						if (nowDateArray[a] != project_enddate[a]) {
-							pushMessage = false;
-						}
-					}
-				}
-				if (pushMessage) {
-					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
-						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
-						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
-				}
-			}			
 		}
 
 		// 在一個禮拜以前提醒專案到期
-		if (pushProjectMessage == '') {
-			let pushMessage = true;
-			let hintDay;
-			let hintMonth;
-			if (project_enddate[2] - 7 < 0) {
-				if (project_enddate[1] - 1 == 2) {
-					hintDay = 28 - Math.abs(project_enddate[2] - 7);
-					hintMonth = 2;
-				} else {
-					hintDay = 30 - Math.abs(project_enddate[2] - 7);
-					hintMonth = project_enddate[1] - 1;
-				}
-			} else {
-				hintDay = project_enddate[2] - 7;
-				hintMonth = project_enddate[1];
-			}
-			if (hintMonth == nowDateArray[1] && hintDay == nowDateArray[2]) {
-				for (let a = 0; a < 6; a++) {
-					if (a != 1 && a != 2 && nowDateArray[a] != project_enddate[a]) {
-						pushMessage = false;
-					}
-				}
-				if (pushMessage) {
-					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
-						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
-						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
-				}
+		let projectPushTime_7d = myFunction.BeforeDate(project_enddate, [0, 0, 7, 0, 0, 0]);
+		let projectPushMessage_7d = true;
+		for (let a = 0; a < 6; a++) {
+			if (nowDateArray[a] != projectPushTime_7d[a]) {
+				projectPushMessage_7d = false;
 			}
 		}
 
 		// 在一個月以前提醒專案到期
-		if (pushProjectMessage == '') {
-			let pushMessage = true;
-			let hintMonth;
-			let hintYear;
-			if (project_enddate[1] - 1 > 0) {
-				hintMonth = project_enddate[1] - 1;
-				hintYear = project_enddate[0];
-			} else {
-				hintMonth = 12;
-				hintYear = project_enddate[0] - 1;
+		let projectPushTime_1m = myFunction.BeforeDate(project_enddate, [0, 1, 0, 0, 0, 0]);
+		let projectPushMessage_1m = true;
+		for (let a = 0; a < 6; a++) {
+			if (nowDateArray[a] != projectPushTime_1m[a]) {
+				projectPushMessage_1m = false;
 			}
-			if (hintYear == nowDateArray[0] && hintMonth == nowDateArray[1]) {
-				for (let a = 0; a < 6; a++) {
-					if (a != 1 && nowDateArray[a] != project_enddate[a]) {
-						pushMessage = false;
-					}
-				}
-				if (pushMessage) {
-					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
-						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
-						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束'
-				}
-			}
-		} 
-		if (pushProjectMessage != '' || pushWorkMessage != '') {
-			userId = allWorkData[allDataIndex].user_id;
-			console.log(userId)
-			bot.push(userId, [pushProjectMessage]);
 		}
+
+		if (projectPushMessage_12h || projectPushMessage_7d || projectPushMessage_1m) {
+			pushProjectText = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
+				'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
+				project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
+				project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n';
+			userId = allWorkData[allDataIndex].user_id;
+			bot.push(userId, [pushProjectText]);
+		}
+
+		// =================================工作提醒判斷================================
+		if (deadline != null) {
+			// 在1小時以前提醒工作到期
+			let workPushTime_12h = myFunction.BeforeDate(deadline, [0, 0, 0, 1, 0, 0]);
+			let workPushMessage_12h = true;
+			for (let a = 0; a < 6; a++) {
+				if (nowDateArray[a] != workPushTime_12h[a]) {
+					workPushMessage_12h = false;
+				}
+			}
+
+			// 在一天以前提醒工作到期
+			let workPushTime_7d = myFunction.BeforeDate(deadline, [0, 0, 1, 0, 0, 0]);
+			let workPushMessage_7d = true;
+			for (let a = 0; a < 6; a++) {
+				if (nowDateArray[a] != workPushTime_7d[a]) {
+					workPushMessage_7d = false;
+				}
+			}
+
+			// 在三天以前提醒專案到期
+			let workPushTime_1m = myFunction.BeforeDate(deadline, [0, 0, 3, 0, 0, 0]);
+			let workPushMessage_1m = true;
+			for (let a = 0; a < 6; a++) {
+				if (nowDateArray[a] != workPushTime_1m[a]) {
+					workPushMessage_1m = false;
+				}
+			}
+
+			if (workPushMessage_12h || workPushMessage_7d || workPushMessage_1m) {
+				pushWorkText = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
+					'您在專案【' + allWorkData[allDataIndex].project_name + '】的工作\n' +
+					'「' + allWorkData[allDataIndex].work_title + '」將在\n' +
+					deadline[0] + '/' + deadline[1] + '/' + deadline[2] + ' ' +
+					deadline[3] + ':' + deadline[4] + ':' + deadline[5] + '結束\n';
+				userId = allWorkData[allDataIndex].user_id;
+				bot.push(userId, [pushWorkText]);
+			}
+		}
+
 	}
 	// var userId = ['U30986dc43eb2232855acbb5718be7c87', 'U48fc817916ce8d7737e6b13d657c333f'];
 	// var sendMsg = nowDateArray[0] + '年' + nowDateArray[1] + '月' + nowDateArray[2] + '日 ' +
