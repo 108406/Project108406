@@ -137,7 +137,7 @@ let push = setInterval(function () {
 					}
 				}
 			}
-			console.log('hintHour: ' + hintHour + ', hintDay: ' + hintDay)
+			console.log('pushMessage: ' + pushMessage)
 			if (pushMessage) {
 				pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 					'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
