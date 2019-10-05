@@ -69,10 +69,10 @@ function getPoSAmountAndPosition(message, sort) {
 	}
 	return amountAndPosition;
 }
-let time = [2019, 10, 5, 6, 28, 0];
+let time = [2019, 10, 5, 6, 45, 0];
 let push = setInterval(function () {
 
-	var userId = 'U30986dc43eb2232855acbb5718be7c87';
+	var userId = ['U30986dc43eb2232855acbb5718be7c87', 'U48fc817916ce8d7737e6b13d657c333f'];
 	let nowDateArray = myFunction.SeparateDate(Date());
 	var sendMsg = nowDateArray[0] + '年' + nowDateArray[1] + '月' + nowDateArray[2] + '日 ' +
 		(nowDateArray[3] + 8) + '點' + nowDateArray[4] + '分' + nowDateArray[5] + '秒';
@@ -88,9 +88,11 @@ let push = setInterval(function () {
 		}
 	}
 	if (isNow) {
-		bot.push(userId, [sendMsg]);
-		console.log('userId: ' + userId);
-		console.log('send: ' + sendMsg);
+		for (let b = 0;b < userId.length; b ++) {
+			bot.push(userId[b], [sendMsg]);
+			console.log('userId: ' + userId[b]);
+			console.log('send: ' + sendMsg);
+		}
 	}
 	
 }, 1000);
