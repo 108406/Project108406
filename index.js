@@ -113,13 +113,13 @@ let push = setInterval(function () {
 	let nowDateArray = myFunction.SeparateDate(Date());
 	nowDateArray[3] += 8;
 	for (let allDataIndex = 0; allDataIndex < allWorkData.length; allDataIndex++) {
+		let project_enddate = allWorkData[allDataIndex].project_enddate;
 		let deadline = allWorkData[allDataIndex].deadline;
+		let pushProjectMessage = '';
 		let pushWorkMessage = '';
 
 		// 在12小時以前提醒專案到期
 		if (pushProjectMessage == '') {
-			let project_enddate = allWorkData[allDataIndex].project_enddate;
-			let pushProjectMessage = '';
 			let pushMessage = true;
 			let hintHour;
 			let hintDay;
@@ -142,18 +142,13 @@ let push = setInterval(function () {
 					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n';
-					console.log('pushProjectMessage: ' + pushProjectMessage)
-					userId = allWorkData[allDataIndex].userId;
-					bot.push(userId, [pushProjectMessage]);
+						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
 				}
-			}
+			}			
 		}
 
 		// 在一個禮拜以前提醒專案到期
 		if (pushProjectMessage == '') {
-			let project_enddate = allWorkData[allDataIndex].project_enddate;
-			let pushProjectMessage = '';
 			let pushMessage = true;
 			let hintDay;
 			let hintMonth;
@@ -179,18 +174,13 @@ let push = setInterval(function () {
 					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n';
-					console.log('pushProjectMessage: ' + pushProjectMessage)
-					userId = allWorkData[allDataIndex].userId;
-					bot.push(userId, [pushProjectMessage]);
+						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
 				}
 			}
 		}
 
 		// 在一個月以前提醒專案到期
 		if (pushProjectMessage == '') {
-			let project_enddate = allWorkData[allDataIndex].project_enddate;
-			let pushProjectMessage = '';
 			let pushMessage = true;
 			let hintMonth;
 			let hintYear;
@@ -211,12 +201,14 @@ let push = setInterval(function () {
 					pushProjectMessage = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 						'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 						project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n';
-					console.log('pushProjectMessage: ' + pushProjectMessage)
-					userId = allWorkData[allDataIndex].userId;
-					bot.push(userId, [pushProjectMessage]);
+						project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n'
 				}
 			}
+		} 
+		console.log('pushProjectMessage: ' + pushProjectMessage)
+		if (pushProjectMessage != '' || pushWorkMessage != '') {
+			userId = allWorkData[allDataIndex].userId;
+			bot.push(userId, [pushProjectMessage]);
 		}
 	}
 	// var userId = ['U30986dc43eb2232855acbb5718be7c87', 'U48fc817916ce8d7737e6b13d657c333f'];
