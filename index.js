@@ -91,8 +91,13 @@ function UpdateAllWorkData() {
 				deadline: deadline,
 				work_hint: data[a].work_hint
 			}
-			console.log(allWorkData.includes(workData))
-			allWorkData.push(workData)
+			allWorkData.filter(item => {
+				if (!(item.user_id == workData.user_id &&
+					item.project_name == workData.project_name &&
+					item.work_title == workData.work_title)) {
+						allWorkData.push(workData)
+					}
+			})
 		}
 		console.log(allWorkData)
 	})
