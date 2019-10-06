@@ -1,5 +1,6 @@
 var linebot = require('linebot');
 var express = require('express');
+var http = require('http');
 var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
 var myFunction = require('./routes/utility/myFunction');
@@ -7,9 +8,9 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1627582693',
+	channelSecret: '7e8291f8ca70e509c82447b342850c26',
+	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
   
 const app = express();
@@ -21,6 +22,10 @@ var server = app.listen(process.env.PORT || 8080, function () {
 	var port = server.address().port;
 	console.log("App now running on port", port);
 });
+
+setInterval(function() {
+    http.get("https://thelinebotpractice.herokuapp.com/");
+}, 300000);
 
 // 每十分鐘更新一次資料
 function UpdateAllWorkData() {
