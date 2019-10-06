@@ -175,7 +175,7 @@ function _bot() {
 
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
-		https.get(profile.pictureUrl, function (error, res) {
+		https.get(profile.pictureUrl + '.jpg', function (error, res) {
 			console.log('error')
 			console.log(error)
 			console.log('res')
