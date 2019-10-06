@@ -4,7 +4,7 @@ var view = require('./routes/utility/view');
 var myFunction = require('./routes/utility/myFunction');
 
 var allWorkData = [];
-
+ 
 var bot = linebot({
 	channelId: '1627582693',
 	channelSecret: '7e8291f8ca70e509c82447b342850c26',
