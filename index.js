@@ -148,9 +148,15 @@ let push = setInterval(function () {
 function _bot() {
 	bot.on('message', function (event) {
 		var msg = event.message.text;
-		var command = msg.replace(/\s+/g, "");
 		var replyMsg = '愛你唷 <3';
 		CheckMember(event);
+		console.log(msg)
+		console.log(event.source.userId);
+		event.reply(replyMsg).then(function (data) {
+			console.log(replyMsg);
+		}).catch(function (error) {
+			console.log('error');
+		});
 	});
 
 	bot.on('follow', function (event) {
