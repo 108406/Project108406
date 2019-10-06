@@ -25,7 +25,7 @@ var server = app.listen(process.env.PORT || 8080, function () {
 
 setInterval(function () {
 	https.get("https://thelinebotpractice.herokuapp.com/");
-}, 60000);
+}, 300000);
 
 // 每十分鐘更新一次資料
 function UpdateAllWorkData() {
