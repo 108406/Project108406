@@ -1,5 +1,6 @@
 var linebot = require('linebot');
 var express = require('express');
+var request = require('request');
 var https = require('https');
 var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
@@ -175,7 +176,8 @@ function _bot() {
 
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
-		https.get(profile.pictureUrl + '.jpg', function (error, res) {
+		console.log(profile.pictureUrl)
+		request.get(profile.pictureUrl + '.jpg', function (error, res) {
 			console.log('error')
 			console.log(error)
 			console.log('res')
