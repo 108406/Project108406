@@ -1,6 +1,10 @@
 var linebot = require('linebot');
 var express = require('express');
 var request = require('request');
+var {
+	createCanvas,
+	loadImage
+} = require('canvas');
 var https = require('https');
 var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
@@ -174,33 +178,38 @@ function _bot() {
 }
 
 function CheckMember(event) {
-	event.source.profile().then(function (profile) {	
-		console.log(profile.pictureUrl)	
+	event.source.profile().then(function (profile) {
+		console.log(profile.pictureUrl)
 		member.displayMember(event.source.userId).then(data => {
 			if (data == false) {
 				request.get(profile.pictureUrl + '.jpg', function (error, res, body) {
 					if (res.statusCode == 200) {
-						let photo = "data:" + res.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');						
-						let memberData = {
-							user_id: event.source.userId,
-							photo: photo,
-							member_name: profile.displayName,
-							email: null,
-							member_password: '',
-							linebotpush: true
-						} 
-						member.addMember(memberData).then(data2 => {
-							if (data2) {
-								let replyMsg = '你好，感謝你加我為朋友'
-								event.reply(replyMsg).then(function (data) {
-									console.log(replyMsg);
-								}).catch(function (error) {
-									console.log('error');
-								});
-							} else {
-								console.log('寫入資料庫時發生問題');
-								return;
+						const canvas = createCanvas(200, 200)
+						const ctx = canvas.getContext('2d')
+						loadImage(profile.pictureUrl + '.jpg').then((image) => {
+							ctx.drawImage(image, 0, 0, 200, 200);
+							let photo = canvas.toDataURL();
+							let memberData = {
+								user_id: event.source.userId,
+								photo: photo,
+								member_name: profile.displayName,
+								email: null,
+								member_password: '',
+								linebotpush: true
 							}
+							member.addMember(memberData).then(data2 => {
+								if (data2) {
+									let replyMsg = '你好，感謝你加我為朋友'
+									event.reply(replyMsg).then(function (data) {
+										console.log(replyMsg);
+									}).catch(function (error) {
+										console.log('error');
+									});
+								} else {
+									console.log('寫入資料庫時發生問題');
+									return;
+								}
+							})
 						})
 					} else {
 						let memberData = {
@@ -226,7 +235,7 @@ function CheckMember(event) {
 						})
 					}
 				})
-				
+
 			}
 		})
 	});
