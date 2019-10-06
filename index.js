@@ -160,8 +160,8 @@ function _bot() {
 
 		let talkingUser = [];
 		// CheckMember(event);
-		console.log(event)
-		console.log(event.source.userId);
+		// console.log(event)
+		// console.log(event.source.userId);
 		if (msg == '#加入專案') {
 			talkingUser.push(event.source.userId);
 			event.reply('請輸入專案代碼').then(function (data) {
@@ -171,6 +171,7 @@ function _bot() {
 			});
 
 		}
+		console.log(talkingUser);
 
 		if (talkingUser.includes(event.source.userId)) {
 			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
