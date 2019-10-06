@@ -175,8 +175,14 @@ function _bot() {
 						"text": "hello"
 					  },
 					  {
-						"type": "text",
-						"text": "world"
+						"type": "button",
+						"action": {
+						  "type": "uri",
+						  "label": "Tap me",
+						  "uri": "https://example.com"
+						},
+						"style": "primary",
+						"color": "#0000ff"
 					  }
 					]
 				  }
