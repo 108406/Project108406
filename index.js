@@ -1,16 +1,17 @@
 var linebot = require('linebot');
 var express = require('express');
+var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
 var myFunction = require('./routes/utility/myFunction');
 
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '1627582693',
-	channelSecret: '7e8291f8ca70e509c82447b342850c26',
-	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
+	channelId: '',
+	channelSecret: '',
+	channelAccessToken: ''
 });
-
+  
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
@@ -72,7 +73,7 @@ let push = setInterval(function () {
 			if (nowDateArray[a] != projectPushTime_12h[a]) {
 				projectPushMessage_12h = false;
 			}
-		} 
+		}
 
 		// 在一個禮拜以前提醒專案到期
 		let projectPushTime_7d = myFunction.BeforeDate(project_enddate, [0, 0, 7, 0, 0, 0]);
@@ -96,7 +97,7 @@ let push = setInterval(function () {
 			pushProjectText = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 				'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 				project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-				project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n';
+				project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束';
 			userId = allWorkData[allDataIndex].user_id;
 			bot.push(userId, [pushProjectText]);
 		}
@@ -135,7 +136,7 @@ let push = setInterval(function () {
 					'您在專案【' + allWorkData[allDataIndex].project_name + '】的工作\n' +
 					'「' + allWorkData[allDataIndex].work_title + '」將在\n' +
 					deadline[0] + '/' + deadline[1] + '/' + deadline[2] + ' ' +
-					deadline[3] + ':' + deadline[4] + ':' + deadline[5] + '結束\n';
+					deadline[3] + ':' + deadline[4] + ':' + deadline[5] + '結束';
 				userId = allWorkData[allDataIndex].user_id;
 				bot.push(userId, [pushWorkText]);
 			}
@@ -143,3 +144,53 @@ let push = setInterval(function () {
 
 	}
 }, 1000);
+ 
+function _bot() {
+	bot.on('message', function (event) {
+		var msg = event.message.text;
+		var replyMsg = '愛你唷 <3';
+		CheckMember(event);
+		console.log(msg)
+		console.log(event.source.userId);
+		event.reply(replyMsg).then(function (data) {
+			console.log(replyMsg);
+		}).catch(function (error) {
+			console.log('error');
+		});
+	});
+
+	bot.on('follow', function (event) {
+		CheckMember(event);
+	});
+}
+
+function CheckMember(event) {
+	event.source.profile().then(function (profile) {
+		member.displayMember(event.source.userId).then(data => {
+			if (data == false) {
+				let memberData = {
+					user_id: event.source.userId,
+					photo: null,
+					member_name: profile.displayName,
+					email: null,
+					member_password: '',
+					linebotpush: true
+				}
+				member.addMember(memberData).then(data2 => {
+					if (data2) {
+						let replyMsg = '你好，感謝你加我為朋友'
+						event.reply(replyMsg).then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
+					} else {
+						console.log('寫入資料庫時發生問題');
+						return;
+					}
+				})
+			}
+		})
+	});
+}
+_bot();
