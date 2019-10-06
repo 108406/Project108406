@@ -306,28 +306,27 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="content/addProject" method="POST">
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">標題:</label>
-                                    <input type="text" class="form-control" name="project_name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">專案密碼:</label>
-                                    <input type="text" class="form-control" name="project_password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">開始日期:</label>
-                                    <input id="AddStartTime" class="datetime-local-set" name="project_startdate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">結束日期:</label>
-                                    <input id="AddEndTime" class="datetime-local-set" name="project_enddate">
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="close-btn" data-dismiss="modal">關閉</button>
-                                    <button type="submit" class="send-btn">送出</button>
-                                </div>
-                            </form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">標題:</label>
+                                <input id="AddProjectName" type="text" class="form-control" name="project_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">專案密碼:</label>
+                                <input id="AddProjectPassword" type="text" class="form-control" name="project_password">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">開始日期:</label>
+                                <input id="AddStartTime" class="datetime-local-set" name="project_startdate">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">結束日期:</label>
+                                <input id="AddEndTime" class="datetime-local-set" name="project_enddate">
+                            </div>
+                            <div class="text-center">
+                                <button id="closeAddProject" type="submit" class="close-btn"
+                                    data-dismiss="modal">關閉</button>
+                                <button type="submit" class="send-btn" onclick="AddProject_Content()">送出</button>
+                            </div>
                         </div>
                     </div>
                 </div>

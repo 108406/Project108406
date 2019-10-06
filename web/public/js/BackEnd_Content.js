@@ -21,7 +21,7 @@ function RedefineProject(data) {
     $('#' + project_id).remove();
 
     if (data.status == 0) {
-        $('#' + addProjectBlock).before('<div class="card" name="delete-tub" id="' + project_id +
+        $('#addProjectBlock').before('<div class="card" name="delete-tub" id="' + project_id +
             '"><div class="' + className[data.status] +
             '"><a class="card-link" onclick="IntoProject(' + project_id + ')"><h5 class="card-title" onmousemove="removeClassType(this)">' +
             project_name +
@@ -62,7 +62,7 @@ function UpdateProject() {
     $('#project_startdate').attr('disabled', true);
     $('#project_enddate').attr('disabled', true);
     $('#closeSetting').attr('disabled', true);
-    ajaxing ++;
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: "content/updateProjectName",
@@ -93,7 +93,34 @@ function UpdateProject() {
             } else {
                 alert('寫入資料庫時發生錯誤。')
             }
-            ajaxing --;
+            ajaxing--;
+        },
+        error: function (data) {
+            alert('連接伺服器出現問題，請重試。')
+            console.log('error: \n' + data.error)
+        }
+    })
+}
+
+function AddProject_Content() {
+    $('#AddProjectName').attr('disabled', true);
+    $('#AddProjectPassword').attr('disabled', true);
+    $('#AddStartTime').attr('disabled', true);
+    $('#AddEndTime').attr('disabled', true);
+    $('#closeAddProject').attr('disabled', true);
+    ajaxing++;
+    $.ajax({
+        method: 'POST',
+        url: "content/addProject",
+        data: {
+            project_name: $('#AddProjectName').val(),
+            project_password: $('#AddProjectPassword').val(),
+            project_startdate: $('#AddStartTime').val(),
+            project_enddate: $('#AddEndTime').val()
+        },
+        success: function (data) {
+            ajaxing--;
+            location.reload();
         },
         error: function (data) {
             alert('連接伺服器出現問題，請重試。')
@@ -103,7 +130,7 @@ function UpdateProject() {
 }
 
 function LeaveProject(projectId) {
-    ajaxing ++;
+    ajaxing++;
     $.ajax({
         method: 'POST',
         url: "content/leaveProject",

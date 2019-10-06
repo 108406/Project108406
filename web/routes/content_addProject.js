@@ -56,7 +56,9 @@ router.post('/', function (req, res, next) {
                                             if (data) {
                                                 InitTagsInProject(projectId).then(data => {
                                                     if (data) {
-                                                        res.render('complete.ejs'); //將資料傳給顯示頁面
+                                                        return res.status(200).send({
+                                                            message: '更新成員成功'
+                                                        });
                                                     }
                                                 })
                                             }
@@ -106,68 +108,68 @@ function InisID(length) {
 }
 
 var InitTagsInProject = async function (project_id) {
-    var addTagFin = 0;
     let tag_id;
 
     tag_id = Date.now() * 1000 + Math.floor(Math.random() * 1000);
     tag.addTag(tag_id, project_id, '', '#61BD4F').then(data => {
-        addTagFin++;
-        if (data) {
-            
-        } else {
-            console.log('新增標籤時發生錯誤。')
+        if (!data) {
+            console.log('建立標籤時發生問題');
+            return res.status(400).send({
+                message: '建立標籤時發生問題'
+            });
         }
     })
 
     tag_id = Date.now() * 1000 + Math.floor(Math.random() * 1000);
     tag.addTag(tag_id, project_id, '', '#F2D600').then(data => {
-        addTagFin++;
-        if (data) {
-            
-        } else {
-            console.log('新增標籤時發生錯誤。')
+        if (!data) {
+            console.log('建立標籤時發生問題');
+            return res.status(400).send({
+                message: '建立標籤時發生問題'
+            });
         }
     })
 
     tag_id = Date.now() * 1000 + Math.floor(Math.random() * 1000);
     tag.addTag(tag_id, project_id, '', '#FF9F1A').then(data => {
-        addTagFin++;
-        if (data) {
-            
-        } else {
-            console.log('新增標籤時發生錯誤。')
+        if (!data) {
+            console.log('建立標籤時發生問題');
+            return res.status(400).send({
+                message: '建立標籤時發生問題'
+            });
         }
     })
 
     tag_id = Date.now() * 1000 + Math.floor(Math.random() * 1000);
     tag.addTag(tag_id, project_id, '', '#EB5A46').then(data => {
-        addTagFin++;
-        if (data) {
-            
-        } else {
-            console.log('新增標籤時發生錯誤。')
+        if (!data) {
+            console.log('建立標籤時發生問題');
+            return res.status(400).send({
+                message: '建立標籤時發生問題'
+            });
         }
     })
 
     tag_id = Date.now() * 1000 + Math.floor(Math.random() * 1000);
     tag.addTag(tag_id, project_id, '', '#C377E0').then(data => {
-        addTagFin++;
-        if (data) {
-            
-        } else {
-            console.log('新增標籤時發生錯誤。')
+        if (!data) {
+            console.log('建立標籤時發生問題');
+            return res.status(400).send({
+                message: '建立標籤時發生問題'
+            });
         }
     })
 
     tag_id = Date.now() * 1000 + Math.floor(Math.random() * 1000);
     tag.addTag(tag_id, project_id, '', '#0079BF').then(data => {
-        addTagFin++;
-        if (data) {
-            
-        } else {
-            console.log('新增標籤時發生錯誤。')
+        if (!data) {
+            console.log('建立標籤時發生問題');
+            return res.status(400).send({
+                message: '建立標籤時發生問題'
+            });
         }
     })
+    return true;
 }
 
 module.exports = router;
