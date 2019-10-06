@@ -157,14 +157,14 @@ function _bot() {
 	bot.on('message', function (event) {
 		var msg = event.message.text;
 		var replyMsg = '愛你唷 <3';
-		CheckMember(event);
-		console.log(msg)
+		// CheckMember(event);
+		console.log(event)
 		console.log(event.source.userId);
-		event.reply(replyMsg).then(function (data) {
-			console.log(replyMsg);
-		}).catch(function (error) {
-			console.log('error');
-		});
+		// event.reply(replyMsg).then(function (data) {
+		// 	console.log(replyMsg);
+		// }).catch(function (error) {
+		// 	console.log('error');
+		// });
 	});
 
 	bot.on('follow', function (event) {
@@ -187,11 +187,11 @@ function CheckMember(event) {
 				member.addMember(memberData).then(data2 => {
 					if (data2) {
 						let replyMsg = '你好，感謝你加我為朋友'
-						// event.reply(replyMsg).then(function (data) {
-						// 	console.log(replyMsg);
-						// }).catch(function (error) {
-						// 	console.log('error');
-						// });
+						event.reply(replyMsg).then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
 					} else {
 						console.log('寫入資料庫時發生問題');
 						return;
