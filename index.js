@@ -163,8 +163,7 @@ let push = setInterval(function () {
 			for (let a = 0; a < 6; a++) {
 				if (nowDateArray[a] != workPushTime_12h[a]) {
 					workPushMessage_12h = false;
-					console.log(nowDateArray[a])
-					console.log(workPushTime_12h[a])
+					console.log('nowDateArray[a]: ' + nowDateArray[a] + ', workPushTime_12h[a]: ' + workPushTime_12h[a])
 				}
 			}
 			console.log('===============')
