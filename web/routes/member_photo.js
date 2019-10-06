@@ -14,6 +14,9 @@ router.post('/', function(req, res, next) {
             //     console.log(err);
             // });
             console.log("Successful!");
+            return res.status(200).send({
+                message: '更新頭貼成功'
+            });
         }else {
             res.render('notFound');  //導向找不到頁面
         }

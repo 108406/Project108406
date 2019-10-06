@@ -52,8 +52,8 @@
             </div>
 
             <div class="study-logout">
-                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel"><i class="fas fa-question-circle fa-lg"
-                        style="padding-right:5px;"></i>教學</button>
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel"><i
+                        class="fas fa-question-circle fa-lg" style="padding-right:5px;"></i>教學</button>
                 <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
                     onclick="Logout()"><i class="fas fa-sign-out-alt" style="padding-right:5px;"></i>登出</button>
             </div>
@@ -105,8 +105,12 @@
                 <div class="member-img">
                     <label class="upload_cover">
                         <input id="upload_input" type="file" onchange="readURL(this)">
+                        <% if (items[0].photo == null || items[0].photo == '') { %>
+                        <span class="upload_icon"><img src="/imgs/defaultPhoto.png" class="photo"></span>
+                        <% } else { %>
                         <span class="upload_icon"><img src=<%= 'data:image/png;base64,' + items[0].photo %>
                                 class="photo"></span>
+                        <% } %>
                     </label>
                 </div>
 
@@ -118,7 +122,7 @@
                                 <div>名:</div>
                             </div>
                             <div class="input-set">
-                                <input id="member_name" type="email" class="form-control" placeholder="張智皓"
+                                <input id="member_name" type="email" class="form-control" placeholder="王大明"
                                     value=<%= items[0].member_name %>>
                             </div>
                         </div>
@@ -129,7 +133,7 @@
                                 <div>箱:</div>
                             </div>
                             <div class="input-set">
-                                <input id="email" type="email" class="form-control" placeholder="N1056444@ntub.edu.tw"
+                                <input id="email" type="email" class="form-control" placeholder="abcd1234@gmail.com"
                                     value=<%= items[0].email %>>
                             </div>
                         </div>

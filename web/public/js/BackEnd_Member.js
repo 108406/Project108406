@@ -43,7 +43,7 @@ function SubmitData() {
         ajaxing ++;
         $.ajax({
             type: 'POST',
-            url: 'member/update',
+            url: '/member/update',
             data: {
                 email: $('#email').val().trim(),
                 member_name: $('#member_name').val().trim()
@@ -106,7 +106,7 @@ function ChangeLineBotPush(value) {
     ajaxing ++;
     $.ajax({
         type: 'POST',
-        url: 'member/linebotPush',
+        url: '/member/linebotPush',
         data: {
             "linebotPush": !value
         },
@@ -120,7 +120,7 @@ function DeleteAcount() {
     ajaxing ++;
     $.ajax({
         type: 'POST',
-        url: 'member/delete',
+        url: '/member/delete',
         success: function () {
             ajaxing --;
         }

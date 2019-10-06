@@ -22,7 +22,7 @@
 }
 html, body {
     font-family: 'Noto Serif TC', serif;
-    background: url(../imgs/背景1.png)center center fixed no-repeat;
+    background: url(../imgs/background.png)center center fixed no-repeat;
     background-size: cover;
     height: 100%;
     overflow-x: hidden;
