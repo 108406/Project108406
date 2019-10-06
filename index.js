@@ -6,9 +6,9 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1627582693',
+	channelSecret: '7e8291f8ca70e509c82447b342850c26',
+	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
 
 const app = express();
@@ -72,7 +72,7 @@ let push = setInterval(function () {
 			if (nowDateArray[a] != projectPushTime_12h[a]) {
 				projectPushMessage_12h = false;
 			}
-		}
+		} 
 
 		// 在一個禮拜以前提醒專案到期
 		let projectPushTime_7d = myFunction.BeforeDate(project_enddate, [0, 0, 7, 0, 0, 0]);
