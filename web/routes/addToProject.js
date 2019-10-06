@@ -13,11 +13,15 @@ router.post('/', function (req, res, next) {
                 teammember.VerificationTeamMember(req.cookies.userid, req.body.projectId).then(result => {
                     if (!result) {
                         teammember.addTeamMember(req.cookies.userid, req.body.projectId, null, false).then(data2 => {
-                            projecthint.addProjectHint(req.cookies.userid, req.body.projectId, true).then(data2 => {
-                                return res.status(200).send({
-                                    success: true,
+                            if (data2) {
+                                projecthint.addProjectHint(req.cookies.userid, req.body.projectId, true).then(data2 => {
+                                    if (data2) {
+                                        return res.status(200).send({
+                                            success: true,
+                                        });
+                                    }
                                 });
-                            });
+                            }
                         });
                     } else {
                         return res.status(200).send({

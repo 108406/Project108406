@@ -3,6 +3,7 @@ var router = express.Router();
 
 //增加引用函式
 const project = require('./utility/project');
+const projecthint = require('./utility/projecthint');
 const projectpermission = require('./utility/projectpermission');
 const teammember = require('./utility/teammember');
 const list = require('./utility/list');
@@ -54,13 +55,17 @@ router.post('/', function (req, res, next) {
                                     if (data) {
                                         projectlist.addProjectList(projectId, listId).then(data => {
                                             if (data) {
-                                                InitTagsInProject(projectId).then(data => {
-                                                    if (data) {
-                                                        return res.status(200).send({
-                                                            message: '更新成員成功'
-                                                        });
+                                                projecthint.addProjectHint(req.cookies.userid, projectId, true).then(data2 => {
+                                                    if (data2) {
+                                                        InitTagsInProject(projectId).then(data => {
+                                                            if (data) {
+                                                                return res.status(200).send({
+                                                                    message: '更新成員成功'
+                                                                });
+                                                            }
+                                                        })
                                                     }
-                                                })
+                                                });
                                             }
                                         })
                                     }
