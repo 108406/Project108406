@@ -174,12 +174,12 @@ function _bot() {
 }
 
 function CheckMember(event) {
-	event.source.profile().then(function (profile) {
-		
+	event.source.profile().then(function (profile) {		
 		member.displayMember(event.source.userId).then(data => {
 			if (data == false) {
 				request.get(profile.pictureUrl + '.jpg', function (error, res, body) {
 					if (res.statusCode == 200) {
+						console.log(profile.pictureUrl)
 						let photo = "data:" + res.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');						
 						let memberData = {
 							user_id: event.source.userId,
