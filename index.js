@@ -174,16 +174,12 @@ function _bot() {
 						"type": "text",
 						"text": "hello"
 					  },
-					  {
-						"type": "button",
-						"action": {
-						  "type": "uri",
-						  "label": "Tap me",
-						  "uri": "https://example.com"
-						},
-						"style": "primary",
-						"color": "#0000ff"
-					  }
+					  {  
+						"type":"postback",
+						"label":"Buy",
+						"data":"action=buy&itemid=111",
+						"text":"Buy"
+					 }
 					]
 				  }
 				}
