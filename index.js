@@ -1,5 +1,6 @@
 var linebot = require('linebot');
 var express = require('express');
+var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
 var myFunction = require('./routes/utility/myFunction');
 
