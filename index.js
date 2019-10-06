@@ -179,7 +179,6 @@ function _bot() {
 
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
-		console.log(profile.pictureUrl)
 		member.displayMember(event.source.userId).then(data => {
 			if (data == false) {
 				request.get(profile.pictureUrl + '.jpg', function (error, res, body) {
