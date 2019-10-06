@@ -175,18 +175,19 @@ function _bot() {
 
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
-		console.log(profile.pictureUrl)
+		let photo;
 		request.get(profile.pictureUrl + '.jpg', function (error, res, body) {
 			if (res.statusCode == 200) {
-				data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
-				console.log(data);
+				photo = "data:" + res.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+				
 			}
 		})
+		console.log(photo)
 		member.displayMember(event.source.userId).then(data => {
 			if (data == false) {
 				let memberData = {
 					user_id: event.source.userId,
-					photo: null,
+					photo: photo,
 					member_name: profile.displayName,
 					email: null,
 					member_password: '',
