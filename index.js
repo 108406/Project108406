@@ -188,7 +188,7 @@ function CheckMember(event) {
 							email: null,
 							member_password: '',
 							linebotpush: true
-						}
+						} 
 						member.addMember(memberData).then(data2 => {
 							if (data2) {
 								let replyMsg = '你好，感謝你加我為朋友'
