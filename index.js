@@ -163,10 +163,8 @@ let push = setInterval(function () {
 			for (let a = 0; a < 6; a++) {
 				if (nowDateArray[a] != workPushTime_12h[a]) {
 					workPushMessage_12h = false;
-					console.log('nowDateArray[a]: ' + nowDateArray[a] + ', workPushTime_12h[a]: ' + workPushTime_12h[a])
 				}
 			}
-			console.log('===============')
 
 			// 在一天以前提醒工作到期
 			let workPushTime_7d = myFunction.BeforeDate(deadline, [0, 0, 1, 0, 0, 0]);
