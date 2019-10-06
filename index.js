@@ -143,3 +143,47 @@ let push = setInterval(function () {
 
 	}
 }, 1000);
+
+function _bot() {
+	bot.on('message', function (event) {
+		var msg = event.message.text;
+		var command = msg.replace(/\s+/g, "");
+		var replyMsg = '愛你唷 <3';
+		CheckMember(event);
+	});
+
+	bot.on('follow', function (event) {
+		CheckMember(event);
+	});
+}
+
+function CheckMember(event) {
+	event.source.profile().then(function (profile) {
+		member.displayMember(event.source.userId).then(data => {
+			if (data == false) {
+				let memberData = {
+					user_id: event.source.userId,
+					photo: null,
+					member_name: profile.displayName,
+					email: null,
+					member_password: '',
+					linebotpush: true
+				}
+				member.addMember(memberData).then(data2 => {
+					if (data2) {
+						let replyMsg = '你好，感謝你加我為朋友'
+						event.reply(replyMsg).then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
+					} else {
+						console.log('寫入資料庫時發生問題');
+						return;
+					}
+				})
+			}
+		})
+	});
+}
+_bot();
