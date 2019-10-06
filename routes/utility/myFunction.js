@@ -50,8 +50,10 @@ var nowTimeToDB = function () {
 // theDate = [2019, 10, 5, 21, 39, 0]
 // before = [0, 0, 1, 0, 0, 0];
 // result = [2019, 10, 4, 21, 39, 0];
-var BeforeDate = function (theDate, before) {
+var BeforeDate = function (date, beforeDate) {
     let maxDate = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let theDate = date.slice();
+    let before = beforeDate.slice();
     for (let a = 0; a < 6; a++) {
         theDate[a] -= before[a];
     }
