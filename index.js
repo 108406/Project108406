@@ -1,6 +1,6 @@
 var linebot = require('linebot');
 var express = require('express');
-var http = require('http');
+var https = require('https');
 var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
 var myFunction = require('./routes/utility/myFunction');
@@ -8,11 +8,11 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '1627582693',
-	channelSecret: '7e8291f8ca70e509c82447b342850c26',
-	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
+	channelId: '',
+	channelSecret: '',
+	channelAccessToken: ''
 });
-  
+
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
@@ -23,8 +23,8 @@ var server = app.listen(process.env.PORT || 8080, function () {
 	console.log("App now running on port", port);
 });
 
-setInterval(function() {
-    http.get("https://thelinebotpractice.herokuapp.com/");
+setInterval(function () {
+	https.get("https://thelinebotpractice.herokuapp.com/");
 }, 300000);
 
 // 每十分鐘更新一次資料
@@ -56,7 +56,7 @@ function UpdateAllWorkData() {
 		console.log(allWorkData)
 	})
 }
- 
+
 UpdateAllWorkData();
 
 let updataData = setInterval(UpdateAllWorkData, 600000);
@@ -103,8 +103,10 @@ let push = setInterval(function () {
 				'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 				project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
 				project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束';
-			userId = allWorkData[allDataIndex].user_id;
-			bot.push(userId, [pushProjectText]);
+			if (allWorkData[allDataIndex].linebotpush && allWorkData[allDataIndex].project_hint) {
+				userId = allWorkData[allDataIndex].user_id;
+				bot.push(userId, [pushWorkText]);
+			}
 		}
 
 		// =================================工作提醒判斷================================
@@ -126,7 +128,7 @@ let push = setInterval(function () {
 					workPushMessage_7d = false;
 				}
 			}
-			
+
 			// 在三天以前提醒專案到期
 			let workPushTime_1m = myFunction.BeforeDate(deadline, [0, 0, 3, 0, 0, 0]);
 			let workPushMessage_1m = true;
@@ -142,14 +144,16 @@ let push = setInterval(function () {
 					'「' + allWorkData[allDataIndex].work_title + '」將在\n' +
 					deadline[0] + '/' + deadline[1] + '/' + deadline[2] + ' ' +
 					deadline[3] + ':' + deadline[4] + ':' + deadline[5] + '結束';
-				userId = allWorkData[allDataIndex].user_id;
-				bot.push(userId, [pushWorkText]);
+				if (allWorkData[allDataIndex].linebotpush && allWorkData[allDataIndex].work_hint) {
+					userId = allWorkData[allDataIndex].user_id;
+					bot.push(userId, [pushWorkText]);
+				}
 			}
 		}
 
 	}
 }, 1000);
- 
+
 function _bot() {
 	bot.on('message', function (event) {
 		var msg = event.message.text;
