@@ -346,9 +346,12 @@ function SetWorkCard(data, cardNo) {
         if (notification_SetWorkCard) {
             notification_SetWorkCard = false;
             alert("工作資料已經更新完畢。")
+            $('#show-modal').modal('hide')
         }
     }
     //addMemberToWork principal work_deadline workInList work_title
+    data.tags = JSON.parse($('#tags').val());
+    data.teammember = JSON.parse($('#teammember').val());
     nowWorkData = data;
     $('#work_title').text(data.workData[1]);
     $('#workInList').text(data.listname);
@@ -1571,7 +1574,7 @@ function DragWorkToList(toListElement, fromListElement, workElement) {
 }
 
 function AddCardK(event) {
-    if (event.key == 'Enter'/* && !event.shiftKey */) {
+    if (event.key == 'Enter' /* && !event.shiftKey */ ) {
         var somethingAdd = false;
         var addIndex = -1;
         var addTitle = '';
@@ -1593,6 +1596,8 @@ function AddCardK(event) {
 // 新增卡片用的function
 function AddCard(index, title) {
     let checkAllWorks = JSON.parse($('#works').val());
+    let allTags = JSON.parse($('#tags').val()).slice();
+    let allTeammember = JSON.parse($('#teammember').val()).slice();
     for (let a = 0; a < checkAllWorks.length; a++) {
         if (checkAllWorks[a][1] == title.replace(/(\r\n|\n|\r)/gm, " ")) {
             alert('已有相同的卡片名稱。');
@@ -1608,8 +1613,8 @@ function AddCard(index, title) {
     ]
     let newCardData = {
         listname: listname,
-        tags: JSON.parse($('#tags').val()),
-        teammember: JSON.parse($('#teammember').val()),
+        tags: allTags,
+        teammember: allTeammember,
         workData: workData
     }
     $($('.card.add-card')[index]).before(`\n\
@@ -1677,6 +1682,7 @@ function DeleteWork(work_id, work_title, workIndex) {
                 }
             }
             $('#works').val(JSON.stringify(newWorks));
+            deleteOnce = false;
             ajaxing--;
         },
         error: function (data) {

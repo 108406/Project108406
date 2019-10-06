@@ -6,7 +6,7 @@ $(document).ready(function(){
         $('.btn-delete-close').show();
         $('.change-card-deletes').hide();
         $('.change-card-deletes-check').on('click',function(){
-            $('#card-1').remove();
+            // $('#card-1').remove();
         });   
         $('.btn-delete-close').on('click',function(){
             $('.change-card-deletes-check').hide();
