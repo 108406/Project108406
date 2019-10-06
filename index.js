@@ -97,7 +97,7 @@ let push = setInterval(function () {
 			pushProjectText = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
 				'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 				project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
-				project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束\n';
+				project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束';
 			userId = allWorkData[allDataIndex].user_id;
 			bot.push(userId, [pushProjectText]);
 		}
@@ -136,7 +136,7 @@ let push = setInterval(function () {
 					'您在專案【' + allWorkData[allDataIndex].project_name + '】的工作\n' +
 					'「' + allWorkData[allDataIndex].work_title + '」將在\n' +
 					deadline[0] + '/' + deadline[1] + '/' + deadline[2] + ' ' +
-					deadline[3] + ':' + deadline[4] + ':' + deadline[5] + '結束\n';
+					deadline[3] + ':' + deadline[4] + ':' + deadline[5] + '結束';
 				userId = allWorkData[allDataIndex].user_id;
 				bot.push(userId, [pushWorkText]);
 			}
