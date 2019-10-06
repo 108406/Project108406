@@ -196,7 +196,7 @@ function _bot() {
 										"text": "#我要加入"
 									},
 									"style": "primary",
-									"color": "#0000ff"
+									"color": "#FFFFCC"
 								}
 							]
 						}
