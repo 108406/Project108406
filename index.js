@@ -1,5 +1,6 @@
 var linebot = require('linebot');
 var express = require('express');
+var http = require('http');
 var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
 var myFunction = require('./routes/utility/myFunction');
@@ -21,6 +22,10 @@ var server = app.listen(process.env.PORT || 8080, function () {
 	var port = server.address().port;
 	console.log("App now running on port", port);
 });
+
+setInterval(function() {
+    http.get("https://thelinebotpractice.herokuapp.com/");
+}, 300000);
 
 // 每十分鐘更新一次資料
 function UpdateAllWorkData() {
