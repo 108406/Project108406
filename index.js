@@ -153,12 +153,12 @@ let push = setInterval(function () {
 	}
 }, 1000);
 
+let talkingUser = [];
 function _bot() {
 	bot.on('message', function (event) {
 		var msg = event.message.text;
 		var replyMsg = '愛你唷 <3';
 
-		let talkingUser = [];
 		// CheckMember(event);
 		// console.log(event)
 		// console.log(event.source.userId);
