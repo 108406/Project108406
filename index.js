@@ -178,7 +178,7 @@ function CheckMember(event) {
 		let photo;
 		request.get(profile.pictureUrl + '.jpg', function (error, res, body) {
 			if (res.statusCode == 200) {
-				photo = "data:" + res.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+				photo = "data:" + res.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
 				
 			}
 		})
