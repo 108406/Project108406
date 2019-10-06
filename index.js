@@ -175,7 +175,12 @@ function _bot() {
 
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
-		console.log(profile);
+		https.get(profile.pictureUrl, function (error, res) {
+			console.log('error')
+			console.log(error)
+			console.log('res')
+			console.log(res)
+		})
 		member.displayMember(event.source.userId).then(data => {
 			if (data == false) {
 				let memberData = {
