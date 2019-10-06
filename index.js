@@ -50,7 +50,7 @@ function UpdateAllWorkData() {
 		console.log(allWorkData)
 	})
 }
-
+ 
 UpdateAllWorkData();
 
 let updataData = setInterval(UpdateAllWorkData, 600000);
