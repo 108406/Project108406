@@ -160,6 +160,35 @@ function _bot() {
 		// CheckMember(event);
 		console.log(event)
 		console.log(event.source.userId);
+		if (msg == '#加入專案') {
+			let replyFlex = {  
+				"type": "flex",
+				"altText": "this is a flex message",
+				"contents": {
+				  "type": "bubble",
+				  "body": {
+					"type": "box",
+					"layout": "vertical",
+					"contents": [
+					  {
+						"type": "text",
+						"text": "hello"
+					  },
+					  {
+						"type": "text",
+						"text": "world"
+					  }
+					]
+				  }
+				}
+			  };
+			  event.reply(replyFlex).then(function (data) {
+			  	console.log(replyMsg);
+			  }).catch(function (error) {
+			  	console.log('error');
+			  });
+
+		}
 		// event.reply(replyMsg).then(function (data) {
 		// 	console.log(replyMsg);
 		// }).catch(function (error) {
