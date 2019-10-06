@@ -157,44 +157,57 @@ function _bot() {
 	bot.on('message', function (event) {
 		var msg = event.message.text;
 		var replyMsg = '愛你唷 <3';
+
+		let talkingUser = [];
 		// CheckMember(event);
 		console.log(event)
 		console.log(event.source.userId);
 		if (msg == '#加入專案') {
-			let replyFlex = {  
-				"type": "flex",
-				"altText": "this is a flex message",
-				"contents": {
-				  "type": "bubble",
-				  "body": {
-					"type": "box",
-					"layout": "vertical",
-					"contents": [
-					  {
-						"type": "text",
-						"text": "hello"
-					  },
-					  {
-						"type": "button",
-						"action": {  
-							"type":"postback",
-							"label":"Buy",
-							"data":"action=buy&itemid=111",
-							"text":"Buy"
-						 },
-						"style": "primary",
-						"color": "#0000ff"
-					  }
-					]
-				  }
-				}
-			  };
-			  event.reply(replyFlex).then(function (data) {
-			  	console.log(replyMsg);
-			  }).catch(function (error) {
-			  	console.log('error');
-			  });
+			talkingUser.push(event.source.userId);
+			event.reply('請輸入專案代碼').then(function (data) {
+				console.log(replyMsg);
+			}).catch(function (error) {
+				console.log('error');
+			});
 
+		}
+
+		if (talkingUser.includes(event.source.userId)) {
+			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
+				let projectId = msg.substring(1,msg.length - 1);
+				let replyFlex = {
+					"type": "flex",
+					"altText": "this is a flex message",
+					"contents": {
+						"type": "bubble",
+						"body": {
+							"type": "box",
+							"layout": "vertical",
+							"contents": [{
+									"type": "text",
+									"text": "請點選下方按鈕以加入專案"
+								},
+								{
+									"type": "button",
+									"action": {
+										"type": "message",
+										"label": projectId,
+										"text": "#我要加入"
+									},
+									"style": "primary",
+									"color": "#0000ff"
+								}
+							]
+						}
+					}
+				};
+				talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
+				event.reply(replyFlex).then(function (data) {
+					console.log(replyMsg);
+				}).catch(function (error) {
+					console.log('error');
+				});
+			}
 		}
 		// event.reply(replyMsg).then(function (data) {
 		// 	console.log(replyMsg);
