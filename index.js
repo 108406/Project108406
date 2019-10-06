@@ -175,6 +175,7 @@ function _bot() {
 
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
+		console.log(profile);
 		member.displayMember(event.source.userId).then(data => {
 			if (data == false) {
 				let memberData = {
