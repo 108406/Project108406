@@ -174,12 +174,17 @@ function _bot() {
 						"type": "text",
 						"text": "hello"
 					  },
-					  {  
-						"type":"postback",
-						"label":"Buy",
-						"data":"action=buy&itemid=111",
-						"text":"Buy"
-					 }
+					  {
+						"type": "button",
+						"action": {  
+							"type":"postback",
+							"label":"Buy",
+							"data":"action=buy&itemid=111",
+							"text":"Buy"
+						 },
+						"style": "primary",
+						"color": "#0000ff"
+					  }
 					]
 				  }
 				}
