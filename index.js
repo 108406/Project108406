@@ -51,7 +51,9 @@ function UpdateAllWorkData() {
 	})
 }
 
-let updataData = setInterval(UpdateAllWorkData(), 600000);
+UpdateAllWorkData();
+
+let updataData = setInterval(UpdateAllWorkData, 600000);
 
 let push = setInterval(function () {
 	let nowDateArray = myFunction.SeparateDate(Date());
