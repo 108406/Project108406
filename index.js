@@ -144,7 +144,7 @@ let push = setInterval(function () {
 
 	}
 }, 1000);
-
+ 
 function _bot() {
 	bot.on('message', function (event) {
 		var msg = event.message.text;
