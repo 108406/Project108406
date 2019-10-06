@@ -180,6 +180,8 @@ function CheckMember(event) {
 			if (res.statusCode == 200) {
 				photo = "data:" + res.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
 				
+		console.log(photo)
+		console.log('============')
 			}
 		})
 		console.log(photo)
