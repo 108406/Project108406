@@ -54,7 +54,6 @@ function UpdateAllWorkData() {
 			}
 
 		}
-		console.log(allWorkData)
 	})
 }
 
@@ -179,7 +178,7 @@ function CheckMember(event) {
 		console.log(profile.pictureUrl)
 		request.get(profile.pictureUrl + '.jpg', function (error, res, body) {
 			if (res.statusCode == 200) {
-				data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+				data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
 				console.log(data);
 			}
 		})
