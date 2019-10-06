@@ -174,7 +174,7 @@ let push = setInterval(function () {
 					workPushMessage_7d = false;
 				}
 			}
-
+ 
 			// 在三天以前提醒專案到期
 			let workPushTime_1m = myFunction.BeforeDate(deadline, [0, 0, 3, 0, 0, 0]);
 			let workPushMessage_1m = true;
@@ -193,6 +193,7 @@ let push = setInterval(function () {
 				userId = allWorkData[allDataIndex].user_id;
 				bot.push(userId, [pushWorkText]);
 			}
+			console.log(pushWorkText)
 		}
 
 	}
