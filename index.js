@@ -179,11 +179,12 @@ function _bot() {
 						bindIndex = a;
 					}
 				}
-				event.reply('不要 >.0').then(function (data) {
-					console.log(replyMsg);
-				}).catch(function (error) {
-					console.log('error');
-				});
+				// event.reply('不要 >.0').then(function (data) {
+				// 	console.log(replyMsg);
+				// }).catch(function (error) {
+				// 	console.log('error');
+				// });
+
 				// 將此用戶加入專案
 				// userId => event.source.userId
 				// groupId => groupId
@@ -210,7 +211,8 @@ function _bot() {
 									"layout": "vertical",
 									"contents": [{
 											"type": "text",
-											"text": "請點選下方按鈕以加入專案"
+											"text": "請點選下方按鈕以加入專案",
+											"align": "center"
 										},
 										{
 											"type": "button",
