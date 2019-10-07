@@ -177,11 +177,12 @@ function _bot() {
 		if (talkingUser.includes(event.source.userId)) {
 			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
 				let projectId = msg.substring(1, msg.length - 1);
-
-				let a = bot.getGroupMember(event.source.groupId);
+				bot.getGroupMember(event.source.groupId).then(data => {
+					console.log(data)
+				})
 				console.log(a)
 				talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
-				event.reply(replyFlex).then(function (data) {
+				event.reply(projectId).then(function (data) {
 					console.log(replyMsg);
 				}).catch(function (error) {
 					console.log('error');
