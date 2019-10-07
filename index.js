@@ -177,10 +177,9 @@ function _bot() {
 		if (talkingUser.includes(event.source.userId)) {
 			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
 				let projectId = msg.substring(1, msg.length - 1);
-				bot.getGroupMember(event.source.groupId).then(data => {
+				bot.getGroupMember(event.source.groupId).then((data) => {
 					console.log(data)
 				})
-				console.log(a)
 				talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
 				event.reply(projectId).then(function (data) {
 					console.log(replyMsg);
