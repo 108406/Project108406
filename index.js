@@ -179,7 +179,11 @@ function _bot() {
 						bindIndex = a;
 					}
 				}
-
+				event.reply('不要 >.0').then(function (data) {
+					console.log(replyMsg);
+				}).catch(function (error) {
+					console.log('error');
+				});
 				// 將此用戶加入專案
 				// userId => event.source.userId
 				// groupId => groupId
@@ -192,8 +196,8 @@ function _bot() {
 				let projectId = msg.substring(1, msg.length - 1);
 				// 查詢專案
 				project.fetchProject(projectId).then(data => {
+					talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
 					if (data) {
-						console.log(data[0].project_name);
 						let groupWithProject = [event.source.groupId, projectId];
 						bindGroupAndProjectId.push(groupWithProject);
 						let replyFlex = {
@@ -212,7 +216,7 @@ function _bot() {
 											"type": "button",
 											"action": {
 												"type": "message",
-												"label": projectId,
+												"label": data[0].project_name,
 												"text": "#我要加入"
 											},
 											"style": "primary",
@@ -222,7 +226,6 @@ function _bot() {
 								}
 							}
 						};
-						talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
 						event.reply(replyFlex).then(function (data) {
 							console.log(replyMsg);
 						}).catch(function (error) {
