@@ -179,6 +179,7 @@ function _bot() {
 						bindIndex = a;
 					}
 				}
+				console.log(bindGroupAndProjectId[bindIndex][1])
 				// event.reply('不要 >.0').then(function (data) {
 				// 	console.log(replyMsg);
 				// }).catch(function (error) {
@@ -189,6 +190,10 @@ function _bot() {
 				// userId => event.source.userId
 				// groupId => groupId
 				// project_id => bindGroupAndProjectId[bindIndex][1]
+			}
+		} else {
+			if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
+
 			}
 		}
 
