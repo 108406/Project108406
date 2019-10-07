@@ -10,7 +10,7 @@ router.post('/', function (req, res, next) {
             console.log("update projecthint Successful!");
             res.render('complete.ejs');
         } else {
-            res.render('notFound');  //導向找不到頁面
+            res.redirect('/login');  //導向找不到頁面
         }
     })
 })

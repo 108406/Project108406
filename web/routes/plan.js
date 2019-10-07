@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
         let startTime = Date.now();
         view.projectAllData(req.cookies.projectid).then(data => {
             if (data == 'failed') {
-                res.render('error'); //導向錯誤頁面
+                res.redirect('/login'); //導向錯誤頁面
             } else {
                 var projectPermission = SetProjectPermission(data);
                 var teammeber = SetTeammember(data);
@@ -40,11 +40,11 @@ router.get('/', function (req, res, next) {
                                 });
                                 console.log(Date.now() - startTime)
                             } else {
-                                res.render('error'); //導向錯誤頁面
+                                res.redirect('/login'); //導向錯誤頁面
                             }
                         })
                     } else {
-                        res.render('error'); //導向錯誤頁面
+                        res.redirect('/login'); //導向錯誤頁面
                     }
                 })
 

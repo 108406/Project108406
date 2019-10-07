@@ -26,9 +26,15 @@
     <div class="TitleHeader">PlanYourself</div>
     <!---->
     <!--Line登入-->
-    <div class="LineImg"><img src="/imgs/btn_login_base.png" class="LineLoginImg" onclick="location.href='content';"></div>
+    <div class="LineImg"><img src="/imgs/btn_login_base.png" class="LineLoginImg" onclick="javascript:loginAPI();">
+    </div>
     <!---->
     <!------------scrpit----------->
+    <script>
+        function loginAPI() {
+            location.href = location.origin + '/auth/line'
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

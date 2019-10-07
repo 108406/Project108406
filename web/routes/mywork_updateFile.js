@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
         if (data) {
             console.log("Successful!");
         }else {
-            res.render('notFound');  //導向找不到頁面
+            res.redirect('/login');  //導向找不到頁面
         }
     })
 });

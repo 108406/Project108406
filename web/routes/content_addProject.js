@@ -71,16 +71,16 @@ router.post('/', function (req, res, next) {
                                     }
                                 })
                             } else {
-                                res.render('notFound'); //導向找不到頁面
+                                res.redirect('/login'); //導向找不到頁面
                             }
                         })
 
                     } else {
-                        res.render('notFound'); //導向找不到頁面
+                        res.redirect('/login'); //導向找不到頁面
                     }
                 })
             } else {
-                res.render('notFound'); //導向找不到頁面
+                res.redirect('/login'); //導向找不到頁面
             }
         })
     } else {

@@ -40,11 +40,24 @@ var mywork_updateListWork = require('./routes/mywork_updateListWork');
 var mywork_updateProjectLinebotPush = require('./routes/mywork_updateProjectLinebotPush');
 var mywork_updateWorkLinebotPush = require('./routes/mywork_updateWorkLinebotPush');
 var mywork_updateFile = require('./routes/mywork_updateFile');
-var mywork_gotoPlan = require('./routes/mywork_gotoPlan');
 var login = require('./routes/login');
 var forgot = require('./routes/forgot');
 var register = require('./routes/register');
+var login_api = require('./routes/login');
+var login_api_cb = require('./routes/login');
+var login_api_logout = require('./routes/login');
 var app = express();
+
+//設定session參數
+const session = require('express-session');
+
+const session_options = {
+  secret: 'e00a15bd1fa164dfc179db9b46ab4145',
+  resave: false,
+  saveUninitialized: true
+};
+
+app.use(session(session_options));  //設定使用Session
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -95,6 +108,13 @@ app.use('/member/delete', member_delete);
 app.use('/project', project);
 app.use('/searchProject', searchProject);
 app.use('/addToProject', addToProject);
+app.use('/mywork/updateListWork', mywork_updateListWork);
+app.use('/mywork/updateProjectLinebotPush', mywork_updateProjectLinebotPush);
+app.use('/mywork/updateWorkLinebotPush', mywork_updateWorkLinebotPush);
+app.use('/mywork/updateFile', mywork_updateFile);
+app.use('/auth/line', login_api);
+app.use('/auth/line/cb', login_api_cb);
+app.use('/auth/line/logout', login_api_logout);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

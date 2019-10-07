@@ -10,14 +10,14 @@ router.get('/', function (req, res, next) {
     var tampTime = Date.now();
     view.workWithUser(req.cookies.userid).then(data => {
         if (data == null) {
-            res.render('error');  //導向錯誤頁面
+            res.redirect('/login');  //導向錯誤頁面
         } else if (data.rows.length > 0) {
             var result = SetProjectResult(data, req.cookies.userid);
 
             res.render('mywork.ejs', { "items": result });  //將資料傳給顯示頁面
             console.log(Date.now() - tampTime);
         } else {
-            res.render('notFound');  //導向找不到頁面
+            res.redirect('/login');  //導向找不到頁面
         }
     })
 });

@@ -6,22 +6,6 @@ const view = require('./utility/view');
 const member = require('./utility/member');
 const myFunction = require('./utility/myFunction');
 
-//接收GET請求
-router.post('/', function (req, res, next) {
-    member.tempIdentityCertification(req.body.account, req.body.password).then(data => {
-        if (data) {
-            res.send({
-                'status': 'success!',
-                'userid': req.body.account
-            })
-        } else {
-            res.send({
-                'status': 'not found!'
-            })
-        }
-    })
-});
-
 router.get('/', function (req, res, next) {
     if (req.cookies.userid != undefined) {
         view.projectWithUser(req.cookies.userid).then(data => {
@@ -53,7 +37,7 @@ router.get('/', function (req, res, next) {
                 }); //將資料傳給顯示頁面
 
             } else {
-                res.render('error'); //導向錯誤頁面
+                res.redirect('/login'); //導向錯誤頁面
             }
         })
     } else {
