@@ -258,6 +258,12 @@ function _bot() {
 					}
 				})
 
+			} else if (msg == '不要') {
+				event.reply('好吧......(ಥ_ಥ)').then(function (data) {
+					console.log(replyMsg);
+				}).catch(function (error) {
+					console.log('error');
+				});
 			}
 		}
 		// event.reply(replyMsg).then(function (data) {
