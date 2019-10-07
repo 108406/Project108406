@@ -1,8 +1,8 @@
 var linebot = require('linebot');
 var express = require('express');
-var https = require('https');
 var member = require('./routes/utility/member');
 var view = require('./routes/utility/view');
+var project = require('./routes/utility/project');
 var myFunction = require('./routes/utility/myFunction');
 
 var allWorkData = [];
@@ -22,10 +22,6 @@ var server = app.listen(process.env.PORT || 8080, function () {
 	var port = server.address().port;
 	console.log("App now running on port", port);
 });
-
-setInterval(function () {
-	https.get("https://thelinebotpractice.herokuapp.com/");
-}, 300000);
 
 // 每十分鐘更新一次資料
 function UpdateAllWorkData() {
@@ -58,7 +54,7 @@ function UpdateAllWorkData() {
 
 UpdateAllWorkData();
 
-let updataData = setInterval(UpdateAllWorkData, 600000);
+let updataData = setInterval(UpdateAllWorkData, 60000);
 
 let push = setInterval(function () {
 	let nowDateArray = myFunction.SeparateDate(Date());
@@ -154,40 +150,93 @@ let push = setInterval(function () {
 }, 1000);
 
 let talkingUser = [];
+let readyToInviteGroup = [];
+let bindGroupAndProjectId = [];
 
 function _bot() {
 	bot.on('message', function (event) {
 		var msg = event.message.text;
 		var replyMsg = '愛你唷 <3';
 
-		// CheckMember(event);
-		// console.log(event)
-		// console.log(event.source.userId);
-		if (msg == '#加入專案') {
-			talkingUser.push(event.source.userId);
-			event.reply('請輸入專案代碼').then(function (data) {
-				console.log(replyMsg);
-			}).catch(function (error) {
-				console.log('error');
-			});
+		CheckMember(event);
+		if (event.source.groupId != undefined) {
+			if (msg == '#加入專案') {
+				if (!talkingUser.includes(event.source.userId)) {
+					talkingUser.push(event.source.userId);
+					readyToInviteGroup.push(event.source.groupId)
+					event.reply('請輸入專案代碼').then(function (data) {
+						console.log(replyMsg);
+					}).catch(function (error) {
+						console.log('error');
+					});
+				}
+			}
+			if (msg == '#我要加入') {
+				let groupId = event.source.groupId;
+				let bindIndex = -1;
+				for (let a = 0 ; a < bindGroupAndProjectId.length; a ++) {
+					if (bindGroupAndProjectId[a][0] == groupId) {
+						bindIndex = a;
+					}
+				}
 
+				// 將此用戶加入專案
+				// userId => event.source.userId
+				// groupId => groupId
+				// project_id => bindGroupAndProjectId[bindIndex][1]
+			}
 		}
-		console.log(talkingUser);
 
 		if (talkingUser.includes(event.source.userId)) {
 			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
 				let projectId = msg.substring(1, msg.length - 1);
-				bot.getGroupMember(event.source.groupId).then((data) => {
-					console.log('==========')
-					console.log(data)
-					console.log('==========')
+				// 查詢專案
+				project.fetchProject(projectId).then(data => {
+					if (data) {
+						console.log(data[0].project_name);
+						let groupWithProject = [event.source.groupId, projectId];
+						bindGroupAndProjectId.push(groupWithProject);
+						let replyFlex = {
+							"type": "flex",
+							"altText": "this is a flex message",
+							"contents": {
+								"type": "bubble",
+								"body": {
+									"type": "box",
+									"layout": "vertical",
+									"contents": [{
+											"type": "text",
+											"text": "請點選下方按鈕以加入專案"
+										},
+										{
+											"type": "button",
+											"action": {
+												"type": "message",
+												"label": projectId,
+												"text": "#我要加入"
+											},
+											"style": "primary",
+											"color": "#0000FF"
+										}
+									]
+								}
+							}
+						};
+						talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
+						event.reply(replyFlex).then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
+					} else {
+						event.reply('找不到該專案').then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
+					}
 				})
-				talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
-				event.reply(projectId).then(function (data) {
-					console.log(replyMsg);
-				}).catch(function (error) {
-					console.log('error');
-				});
+
 			}
 		}
 		// event.reply(replyMsg).then(function (data) {
