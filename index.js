@@ -220,37 +220,39 @@ function _bot() {
 								}
 							})
 						} else {
-							teammember.VerificationTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
-								if (data) {
-									teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
-										if (result) {
-											replyMsg = '已成功將' + profile.displayName + '加入專案【' +
-												bindGroupAndProjectId[bindIndex][2] + '】中。'
-											event.reply(replyMsg).then(function (data) {
-												console.log(replyMsg);
-											}).catch(function (error) {
-												console.log('error');
-											});
-										} else {
-											replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
-												bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
-												'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
-											event.reply(replyMsg).then(function (data) {
-												console.log(replyMsg);
-											}).catch(function (error) {
-												console.log('error');
-											});
-										}
-									})
-								} else {
-									replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
-										bindGroupAndProjectId[bindIndex][2] + '】中囉。'
-									event.reply(replyMsg).then(function (data) {
-										console.log(replyMsg);
-									}).catch(function (error) {
-										console.log('error');
-									});
-								}
+							event.source.profile().then(function (profile) {
+								teammember.VerificationTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
+									if (!data) {
+										teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
+											if (result) {
+												replyMsg = '已成功將' + profile.displayName + '加入專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】中。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+											} else {
+												replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
+													'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+											}
+										})
+									} else {
+										replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
+											bindGroupAndProjectId[bindIndex][2] + '】中囉。'
+										event.reply(replyMsg).then(function (data) {
+											console.log(replyMsg);
+										}).catch(function (error) {
+											console.log('error');
+										});
+									}
+								})
 							})
 						}
 					})
