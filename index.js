@@ -178,9 +178,8 @@ function _bot() {
 			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
 				let projectId = msg.substring(1, msg.length - 1);
 
-				bot.getGroupMember(event.source.groupId, function(data) {
-					console.log(data);
-				})
+				let a = bot.getGroupMember(event.source.groupId);
+				console.log(a)
 				talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
 				event.reply(replyFlex).then(function (data) {
 					console.log(replyMsg);
