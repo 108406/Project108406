@@ -220,7 +220,7 @@ function _bot() {
 								}
 							})
 						} else {
-							teammember.VerificationTeamMember(event.source.userId, projectId).then(data => {
+							teammember.VerificationTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
 								if (data) {
 									teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
 										if (result) {
