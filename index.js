@@ -160,6 +160,7 @@ function _bot() {
 		var replyMsg = '愛你唷 <3';
 
 		CheckMember(event);
+		console.log(event)
 		if (event.source.groupId != undefined) {
 			if (msg == '#加入專案') {
 				if (!talkingUser.includes(event.source.userId)) {
