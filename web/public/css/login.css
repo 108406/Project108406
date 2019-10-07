@@ -9,7 +9,8 @@ body, html {
   font-family: 'Noto Serif TC', serif;
   height: 100%;
   width: 100%;
-  background: url(/imgs/background-1.png);
+  background: url(/imgs/background-2.png)center center fixed no-repeat;
+  background-size: cover;
   zoom: 0.85;
 }
 
