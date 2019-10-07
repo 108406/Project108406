@@ -1,6 +1,7 @@
 var linebot = require('linebot');
 var express = require('express');
 var member = require('./routes/utility/member');
+var teammember = require('./routes/utility/teammember');
 var view = require('./routes/utility/view');
 var project = require('./routes/utility/project');
 var myFunction = require('./routes/utility/myFunction');
@@ -174,7 +175,7 @@ function _bot() {
 			if (msg == '#我要加入') {
 				let groupId = event.source.groupId;
 				let bindIndex = -1;
-				for (let a = 0 ; a < bindGroupAndProjectId.length; a ++) {
+				for (let a = 0; a < bindGroupAndProjectId.length; a++) {
 					if (bindGroupAndProjectId[a][0] == groupId) {
 						bindIndex = a;
 					}
@@ -201,45 +202,55 @@ function _bot() {
 			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
 				let projectId = msg.substring(1, msg.length - 1);
 				// 查詢專案
-				project.fetchProject(projectId).then(data => {
+				project.fetchProject(projectId).then(projectData => {
 					talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
-					if (data) {
-						let groupWithProject = [event.source.groupId, projectId];
-						bindGroupAndProjectId.push(groupWithProject);
-						let replyFlex = {
-							"type": "flex",
-							"altText": "this is a flex message",
-							"contents": {
-								"type": "bubble",
-								"body": {
-									"type": "box",
-									"layout": "vertical",
-									"contents": [{
-											"type": "text",
-											"text": "請點選下方按鈕以加入專案",
-											"align": "center"
-										},
-										{
-											"type": "button",
-											"action": {
-												"type": "message",
-												"label": data[0].project_name,
-												"text": "#我要加入"
-											},
-											"style": "primary",
-											"color": "#0000FF"
+					if (projectData) {
+						teammember.VerificationTeamMember(event.source.userId, projectId).then(data => {
+							if (data) {
+								let groupWithProject = [event.source.groupId, projectId];
+								bindGroupAndProjectId.push(groupWithProject);
+								let replyFlex = {
+									"type": "flex",
+									"altText": "this is a flex message",
+									"contents": {
+										"type": "bubble",
+										"body": {
+											"type": "box",
+											"layout": "vertical",
+											"contents": [{
+													"type": "text",
+													"text": "請點選下方按鈕以加入專案",
+													"align": "center"
+												},
+												{
+													"type": "button",
+													"action": {
+														"type": "message",
+														"label": projectData[0].project_name,
+														"text": "#我要加入"
+													},
+													"style": "primary",
+													"color": "#0000FF"
+												}
+											]
 										}
-									]
-								}
+									}
+								};
+								event.reply(replyFlex).then(function (data) {
+									console.log(replyMsg);
+								}).catch(function (error) {
+									console.log('error');
+								});
+							} else {
+								event.reply('你不在專案中哦。').then(function (data) {
+									console.log(replyMsg);
+								}).catch(function (error) {
+									console.log('error');
+								});
 							}
-						};
-						event.reply(replyFlex).then(function (data) {
-							console.log(replyMsg);
-						}).catch(function (error) {
-							console.log('error');
-						});
+						})
 					} else {
-						event.reply('找不到該專案').then(function (data) {
+						event.reply('找不到專案。').then(function (data) {
 							console.log(replyMsg);
 						}).catch(function (error) {
 							console.log('error');
