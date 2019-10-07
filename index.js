@@ -156,122 +156,192 @@ let bindGroupAndProjectId = [];
 
 function _bot() {
 	bot.on('message', function (event) {
-		var msg = event.message.text;
-		var replyMsg = '愛你唷 <3';
+		if (event.message.type == 'text') {
+			var msg = event.message.text;
+			var replyMsg = '愛你唷 <3';
 
-		CheckMember(event);
-		console.log(event)
-		if (event.source.groupId != undefined) {
-			if (msg == '#加入專案') {
-				if (!talkingUser.includes(event.source.userId)) {
-					talkingUser.push(event.source.userId);
-					readyToInviteGroup.push(event.source.groupId)
-					event.reply('請輸入專案代碼').then(function (data) {
+			// CheckMember(event);
+			if (event.source.groupId != undefined) {
+				if (msg == '#加入專案') {
+					if (!talkingUser.includes(event.source.userId)) {
+						talkingUser.push(event.source.userId);
+						readyToInviteGroup.push(event.source.groupId)
+						event.reply('請輸入專案代碼').then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
+					}
+				}
+				if (msg == '#我要加入' && bindGroupAndProjectId.length > 0) {
+					let groupId = event.source.groupId;
+					let bindIndex = -1;
+					for (let a = 0; a < bindGroupAndProjectId.length; a++) {
+						if (bindGroupAndProjectId[a][0] == groupId) {
+							bindIndex = a;
+						}
+					}
+					member.displayMember(event.source.userId).then(result => {
+						if (result == false) {
+							let memberData = {
+								user_id: event.source.userId,
+								photo: null,
+								member_name: profile.displayName,
+								email: null,
+								member_password: '',
+								linebotpush: true
+							}
+							member.addMember(memberData).then(data2 => {
+								if (data2) {
+									console.log('已將使用者' + profile.displayName + '加入資料庫');
+									teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
+										if (result) {
+											replyMsg = '已成功將' + profile.displayName + '加入專案【' +
+												bindGroupAndProjectId[bindIndex][2] + '】中。'
+											event.reply(replyMsg).then(function (data) {
+												console.log(replyMsg);
+											}).catch(function (error) {
+												console.log('error');
+											});
+										} else {
+											replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
+												bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
+												'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
+											event.reply(replyMsg).then(function (data) {
+												console.log(replyMsg);
+											}).catch(function (error) {
+												console.log('error');
+											});
+										}
+									})
+								} else {
+									console.log('寫入資料庫時發生問題');
+									return;
+								}
+							})
+						} else {
+							teammember.VerificationTeamMember(event.source.userId, projectId).then(data => {
+								if (data) {
+									teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
+										if (result) {
+											replyMsg = '已成功將' + profile.displayName + '加入專案【' +
+												bindGroupAndProjectId[bindIndex][2] + '】中。'
+											event.reply(replyMsg).then(function (data) {
+												console.log(replyMsg);
+											}).catch(function (error) {
+												console.log('error');
+											});
+										} else {
+											replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
+												bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
+												'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
+											event.reply(replyMsg).then(function (data) {
+												console.log(replyMsg);
+											}).catch(function (error) {
+												console.log('error');
+											});
+										}
+									})
+								} else {
+									replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
+										bindGroupAndProjectId[bindIndex][2] + '】中囉。'
+									event.reply(replyMsg).then(function (data) {
+										console.log(replyMsg);
+									}).catch(function (error) {
+										console.log('error');
+									});
+								}
+							})
+						}
+					})
+					console.log(bindGroupAndProjectId[bindIndex][1])
+					// event.reply('不要 >.0').then(function (data) {
+					// 	console.log(replyMsg);
+					// }).catch(function (error) {
+					// 	console.log('error');
+					// });
+
+				}
+			} else {
+				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
+
+				}
+			}
+
+			if (talkingUser.includes(event.source.userId)) {
+				if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
+					let projectId = msg.substring(1, msg.length - 1);
+					// 查詢專案
+					project.fetchProject(projectId).then(projectData => {
+						talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
+						if (projectData) {
+							teammember.VerificationTeamMember(event.source.userId, projectId).then(data => {
+								if (data) {
+									let groupWithProject = [event.source.groupId, projectId, projectData[0].project_name];
+									bindGroupAndProjectId.push(groupWithProject);
+									let replyFlex = {
+										"type": "flex",
+										"altText": "this is a flex message",
+										"contents": {
+											"type": "bubble",
+											"body": {
+												"type": "box",
+												"layout": "vertical",
+												"contents": [{
+														"type": "text",
+														"text": "請點選下方按鈕以加入專案",
+														"align": "center"
+													},
+													{
+														"type": "button",
+														"action": {
+															"type": "message",
+															"label": projectData[0].project_name,
+															"text": "#我要加入"
+														},
+														"style": "primary",
+														"color": "#0000FF"
+													}
+												]
+											}
+										}
+									};
+									event.reply(replyFlex).then(function (data) {
+										console.log(replyMsg);
+									}).catch(function (error) {
+										console.log('error');
+									});
+								} else {
+									event.reply('你不在專案中哦。').then(function (data) {
+										console.log(replyMsg);
+									}).catch(function (error) {
+										console.log('error');
+									});
+								}
+							})
+						} else {
+							event.reply('找不到專案。').then(function (data) {
+								console.log(replyMsg);
+							}).catch(function (error) {
+								console.log('error');
+							});
+						}
+					})
+
+				} else if (msg == '不要') {
+					event.reply('好吧......(ಥ_ಥ)').then(function (data) {
 						console.log(replyMsg);
 					}).catch(function (error) {
 						console.log('error');
 					});
 				}
 			}
-			if (msg == '#我要加入') {
-				let groupId = event.source.groupId;
-				let bindIndex = -1;
-				for (let a = 0; a < bindGroupAndProjectId.length; a++) {
-					if (bindGroupAndProjectId[a][0] == groupId) {
-						bindIndex = a;
-					}
-				}
-				console.log(bindGroupAndProjectId[bindIndex][1])
-				// event.reply('不要 >.0').then(function (data) {
-				// 	console.log(replyMsg);
-				// }).catch(function (error) {
-				// 	console.log('error');
-				// });
-
-				// 將此用戶加入專案
-				// userId => event.source.userId
-				// groupId => groupId
-				// project_id => bindGroupAndProjectId[bindIndex][1]
-			}
-		} else {
-			if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
-
-			}
+			// event.reply(replyMsg).then(function (data) {
+			// 	console.log(replyMsg);
+			// }).catch(function (error) {
+			// 	console.log('error');
+			// });
 		}
-
-		if (talkingUser.includes(event.source.userId)) {
-			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
-				let projectId = msg.substring(1, msg.length - 1);
-				// 查詢專案
-				project.fetchProject(projectId).then(projectData => {
-					talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
-					if (projectData) {
-						teammember.VerificationTeamMember(event.source.userId, projectId).then(data => {
-							if (data) {
-								let groupWithProject = [event.source.groupId, projectId];
-								bindGroupAndProjectId.push(groupWithProject);
-								let replyFlex = {
-									"type": "flex",
-									"altText": "this is a flex message",
-									"contents": {
-										"type": "bubble",
-										"body": {
-											"type": "box",
-											"layout": "vertical",
-											"contents": [{
-													"type": "text",
-													"text": "請點選下方按鈕以加入專案",
-													"align": "center"
-												},
-												{
-													"type": "button",
-													"action": {
-														"type": "message",
-														"label": projectData[0].project_name,
-														"text": "#我要加入"
-													},
-													"style": "primary",
-													"color": "#0000FF"
-												}
-											]
-										}
-									}
-								};
-								event.reply(replyFlex).then(function (data) {
-									console.log(replyMsg);
-								}).catch(function (error) {
-									console.log('error');
-								});
-							} else {
-								event.reply('你不在專案中哦。').then(function (data) {
-									console.log(replyMsg);
-								}).catch(function (error) {
-									console.log('error');
-								});
-							}
-						})
-					} else {
-						event.reply('找不到專案。').then(function (data) {
-							console.log(replyMsg);
-						}).catch(function (error) {
-							console.log('error');
-						});
-					}
-				})
-
-			} else if (msg == '不要') {
-				event.reply('好吧......(ಥ_ಥ)').then(function (data) {
-					console.log(replyMsg);
-				}).catch(function (error) {
-					console.log('error');
-				});
-			}
-		}
-		// event.reply(replyMsg).then(function (data) {
-		// 	console.log(replyMsg);
-		// }).catch(function (error) {
-		// 	console.log('error');
-		// });
 	});
 
 	bot.on('follow', function (event) {
