@@ -31,7 +31,7 @@ p.u-inline-block {
 
 html, body {
     font-family: 'Noto Serif TC', serif;
-    background: url(../imgs/background.png)center center fixed no-repeat;
+    background: url(../imgs/background-2.png)center center fixed no-repeat;
     background-size: cover;
     height: 100%;
     overflow-x: hidden;
@@ -202,6 +202,7 @@ div.work-total {
 }
 
 div.body-show {
+    background:  rgba(255, 255, 255,0.6);
     overflow-x: hidden;
     overflow-y: auto;
     -ms-flex: 1 1 auto;
@@ -219,6 +220,7 @@ div.header {
     justify-content: space-between;
     align-items: center;
     padding: 0.8em 0 0 0;
+    background: rgba(255,255,255,0.6);
 }
 
 div.text {
@@ -230,6 +232,7 @@ div.text {
 hr.highlight {
     width: 90%;
     margin: 0.65em 0;
+    background: rgba(255,255,255,0.6);
 }
 
 /*----------------------------------*/
@@ -304,7 +307,7 @@ a.work-a {
 button.btn-work {
     margin: 0;
     padding: 0;
-    color: #17294C;
+    color: rgb(36, 50, 73);
 }
 
 button.btn-work:hover {
@@ -312,7 +315,7 @@ button.btn-work:hover {
 }
 
 a.work-a :hover {
-    color: black;
+    color: rgb(243, 171, 76);
 }
 
 i.fa-caret-left {
@@ -1036,7 +1039,23 @@ a.modal-btn-set:hover {
     color: #fff;
     background-color: rgb(221, 152, 62);
 }
-
+.carousel-control-next, .carousel-control-prev {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 15%;
+    color: #333333 !important;
+    text-align: center;
+    opacity: .5;
+    transition: opacity .15s ease;
+}
 /*----------------------------------*/
 
 /*            @media                */
@@ -1054,7 +1073,7 @@ a.modal-btn-set:hover {
         max-height: 30em;
         margin-top: 1em;
         margin-bottom: 1em;
-        background: rgb(235, 235, 235);
+        background: rgba(255,255,255,0.6);
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
@@ -1072,7 +1091,7 @@ a.modal-btn-set:hover {
         max-height: 30em;
         margin-top: 1em;
         margin-bottom: 1em;
-        background: rgb(235, 235, 235);
+        background: rgba(255,255,255,0.6);
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
@@ -1094,7 +1113,7 @@ a.modal-btn-set:hover {
         max-height: 30em;
         margin-top: 1em;
         margin-bottom: 1em;
-        background: rgb(235, 235, 235);
+        background: rgba(255,255,255,0.6);
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
@@ -1116,7 +1135,7 @@ a.modal-btn-set:hover {
         max-height: 30em;
         margin-top: 1em;
         margin-bottom: 1em;
-        background: rgb(235, 235, 235);
+        background: rgba(255,255,255,0.6);
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
@@ -1134,7 +1153,7 @@ a.modal-btn-set:hover {
         max-height: 30em;
         margin-top: 1em;
         margin-bottom: 1em;
-        background: rgb(235, 235, 235);
+        background: rgba(255,255,255,0.6);
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
@@ -1152,7 +1171,7 @@ a.modal-btn-set:hover {
         max-height: 30em;
         margin-top: 1em;
         margin-bottom: 1em;
-        background: rgb(235, 235, 235);
+        background: rgba(255,255,255,0.6);
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
@@ -1170,7 +1189,7 @@ a.modal-btn-set:hover {
         max-height: 30em;
         margin-top: 1em;
         margin-bottom: 1em;
-        background: rgb(235, 235, 235);
+        background: rgba(255,255,255,0.6);
         border: none;
         overflow-y: hidden;
         overflow-x: hidden;
