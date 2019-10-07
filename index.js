@@ -154,6 +154,7 @@ let push = setInterval(function () {
 }, 1000);
 
 let talkingUser = [];
+
 function _bot() {
 	bot.on('message', function (event) {
 		var msg = event.message.text;
@@ -175,33 +176,11 @@ function _bot() {
 
 		if (talkingUser.includes(event.source.userId)) {
 			if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
-				let projectId = msg.substring(1,msg.length - 1);
-				let replyFlex = {
-					"type": "flex",
-					"altText": "this is a flex message",
-					"contents": {
-						"type": "bubble",
-						"body": {
-							"type": "box",
-							"layout": "vertical",
-							"contents": [{
-									"type": "text",
-									"text": "請點選下方按鈕以加入專案"
-								},
-								{
-									"type": "button",
-									"action": {
-										"type": "message",
-										"label": projectId,
-										"text": "#我要加入"
-									},
-									"style": "primary",
-									"color": "#0000FF"
-								}
-							]
-						}
-					}
-				};
+				let projectId = msg.substring(1, msg.length - 1);
+
+				bot.getGroupMember(event.source.groupId, function(data) {
+					console.log(data);
+				})
 				talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
 				event.reply(replyFlex).then(function (data) {
 					console.log(replyMsg);
