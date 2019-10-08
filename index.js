@@ -270,15 +270,29 @@ function _bot() {
 													lockUserInGroup.push(userInGroup);
 												});
 											} else {
-												replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
-													bindGroupAndProjectId[bindIndex][2] + '】中囉。'
-												event.reply(replyMsg).then(function (data) {
-													console.log(replyMsg);
-												}).catch(function (error) {
-													console.log('error');
-												});
-												let userInGroup = [event.source.groupId, event.source.userId]
-												lockUserInGroup.push(userInGroup);
+												if (data.group_id == groupId) {
+													replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
+														bindGroupAndProjectId[bindIndex][2] + '】中囉。'
+													event.reply(replyMsg).then(function (data) {
+														console.log(replyMsg);
+													}).catch(function (error) {
+														console.log('error');
+													});
+													let userInGroup = [event.source.groupId, event.source.userId]
+													lockUserInGroup.push(userInGroup);
+												} else {
+													replyMsg = '您好，' + profile.displayName + '。\n很抱歉，您在專案【' +
+														bindGroupAndProjectId[bindIndex][2] + '】中已經與其他群組連結囉。\n' +
+														'請問是否要取消與先前群組的連結，並重新連結此群組呢？'
+														// 在這裡開始要做個回應讓使用者選擇，並做判斷讓使用者的群組ID更新或不更新。
+													event.reply(replyMsg).then(function (data) {
+														console.log(replyMsg);
+													}).catch(function (error) {
+														console.log('error');
+													});
+													let userInGroup = [event.source.groupId, event.source.userId]
+													lockUserInGroup.push(userInGroup);
+												}
 											}
 										});
 									}
@@ -292,20 +306,6 @@ function _bot() {
 					// 	console.log('error');
 					// });
 
-				}
-				if (msg == '#我要妳的心，只屬於我一個人') {
-					event.reply('#我是你的人，因為你擁有我的心。').then(function (data) {
-						console.log(replyMsg);
-					}).catch(function (error) {
-						console.log('error');
-					});
-				}
-				if (msg == '#我要插入') {
-					event.reply('#插你妹。').then(function (data) {
-						console.log(replyMsg);
-					}).catch(function (error) {
-						console.log('error');
-					});
 				}
 			} else {
 				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
