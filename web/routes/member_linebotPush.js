@@ -5,7 +5,7 @@ const member = require('./utility/member');
 
 //接收GET請求
 router.post('/', function(req, res, next) {
-    member.updateMemberLinebotPush('A001', req.body.linebotPush).then(data => {
+    member.updateMemberLinebotPush(req.cookies.userid, req.body.linebotPush).then(data => {
         if(data){
             console.log("update LinebotPush Successful!");
         }else{

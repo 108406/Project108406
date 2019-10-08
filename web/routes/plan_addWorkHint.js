@@ -10,8 +10,7 @@ router.post('/', function (req, res, next) {
             if (data) {
                 console.log('新增工作提醒成功')
                 return res.status(200).send({
-                    message: '新增工作提醒成功',
-                    work_id: work_id
+                    message: '新增工作提醒成功'
                 });
             } else {
                 console.log('新增工作提醒時發生錯誤。')

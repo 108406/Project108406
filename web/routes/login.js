@@ -10,7 +10,7 @@ const member = require('./utility/member');
 const loginConfig = {
   channel_id: '1619169421', //process.env.LINE_LOGIN_CHANNEL_ID
   channel_secret: 'e00a15bd1fa164dfc179db9b46ab4145', //process.env.LINE_LOGIN_CHANNEL_SECRET
-  callback_url: 'https://planyourself-web.herokuapp.com/auth/line/cb', //process.env.LINE_LOGIN_CALLBACK_URL
+  callback_url: 'https://planyourself-connection.herokuapp.com/auth/line/cb', //process.env.LINE_LOGIN_CALLBACK_URL
   scope: 'openid profile',
   prompt: 'consent',
   bot_prompt: 'normal'
@@ -27,15 +27,15 @@ router.get('/auth/line/logout', (req, res) => { //登出帳號清除session
 
 //自訂的畫面路由
 router.get('/', (req, res) => {
-  if (req.cookies.userid != undefined) {
-    res.redirect('https://planyourself-web.herokuapp.com/content'); //自訂成功登入頁面
-  } else if (req.session.errMsg) {
-    res.render('login.ejs', {  //自訂尚未登入頁面，顯示錯誤訊息
-      ErrMsg: req.session.errMsg
-    });
-  } else {
+  // if (req.cookies.userid != undefined) {
+    // res.redirect('https://' + req.get('host') + '/content'); //自訂成功登入頁面
+  // } else if (req.session.errMsg) {
+  //   res.render('login.ejs', {  //自訂尚未登入頁面，顯示錯誤訊息
+  //     ErrMsg: req.session.errMsg
+  //   });
+  // } else {
     res.render('login.ejs');  //自訂尚未登入頁面，沒有錯誤訊息
-  }
+  // }
 });
 
 //LINE Login相關的API
@@ -49,7 +49,7 @@ router.get('/auth/line/cb', lineLogin.authcb( //從LINE登入後接收訊息
 
     member.displayMember(req.session.profile.sub).then(data => {
       if (data != false) {
-        res.redirect('https://planyourself-web.herokuapp.com/content');
+        res.redirect('https://' + req.get('host') + '/content');
       } else {
         SetMember(req.session.profile);
       }
@@ -71,7 +71,7 @@ function SetMember(profile) {
   };
   member.addMember(members).then(data => {
     if (data != false) {
-      res.redirect('https://planyourself-web.herokuapp.com/content');
+      res.redirect('https://' + req.get('host') + '/content');
     } else {
       res.render('login.ejs');
     }

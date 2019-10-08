@@ -5,7 +5,7 @@ const workhint = require('./utility/workhint.js');
 
 //接收POST請求
 router.post('/', function (req, res, next) {
-    workhint.updateWorkHint('A001', req.body.work_id, req.body.work_hint).then(data => {
+    workhint.updateWorkHint(req.cookies.userid, req.body.work_id, req.body.work_hint).then(data => {
         if (data) {
             console.log("update workhint Successful!");
             res.render('complete.ejs');

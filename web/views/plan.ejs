@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/kendo.common-material.min.css">
     <link rel="stylesheet" href="../css/kendo.material.min.css">
-    <link rel="stylesheet" href="../css/Navbar.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/Plan.css">
     <%
     var SeparateDate = function(date) {
@@ -119,9 +119,15 @@
             <div class="administrator-img" id="admin-move">
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (teammember[i][3]) { %>
+                <% if (teammember[i][2] != null && teammember[i][2] != '') { %>
                 <div id="<%= teammember[i][0] %>" class="member-img-trash">
                     <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
                 </div>
+                <% } else { %>
+                <div id="<%= teammember[i][0] %>" class="member-img-trash">
+                    <img src="/imgs/defaultPhoto.png" class="img-photo">
+                </div>
+                <% } %>
                 <% } %>
                 <% } %>
             </div>
@@ -133,9 +139,15 @@
             <div class="member-img" id="member-move">
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (!teammember[i][3]) { %>
-                <% if (teammember[i][2] != null) { %>
+                <% if (teammember[i][2] != null && teammember[i][2] != '') { %>
                 <div id="<%= teammember[i][0] %>" class="member-img-trash">
                     <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
+                    <a onclick="<%= `DeleteMember(this, '` + teammember[i][0] + `')` %>">
+                        <img src="/imgs/delete1.png" class="member-delete-icon"></a>
+                </div>
+                <% } else { %>
+                <div id="<%= teammember[i][0] %>" class="member-img-trash">
+                    <img src="/imgs/defaultPhoto.png" class="img-photo">
                     <a onclick="<%= `DeleteMember(this, '` + teammember[i][0] + `')` %>">
                         <img src="/imgs/delete1.png" class="member-delete-icon"></a>
                 </div>
@@ -153,7 +165,7 @@
             <% } %>
         </div>
         <!-----------------------------bottom結束--------------------------------->
-        
+
         <!--輪播-->
         <div id="PlanCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
             <ol class="carousel-indicators">
@@ -291,8 +303,13 @@
                                 <div class="work-img">
                                     <% for (var a = 0; a < teammember.length; a ++) { %>
                                     <% if (teammember[a][0] == thiswork[12] || teammember[a][0] == thiswork[13]) { %>
+                                    <% if (teammember[a][2] != null && teammember[a][2] != '') { %>
                                     <img alt="<%= 'workPrincipal_' + teammember[a][0] %>"
                                         src=<%= 'data:image/png;base64,' + teammember[a][2] %> class="work-img-photo">
+                                    <% } else { %>
+                                    <img alt="<%= 'workPrincipal_' + teammember[a][0] %>" src="/imgs/defaultPhoto.png"
+                                        class="work-img-photo">
+                                    <% } %>
                                     <% } %>
                                     <% } %>
                                 </div>

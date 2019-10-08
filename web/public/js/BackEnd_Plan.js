@@ -428,18 +428,32 @@ function SetWorkCard(data, cardNo) {
             teammember: data.teammember[a],
             workData: data.workData
         }
-        $('#addMemberToWork').append(
-            `<a id="addMemberButton_` + data.teammember[a][0] +
-            `" class="dropdown-img-member-set" onclick='AddMemberToWork(` + JSON.stringify(
-                addMemberToWorkData) + `, ` + cardNo + `)'><img src="data:image/png;base64,` + data
-            .teammember[a][2] +
-            '" class="dropdown-member-img"><div class="member-name">' + data.teammember[a][1] +
-            '</div></a>'
-        )
+        if (data.teammember[a][2] == null || data.teammember[a][2] == '') {
+            $('#addMemberToWork').append(
+                `<a id="addMemberButton_` + data.teammember[a][0] +
+                `" class="dropdown-img-member-set" onclick='AddMemberToWork(` + JSON.stringify(
+                    addMemberToWorkData) + `, ` + cardNo + `)'><img src="/imgs/defaultPhoto.png" class="dropdown-member-img"><div class="member-name">` + data.teammember[a][1] +
+                '</div></a>'
+            )
+        } else {
+            $('#addMemberToWork').append(
+                `<a id="addMemberButton_` + data.teammember[a][0] +
+                `" class="dropdown-img-member-set" onclick='AddMemberToWork(` + JSON.stringify(
+                    addMemberToWorkData) + `, ` + cardNo + `)'><img src="data:image/png;base64,` + data.teammember[a][2] +
+                '" class="dropdown-member-img"><div class="member-name">' + data.teammember[a][1] +
+                '</div></a>'
+            )
+
+        }
         if (data.teammember[a][0] == data.workData[12] || data.teammember[a][0] == data.workData[13]) {
-            $('#principal').append('<img id="principal_' + data.teammember[a][0] +
-                '" src="data:image/png;base64,' + data.teammember[a][2] +
-                '" class="modal-member-photo">');
+            if (data.teammember[a][2] == null || data.teammember[a][2] == '') {
+                $('#principal').append('<img id="principal_' + data.teammember[a][0] +
+                    '" src="/imgs/defaultPhoto.png" class="modal-member-photo">');
+            } else {
+                $('#principal').append('<img id="principal_' + data.teammember[a][0] +
+                    '" src="data:image/png;base64,' + data.teammember[a][2] +
+                    '" class="modal-member-photo">');
+            }
         }
     }
     $('#fixedTags').empty();
@@ -526,14 +540,22 @@ function AddMemberToWork(data, cardNo) {
         }
     }
     if (!dontAppend) {
-        $('#card-' + cardNo + ' div.work-img').append('<img alt="workPrincipal_' + data.teammember[0] +
-            '" src="data:image/png;base64,' + data.teammember[
-                2] +
-            '" class="work-img-photo">')
+        if (data.teammember[2] == null || data.teammember[2] == '') {
+            $('#card-' + cardNo + ' div.work-img').append('<img alt="workPrincipal_' + data.teammember[0] +
+                '" src="/imgs/defaultPhoto.png" class="work-img-photo">')
 
-        $('#principal').append('<img id="principal_' + data.teammember[0] +
-            '" src="data:image/png;base64,' + data.teammember[2] +
-            '" class="modal-member-photo">');
+            $('#principal').append('<img id="principal_' + data.teammember[0] +
+                '" src="/imgs/defaultPhoto.png" class="modal-member-photo">');
+        } else {
+            $('#card-' + cardNo + ' div.work-img').append('<img alt="workPrincipal_' + data.teammember[0] +
+                '" src="data:image/png;base64,' + data.teammember[2] +
+                '" class="work-img-photo">')
+
+            $('#principal').append('<img id="principal_' + data.teammember[0] +
+                '" src="data:image/png;base64,' + data.teammember[2] +
+                '" class="modal-member-photo">');
+        }
+
     }
     let deadline;
     if (newWorkData[3].length != 6) {
