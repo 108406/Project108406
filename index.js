@@ -153,6 +153,7 @@ let push = setInterval(function () {
 let talkingUser = [];
 let readyToInviteGroup = [];
 let bindGroupAndProjectId = [];
+let lockUserInGroup = [];
 
 function _bot() {
 	bot.on('message', function (event) {
@@ -173,9 +174,16 @@ function _bot() {
 						});
 					}
 				}
+
 				if (msg == '#我要加入' && bindGroupAndProjectId.length > 0) {
 					let groupId = event.source.groupId;
 					let bindIndex = -1;
+					for (let a = 0; a < lockUserInGroup.length; a++) {
+						if (lockUserInGroup[a][0] == event.source.groupId &&
+							lockUserInGroup[a][1] == event.source.userId) {
+							return;
+						}
+					}
 					for (let a = 0; a < bindGroupAndProjectId.length; a++) {
 						if (bindGroupAndProjectId[a][0] == groupId) {
 							bindIndex = a;
@@ -256,7 +264,8 @@ function _bot() {
 							})
 						}
 					})
-					console.log(bindGroupAndProjectId[bindIndex][1])
+					let userInGroup = [event.source.groupId, event.source.userId]
+					lockUserInGroup.push(userInGroup);
 					// event.reply('不要 >.0').then(function (data) {
 					// 	console.log(replyMsg);
 					// }).catch(function (error) {
