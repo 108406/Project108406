@@ -252,12 +252,26 @@ function _bot() {
 											}
 										})
 									} else {
-										replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
-											bindGroupAndProjectId[bindIndex][2] + '】中囉。'
-										event.reply(replyMsg).then(function (data) {
-											console.log(replyMsg);
-										}).catch(function (error) {
-											console.log('error');
+										teammember.FetchTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
+											if (data.group_id == null || data.group_id == '') {
+												teammember.updateTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, data.isadmin).then(data => {
+													replyMsg = '您好，' + profile.displayName + '。\n已將您與專案【' +
+														bindGroupAndProjectId[bindIndex][2] + '】連結。'
+													event.reply(replyMsg).then(function (data) {
+														console.log(replyMsg);
+													}).catch(function (error) {
+														console.log('error');
+													});
+												});
+											} else {
+												replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】中囉。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+											}
 										});
 									}
 								})
@@ -272,6 +286,13 @@ function _bot() {
 					// 	console.log('error');
 					// });
 
+				}
+				if (msg == '#我要妳的心，只屬於我一個人') {
+					event.reply('#我是你的人，因為你擁有我的心。').then(function (data) {
+						console.log(replyMsg);
+					}).catch(function (error) {
+						console.log('error');
+					});
 				}
 			} else {
 				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
