@@ -250,7 +250,7 @@ function _bot() {
 													console.log('error');
 												});
 											}
-										}) 
+										})
 									} else {
 										teammember.FetchTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
 											if (data.group_id == null || data.group_id == '') {
