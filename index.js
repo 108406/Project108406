@@ -300,6 +300,13 @@ function _bot() {
 						console.log('error');
 					});
 				}
+				if (msg == '#我要插入') {
+					event.reply('#插你妹。').then(function (data) {
+						console.log(replyMsg);
+					}).catch(function (error) {
+						console.log('error');
+					});
+				}
 			} else {
 				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
 
