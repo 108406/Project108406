@@ -189,46 +189,48 @@ function _bot() {
 							bindIndex = a;
 						}
 					}
-					member.displayMember(event.source.userId).then(result => {
-						if (result == false) {
-							let memberData = {
-								user_id: event.source.userId,
-								photo: null,
-								member_name: profile.displayName,
-								email: null,
-								member_password: '',
-								linebotpush: true
-							}
-							member.addMember(memberData).then(data2 => {
-								if (data2) {
-									console.log('已將使用者' + profile.displayName + '加入資料庫');
-									teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
-										if (result) {
-											replyMsg = '已成功將' + profile.displayName + '加入專案【' +
-												bindGroupAndProjectId[bindIndex][2] + '】中。'
-											event.reply(replyMsg).then(function (data) {
-												console.log(replyMsg);
-											}).catch(function (error) {
-												console.log('error');
-											});
-										} else {
-											replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
-												bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
-												'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
-											event.reply(replyMsg).then(function (data) {
-												console.log(replyMsg);
-											}).catch(function (error) {
-												console.log('error');
-											});
-										}
-									})
-								} else {
-									console.log('寫入資料庫時發生問題');
-									return;
+					event.source.profile().then(function (profile) {
+						member.displayMember(event.source.userId).then(result => {
+							if (result == false) {
+								let memberData = {
+									user_id: event.source.userId,
+									photo: null,
+									member_name: profile.displayName,
+									email: null,
+									member_password: '',
+									linebotpush: true
 								}
-							})
-						} else {
-							event.source.profile().then(function (profile) {
+								member.addMember(memberData).then(data2 => {
+									if (data2) {
+										console.log('已將使用者' + profile.displayName + '加入資料庫');
+										teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
+											if (result) {
+												replyMsg = '已成功將' + profile.displayName + '加入專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】中。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+												let userInGroup = [event.source.groupId, event.source.userId]
+												lockUserInGroup.push(userInGroup);
+											} else {
+												replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
+													'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+											}
+										})
+									} else {
+										console.log('寫入資料庫時發生問題');
+										return;
+									}
+								})
+							} else {
 								teammember.VerificationTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
 									if (!data) {
 										teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
@@ -240,6 +242,8 @@ function _bot() {
 												}).catch(function (error) {
 													console.log('error');
 												});
+												let userInGroup = [event.source.groupId, event.source.userId]
+												lockUserInGroup.push(userInGroup);
 											} else {
 												replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
 													bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
@@ -250,7 +254,7 @@ function _bot() {
 													console.log('error');
 												});
 											}
-										}) 
+										})
 									} else {
 										teammember.FetchTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
 											if (data.group_id == null || data.group_id == '') {
@@ -262,6 +266,8 @@ function _bot() {
 													}).catch(function (error) {
 														console.log('error');
 													});
+													let userInGroup = [event.source.groupId, event.source.userId]
+													lockUserInGroup.push(userInGroup);
 												});
 											} else {
 												replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
@@ -271,15 +277,15 @@ function _bot() {
 												}).catch(function (error) {
 													console.log('error');
 												});
+												let userInGroup = [event.source.groupId, event.source.userId]
+												lockUserInGroup.push(userInGroup);
 											}
 										});
 									}
 								})
-							})
-						}
+							}
+						})
 					})
-					let userInGroup = [event.source.groupId, event.source.userId]
-					lockUserInGroup.push(userInGroup);
 					// event.reply('不要 >.0').then(function (data) {
 					// 	console.log(replyMsg);
 					// }).catch(function (error) {
