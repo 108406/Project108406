@@ -537,7 +537,7 @@ function _bot() {
 								"type": "box",
 								"layout": "horizontal",
 								"position": "relative",
-								"borderColor": "#AAAAAAAA",
+								"borderColor": "#AAAAAAFF",
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
