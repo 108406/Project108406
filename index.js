@@ -535,8 +535,7 @@ function _bot() {
 							}, {
 								"type": "box",
 								"layout": "horizontal",
-								"cornerRadius": "xs",
-								"backgroundColor": "#BBBBEEFF",
+								"backgroundColor": "#BFBFEEFF",
 								"contents": [{
 										"type": "text",
 										"text": "　",
@@ -567,7 +566,7 @@ function _bot() {
 									{
 										"type": "text",
 										"wrap": true,
-										"text": "查詢專案\n查詢計畫\n查詢計劃",
+										"text": "我的專案\n我的計畫\n我的計劃",
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
@@ -577,6 +576,108 @@ function _bot() {
 										"type": "text",
 										"wrap": true,
 										"text": "若您想查詢您參與的專案。\n請直接使用這項命令。",
+										"align": "center",
+										"maxLines": 0,
+										"size": "sm",
+										"position": "relative",
+										"flex": 3
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"backgroundColor": "#BFBFEEFF",
+								"contents": [{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"position": "relative",
+								"cornerRadius": "xs",
+								"backgroundColor": "#CCCCFFFF",
+								"contents": [{
+										"type": "text",
+										"text": "#",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 1
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "我的工作",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "查詢屬於自己的工作（不管是主要還是次要）。",
+										"align": "center",
+										"maxLines": 0,
+										"size": "sm",
+										"position": "relative",
+										"flex": 3
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"backgroundColor": "#BFBFEEFF",
+								"contents": [{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"position": "relative",
+								"cornerRadius": "xs",
+								"backgroundColor": "#CCCCFFFF",
+								"contents": [{
+										"type": "text",
+										"text": "#",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 1
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "快到期計畫\n快到期計劃\n快到期專案",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "查詢自己的專案什麼時候到期。",
 										"align": "center",
 										"maxLines": 0,
 										"size": "sm",
