@@ -502,7 +502,6 @@ function _bot() {
 								"type": "box",
 								"layout": "horizontal",
 								"position": "relative",
-								"borderColor": "#AAAAAAAA",
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
@@ -536,8 +535,25 @@ function _bot() {
 							}, {
 								"type": "box",
 								"layout": "horizontal",
+								"cornerRadius": "xs",
+								"backgroundColor": "#BBBBEEFF",
+								"contents": [{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
 								"position": "relative",
-								"borderColor": "#AAAAAAFF",
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
