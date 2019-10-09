@@ -363,7 +363,7 @@ function _bot() {
 			}
 
 			if (msg == '?') {
-				
+
 				let replyFlex = {
 					"type": "flex",
 					"altText": "this is a flex message",
@@ -373,33 +373,44 @@ function _bot() {
 							"type": "box",
 							"layout": "vertical",
 							"contents": [{
-									"type": "text",
-									"text": "是否重新連結",
-									"align": "center"
+									"type": "box",
+									"layout": "vertical",
+									"contents": [{
+										"type": "text",
+										"text": "是否重新連結",
+										"align": "center"
+									}]
 								},
 								{
-									"type": "button",
-									"action": {
-										"type": "message",
-										"label": "是",
-										"text": "#重新連結"
-									},
-									"style": "primary",
-									"color": "#00FF00",
-									"position": "relative",
-									"flex": 2
-								},
-								{
-									"type": "button",
-									"action": {
-										"type": "message",
-										"label": "否",
-										"text": "#保留"
-									},
-									"style": "primary",
-									"color": "#FF0000",
-									"position": "relative",
-									"flex": 3
+									"type": "box",
+									"layout": "horizontal",
+									"contents": [
+
+										{
+											"type": "button",
+											"action": {
+												"type": "message",
+												"label": "是",
+												"text": "#重新連結"
+											},
+											"style": "primary",
+											"color": "#00FF00",
+											"position": "relative",
+											"flex": 2
+										},
+										{
+											"type": "button",
+											"action": {
+												"type": "message",
+												"label": "否",
+												"text": "#保留"
+											},
+											"style": "primary",
+											"color": "#FF0000",
+											"position": "relative",
+											"flex": 3
+										}
+									]
 								}
 							]
 						}
