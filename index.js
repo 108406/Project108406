@@ -446,6 +446,7 @@ function _bot() {
 								"type": "text",
 								"text": "您好，感謝您使用Plan Yourself",
 								"align": "center",
+								"position": "relative",
 								"weight": "bold"
 							}, {
 								"type": "text",
@@ -514,9 +515,10 @@ function _bot() {
 										"type": "text",
 										"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
 										"align": "center",
+										"maxLines": 0,
 										"size": "sm",
 										"position": "relative",
-										"flex": 2
+										"flex": 3
 									}
 								]
 							}]
