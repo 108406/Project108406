@@ -441,6 +441,7 @@ function _bot() {
 							"type": "box",
 							"layout": "vertical",
 							"position": "relative",
+							"spacing": "md",
 							"cornerRadius": "md",
 							"backgroundColor": "#EEEEEEFF",
 							"contents": [{
@@ -459,7 +460,6 @@ function _bot() {
 							}, {
 								"type": "box",
 								"layout": "horizontal",
-								"spacing": "md",
 								"position": "relative",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
