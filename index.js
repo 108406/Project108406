@@ -452,12 +452,13 @@ function _bot() {
 								"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
 								"align": "center",
 								"size": "xs",
-								"offsetTop": "10px"
+								"offsetTop": "10px",
+								"paddingBottom": "10px"
 							}, {
 								"type": "box",
 								"layout": "horizontal",
-								"offsetTop": "10px",
 								"cornerRadius": "md",
+								"paddingBottom": "10px",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
 										"type": "text",
