@@ -440,7 +440,6 @@ function _bot() {
 						"body": {
 							"type": "box",
 							"layout": "vertical",
-							"spacing": "md",
 							"backgroundColor": "#EEEEEEFF",
 							"contents": [{
 								"type": "text",
