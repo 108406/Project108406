@@ -285,7 +285,9 @@ function _bot() {
 													replyMsg = '您好，' + profile.displayName + '。\n很抱歉，您在專案【' +
 														bindGroupAndProjectId[bindIndex][2] + '】中已經與其他群組連結囉。\n' +
 														'請問是否要取消與先前群組的連結，並重新連結此群組呢？';
-													let updateGroupIdData = [event.source.userId, event.source.groupId];
+													let updateGroupIdData = [event.source.userId, event.source.groupId,
+														bindGroupAndProjectId[bindIndex][1], bindGroupAndProjectId[bindIndex][2]
+													];
 													updateGroupId.push(updateGroupIdData);
 													// 在這裡開始要做個回應讓使用者選擇，並做判斷讓使用者的群組ID更新或不更新。
 													event.reply(replyMsg).then(function (data) {
@@ -302,26 +304,51 @@ function _bot() {
 																"type": "box",
 																"layout": "vertical",
 																"contents": [{
-																		"type": "text",
-																		"text": "重新連結",
-																		"align": "center"
+																		"type": "box",
+																		"layout": "vertical",
+																		"contents": [{
+																			"type": "text",
+																			"text": "是否重新連結",
+																			"align": "center"
+																		}]
 																	},
 																	{
-																		"type": "button",
-																		"action": {
-																			"type": "message",
-																			"label": projectData[0].project_name,
-																			"text": "#我要加入"
-																		},
-																		"style": "primary",
-																		"color": "#0000FF"
+																		"type": "box",
+																		"layout": "horizontal",
+																		"contents": [
+
+																			{
+																				"type": "button",
+																				"action": {
+																					"type": "message",
+																					"label": "是",
+																					"text": "#重新連結"
+																				},
+																				"style": "primary",
+																				"color": "#00FF00",
+																				"position": "relative",
+																				"flex": 2
+																			},
+																			{
+																				"type": "button",
+																				"action": {
+																					"type": "message",
+																					"label": "否",
+																					"text": "#保留"
+																				},
+																				"style": "primary",
+																				"color": "#FF0000",
+																				"position": "relative",
+																				"flex": 2,
+																				"margin": "md",
+																			}
+																		]
 																	}
 																]
 															}
 														}
 													};
 													bot.push(event.source.groupId, [replyFlex])
-
 													let userInGroup = [event.source.groupId, event.source.userId]
 													lockUserInGroup.push(userInGroup);
 												}
@@ -332,27 +359,41 @@ function _bot() {
 							}
 						})
 					})
-					// event.reply('不要 >.0').then(function (data) {
-					// 	console.log(replyMsg);
-					// }).catch(function (error) {
-					// 	console.log('error');
-					// });
+				}
+
+				if (msg == '#重新連結') {
+					if (updateGroupId.length > 0) {
+						let updateGroupIdIndex = -1;
+						for (let a = 0; a < updateGroupId.length; a++) {
+							if (updateGroupId[a][0] == event.source.userId &&
+								updateGroupId[a][1] == event.source.groupId) {
+								updateGroupIdIndex = a;
+							}
+						}
+						if (updateGroupIdIndex != -1) {
+							event.source.profile().then(function (profile) {
+								teammember.FetchTeamMember(event.source.userId, updateGroupId[updateGroupIdIndex][2]).then(data => {
+									teammember.updateTeamMember(event.source.userId, data.project_id, event.source.groupId, data.isadmin).then(data => {
+										replyMsg = '您好，' + profile.displayName + '。\n已將您與專案【' +
+											updateGroupId[updateGroupIdIndex][3] + '】重新連結。'
+										event.reply(replyMsg).then(function (data) {
+											console.log(replyMsg);
+										}).catch(function (error) {
+											console.log('error');
+										});
+										let userInGroup = [event.source.groupId, event.source.userId]
+										lockUserInGroup.push(userInGroup);
+										updateGroupId.splice(updateGroupIdIndex, 1);
+									});
+								});
+							});
+						} else {
+							console.log('資料有誤')
+						}
+					}
 				}
 			} else {
 				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
-					if (msg == '?') {
-
-						event.reply('??').then(function (data) {
-							console.log(replyMsg);
-						}).catch(function (error) {
-							console.log('error');
-						});
-						event.reply('???').then(function (data) {
-							console.log(replyMsg);
-						}).catch(function (error) {
-							console.log('error');
-						});
-					}
 					// event.reply('不要 >.0').then(function (data) {
 					// 	console.log(replyMsg);
 					// }).catch(function (error) {
@@ -360,64 +401,6 @@ function _bot() {
 					// });
 
 				}
-			}
-
-			if (msg == '?') {
-
-				let replyFlex = {
-					"type": "flex",
-					"altText": "this is a flex message",
-					"contents": {
-						"type": "bubble",
-						"body": {
-							"type": "box",
-							"layout": "vertical",
-							"contents": [{
-									"type": "box",
-									"layout": "vertical",
-									"contents": [{
-										"type": "text",
-										"text": "是否重新連結",
-										"align": "center"
-									}]
-								},
-								{
-									"type": "box",
-									"layout": "horizontal",
-									"contents": [
-
-										{
-											"type": "button",
-											"action": {
-												"type": "message",
-												"label": "是",
-												"text": "#重新連結"
-											},
-											"style": "primary",
-											"color": "#00FF00",
-											"position": "relative",
-											"flex": 2
-										},
-										{
-											"type": "button",
-											"action": {
-												"type": "message",
-												"label": "否",
-												"text": "#保留"
-											},
-											"style": "primary",
-											"color": "#FF0000",
-											"position": "relative",
-											"flex": 2,
-											"margin": "md",
-										}
-									]
-								}
-							]
-						}
-					}
-				};
-				bot.push(event.source.groupId, [replyFlex])
 			}
 
 			if (talkingUser.includes(event.source.userId)) {
