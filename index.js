@@ -160,7 +160,7 @@ function _bot() {
 	bot.on('message', function (event) {
 		if (event.message.type == 'text') {
 			var msg = event.message.text;
-			var replyMsg = '愛你唷 <3';
+			var replyMsg = '您好。';
 
 			// CheckMember(event);
 			if (event.source.groupId != undefined) {
@@ -427,6 +427,65 @@ function _bot() {
 					// });
 
 				}
+			}
+
+			if (msg == '幫助' || msg.toLowerCase() == 'help' ||
+				(msg.substr(0, 1) == '#' && msg.includes('幫助')) ||
+				(msg.substr(0, 1) == '#' && msg.includes('help'))) {
+					let replyFlex = {
+						"type": "flex",
+						"altText": "this is a flex message",
+						"contents": {
+							"type": "bubble",
+							"body": {
+								"type": "box",
+								"layout": "vertical",
+								"contents": [{
+										"type": "box",
+										"layout": "vertical",
+										"contents": [{
+											"type": "text",
+											"text": "您好，感謝您使用Plan Yourself",
+											"align": "center"
+										},{
+											"type": "text",
+											"wrap": true,
+											"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
+											"align": "center",
+											"size": "sm"
+										},{
+											"type": "box",
+											"layout": "horizontal",
+											"contents": [
+												{
+													"type": "text",
+													"text": "#",
+													"align": "center",
+													"size": "sm",
+													"position": "relative",
+													"flex": 2
+												},
+												{
+													"type": "text",
+													"text": "加入專案",
+													"align": "center",
+													"size": "sm",
+													"position": "relative",
+													"flex": 2
+												}
+											]
+										]
+									}
+									
+								]
+							}
+						}
+					};
+					event.reply(replyFlex).then(function (data) {
+						console.log(replyMsg);
+					}).catch(function (error) {
+						console.log('error');
+					});
 			}
 
 			if (talkingUser.includes(event.source.userId)) {
