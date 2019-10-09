@@ -320,6 +320,7 @@ function _bot() {
 															}
 														}
 													};
+													bot.push(event.source.groupId, [replyFlex])
 
 													let userInGroup = [event.source.groupId, event.source.userId]
 													lockUserInGroup.push(userInGroup);
@@ -363,8 +364,48 @@ function _bot() {
 
 			if (msg == '?') {
 				
-				bot.push(event.source.groupId, ['??'])
-				bot.push(event.source.groupId, ['?????'])
+				let replyFlex = {
+					"type": "flex",
+					"altText": "this is a flex message",
+					"contents": {
+						"type": "bubble",
+						"body": {
+							"type": "box",
+							"layout": "vertical",
+							"contents": [{
+									"type": "text",
+									"text": "是否重新連結",
+									"align": "center"
+								},
+								{
+									"type": "button",
+									"action": {
+										"type": "message",
+										"label": "是",
+										"text": "#重新連結"
+									},
+									"style": "primary",
+									"color": "#00FF00",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "button",
+									"action": {
+										"type": "message",
+										"label": "否",
+										"text": "#保留"
+									},
+									"style": "primary",
+									"color": "#FF0000",
+									"position": "relative",
+									"flex": 3
+								}
+							]
+						}
+					}
+				};
+				bot.push(event.source.groupId, [replyFlex])
 			}
 
 			if (talkingUser.includes(event.source.userId)) {
