@@ -441,7 +441,6 @@ function _bot() {
 							"type": "box",
 							"layout": "vertical",
 							"position": "relative",
-							"spacing": "md",
 							"cornerRadius": "md",
 							"backgroundColor": "#EEEEEEFF",
 							"contents": [{
@@ -511,6 +510,7 @@ function _bot() {
 									},
 									{
 										"type": "text",
+										"wrap": true,
 										"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
 										"align": "center",
 										"maxLines": 0,
