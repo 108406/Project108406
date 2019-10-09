@@ -441,6 +441,7 @@ function _bot() {
 							"type": "box",
 							"layout": "vertical",
 							"position": "relative",
+							"cornerRadius": "md",
 							"backgroundColor": "#EEEEEEFF",
 							"contents": [{
 								"type": "text",
@@ -455,11 +456,9 @@ function _bot() {
 								"align": "center",
 								"position": "relative",
 								"size": "xs",
-								"offsetTop": "10px"
 							}, {
 								"type": "box",
 								"layout": "horizontal",
-								"cornerRadius": "md",
 								"spacing": "md",
 								"position": "relative",
 								"backgroundColor": "#AAAADDFF",
@@ -491,7 +490,6 @@ function _bot() {
 							}, {
 								"type": "box",
 								"layout": "horizontal",
-								"offsetTop": "10px",
 								"position": "relative",
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
