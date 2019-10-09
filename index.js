@@ -1,16 +1,17 @@
 var linebot = require('linebot');
 var express = require('express');
-var https = require('https');
 var member = require('./routes/utility/member');
+var teammember = require('./routes/utility/teammember');
 var view = require('./routes/utility/view');
+var project = require('./routes/utility/project');
 var myFunction = require('./routes/utility/myFunction');
 
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1627582693',
+	channelSecret: '7e8291f8ca70e509c82447b342850c26',
+	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
 
 const app = express();
@@ -22,10 +23,6 @@ var server = app.listen(process.env.PORT || 8080, function () {
 	var port = server.address().port;
 	console.log("App now running on port", port);
 });
-
-setInterval(function () {
-	https.get("https://thelinebotpractice.herokuapp.com/");
-}, 300000);
 
 // 每十分鐘更新一次資料
 function UpdateAllWorkData() {
@@ -53,13 +50,12 @@ function UpdateAllWorkData() {
 			}
 
 		}
-		console.log(allWorkData)
 	})
 }
 
 UpdateAllWorkData();
 
-let updataData = setInterval(UpdateAllWorkData, 600000);
+let updataData = setInterval(UpdateAllWorkData, 60000);
 
 let push = setInterval(function () {
 	let nowDateArray = myFunction.SeparateDate(Date());
@@ -105,7 +101,7 @@ let push = setInterval(function () {
 				project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束';
 			if (allWorkData[allDataIndex].linebotpush && allWorkData[allDataIndex].project_hint) {
 				userId = allWorkData[allDataIndex].user_id;
-				bot.push(userId, [pushWorkText]);
+				bot.push(userId, [pushProjectText]);
 			}
 		}
 
@@ -154,18 +150,628 @@ let push = setInterval(function () {
 	}
 }, 1000);
 
+let talkingUser = [];
+let readyToInviteGroup = [];
+let bindGroupAndProjectId = [];
+let lockUserInGroup = [];
+let updateGroupId = [];
+
 function _bot() {
 	bot.on('message', function (event) {
-		var msg = event.message.text;
-		var replyMsg = '愛你唷 <3';
-		CheckMember(event);
-		console.log(msg)
-		console.log(event.source.userId);
-		event.reply(replyMsg).then(function (data) {
-			console.log(replyMsg);
-		}).catch(function (error) {
-			console.log('error');
-		});
+		if (event.message.type == 'text') {
+			var msg = event.message.text;
+			var replyMsg = '您好。';
+
+			// CheckMember(event);
+			if (event.source.groupId != undefined) {
+				if (msg == '#加入專案' || msg == '#加入計劃' || msg == '#加入計畫') {
+					if (!talkingUser.includes(event.source.userId)) {
+						talkingUser.push(event.source.userId);
+						readyToInviteGroup.push(event.source.groupId);
+
+						for (let a = 0; a < lockUserInGroup.length; a++) {
+							if (lockUserInGroup[a][0] == event.source.groupId) {
+								lockUserInGroup.splice(a, 1);
+							}
+						}
+
+						event.reply('請輸入專案代碼').then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
+					}
+				}
+
+				if (msg == '#我要加入' && bindGroupAndProjectId.length > 0) {
+					let groupId = event.source.groupId;
+					let bindIndex = -1;
+					for (let a = 0; a < lockUserInGroup.length; a++) {
+						if (lockUserInGroup[a][0] == event.source.groupId &&
+							lockUserInGroup[a][1] == event.source.userId) {
+							return;
+						}
+					}
+					for (let a = 0; a < bindGroupAndProjectId.length; a++) {
+						if (bindGroupAndProjectId[a][0] == groupId) {
+							bindIndex = a;
+						}
+					}
+					event.source.profile().then(function (profile) {
+						member.displayMember(event.source.userId).then(result => {
+							if (result == false) {
+								let memberData = {
+									user_id: event.source.userId,
+									photo: null,
+									member_name: profile.displayName,
+									email: null,
+									member_password: '',
+									linebotpush: true
+								}
+								member.addMember(memberData).then(data2 => {
+									if (data2) {
+										console.log('已將使用者' + profile.displayName + '加入資料庫');
+										teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
+											if (result) {
+												replyMsg = '已成功將' + profile.displayName + '加入專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】中。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+												let userInGroup = [event.source.groupId, event.source.userId]
+												lockUserInGroup.push(userInGroup);
+											} else {
+												replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
+													'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+											}
+										})
+									} else {
+										console.log('寫入資料庫時發生問題');
+										return;
+									}
+								})
+							} else {
+								teammember.VerificationTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
+									if (!data) {
+										teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
+											if (result) {
+												replyMsg = '已成功將' + profile.displayName + '加入專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】中。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+												let userInGroup = [event.source.groupId, event.source.userId]
+												lockUserInGroup.push(userInGroup);
+											} else {
+												replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
+													bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
+													'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
+												event.reply(replyMsg).then(function (data) {
+													console.log(replyMsg);
+												}).catch(function (error) {
+													console.log('error');
+												});
+											}
+										})
+									} else {
+										teammember.FetchTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
+											if (data.group_id == null || data.group_id == '') {
+												teammember.updateTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, data.isadmin).then(data => {
+													replyMsg = '您好，' + profile.displayName + '。\n已將您與專案【' +
+														bindGroupAndProjectId[bindIndex][2] + '】連結。'
+													event.reply(replyMsg).then(function (data) {
+														console.log(replyMsg);
+													}).catch(function (error) {
+														console.log('error');
+													});
+													let userInGroup = [event.source.groupId, event.source.userId]
+													lockUserInGroup.push(userInGroup);
+												});
+											} else {
+												if (data.group_id == groupId) {
+													replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
+														bindGroupAndProjectId[bindIndex][2] + '】中囉。'
+													event.reply(replyMsg).then(function (data) {
+														console.log(replyMsg);
+													}).catch(function (error) {
+														console.log('error');
+													});
+													let userInGroup = [event.source.groupId, event.source.userId]
+													lockUserInGroup.push(userInGroup);
+												} else {
+													replyMsg = '您好，' + profile.displayName + '。\n很抱歉，您在專案【' +
+														bindGroupAndProjectId[bindIndex][2] + '】中已經與其他群組連結囉。\n' +
+														'請問是否要取消與先前群組的連結，並重新連結此群組呢？';
+													let updateGroupIdData = [event.source.userId, event.source.groupId,
+														bindGroupAndProjectId[bindIndex][1], bindGroupAndProjectId[bindIndex][2]
+													];
+													updateGroupId.push(updateGroupIdData);
+													// 在這裡開始要做個回應讓使用者選擇，並做判斷讓使用者的群組ID更新或不更新。
+													event.reply(replyMsg).then(function (data) {
+														console.log(replyMsg);
+													}).catch(function (error) {
+														console.log('error');
+													});
+													let replyFlex = {
+														"type": "flex",
+														"altText": "this is a flex message",
+														"contents": {
+															"type": "bubble",
+															"body": {
+																"type": "box",
+																"layout": "vertical",
+																"contents": [{
+																		"type": "box",
+																		"layout": "vertical",
+																		"contents": [{
+																			"type": "text",
+																			"text": "是否重新連結",
+																			"align": "center"
+																		}]
+																	},
+																	{
+																		"type": "box",
+																		"layout": "horizontal",
+																		"contents": [
+
+																			{
+																				"type": "button",
+																				"action": {
+																					"type": "message",
+																					"label": "是",
+																					"text": "#重新連結"
+																				},
+																				"style": "primary",
+																				"color": "#00FF00",
+																				"position": "relative",
+																				"flex": 2
+																			},
+																			{
+																				"type": "button",
+																				"action": {
+																					"type": "message",
+																					"label": "否",
+																					"text": "#保留"
+																				},
+																				"style": "primary",
+																				"color": "#FF0000",
+																				"position": "relative",
+																				"flex": 2,
+																				"margin": "md",
+																			}
+																		]
+																	}
+																]
+															}
+														}
+													};
+													bot.push(event.source.groupId, [replyFlex])
+													let userInGroup = [event.source.groupId, event.source.userId]
+													lockUserInGroup.push(userInGroup);
+												}
+											}
+										});
+									}
+								})
+							}
+						})
+					})
+				}
+
+				if (msg == '#重新連結') {
+					if (updateGroupId.length > 0) {
+						let updateGroupIdIndex = -1;
+						for (let a = 0; a < updateGroupId.length; a++) {
+							if (updateGroupId[a][0] == event.source.userId &&
+								updateGroupId[a][1] == event.source.groupId) {
+								updateGroupIdIndex = a;
+							}
+						}
+						if (updateGroupIdIndex != -1) {
+							event.source.profile().then(function (profile) {
+								teammember.FetchTeamMember(event.source.userId, updateGroupId[updateGroupIdIndex][2]).then(data => {
+									teammember.updateTeamMember(event.source.userId, data.project_id, event.source.groupId, data.isadmin).then(data => {
+										replyMsg = '您好，' + profile.displayName + '。\n已將您與專案【' +
+											updateGroupId[updateGroupIdIndex][3] + '】重新連結至此群組。'
+										event.reply(replyMsg).then(function (data) {
+											console.log(replyMsg);
+										}).catch(function (error) {
+											console.log('error');
+										});
+										let userInGroup = [event.source.groupId, event.source.userId]
+										lockUserInGroup.push(userInGroup);
+										updateGroupId.splice(updateGroupIdIndex, 1);
+									});
+								});
+							});
+						} else {
+							console.log('資料有誤')
+						}
+					}
+				}
+				if (msg == '#保留') {
+					if (updateGroupId.length > 0) {
+						event.source.profile().then(function (profile) {
+							for (let a = 0; a < updateGroupId.length; a++) {
+								if (updateGroupId[a][0] == event.source.userId &&
+									updateGroupId[a][1] == event.source.groupId) {
+									updateGroupId.splice(a, 1);
+								}
+							}
+
+							replyMsg = '您好，' + profile.displayName + '。\n我們將保留您原本的專案連結。'
+							event.reply(replyMsg).then(function (data) {
+								console.log(replyMsg);
+							}).catch(function (error) {
+								console.log('error');
+							});
+						});
+					}
+				}
+			} else {
+				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
+					// event.reply('不要 >.0').then(function (data) {
+					// 	console.log(replyMsg);
+					// }).catch(function (error) {
+					// 	console.log('error');
+					// });
+
+				}
+			}
+
+			if (msg == '幫助' || msg.toLowerCase() == 'help' ||
+				(msg.substr(0, 1) == '#' && msg.includes('幫助')) ||
+				(msg.substr(0, 1) == '#' && msg.includes('help'))) {
+				let replyFlex = {
+					"type": "flex",
+					"altText": "this is a flex message",
+					"contents": {
+						"type": "bubble",
+						"body": {
+							"type": "box",
+							"layout": "vertical",
+							"paddingAll": "10px",
+							"backgroundColor": "#EEEEEEFF",
+							"contents": [{
+								"type": "text",
+								"text": "您好，感謝您使用Plan Yourself",
+								"align": "center",
+								"position": "relative",
+								"weight": "bold"
+							}, {
+								"type": "text",
+								"text": "　",
+								"align": "center",
+								"position": "relative",
+								"size": "xs"
+							}, {
+								"type": "text",
+								"wrap": true,
+								"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
+								"align": "center",
+								"position": "relative",
+								"size": "xs"
+							}, {
+								"type": "text",
+								"text": "　",
+								"align": "center",
+								"position": "relative",
+								"size": "xs"
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"cornerRadius": "md",
+								"position": "relative",
+								"cornerRadius": "xs",
+								"backgroundColor": "#AAAADDFF",
+								"contents": [{
+										"type": "text",
+										"text": "#",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 1
+									},
+									{
+										"type": "text",
+										"text": "命令",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"text": "說明",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 3
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"position": "relative",
+								"cornerRadius": "xs",
+								"backgroundColor": "#CCCCFFFF",
+								"contents": [{
+										"type": "text",
+										"text": "#",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 1
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "加入專案\n加入計畫\n加入計劃",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
+										"align": "center",
+										"maxLines": 0,
+										"size": "sm",
+										"position": "relative",
+										"flex": 3
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"backgroundColor": "#BFBFEEFF",
+								"contents": [{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"position": "relative",
+								"cornerRadius": "xs",
+								"backgroundColor": "#CCCCFFFF",
+								"contents": [{
+										"type": "text",
+										"text": "#",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 1
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "我的專案\n我的計畫\n我的計劃",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "若您想查詢您參與的專案。\n請直接使用這項命令。",
+										"align": "center",
+										"maxLines": 0,
+										"size": "sm",
+										"position": "relative",
+										"flex": 3
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"backgroundColor": "#BFBFEEFF",
+								"contents": [{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"position": "relative",
+								"cornerRadius": "xs",
+								"backgroundColor": "#CCCCFFFF",
+								"contents": [{
+										"type": "text",
+										"text": "#",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 1
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "我的工作",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "查詢屬於自己的工作（不管是主要還是次要）。",
+										"align": "center",
+										"maxLines": 0,
+										"size": "sm",
+										"position": "relative",
+										"flex": 3
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"backgroundColor": "#BFBFEEFF",
+								"contents": [{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									},
+									{
+										"type": "text",
+										"text": "　",
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"position": "relative",
+								"cornerRadius": "xs",
+								"backgroundColor": "#CCCCFFFF",
+								"contents": [{
+										"type": "text",
+										"text": "#",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 1
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "快到期計畫\n快到期計劃\n快到期專案",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "查詢自己的專案什麼時候到期。",
+										"align": "center",
+										"maxLines": 0,
+										"size": "sm",
+										"position": "relative",
+										"flex": 3
+									}
+								]
+							}]
+						}
+
+					}
+				};
+				event.reply(replyFlex).then(function (data) {
+					console.log(replyMsg);
+				}).catch(function (error) {
+					console.log('error');
+				});
+			}
+
+			if (talkingUser.includes(event.source.userId)) {
+				if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
+					let projectId = msg.substring(1, msg.length - 1);
+					// 查詢專案
+					project.fetchProject(projectId).then(projectData => {
+						talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
+						if (projectData) {
+							teammember.VerificationTeamMember(event.source.userId, projectId).then(data => {
+								if (data) {
+									let groupWithProject = [event.source.groupId, projectId, projectData[0].project_name];
+									bindGroupAndProjectId.push(groupWithProject);
+									let replyFlex = {
+										"type": "flex",
+										"altText": "this is a flex message",
+										"contents": {
+											"type": "bubble",
+											"body": {
+												"type": "box",
+												"layout": "vertical",
+												"contents": [{
+														"type": "text",
+														"text": "請點選下方按鈕以加入專案",
+														"align": "center"
+													},
+													{
+														"type": "button",
+														"action": {
+															"type": "message",
+															"label": projectData[0].project_name,
+															"text": "#我要加入"
+														},
+														"style": "primary",
+														"color": "#0000FF"
+													}
+												]
+											}
+										}
+									};
+									event.reply(replyFlex).then(function (data) {
+										console.log(replyMsg);
+									}).catch(function (error) {
+										console.log('error');
+									});
+								} else {
+									event.reply('你不在專案中哦。').then(function (data) {
+										console.log(replyMsg);
+									}).catch(function (error) {
+										console.log('error');
+									});
+								}
+							})
+						} else {
+							event.reply('找不到專案。').then(function (data) {
+								console.log(replyMsg);
+							}).catch(function (error) {
+								console.log('error');
+							});
+						}
+					})
+
+				} else if (msg == '不要') {
+					event.reply('好吧......(ಥ_ಥ)').then(function (data) {
+						console.log(replyMsg);
+					}).catch(function (error) {
+						console.log('error');
+					});
+				}
+			}
+			// event.reply(replyMsg).then(function (data) {
+			// 	console.log(replyMsg);
+			// }).catch(function (error) {
+			// 	console.log('error');
+			// });
+		}
 	});
 
 	bot.on('follow', function (event) {
@@ -175,7 +781,6 @@ function _bot() {
 
 function CheckMember(event) {
 	event.source.profile().then(function (profile) {
-		console.log(profile);
 		member.displayMember(event.source.userId).then(data => {
 			if (data == false) {
 				let memberData = {
@@ -199,6 +804,7 @@ function CheckMember(event) {
 						return;
 					}
 				})
+
 			}
 		})
 	});
