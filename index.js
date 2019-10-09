@@ -440,6 +440,7 @@ function _bot() {
 						"body": {
 							"type": "box",
 							"layout": "vertical",
+							"spacing": "md",
 							"backgroundColor": "#EEEEEEFF",
 							"contents": [{
 								"type": "text",
@@ -453,15 +454,12 @@ function _bot() {
 								"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
 								"align": "center",
 								"position": "relative",
-								"size": "xs",
-								"offsetTop": "10px",
-								"offsetBottom": "-10px"
+								"size": "xs"
 							}, {
 								"type": "box",
 								"layout": "horizontal",
 								"cornerRadius": "md",
 								"position": "relative",
-								"offsetTop": "10px",
 								"cornerRadius": "xs",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
@@ -494,7 +492,6 @@ function _bot() {
 								"layout": "horizontal",
 								"position": "relative",
 								"cornerRadius": "xs",
-								"offsetTop": "10px",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
 										"type": "text",
