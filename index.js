@@ -154,6 +154,7 @@ let talkingUser = [];
 let readyToInviteGroup = [];
 let bindGroupAndProjectId = [];
 let lockUserInGroup = [];
+let updateGroupId = [];
 
 function _bot() {
 	bot.on('message', function (event) {
@@ -283,13 +284,43 @@ function _bot() {
 												} else {
 													replyMsg = '您好，' + profile.displayName + '。\n很抱歉，您在專案【' +
 														bindGroupAndProjectId[bindIndex][2] + '】中已經與其他群組連結囉。\n' +
-														'請問是否要取消與先前群組的連結，並重新連結此群組呢？'
-														// 在這裡開始要做個回應讓使用者選擇，並做判斷讓使用者的群組ID更新或不更新。
+														'請問是否要取消與先前群組的連結，並重新連結此群組呢？';
+													let updateGroupIdData = [event.source.userId, event.source.groupId];
+													updateGroupId.push(updateGroupIdData);
+													// 在這裡開始要做個回應讓使用者選擇，並做判斷讓使用者的群組ID更新或不更新。
 													event.reply(replyMsg).then(function (data) {
 														console.log(replyMsg);
 													}).catch(function (error) {
 														console.log('error');
 													});
+													let replyFlex = {
+														"type": "flex",
+														"altText": "this is a flex message",
+														"contents": {
+															"type": "bubble",
+															"body": {
+																"type": "box",
+																"layout": "vertical",
+																"contents": [{
+																		"type": "text",
+																		"text": "重新連結",
+																		"align": "center"
+																	},
+																	{
+																		"type": "button",
+																		"action": {
+																			"type": "message",
+																			"label": projectData[0].project_name,
+																			"text": "#我要加入"
+																		},
+																		"style": "primary",
+																		"color": "#0000FF"
+																	}
+																]
+															}
+														}
+													};
+
 													let userInGroup = [event.source.groupId, event.source.userId]
 													lockUserInGroup.push(userInGroup);
 												}
@@ -309,6 +340,24 @@ function _bot() {
 				}
 			} else {
 				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
+					if (msg == '?') {
+
+						event.reply('??').then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
+						event.reply('???').then(function (data) {
+							console.log(replyMsg);
+						}).catch(function (error) {
+							console.log('error');
+						});
+					}
+					// event.reply('不要 >.0').then(function (data) {
+					// 	console.log(replyMsg);
+					// }).catch(function (error) {
+					// 	console.log('error');
+					// });
 
 				}
 			}
