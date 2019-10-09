@@ -164,7 +164,7 @@ function _bot() {
 
 			// CheckMember(event);
 			if (event.source.groupId != undefined) {
-				if (msg == '#加入專案') {
+				if (msg == '#加入專案' || msg == '#加入計劃' || msg == '#加入計畫') {
 					if (!talkingUser.includes(event.source.userId)) {
 						talkingUser.push(event.source.userId);
 						readyToInviteGroup.push(event.source.groupId);
@@ -449,8 +449,20 @@ function _bot() {
 								"weight": "bold"
 							}, {
 								"type": "text",
+								"text": "　",
+								"align": "center",
+								"position": "relative",
+								"size": "xs"
+							}, {
+								"type": "text",
 								"wrap": true,
 								"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
+								"align": "center",
+								"position": "relative",
+								"size": "xs"
+							}, {
+								"type": "text",
+								"text": "　",
 								"align": "center",
 								"position": "relative",
 								"size": "xs"
@@ -502,7 +514,8 @@ function _bot() {
 									},
 									{
 										"type": "text",
-										"text": "加入專案",
+										"wrap": true,
+										"text": "加入專案\n加入計畫\n加入計劃",
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
@@ -512,6 +525,40 @@ function _bot() {
 										"type": "text",
 										"wrap": true,
 										"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
+										"align": "center",
+										"maxLines": 0,
+										"size": "sm",
+										"position": "relative",
+										"flex": 3
+									}
+								]
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"position": "relative",
+								"cornerRadius": "xs",
+								"backgroundColor": "#CCCCFFFF",
+								"contents": [{
+										"type": "text",
+										"text": "#",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 1
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "查詢專案\n查詢計畫\n查詢計劃",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"wrap": true,
+										"text": "若您想查詢您參與的專案。\n請直接使用這項命令。",
 										"align": "center",
 										"maxLines": 0,
 										"size": "sm",
