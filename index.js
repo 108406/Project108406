@@ -455,7 +455,8 @@ function _bot() {
 								"align": "center",
 								"position": "relative",
 								"size": "xs",
-								"offsetTop": "10px"
+								"offsetTop": "10px",
+								"offsetBottom": "10px"
 							}, {
 								"type": "box",
 								"layout": "horizontal",
