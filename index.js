@@ -490,7 +490,6 @@ function _bot() {
 								"type": "box",
 								"layout": "horizontal",
 								"position": "relative",
-								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
 										"type": "text",
