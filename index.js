@@ -460,8 +460,9 @@ function _bot() {
 								"type": "box",
 								"layout": "horizontal",
 								"cornerRadius": "md",
-								"spacing": "md",
 								"position": "relative",
+								"cornerRadius": "xs",
+								"offsetTop": "10px",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
 										"type": "text",
@@ -491,7 +492,6 @@ function _bot() {
 							}, {
 								"type": "box",
 								"layout": "horizontal",
-								"offsetTop": "10px",
 								"position": "relative",
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
@@ -513,6 +513,7 @@ function _bot() {
 									},
 									{
 										"type": "text",
+										"wrap": true,
 										"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
 										"align": "center",
 										"maxLines": 0,
