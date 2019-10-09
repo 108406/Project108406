@@ -440,44 +440,44 @@ function _bot() {
 						"body": {
 							"type": "box",
 							"layout": "vertical",
+							"backgroundColor": "#CCCCCCFF",
 							"contents": [{
-									"type": "box",
-									"layout": "vertical",
-									"contents": [{
+								"type": "text",
+								"text": "您好，感謝您使用Plan Yourself",
+								"align": "center",
+								"weight": "bold"
+							}, {
+								"type": "text",
+								"wrap": true,
+								"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
+								"align": "center",
+								"size": "sm",
+								"offsetTop": "10px"
+							}, {
+								"type": "box",
+								"layout": "horizontal",
+								"offsetTop": "10px",
+								"backgroundColor": "#CCCCFFFF",
+								"contents": [{
 										"type": "text",
-										"text": "您好，感謝您使用Plan Yourself",
-										"align": "center"
-									}, {
-										"type": "text",
-										"wrap": true,
-										"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
+										"text": "#",
 										"align": "center",
-										"size": "sm"
-									}, {
-										"type": "box",
-										"layout": "horizontal",
-										"contents": [{
-												"type": "text",
-												"text": "#",
-												"align": "center",
-												"size": "sm",
-												"position": "relative",
-												"flex": 2
-											},
-											{
-												"type": "text",
-												"text": "加入專案",
-												"align": "center",
-												"size": "sm",
-												"position": "relative",
-												"flex": 2
-											}
-										]
-									}]
-								}
-
-							]
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									},
+									{
+										"type": "text",
+										"text": "加入專案",
+										"align": "center",
+										"size": "sm",
+										"position": "relative",
+										"flex": 2
+									}
+								]
+							}]
 						}
+
 					}
 				};
 				event.reply(replyFlex).then(function (data) {
