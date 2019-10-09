@@ -336,7 +336,6 @@ function _bot() {
 					// }).catch(function (error) {
 					// 	console.log('error');
 					// });
-
 				}
 			} else {
 				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
@@ -360,6 +359,12 @@ function _bot() {
 					// });
 
 				}
+			}
+
+			if (msg == '?') {
+				
+				bot.push(event.source.groupId, ['??'])
+				bot.push(event.source.groupId, ['?????'])
 			}
 
 			if (talkingUser.includes(event.source.userId)) {
