@@ -167,7 +167,14 @@ function _bot() {
 				if (msg == '#加入專案') {
 					if (!talkingUser.includes(event.source.userId)) {
 						talkingUser.push(event.source.userId);
-						readyToInviteGroup.push(event.source.groupId)
+						readyToInviteGroup.push(event.source.groupId);
+
+						for (let a = 0; a < lockUserInGroup.length; a++) {
+							if (lockUserInGroup[a][0] == event.source.groupId) {
+								lockUserInGroup.splice(a, 1);
+							}
+						}
+
 						event.reply('請輸入專案代碼').then(function (data) {
 							console.log(replyMsg);
 						}).catch(function (error) {
@@ -390,6 +397,25 @@ function _bot() {
 						} else {
 							console.log('資料有誤')
 						}
+					}
+				}
+				if (msg == '#保留') {
+					if (updateGroupId.length > 0) {
+						event.source.profile().then(function (profile) {
+							for (let a = 0; a < updateGroupId.length; a++) {
+								if (updateGroupId[a][0] == event.source.userId &&
+									updateGroupId[a][1] == event.source.groupId) {
+									updateGroupId.splice(a, 1);
+								}
+							}
+
+							replyMsg = '您好，' + profile.displayName + '。\n我們將保留您原本的專案連結。'
+							event.reply(replyMsg).then(function (data) {
+								console.log(replyMsg);
+							}).catch(function (error) {
+								console.log('error');
+							});
+						});
 					}
 				}
 			} else {
