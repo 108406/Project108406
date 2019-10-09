@@ -455,7 +455,7 @@ function _bot() {
 								"position": "relative",
 								"size": "xs",
 								"offsetTop": "10px",
-								"offsetBottom": "10px"
+								"offsetBottom": "-10px"
 							}, {
 								"type": "box",
 								"layout": "horizontal",
