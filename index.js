@@ -440,26 +440,22 @@ function _bot() {
 						"body": {
 							"type": "box",
 							"layout": "vertical",
-							"position": "relative",
 							"cornerRadius": "md",
 							"backgroundColor": "#EEEEEEFF",
 							"contents": [{
 								"type": "text",
 								"text": "您好，感謝您使用Plan Yourself",
 								"align": "center",
-								"position": "relative",
 								"weight": "bold"
 							}, {
 								"type": "text",
 								"wrap": true,
 								"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
 								"align": "center",
-								"position": "relative",
 								"size": "xs",
 							}, {
 								"type": "box",
 								"layout": "horizontal",
-								"position": "relative",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
 										"type": "text",
@@ -489,7 +485,6 @@ function _bot() {
 							}, {
 								"type": "box",
 								"layout": "horizontal",
-								"position": "relative",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
 										"type": "text",
