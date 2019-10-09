@@ -459,7 +459,7 @@ function _bot() {
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
 										"type": "text",
-										"text": "",
+										"text": "/",
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
