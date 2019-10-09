@@ -482,7 +482,7 @@ function _bot() {
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
-										"flex": 2
+										"flex": 3
 									}
 								]
 							}, {
