@@ -408,7 +408,8 @@ function _bot() {
 											"style": "primary",
 											"color": "#FF0000",
 											"position": "relative",
-											"flex": 3
+											"flex": 2,
+											"margin": "md",
 										}
 									]
 								}
