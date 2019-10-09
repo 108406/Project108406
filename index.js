@@ -461,6 +461,7 @@ function _bot() {
 								"layout": "horizontal",
 								"cornerRadius": "md",
 								"position": "relative",
+								"offsetTop": "10px",
 								"cornerRadius": "xs",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
@@ -493,6 +494,7 @@ function _bot() {
 								"layout": "horizontal",
 								"position": "relative",
 								"cornerRadius": "xs",
+								"offsetTop": "10px",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
 										"type": "text",
