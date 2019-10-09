@@ -462,7 +462,6 @@ function _bot() {
 								"cornerRadius": "md",
 								"position": "relative",
 								"cornerRadius": "xs",
-								"offsetTop": "10px",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
 										"type": "text",
