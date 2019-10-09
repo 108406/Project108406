@@ -502,6 +502,7 @@ function _bot() {
 								"type": "box",
 								"layout": "horizontal",
 								"position": "relative",
+								"borderColor": "#AAAAAAAA",
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
@@ -536,6 +537,7 @@ function _bot() {
 								"type": "box",
 								"layout": "horizontal",
 								"position": "relative",
+								"borderColor": "#AAAAAAAA",
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
