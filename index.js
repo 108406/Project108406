@@ -440,30 +440,36 @@ function _bot() {
 						"body": {
 							"type": "box",
 							"layout": "vertical",
-							"cornerRadius": "md",
+							"position": "relative",
 							"backgroundColor": "#EEEEEEFF",
 							"contents": [{
 								"type": "text",
 								"text": "您好，感謝您使用Plan Yourself",
 								"align": "center",
+								"position": "relative",
 								"weight": "bold"
 							}, {
 								"type": "text",
 								"wrap": true,
 								"text": "除了「幫助」以外。所有的命令都是以hash（#）開頭\n所有可執行的命令如下表所示",
 								"align": "center",
+								"position": "relative",
 								"size": "xs",
+								"offsetTop": "10px"
 							}, {
 								"type": "box",
 								"layout": "horizontal",
+								"cornerRadius": "md",
+								"spacing": "md",
+								"position": "relative",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
 										"type": "text",
-										"text": "/",
+										"text": "#",
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
-										"flex": 0
+										"flex": 1
 									},
 									{
 										"type": "text",
@@ -485,6 +491,9 @@ function _bot() {
 							}, {
 								"type": "box",
 								"layout": "horizontal",
+								"offsetTop": "10px",
+								"position": "relative",
+								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
 										"type": "text",
@@ -492,7 +501,7 @@ function _bot() {
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
-										"flex": 0
+										"flex": 1
 									},
 									{
 										"type": "text",
@@ -504,9 +513,9 @@ function _bot() {
 									},
 									{
 										"type": "text",
-										"wrap": true,
 										"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
 										"align": "center",
+										"maxLines": 0,
 										"size": "sm",
 										"position": "relative",
 										"flex": 3
