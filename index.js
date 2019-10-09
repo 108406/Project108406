@@ -382,7 +382,7 @@ function _bot() {
 								teammember.FetchTeamMember(event.source.userId, updateGroupId[updateGroupIdIndex][2]).then(data => {
 									teammember.updateTeamMember(event.source.userId, data.project_id, event.source.groupId, data.isadmin).then(data => {
 										replyMsg = '您好，' + profile.displayName + '。\n已將您與專案【' +
-											updateGroupId[updateGroupIdIndex][3] + '】重新連結。'
+											updateGroupId[updateGroupIdIndex][3] + '】重新連結至此群組。'
 										event.reply(replyMsg).then(function (data) {
 											console.log(replyMsg);
 										}).catch(function (error) {
