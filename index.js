@@ -468,7 +468,7 @@ function _bot() {
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
-										"flex": 1
+										"flex": 0
 									},
 									{
 										"type": "text",
@@ -499,7 +499,7 @@ function _bot() {
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
-										"flex": 1
+										"flex": 0
 									},
 									{
 										"type": "text",
