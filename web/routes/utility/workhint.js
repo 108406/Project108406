@@ -6,9 +6,9 @@ const sql = require('./asyncDB');
 //------------------------------------------
 //執行資料庫動作的函式-傳回所有產品資料
 //------------------------------------------
-var displayWorkHint = async function(workSerNo){
+var displayWorkHint = async function(work_id){
     var result=[];
-    await sql(`SELECT "work_hint" FROM "workhint" where "work_serno" = ` + workSerNo)
+    await sql(`SELECT "work_hint" FROM "workhint" where "work_id" = ` + work_id)
         .then((data) => {            
             result = data.rows;  
         }, (error) => {
@@ -18,10 +18,10 @@ var displayWorkHint = async function(workSerNo){
     return result;
 }
 
-var deleteWorkHint = async function(workhintSerNo){
+var deleteWorkHint = async function(user_id, work_id){
     var result=[];
 	
-    await sql(`delete from "workhint" where "workhint_serno" = ` + workhintSerNo)
+    await sql(`delete from "workhint" where "user_id" = $1 and "work_id" = $2`, [user_id, work_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;
@@ -36,9 +36,9 @@ var deleteWorkHint = async function(workhintSerNo){
     return result;
 }
 
-var addWorkHint = async function(userId, workSerNo, workHint){
+var addWorkHint = async function(user_id, work_id, work_hint){
     var result=[];
-    await sql(`insert into "workhint" values (default, '` + userId + `', ` + workSerNo + `, ` + workHint + `)`)
+    await sql(`insert into "workhint" values (default, '` + user_id + `', ` + work_id + `, ` + work_hint + `)`)
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;
@@ -54,9 +54,9 @@ var addWorkHint = async function(userId, workSerNo, workHint){
     return result;
 }
 
-var updateWorkHint = async function(userId, workSerNo, workHint){
+var updateWorkHint = async function(user_id, work_id, work_hint){
     var result=[];
-    await sql(`update "workhint" set "work_hint" = ` + workHint + ` where "user_id" = '` + userId + `' AND "work_serno" = ` + workSerNo)
+    await sql(`update "workhint" set "work_hint" = ` + work_hint + ` where "user_id" = '` + user_id + `' AND "work_id" = ` + work_id)
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;

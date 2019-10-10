@@ -47,7 +47,7 @@ var addMember = async function (members) {
             }
         }, (error) => {
             result = false;  //執行錯誤
-            console.log(error)
+            console.log("error", error)
         });
 
     //回傳執行結果
@@ -158,7 +158,6 @@ var updateMemberLinebotPush = async function (userID, linebotpush) {
     return result;
 }
 //------------------------------------------
-
 
 //匯出
 module.exports = { displayMember, addMember, deleteMember, updateMemberPhoto, updateMemberData, updateMemberLinebotPush };

@@ -5,7 +5,7 @@ const member = require('./utility/member');
 
 //接收GET請求
 router.post('/', function(req, res, next) {        
-    member.deleteMember(req.body.userId).then(data => {
+    member.deleteMember(req.cookies.userid).then(data => {
         if (data) {
             // 將使用者上傳的檔案匯入伺服器端
             // var path = 'public/imgs/';
@@ -16,7 +16,7 @@ router.post('/', function(req, res, next) {
             console.log("Successful!");
             res.render('login.ejs');  //導向找不到頁面
         }else {
-            res.render('notFound');  //導向找不到頁面
+            res.redirect('/login');  //導向找不到頁面
         }
     })
 });

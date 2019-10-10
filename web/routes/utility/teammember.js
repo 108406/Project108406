@@ -29,6 +29,31 @@ var displayTeamMember = async function (project_id) {
 }
 //------------------------------------------
 
+//------------------------------------------
+// 用project_id查詢成員
+//------------------------------------------
+var VerificationTeamMember = async function (user_id, project_id) {
+    //存放結果
+    var result = [];
+
+    //讀取資料庫
+    await query('select * from teammember where user_id = $1 and project_id = $2', [user_id, project_id])
+        .then((data) => {
+            if (data.rows.length > 0) {
+                result = true;  //專案資料(物件)
+            } else {
+                result = false;  //找不到資料
+            }
+        }, (error) => {
+            result = false;  //執行錯誤
+            console.log(error)
+        });
+
+    //回傳執行結果
+    return result;
+}
+//------------------------------------------
+
 
 //------------------------------------------
 // 用user_id顯示MyProject
@@ -85,12 +110,12 @@ var addTeamMember = async function (user_id, project_id, group_id, isadmin) {
 //------------------------------------------
 // 刪除成員資料
 //------------------------------------------
-var deleteTeamMember = async function (teammember_serno) {
+var deleteTeamMember = async function (user_id, project_id) {
     //存放結果
     var result = [];
 
     //讀取資料庫
-    await query('delete from teammember where teammember_serno = $1', [teammember_serno])
+    await query('delete from teammember where user_id = $1 and project_id = $2', [user_id, project_id])
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -135,4 +160,4 @@ var updateTeamMember = async function (user_id, project_id, group_id, isadmin) {
 
 
 //匯入
-module.exports = { displayTeamMember, displayMyProject, addTeamMember, deleteTeamMember, updateTeamMember }
+module.exports = { displayTeamMember, VerificationTeamMember, displayMyProject, addTeamMember, deleteTeamMember, updateTeamMember }
