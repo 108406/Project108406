@@ -438,7 +438,7 @@ function _bot() {
 										"align": "center"
 									},{
 										"type": "box",
-										"content": {
+										"contents": {
 											"type": "button",
 											"height": "sm",
 											"action": {
