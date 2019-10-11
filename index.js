@@ -432,6 +432,11 @@ function _bot() {
 										"type": "text",
 										"text": "請點選下方按鈕以加入專案",
 										"align": "center"
+									},{
+										"type": "text",
+										"text": "　",
+										"align": "center",
+										"size": "xs"
 									},
 									{
 										"type": "button",
@@ -439,43 +444,19 @@ function _bot() {
 										"action": {
 											"type": "message",
 											"label": "UML分析圖設計",
-											"text": "#我要加入"
+											"text": "#我要加入",
+											"color": "#FFFFFF"
 										},
 										"style": "primary",
-										"color": "#0000FF"
+										"offsetStart": "40px",
+										"offsetEnd": "40px",
+										"color": "#4C62C7"
 									}
 								]
 							}
 						}
 					};
-					let replyFlex2 = {
-						"type": "flex",
-						"altText": "this is a flex message",
-						"contents": {
-							"type": "bubble",
-							"body": {
-								"type": "box",
-								"layout": "vertical",
-								"contents": [{
-										"type": "text",
-										"text": "請點選下方按鈕以加入專案",
-										"align": "center"
-									},
-									{
-										"type": "button",
-										"action": {
-											"type": "message",
-											"label": "UML分析圖設計",
-											"text": "#我要加入"
-										},
-										"style": "secondary",
-										"color": "#0000FF"
-									}
-								]
-							}
-						}
-					};
-					bot.push(event.source.userId, [replyFlex, replyFlex2])
+					bot.push(event.source.userId, [replyFlex])
 					// event.reply(replyFlex).then(function (data) {
 					// 	console.log(replyMsg);
 					// }).catch(function (error) {
