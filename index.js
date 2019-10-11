@@ -438,7 +438,7 @@ function _bot() {
 										"height": "sm",
 										"action": {
 											"type": "message",
-											"label": projectData[0].project_name,
+											"label": "UML分析圖設計",
 											"text": "#我要加入"
 										},
 										"style": "primary",
@@ -465,7 +465,7 @@ function _bot() {
 										"type": "button",
 										"action": {
 											"type": "message",
-											"label": projectData[0].project_name,
+											"label": "UML分析圖設計",
 											"text": "#我要加入"
 										},
 										"style": "secondary",
