@@ -438,21 +438,36 @@ function _bot() {
 										"align": "center"
 									},{
 										"type": "box",
-										"layout": "vertical",
-										"paddingAll": "40px",
-										"contents": {
-											"type": "button",
-											"height": "sm",
-											"action": {
-												"type": "message",
-												"label": "UML分析圖設計",
-												"text": "#我要加入"
+										"layout": "horizontal",
+										"cornerRadius": "md",
+										"position": "relative",
+										"cornerRadius": "xs",
+										"backgroundColor": "#AAAADDFF",
+										"contents": [{
+												"type": "text",
+												"text": "#",
+												"align": "center",
+												"size": "sm",
+												"position": "relative",
+												"flex": 1
 											},
-											"style": "primary",
-											"offsetStart": "40px",
-											"offsetEnd": "80px",
-											"color": "#4C62C7"
-										}
+											{
+												"type": "text",
+												"text": "命令",
+												"align": "center",
+												"size": "sm",
+												"position": "relative",
+												"flex": 2
+											},
+											{
+												"type": "text",
+												"text": "說明",
+												"align": "center",
+												"size": "sm",
+												"position": "relative",
+												"flex": 3
+											}
+										]
 									}
 									
 								]
