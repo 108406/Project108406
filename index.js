@@ -438,6 +438,7 @@ function _bot() {
 										"align": "center"
 									},{
 										"type": "box",
+										"layout": "vertical",
 										"paddingAll": "40px",
 										"contents": {
 											"type": "button",
