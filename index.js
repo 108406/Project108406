@@ -434,7 +434,7 @@ function _bot() {
 										"align": "center"
 									},{
 										"type": "text",
-										"text": "　",
+										"text": "Q",
 										"align": "center",
 										"size": "xs"
 									},
@@ -448,6 +448,8 @@ function _bot() {
 											"color": "#FFFFFF"
 										},
 										"style": "primary",
+										"offsetStart": "40px",
+										"offsetEnd": "40px",
 										"color": "#4C62C7"
 									}
 								]
