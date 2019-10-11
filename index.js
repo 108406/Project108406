@@ -443,8 +443,7 @@ function _bot() {
 										"action": {
 											"type": "message",
 											"label": "UML分析圖設計",
-											"text": "#我要加入",
-											"color": "#FFFFFF"
+											"text": "#我要加入"
 										},
 										"style": "primary",
 										"offsetStart": "40px",
