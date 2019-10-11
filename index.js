@@ -447,7 +447,7 @@ function _bot() {
 										},
 										"style": "primary",
 										"offsetStart": "40px",
-										"offsetEnd": "40px",
+										"offsetEnd": "80px",
 										"color": "#4C62C7"
 									}
 								]
