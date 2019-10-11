@@ -434,9 +434,8 @@ function _bot() {
 										"align": "center"
 									},{
 										"type": "text",
-										"text": "Q",
-										"align": "center",
-										"size": "xs"
+										"text": "　",
+										"align": "center"
 									},
 									{
 										"type": "button",
