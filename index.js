@@ -440,6 +440,7 @@ function _bot() {
 										"type": "box",
 										"layout": "horizontal",
 										"cornerRadius": "xs",
+										"paddingAll": "40px",
 										"contents": [{
 												"type": "text",
 												"text": "#",
