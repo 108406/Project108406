@@ -438,6 +438,7 @@ function _bot() {
 										"align": "center"
 									},{
 										"type": "box",
+										"paddingAll": "40px",
 										"contents": {
 											"type": "button",
 											"height": "sm",
@@ -450,8 +451,7 @@ function _bot() {
 											"offsetStart": "40px",
 											"offsetEnd": "80px",
 											"color": "#4C62C7"
-										},
-										"paddingAll": "40px"
+										}
 									}
 									
 								]
