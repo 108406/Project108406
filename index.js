@@ -448,8 +448,6 @@ function _bot() {
 											"color": "#FFFFFF"
 										},
 										"style": "primary",
-										"offsetStart": "40px",
-										"offsetEnd": "40px",
 										"color": "#4C62C7"
 									}
 								]
