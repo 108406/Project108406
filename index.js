@@ -420,6 +420,68 @@ function _bot() {
 				}
 			} else {
 				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
+					let replyFlex = {
+						"type": "flex",
+						"altText": "this is a flex message",
+						"contents": {
+							"type": "bubble",
+							"body": {
+								"type": "box",
+								"layout": "vertical",
+								"contents": [{
+										"type": "text",
+										"text": "請點選下方按鈕以加入專案",
+										"align": "center"
+									},
+									{
+										"type": "button",
+										"height": "sm",
+										"action": {
+											"type": "message",
+											"label": projectData[0].project_name,
+											"text": "#我要加入"
+										},
+										"style": "primary",
+										"color": "#0000FF"
+									}
+								]
+							}
+						}
+					};
+					let replyFlex2 = {
+						"type": "flex",
+						"altText": "this is a flex message",
+						"contents": {
+							"type": "bubble",
+							"body": {
+								"type": "box",
+								"layout": "vertical",
+								"contents": [{
+										"type": "text",
+										"text": "請點選下方按鈕以加入專案",
+										"align": "center"
+									},
+									{
+										"type": "button",
+										"action": {
+											"type": "message",
+											"label": projectData[0].project_name,
+											"text": "#我要加入"
+										},
+										"style": "secondary",
+										"color": "#0000FF"
+									}
+								]
+							}
+						}
+					};
+					bot.push(event.source.userId, [replyFlex, replyFlex2])
+					// event.reply(replyFlex).then(function (data) {
+					// 	console.log(replyMsg);
+					// }).catch(function (error) {
+					// 	console.log('error');
+					// });
+
 					// event.reply('不要 >.0').then(function (data) {
 					// 	console.log(replyMsg);
 					// }).catch(function (error) {
