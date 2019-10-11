@@ -429,33 +429,50 @@ function _bot() {
 								"type": "box",
 								"layout": "vertical",
 								"contents": [{
-										"type": "text",
-										"text": "請點選下方按鈕以加入專案",
-										"align": "center"
+										"type": "box",
+										"layout": "vertical",
+										"contents": [{
+											"type": "text",
+											"text": "是否重新連結",
+											"align": "center"
+										}]
 									},{
 										"type": "text",
 										"text": "　",
 										"align": "center"
-									},{
+									},
+									{
 										"type": "box",
 										"layout": "horizontal",
-										"cornerRadius": "xs",
 										"paddingStart": "40px",
 										"paddingEnd": "40px",
 										"contents": [{
-											"type": "button",
-											"height": "sm",
-											"action": {
-												"type": "message",
-												"label": "UML分析圖設計",
-												"text": "#我要加入"
+												"type": "button",
+												"action": {
+													"type": "message",
+													"label": "是",
+													"text": "#重新連結"
+												},
+												"style": "primary",
+												"color": "#00FF00",
+												"position": "relative",
+												"flex": 2
 											},
-											"style": "primary",
-											"color": "#4C62C7"
-										}
+											{
+												"type": "button",
+												"action": {
+													"type": "message",
+													"label": "否",
+													"text": "#保留"
+												},
+												"style": "primary",
+												"color": "#FF0000",
+												"position": "relative",
+												"flex": 2,
+												"margin": "md",
+											}
 										]
 									}
-									
 								]
 							}
 						}
@@ -768,17 +785,30 @@ function _bot() {
 														"type": "text",
 														"text": "請點選下方按鈕以加入專案",
 														"align": "center"
-													},
-													{
-														"type": "button",
-														"action": {
-															"type": "message",
-															"label": projectData[0].project_name,
-															"text": "#我要加入"
-														},
-														"style": "primary",
-														"color": "#0000FF"
+													},{
+														"type": "text",
+														"text": "　",
+														"align": "center"
+													},{
+														"type": "box",
+														"layout": "horizontal",
+														"cornerRadius": "xs",
+														"paddingStart": "40px",
+														"paddingEnd": "40px",
+														"contents": [{
+															"type": "button",
+															"height": "sm",
+															"action": {
+																"type": "message",
+																"label": projectData[0].project_name,
+																"text": "#我要加入"
+															},
+															"style": "primary",
+															"color": "#4C62C7"
+														}
+														]
 													}
+													
 												]
 											}
 										}
