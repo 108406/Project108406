@@ -439,10 +439,7 @@ function _bot() {
 									},{
 										"type": "box",
 										"layout": "horizontal",
-										"cornerRadius": "md",
-										"position": "relative",
 										"cornerRadius": "xs",
-										"backgroundColor": "#AAAADDFF",
 										"contents": [{
 												"type": "text",
 												"text": "#",
