@@ -436,20 +436,24 @@ function _bot() {
 										"type": "text",
 										"text": "　",
 										"align": "center"
-									},
-									{
-										"type": "button",
-										"height": "sm",
-										"action": {
-											"type": "message",
-											"label": "UML分析圖設計",
-											"text": "#我要加入"
+									},{
+										"type": "box",
+										"content": {
+											"type": "button",
+											"height": "sm",
+											"action": {
+												"type": "message",
+												"label": "UML分析圖設計",
+												"text": "#我要加入"
+											},
+											"style": "primary",
+											"offsetStart": "40px",
+											"offsetEnd": "80px",
+											"color": "#4C62C7"
 										},
-										"style": "primary",
-										"offsetStart": "40px",
-										"offsetEnd": "80px",
-										"color": "#4C62C7"
+										"paddingAll": "40px"
 									}
+									
 								]
 							}
 						}
