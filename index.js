@@ -318,13 +318,17 @@ function _bot() {
 																			"text": "是否重新連結",
 																			"align": "center"
 																		}]
+																	},{
+																		"type": "text",
+																		"text": "　",
+																		"align": "center"
 																	},
 																	{
 																		"type": "box",
 																		"layout": "horizontal",
-																		"contents": [
-
-																			{
+																		"paddingStart": "40px",
+																		"paddingEnd": "40px",
+																		"contents": [{
 																				"type": "button",
 																				"action": {
 																					"type": "message",
@@ -332,7 +336,8 @@ function _bot() {
 																					"text": "#重新連結"
 																				},
 																				"style": "primary",
-																				"color": "#00FF00",
+																				"height": "sm",
+																				"color": "#52C759",
 																				"position": "relative",
 																				"flex": 2
 																			},
@@ -344,7 +349,8 @@ function _bot() {
 																					"text": "#保留"
 																				},
 																				"style": "primary",
-																				"color": "#FF0000",
+																				"height": "sm",
+																				"color": "#C74741",
 																				"position": "relative",
 																				"flex": 2,
 																				"margin": "md",
