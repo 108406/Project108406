@@ -440,7 +440,8 @@ function _bot() {
 										"type": "box",
 										"layout": "horizontal",
 										"cornerRadius": "xs",
-										"paddingAll": "40px",
+										"paddingStart": "40px",
+										"paddingEnd": "40px",
 										"contents": [{
 											"type": "button",
 											"height": "sm",
@@ -450,8 +451,6 @@ function _bot() {
 												"text": "#我要加入"
 											},
 											"style": "primary",
-											"offsetStart": "40px",
-											"offsetEnd": "80px",
 											"color": "#4C62C7"
 										}
 										]
