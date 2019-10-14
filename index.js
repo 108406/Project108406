@@ -318,26 +318,17 @@ function _bot() {
 																			"text": "是否重新連結",
 																			"align": "center"
 																		}]
-<<<<<<< HEAD
 																	},{
 																		"type": "text",
 																		"text": "　",
 																		"align": "center"
-=======
->>>>>>> f296498e668f4fa1b917e4854641cf9d5e574bf5
 																	},
 																	{
 																		"type": "box",
 																		"layout": "horizontal",
-<<<<<<< HEAD
 																		"paddingStart": "40px",
 																		"paddingEnd": "40px",
 																		"contents": [{
-=======
-																		"contents": [
-
-																			{
->>>>>>> f296498e668f4fa1b917e4854641cf9d5e574bf5
 																				"type": "button",
 																				"action": {
 																					"type": "message",
@@ -345,12 +336,8 @@ function _bot() {
 																					"text": "#重新連結"
 																				},
 																				"style": "primary",
-<<<<<<< HEAD
 																				"height": "sm",
 																				"color": "#52C759",
-=======
-																				"color": "#00FF00",
->>>>>>> f296498e668f4fa1b917e4854641cf9d5e574bf5
 																				"position": "relative",
 																				"flex": 2
 																			},
@@ -362,12 +349,8 @@ function _bot() {
 																					"text": "#保留"
 																				},
 																				"style": "primary",
-<<<<<<< HEAD
 																				"height": "sm",
 																				"color": "#C74741",
-=======
-																				"color": "#FF0000",
->>>>>>> f296498e668f4fa1b917e4854641cf9d5e574bf5
 																				"position": "relative",
 																				"flex": 2,
 																				"margin": "md",
@@ -443,7 +426,6 @@ function _bot() {
 				}
 			} else {
 				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
-<<<<<<< HEAD
 					let replyFlex = {
 						"type": "flex",
 						"altText": "this is a flex message",
@@ -510,8 +492,6 @@ function _bot() {
 					// 	console.log('error');
 					// });
 
-=======
->>>>>>> f296498e668f4fa1b917e4854641cf9d5e574bf5
 					// event.reply('不要 >.0').then(function (data) {
 					// 	console.log(replyMsg);
 					// }).catch(function (error) {
@@ -813,7 +793,6 @@ function _bot() {
 														"type": "text",
 														"text": "請點選下方按鈕以加入專案",
 														"align": "center"
-<<<<<<< HEAD
 													},{
 														"type": "text",
 														"text": "　",
@@ -838,19 +817,6 @@ function _bot() {
 														]
 													}
 													
-=======
-													},
-													{
-														"type": "button",
-														"action": {
-															"type": "message",
-															"label": projectData[0].project_name,
-															"text": "#我要加入"
-														},
-														"style": "primary",
-														"color": "#0000FF"
-													}
->>>>>>> f296498e668f4fa1b917e4854641cf9d5e574bf5
 												]
 											}
 										}
