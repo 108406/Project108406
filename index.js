@@ -777,7 +777,7 @@ function _bot() {
 						})
 					}
 					//快到期計畫
-					if (event.message.text == "#快到期計畫" || event.message.text == "#快到期計劃" || event.message.text == "##快到期專案") {
+					if (event.message.text == "#我的快到期計畫" || event.message.text == "#我的快到期計劃" || event.message.text == "#我的快到期專案") {
 						Messenge.MessengeSelectSearch(profile.userId).then(data => {
 							console.log('index');
 							console.log(data);
