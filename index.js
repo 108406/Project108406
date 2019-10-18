@@ -11,9 +11,9 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1623913058',
+	channelSecret: 'd391ffcbe15aa40a60143a360688215d',
+	channelAccessToken: 'Ve75F0ujyEhnbXiiXeFPbUODz1HtYSd5gokKP4npeWt3C2LMV8a6tbUTZAqzDUB84/oFOBAxJkoUfazGlWuiFdjk8CcfQFUTrvbin37xwAuGMedo8sTwip+1KwAe/nNIuhEGvsPs+S0ykkuwynuGTAdB04t89/1O/w1cDnyilFU='
 });
 
 const app = express();
@@ -220,37 +220,37 @@ let push = setInterval(function () {
 							"layout": "vertical",
 							"spacing": "md",
 							"contents": [{
-									"type": "box",
-									"layout": "vertical",
-									"contents": [{
-											"type": "text",
-											"text": "組長提醒",
-											"align": "center",
-											"size": "lg",
-											"weight": "bold"
-										},
-										{
-											"type": "text",
-											"text": allWorkData[allDataIndex].adminpush_content,
-											"wrap": true,
-											"margin": "lg"
-										}
-									]
-								},
-								{
-									"type": "separator"
+								"type": "box",
+								"layout": "vertical",
+								"contents": [{
+									"type": "text",
+									"text": "組長提醒",
+									"align": "center",
+									"size": "lg",
+									"weight": "bold"
 								},
 								{
 									"type": "text",
-									"text": '結束時間:' +
-										adminpush_enddate[0] + '/' + adminpush_enddate[1] + '/' + adminpush_enddate[2] + ' ' +
-										adminpush_enddate[3] + ':' + adminpush_enddate[4] + ':' + adminpush_enddate[5],
+									"text": allWorkData[allDataIndex].adminpush_content,
 									"wrap": true,
-									"size": "xs",
-									"align": "center",
-									"weight": "bold",
 									"margin": "lg"
 								}
+								]
+							},
+							{
+								"type": "separator"
+							},
+							{
+								"type": "text",
+								"text": '結束時間:' +
+									adminpush_enddate[0] + '/' + adminpush_enddate[1] + '/' + adminpush_enddate[2] + ' ' +
+									adminpush_enddate[3] + ':' + adminpush_enddate[4] + ':' + adminpush_enddate[5],
+								"wrap": true,
+								"size": "xs",
+								"align": "center",
+								"weight": "bold",
+								"margin": "lg"
+							}
 							]
 						}
 					}
@@ -409,7 +409,7 @@ function _bot() {
 														bindGroupAndProjectId[bindIndex][2] + '】中已經與其他群組連結囉。\n' +
 														'請問是否要取消與先前群組的連結，並重新連結此群組呢？';
 													let updateGroupIdData = [event.source.userId, event.source.groupId,
-														bindGroupAndProjectId[bindIndex][1], bindGroupAndProjectId[bindIndex][2]
+													bindGroupAndProjectId[bindIndex][1], bindGroupAndProjectId[bindIndex][2]
 													];
 													updateGroupId.push(updateGroupIdData);
 													// 在這裡開始要做個回應讓使用者選擇，並做判斷讓使用者的群組ID更新或不更新。
@@ -427,52 +427,52 @@ function _bot() {
 																"type": "box",
 																"layout": "vertical",
 																"contents": [{
-																		"type": "box",
-																		"layout": "vertical",
-																		"contents": [{
-																			"type": "text",
-																			"text": "是否重新連結",
-																			"align": "center"
-																		}]
-																	}, {
+																	"type": "box",
+																	"layout": "vertical",
+																	"contents": [{
 																		"type": "text",
-																		"text": "　",
+																		"text": "是否重新連結",
 																		"align": "center"
+																	}]
+																}, {
+																	"type": "text",
+																	"text": "　",
+																	"align": "center"
+																},
+																{
+																	"type": "box",
+																	"layout": "horizontal",
+																	"paddingStart": "40px",
+																	"paddingEnd": "40px",
+																	"contents": [{
+																		"type": "button",
+																		"action": {
+																			"type": "message",
+																			"label": "是",
+																			"text": "#重新連結"
+																		},
+																		"style": "primary",
+																		"height": "sm",
+																		"color": "#52C759",
+																		"position": "relative",
+																		"flex": 2
 																	},
 																	{
-																		"type": "box",
-																		"layout": "horizontal",
-																		"paddingStart": "40px",
-																		"paddingEnd": "40px",
-																		"contents": [{
-																				"type": "button",
-																				"action": {
-																					"type": "message",
-																					"label": "是",
-																					"text": "#重新連結"
-																				},
-																				"style": "primary",
-																				"height": "sm",
-																				"color": "#52C759",
-																				"position": "relative",
-																				"flex": 2
-																			},
-																			{
-																				"type": "button",
-																				"action": {
-																					"type": "message",
-																					"label": "否",
-																					"text": "#保留"
-																				},
-																				"style": "primary",
-																				"height": "sm",
-																				"color": "#C74741",
-																				"position": "relative",
-																				"flex": 2,
-																				"margin": "md",
-																			}
-																		]
+																		"type": "button",
+																		"action": {
+																			"type": "message",
+																			"label": "否",
+																			"text": "#保留"
+																		},
+																		"style": "primary",
+																		"height": "sm",
+																		"color": "#C74741",
+																		"position": "relative",
+																		"flex": 2,
+																		"margin": "md",
 																	}
+																	]
+																}
 																]
 															}
 														}
@@ -551,52 +551,52 @@ function _bot() {
 								"type": "box",
 								"layout": "vertical",
 								"contents": [{
-										"type": "box",
-										"layout": "vertical",
-										"contents": [{
-											"type": "text",
-											"text": "是否重新連結",
-											"align": "center"
-										}]
-									}, {
+									"type": "box",
+									"layout": "vertical",
+									"contents": [{
 										"type": "text",
-										"text": "　",
+										"text": "是否重新連結",
 										"align": "center"
+									}]
+								}, {
+									"type": "text",
+									"text": "　",
+									"align": "center"
+								},
+								{
+									"type": "box",
+									"layout": "horizontal",
+									"paddingStart": "40px",
+									"paddingEnd": "40px",
+									"contents": [{
+										"type": "button",
+										"action": {
+											"type": "message",
+											"label": "是",
+											"text": "#重新連結"
+										},
+										"style": "primary",
+										"height": "sm",
+										"color": "#52C759",
+										"position": "relative",
+										"flex": 2
 									},
 									{
-										"type": "box",
-										"layout": "horizontal",
-										"paddingStart": "40px",
-										"paddingEnd": "40px",
-										"contents": [{
-												"type": "button",
-												"action": {
-													"type": "message",
-													"label": "是",
-													"text": "#重新連結"
-												},
-												"style": "primary",
-												"height": "sm",
-												"color": "#52C759",
-												"position": "relative",
-												"flex": 2
-											},
-											{
-												"type": "button",
-												"action": {
-													"type": "message",
-													"label": "否",
-													"text": "#保留"
-												},
-												"style": "primary",
-												"height": "sm",
-												"color": "#C74741",
-												"position": "relative",
-												"flex": 2,
-												"margin": "md",
-											}
-										]
+										"type": "button",
+										"action": {
+											"type": "message",
+											"label": "否",
+											"text": "#保留"
+										},
+										"style": "primary",
+										"height": "sm",
+										"color": "#C74741",
+										"position": "relative",
+										"flex": 2,
+										"margin": "md",
 									}
+									]
+								}
 								]
 							}
 						}
@@ -675,6 +675,51 @@ function _bot() {
 											pushWorkText.push({
 												"title": "【您的計畫】",
 												"text": data[i].project_name,
+												"actions": [{
+													"type": "uri",
+													"label": "查看網站",
+													"uri": "https://zh.wikipedia.org/wiki/星夜"
+												}]
+											});
+										}
+									}
+								}
+								console.log(pushWorkText);
+								event.reply({
+									"type": "template",
+									"altText": "這是一個輪播樣板",
+									"template": {
+										"type": "carousel",
+										"columns": pushWorkText
+									},
+								});
+							}
+						})
+					}
+					//執行中計畫
+					if (event.message.text == "#我的執行中計畫" || event.message.text == "#我的執行中計劃" || event.message.text == "#我的執行中專案") {
+						Messenge.MessengeSelectSearch(profile.userId).then(data => {
+							if (data == -1) {
+								event.reply('您可能還沒加入任何計畫哦！')
+							} else {
+								let pushWorkText = [];
+
+								function dateJudge(date) {
+									var dateBegin = new Date(date); //将-转化为/，使用new Date
+									console.log(dateBegin);
+									var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000)); //获取当前时间
+									console.log(dateEnd);
+									var dateDiff = dateBegin.getTime() - dateEnd.getTime(); //时间差的毫秒数
+									console.log(dateDiff);
+									return dateDiff
+								}
+								for (let i = 0; i < data.length; i++) {
+									if (dateJudge(data[i].project_startdate) < 0 && dateJudge(data[i].project_enddate>0)) {
+										if (data[i].linebotpush) {
+											pushWorkText.push({
+												"title": "【您的執行中計畫】",
+												"text": data[i].project_name+'\n'
+												+'結束時間：'+data[i].project_enddate,
 												"actions": [{
 													"type": "uri",
 													"label": "查看網站",
@@ -839,29 +884,29 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"text": "命令",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"text": "說明",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"text": "命令",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"text": "說明",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}, {
 								"type": "box",
@@ -870,49 +915,49 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "加入專案\n加入計畫\n加入計劃",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
-										"align": "center",
-										"maxLines": 0,
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "加入專案\n加入計畫\n加入計劃",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
+									"align": "center",
+									"maxLines": 0,
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}, {
 								"type": "box",
 								"layout": "horizontal",
 								"backgroundColor": "#BFBFEEFF",
 								"contents": [{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									}
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								}
 								]
 							}, {
 								"type": "box",
@@ -921,49 +966,49 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "我的專案\n我的計畫\n我的計劃",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "若您想查詢您參與的專案。\n請直接使用這項命令。",
-										"align": "center",
-										"maxLines": 0,
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "我的專案\n我的計畫\n我的計劃",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "若您想查詢您參與的專案。\n請直接使用這項命令。",
+									"align": "center",
+									"maxLines": 0,
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}, {
 								"type": "box",
 								"layout": "horizontal",
 								"backgroundColor": "#BFBFEEFF",
 								"contents": [{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									}
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								}
 								]
 							}, {
 								"type": "box",
@@ -972,49 +1017,49 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "我的工作",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "查詢屬於自己的工作（不管是主要還是次要）。",
-										"align": "center",
-										"maxLines": 0,
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "我的工作",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "查詢屬於自己的工作（不管是主要還是次要）。",
+									"align": "center",
+									"maxLines": 0,
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}, {
 								"type": "box",
 								"layout": "horizontal",
 								"backgroundColor": "#BFBFEEFF",
 								"contents": [{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									}
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								}
 								]
 							}, {
 								"type": "box",
@@ -1023,32 +1068,32 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "快到期計畫\n快到期計劃\n快到期專案",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "查詢自己的專案什麼時候到期。",
-										"align": "center",
-										"maxLines": 0,
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "快到期計畫\n快到期計劃\n快到期專案",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "查詢自己的專案什麼時候到期。",
+									"align": "center",
+									"maxLines": 0,
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}]
 						}
@@ -1082,31 +1127,31 @@ function _bot() {
 												"type": "box",
 												"layout": "vertical",
 												"contents": [{
-														"type": "text",
-														"text": "請點選下方按鈕以加入專案",
-														"align": "center"
-													}, {
-														"type": "text",
-														"text": "　",
-														"align": "center"
-													}, {
-														"type": "box",
-														"layout": "horizontal",
-														"cornerRadius": "xs",
-														"paddingStart": "40px",
-														"paddingEnd": "40px",
-														"contents": [{
-															"type": "button",
-															"height": "sm",
-															"action": {
-																"type": "message",
-																"label": projectData[0].project_name,
-																"text": "#我要加入"
-															},
-															"style": "primary",
-															"color": "#4C62C7"
-														}]
-													}
+													"type": "text",
+													"text": "請點選下方按鈕以加入專案",
+													"align": "center"
+												}, {
+													"type": "text",
+													"text": "　",
+													"align": "center"
+												}, {
+													"type": "box",
+													"layout": "horizontal",
+													"cornerRadius": "xs",
+													"paddingStart": "40px",
+													"paddingEnd": "40px",
+													"contents": [{
+														"type": "button",
+														"height": "sm",
+														"action": {
+															"type": "message",
+															"label": projectData[0].project_name,
+															"text": "#我要加入"
+														},
+														"style": "primary",
+														"color": "#4C62C7"
+													}]
+												}
 
 												]
 											}
