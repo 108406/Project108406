@@ -16,15 +16,12 @@ var bot = linebot({
 	channelId: '',
 	channelSecret: '',
 	channelAccessToken: ''
-<<<<<<< HEAD
 });
 
 var client = new line.Client({
 	channelId: '',
 	channelSecret: '',
 	channelAccessToken: ''
-=======
->>>>>>> 02d100abc345354cb70c931b350dc12ff6a33394
 });
 
 const app = express();
