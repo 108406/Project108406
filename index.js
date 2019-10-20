@@ -11,9 +11,9 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '1623913058',
-	channelSecret: 'd391ffcbe15aa40a60143a360688215d',
-	channelAccessToken: 'Ve75F0ujyEhnbXiiXeFPbUODz1HtYSd5gokKP4npeWt3C2LMV8a6tbUTZAqzDUB84/oFOBAxJkoUfazGlWuiFdjk8CcfQFUTrvbin37xwAuGMedo8sTwip+1KwAe/nNIuhEGvsPs+S0ykkuwynuGTAdB04t89/1O/w1cDnyilFU='
+	channelId: '',
+	channelSecret: '',
+	channelAccessToken: ''
 });
 
 const app = express();
