@@ -7,7 +7,6 @@ const myFunction = require('./utility/myFunction');
 
 //接收GET請求
 router.get('/', function (req, res, next) {
-    req.cookies.userid = 'U87f8306f6fa69ec1baa033d4a9d7ab6b';
     view.workWithUser(req.cookies.userid).then(data => {
         if (data != false) {
             var result = [];
