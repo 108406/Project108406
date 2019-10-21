@@ -7,15 +7,12 @@ const myFunction = require('./utility/myFunction');
 
 //接收GET請求
 router.get('/', function (req, res, next) {
-    var tampTime = Date.now();
     view.workWithUser(req.cookies.userid).then(data => {
-        if (data == null) {
-            res.redirect('/login');  //導向錯誤頁面
-        } else if (data.rows.length > 0) {
-            var result = SetProjectResult(data, req.cookies.userid);
+        if (data != false) {
+            var result = [];
+            result = SetProjectResult(data, req.cookies.userid);
 
             res.render('mywork.ejs', { "items": result });  //將資料傳給顯示頁面
-            console.log(Date.now() - tampTime);
         } else {
             res.redirect('/login');  //導向找不到頁面
         }
@@ -104,14 +101,13 @@ function SetWorkResult(data, list_id) {
     var list_id;
     var result = [];
     var workId = [];
-    var tag = [];
     var tags = [];
-    var deadline;
+    var deadline = null;
 
     for (var j = 0; j < data.rowCount; j++) {
         if (data.rows[j].list_id == list_id) { //確認同一個list
             if (data.rows[j].work_id != null) {
-                if (deadline != null) {
+                if (data.rows[j].deadline != null) {
                     deadline = setDateFormat(myFunction.SeparateDate(data.rows[j].deadline));
                 }
                 workId.push(data.rows[j].work_id);

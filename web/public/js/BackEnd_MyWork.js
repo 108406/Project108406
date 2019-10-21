@@ -27,33 +27,46 @@ function UpdateWorkLinebotPush(work_id, value) {
 }
 
 function Upload(input, work) {
-    if (input.files && input.files[0]) {
-        if (input.files[0].type != "application/x-zip-compressed") {
-            alert("只能上傳zip檔");
-        } else {
-            console.log(input.files[0]);
-            var type = input.files[0].type;
-            var reader = new FileReader();
+    if (input.files[0] != undefined) {
+        let fileType;
 
+        fileType = input.files[0].type.split('/')[1]
+
+        console.log(fileType);
+        if (fileType == 'x-zip-compressed' || fileType == 'x-gzip' || fileType == 'x-tar') {
+            var reader = new FileReader();
             // Closure to capture the file information.
             reader.onload = (function (file) {
                 return function (e) {
                     var base64Data = e.target.result;
                     work.file = base64Data;
+                    if (base64Data >= 734000) {
+                        alert('檔案過大。僅傳送512K以下之檔案。');
+                        return;
+                    }
                     work.file_name = input.files[0].name;
+
+                    ajaxing++;
                     $.ajax({
                         type: 'POST',
                         url: 'mywork/updateFile',
-                        // data: { "workUpdate": work }  //整包沒有成功
-                        data: { "work_id": work.work_id, "file": work.file, "file_name": work.file_name }
+                        data: { "work_id": work.work_id, "file": work.file, "file_name": work.file_name },
+                        success: function (data) {
+                            ajaxing--;
+                            location.reload();
+                        },
+                        error: function (data) {
+                            alert('連接伺服器出現問題，請重試。');
+                            console.log('error: \n' + data.error);
+                        }
                     });
                 };
             })(input.files[0]);
-            // Read in the file as a data URL.
-            reader.readAsDataURL(input.files[0]);
+        } else {
+            alert('僅支援以下壓縮檔格式。（ .zip .tar .gz ）');
+            return;
         }
     }
-
 }
 
 function SetListInfo(options, listwork_serno, listName) {
@@ -81,45 +94,75 @@ function UpdateListWork() {
         alert("無其他列表選項無法移動工作!");
         canSubmit = false;
     }
+    ajaxing++;
 
     if (canSubmit) {
         $.ajax({
             type: 'POST',
             url: 'mywork/updateListWork',
-            data: { listwork_serno: listwork_serno, list_id: list_id }
+            data: { listwork_serno: listwork_serno, list_id: list_id },
+            success: function (data) {
+                ajaxing--;
+                location.reload();
+            },
+            error: function (data) {
+                alert('連接伺服器出現問題，請重試。');
+                console.log('error: \n' + data.error);
+            }
         });
     }
 }
 
-function SetWorkInfo(projectId, workId, workTitle, workContent, deadline, tags, file_name, file, principal_photo1, principal_photo2) {
+function SetWorkInfo(projectId, list_name, workId, workTitle, workContent, deadline, tags, file_name, file, first_principal, second_principal, principal_photo1, principal_photo2) {
+    $('#workInList').text(list_name);
     $('#work_id').text(workId);
     $('#work_title').text(workTitle);
     $('#work_content').text(workContent);
-    $('#deadline').text(deadline);
-    $('#file_name').text(file_name);
-    $('#file_name').attr("download", file_name);
-    $('#file_name').attr("href", file);
-    $('#file').attr("download", file_name);
-    $('#file').attr("href", file);
     $('.btn-edit').val(projectId);
 
     $('.modal-label').empty();
-    for (var i = 0; i < tags.length; i++) {
-        $('.modal-label').append('<span class="modal-label-1" id="tag' + i + '"><span class="label-text" onmousemove="removeClassType(this)"></span></span>');
-        $('#tag' + i).text(tags[0][1]);
-        $('#tag' + i).css("background", tags[0][2]);
+    if (tags.length > 0) {
+        for (var i = 0; i < tags.length; i++) {
+            $('.modal-label').append('<span class="modal-label-1" id="tag' + i + '"><span class="label-text" onmousemove="removeClassType(this)"></span></span>');
+            $('#tag' + i).text(tags[0][1]);
+            $('#tag' + i).css("background", tags[0][2]);
+        }
+    } else {
+        $('.modal-label-left').remove();
     }
 
-    if (principal_photo1 != "null") {
-        $('#first_principal').attr("src", 'data:image/png;base64,' + principal_photo1);
+    if (deadline != "null") {
+        $('#deadline').text(deadline);
     } else {
-        $('#first_principal').attr("src", 'imgs/people.png');
+        $('.modal-timeout').remove();
+    }
+    
+    if (file.length > 0) {
+        $('#file_name').text(file_name);
+        $('#file_name').attr("download", file_name);
+        $('#file_name').attr("href", file);
+        $('#file').attr("download", file_name);
+        $('#file').attr("href", file);
+        $('.box-rar-text').text(file_name.split('.')[file_name.split('.').length - 1]);
+    } else {
+        $('.modal-file').remove();
     }
 
-    if (principal_photo2 != "null") {
-        $('#second_principal').attr("src", 'data:image/png;base64,' + principal_photo2);
-    } else {
-        $('#second_principal').attr("src", 'imgs/people.png');
+    $('#principal').empty();
+    if (first_principal != "null") {
+        if (principal_photo1 == "null") {
+            $('#principal').append("<img src='imgs/defaultPhoto.png' class='modal-member-photo'>");
+        } else {
+            $('#principal').append("<img src='data:image/png;base64," + principal_photo1 + "' class='modal-member-photo'>");
+        }
+    }
+
+    if (second_principal != "null") {
+        if (principal_photo2 == "null") {
+            $('#principal').append("<img src='imgs/defaultPhoto.png' class='modal-member-photo'>");
+        } else {
+            $('#principal').append("<img src='data:image/png;base64," + principal_photo2 + "' class='modal-member-photo'>");
+        }
     }
 }
 

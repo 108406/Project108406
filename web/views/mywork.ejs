@@ -137,6 +137,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        <!---->
         <!-- 每項計畫-->
         <div class="content">
             <div class="typesetting">
@@ -190,6 +191,7 @@
                                 <a href="#" class="work-a" data-toggle="modal" data-target="#modalshow" onclick="
                                             <%= "javascript:SetWorkInfo('" + 
                                             items[i].project[p].project_id + "', '" + 
+                                            items[i].listwork[lw].list.list_name + "', '" + 
                                             items[i].listwork[lw].work[w].work_id + "', '" + 
                                             items[i].listwork[lw].work[w].work_title + "', '" + 
                                             items[i].listwork[lw].work[w].work_content + "', '" + 
@@ -197,6 +199,8 @@
                                             tags + ", '" + 
                                             items[i].listwork[lw].work[w].file_name + "', '" + 
                                             items[i].listwork[lw].work[w].file + "', '" + 
+                                            items[i].listwork[lw].work[w].first_principal + "', '" + 
+                                            items[i].listwork[lw].work[w].second_principal + "', '" + 
                                             items[i].listwork[lw].work[w].principal_photo1 + "', '" + 
                                             items[i].listwork[lw].work[w].principal_photo2 + "')" %>
                                             ">
@@ -241,7 +245,7 @@
                     <!--標題-->
                     <div class="modal-header">
                         <i class="far fa-credit-card fa-lg" style="font-size: 1.5em;"></i>
-                        <div class="modal-header-name" role="textbox" id="work_content">html 手機模式下列表會消失 修正問題</div>
+                        <div class="modal-header-name" role="textbox" id="work_title">html 手機模式下列表會消失 修正問題</div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -266,9 +270,7 @@
                                         <i class="fas fa-user icon-member fa-lg"></i>
                                         <div class="modal-description-name">負責人</div>
                                     </div>
-                                    <div class="modal-member-show">
-                                        <img src="imgs/gray-cat.png" class="modal-member-photo" id="first_principal">
-                                        <img src="imgs/gray-cat.png" class="modal-member-photo" id="second_principal">
+                                    <div class="modal-member-show" id="principal">
                                     </div>
                                 </div>
                                 <!--標籤-->
@@ -309,7 +311,7 @@
                                 </div>
                                 <!--編輯按鈕-->
                                 <div class="edit-btn">
-                                    <button type="button" class="btn btn-edit" onclick="gotoPlan(this.val);">編輯</button>
+                                    <button type="button" class="btn btn-edit" onclick="gotoPlan(this.value);">編輯</button>
                                 </div>
                                 <!---->
                             </div>
@@ -324,7 +326,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/js/jquery.ui.touch-punch.min.js"></script>
