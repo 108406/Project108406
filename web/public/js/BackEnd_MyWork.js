@@ -50,10 +50,12 @@ function Upload(input, work) {
                     $.ajax({
                         type: 'POST',
                         url: 'mywork/updateFile',
+                        datatype: 'json',
                         data: { "work_id": work.work_id, "file": work.file, "file_name": work.file_name },
                         success: function (data) {
+                            console.log(data);
                             ajaxing--;
-                            location.reload();
+                            // location.reload();
                         },
                         error: function (data) {
                             alert('連接伺服器出現問題，請重試。');
@@ -62,6 +64,7 @@ function Upload(input, work) {
                     });
                 };
             })(input.files[0]);
+            reader.readAsDataURL(input.files[0]);
         } else {
             alert('僅支援以下壓縮檔格式。（ .zip .tar .gz ）');
             return;
@@ -136,7 +139,7 @@ function SetWorkInfo(projectId, list_name, workId, workTitle, workContent, deadl
     } else {
         $('.modal-timeout').remove();
     }
-    
+
     if (file.length > 0) {
         $('#file_name').text(file_name);
         $('#file_name').attr("download", file_name);

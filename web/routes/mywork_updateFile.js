@@ -4,14 +4,25 @@ var router = express.Router();
 const work = require('./utility/work');
 
 //接收GET請求
-router.post('/', function(req, res, next) {
-    work.updateWorkFile(req.body.work_id, req.body.file, req.body.file_name).then(data => {
-        if (data) {
-            console.log("Successful!");
-        }else {
-            res.redirect('/login');  //導向找不到頁面
-        }
-    })
+router.post('/', function (req, res, next) {
+    if (req.cookies.userid != undefined) {
+        work.updateWorkFile(req.body.work_id, req.body.file, req.body.file_name).then(data => {
+            console.log(data);
+            if (data) {
+                console.log('success');
+                return res.status(200).send({
+                    message: '上傳檔案成功。'
+                });
+            } else {
+                console.log('上傳檔案時發生錯誤。')
+                return res.status(400).send({
+                    message: '上傳檔案時發生錯誤。'
+                });
+            }
+        })
+    } else {
+        res.redirect('/login');
+    }
 });
 
 
