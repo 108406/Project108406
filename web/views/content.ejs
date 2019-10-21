@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="css/content.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <style>
+        .warning {
+            width: 100%;
+            color: red;
+            text-align: center;
+            margin: -10px 0 10px 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -136,6 +144,7 @@
                             </div>
                         </a>
                     </div>
+                    <% if (items[i].isadmin) { %>
                     <div class="block-setting">
                         <% startDate = items[i].project_startdate[0] + '-' + 
                             (items[i].project_startdate[1] < 10 ? ('0' + items[i].project_startdate[1]) : items[i].project_startdate[1]) + '-' +
@@ -151,6 +160,7 @@
                         items[i].project_id + "', '" + items[i].project_password + "', '" + items[i].project_name + "', '" + 
                         startDate + "', '" + endDate + "')" %>"><img src="./imgs/cog-3x.png"></a>
                     </div>
+                    <% } %>
                 </div>
                 <% } %>
                 <% } %>
@@ -189,6 +199,7 @@
                             </div>
                         </a>
                     </div>
+                    <% if (items[i].isadmin) { %>
                     <div class="block-setting">
                         <% startDate = items[i].project_startdate[0] + '-' + 
                         (items[i].project_startdate[1] < 10 ? ('0' + items[i].project_startdate[1]) : items[i].project_startdate[1]) + '-' +
@@ -204,6 +215,7 @@
                         items[i].project_id + "', '" + items[i].project_password + "', '" + items[i].project_name + "', '" + 
                         startDate + "', '" + endDate + "')" %>"><img src="./imgs/cog-3x.png"></a>
                     </div>
+                    <% } %>
                 </div>
                 <% } %>
                 <% } %>
@@ -235,6 +247,7 @@
                             </div>
                         </a>
                     </div>
+                    <% if (items[i].isadmin) { %>
                     <div class="block-setting">
                         <% startDate = items[i].project_startdate[0] + '-' + 
                             (items[i].project_startdate[1] < 10 ? ('0' + items[i].project_startdate[1]) : items[i].project_startdate[1]) + '-' +
@@ -250,6 +263,7 @@
                         items[i].project_id + "', '" + items[i].project_password + "', '" + items[i].project_name + "', '" + 
                         startDate + "', '" + endDate + "')" %>"><img src="./imgs/cog-3x.png"></a>
                     </div>
+                    <% } %>
                 </div>
                 <% } %>
                 <% } %>
@@ -291,6 +305,7 @@
                                 <label for="message-text" class="col-form-label">結束日期:</label>
                                 <input id="project_enddate" type="datetime-local" name="">
                             </div>
+                            <div class="warning"></div>
                             <div class="text-center">
                                 <button id="closeSetting" type="submit" class="close-btn"
                                     data-dismiss="modal">關閉</button>
@@ -330,6 +345,7 @@
                                 <label for="message-text" class="col-form-label">結束日期:</label>
                                 <input id="AddEndTime" class="datetime-local-set" name="project_enddate">
                             </div>
+                            <div class="warning"></div>
                             <div class="text-center">
                                 <button id="closeAddProject" type="submit" class="close-btn"
                                     data-dismiss="modal">關閉</button>

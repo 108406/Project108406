@@ -28,7 +28,8 @@ router.get('/', function (req, res, next) {
                         "project_password": data.rows[s].project_password,
                         "project_startdate": myFunction.SeparateDate(data.rows[s].project_startdate),
                         "project_enddate": myFunction.SeparateDate(data.rows[s].project_enddate),
-                        "project_status": projectStatus
+                        "project_status": projectStatus,
+                        "isadmin": data.rows[s].isadmin
                     });
                 }
                 res.render('content.ejs', {

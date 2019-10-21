@@ -25,15 +25,9 @@ function SubmitData() {
             $('#email').css({
                 border: "none"
             });
-            $('#waning').css({
-                display: "none"
-            });
         } else {
             $('#email').css({
                 border: "1px solid red"
-            });
-            $('#waning').css({
-                display: "block"
             });
             canSubmit = false;
         }
@@ -41,6 +35,10 @@ function SubmitData() {
 
     if (canSubmit) {
         ajaxing ++;
+        $('#member_name').attr('disabled', true);
+        $('#email').attr('disabled', true);
+        $('#member_name').attr('style', 'background: rgba(190, 190, 190, 0.9)');
+        $('#email').attr('style', 'background: rgba(190, 190, 190, 0.9)');
         $.ajax({
             type: 'POST',
             url: '/member/update',
@@ -48,7 +46,11 @@ function SubmitData() {
                 email: $('#email').val().trim(),
                 member_name: $('#member_name').val().trim()
             },
-            success: function () {
+            success: function (data) {
+                $('#member_name').attr('disabled', false);
+                $('#email').attr('disabled', false);
+                $('#member_name').attr('style', 'background: rgba(235, 235, 235, 0.9);');
+                $('#email').attr('style', 'background: rgba(235, 235, 235, 0.9);');
                 ajaxing --;
             }
         });
@@ -110,7 +112,7 @@ function ChangeLineBotPush(value) {
         data: {
             "linebotPush": !value
         },
-        success: function () {
+        success: function (data) {
             ajaxing --;
         }
     });

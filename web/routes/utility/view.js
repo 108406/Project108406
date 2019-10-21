@@ -8,7 +8,7 @@ var projectWithUser = async function (user_id) {
     var result = [];
 
     //讀取資料庫
-    await query("select project_id, project_name, project_password, project_startdate, project_enddate from projectwithuser_view where user_id = '" + user_id + "'")
+    await query("select project_id, project_name, project_password, project_startdate, project_enddate, isadmin from projectwithuser_view where user_id = '" + user_id + "'")
         .then((data) => {
             result = data; //成功
         }, (error) => {

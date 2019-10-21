@@ -55,7 +55,7 @@ function Upload(input, work) {
                         success: function (data) {
                             console.log(data);
                             ajaxing--;
-                            // location.reload();
+                            location.reload();
                         },
                         error: function (data) {
                             alert('連接伺服器出現問題，請重試。');

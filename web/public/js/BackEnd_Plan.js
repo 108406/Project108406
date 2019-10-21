@@ -286,41 +286,45 @@ function AddList() {
 
 function DeleteList(list_id, index) {
     let allLists = JSON.parse($('#lists').val());
-    let newList = allLists.slice();
-    let removeName;
-    let optionIndex = -1;
-    $($('.work-total')[index]).remove();
-    for (let a = 0; a < allLists.length; a++) {
-        if (allLists[a][0] == list_id) {
-            removeName = allLists[a][1]
-            newList.splice(a, 1);
+    if (allLists.length > 1) {
+        let newList = allLists.slice();
+        let removeName;
+        let optionIndex = -1;
+        $($('.work-total')[index]).remove();
+        for (let a = 0; a < allLists.length; a++) {
+            if (allLists[a][0] == list_id) {
+                removeName = allLists[a][1]
+                newList.splice(a, 1);
+            }
         }
-    }
-    $('#lists').val(JSON.stringify(newList))
-    let options = $('#list-value').children();
-    for (let b = 0; b < options.length; b++) {
-        if ($('#list-value').children()[b].text == removeName) {
-            optionIndex = b;
+        $('#lists').val(JSON.stringify(newList))
+        let options = $('#list-value').children();
+        for (let b = 0; b < options.length; b++) {
+            if ($('#list-value').children()[b].text == removeName) {
+                optionIndex = b;
+            }
         }
-    }
-    $($('#list-value').children()[optionIndex]).remove();
-    ajaxing++;
-    $.ajax({
-        method: 'POST',
-        url: '/content/plan/deleteList',
-        datatype: "json",
-        data: {
-            list_id: list_id
-        },
-        success: function (data) {
+        $($('#list-value').children()[optionIndex]).remove();
+        ajaxing++;
+        $.ajax({
+            method: 'POST',
+            url: '/content/plan/deleteList',
+            datatype: "json",
+            data: {
+                list_id: list_id
+            },
+            success: function (data) {
 
-            ajaxing--;
-        },
-        error: function (data) {
-            alert('連接伺服器出現問題，請重試。')
-            location.reload();
-        }
-    })
+                ajaxing--;
+            },
+            error: function (data) {
+                alert('連接伺服器出現問題，請重試。')
+                location.reload();
+            }
+        })
+    } else {
+        alert('一個專案必須至少存在一個列表。')
+    }
 }
 
 let notification_SetWorkCard = false;

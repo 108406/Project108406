@@ -55,78 +55,191 @@ function IntoProject(project_id) {
     window.location.href = window.location.origin + '/content/plan'
 }
 
-function UpdateProject() {
-    $('#project_id').attr('disabled', true);
-    $('#project_password').attr('disabled', true);
-    $('#project_name').attr('disabled', true);
-    $('#project_startdate').attr('disabled', true);
-    $('#project_enddate').attr('disabled', true);
-    $('#closeSetting').attr('disabled', true);
-    ajaxing++;
-    $.ajax({
-        method: 'POST',
-        url: "content/updateProjectName",
-        data: {
-            project_id: $('#project_id').val(),
-            project_name: $('#project_name').val(),
-            project_password: $('#project_password').val(),
-            project_startdate: $('#project_startdate').val(),
-            project_enddate: $('#project_enddate').val()
-        },
-        success: function (data) {
-            if (data.status == 'success!') {
-                $('#project_id').attr('disabled', false);
-                $('#project_password').attr('disabled', false);
-                $('#project_name').attr('disabled', false);
-                $('#project_startdate').attr('disabled', false);
-                $('#project_enddate').attr('disabled', false);
-                $('#closeSetting').attr('disabled', false);
-
-                $('#projectset').modal('hide');
-
-                value = {
-                    status: data.projectStatus,
-                    project_startdate: data.project_startdate,
-                    project_enddate: data.project_enddate
-                }
-                setTimeout(RedefineProject(value), 1000)
-            } else {
-                alert('寫入資料庫時發生錯誤。')
-            }
-            ajaxing--;
-        },
-        error: function (data) {
-            alert('連接伺服器出現問題，請重試。')
-            console.log('error: \n' + data.error)
+$(document).ready(function () {
+    $('#AddProjectName').on('blur', function () {
+        if ($('#AddProjectName').val().trim() == '') {
+            $('#AddProjectName').attr('style', 'background: #FFCCCC');
+            $('#AddProjectName').attr('placeholder', '專案標題不得空白');
+        } else {
+            $('#AddProjectName').attr('style', 'background: #FFF');
+            $('#AddProjectName').attr('placeholder', '');
         }
+    });
+    $('#AddProjectPassword').on('blur', function () {
+        if ($('#AddProjectPassword').val().trim() == '') {
+            $('#AddProjectPassword').attr('style', 'background: #FFCCCC');
+            $('#AddProjectPassword').attr('placeholder', '專案密碼不得空白');
+        } else {
+            $('#AddProjectPassword').attr('style', 'background: #FFF');
+            $('#AddProjectPassword').attr('placeholder', '');
+        }
+    });
+    $('#AddStartTime').on('change', AddProject_CheckDate);
+    $('#AddEndTime').on('change', AddProject_CheckDate);
+    $('#closeAddProject').on('click', function () {
+        $('#AddProjectName').attr('style', 'background: #FFF');
+        $('#AddProjectName').attr('placeholder', '');
+        $('#AddProjectPassword').attr('style', 'background: #FFF');
+        $('#AddProjectPassword').attr('placeholder', '');
+        $('#AddStartTime').attr('style', 'background: #FFF');
+        $('#AddEndTime').attr('style', 'background: #FFF');
+        $('.warning').text('');
     })
+    
+    $('#project_name').on('blur', function () {
+        if ($('#project_name').val().trim() == '') {
+            $('#project_name').attr('style', 'background: #FFCCCC');
+            $('#project_name').attr('placeholder', '專案標題不得空白');
+        } else {
+            $('#project_name').attr('style', 'background: #FFF');
+            $('#project_name').attr('placeholder', '');
+        }
+    });
+    $('#project_password').on('blur', function () {
+        if ($('#project_password').val().trim() == '') {
+            $('#project_password').attr('style', 'background: #FFCCCC');
+            $('#project_password').attr('placeholder', '專案密碼不得空白');
+        } else {
+            $('#project_password').attr('style', 'background: #FFF');
+            $('#project_password').attr('placeholder', '');
+        }
+    });
+    $('#project_id').on('blur', function () {
+        if ($('#project_id').val().trim() == '') {
+            $('#project_id').attr('style', 'background: #FFCCCC');
+            $('#project_id').attr('placeholder', '專案代碼不得空白');
+        } else {
+            $('#project_id').attr('style', 'background: #FFF');
+            $('#project_id').attr('placeholder', '');
+        }
+    });
+    $('#project_startdate').on('change', UpdateProject_CheckDate);
+    $('#project_enddate').on('change', UpdateProject_CheckDate);
+    $('#closeSetting').on('click', function () {
+        $('#project_name').attr('style', 'background: #FFF');
+        $('#project_name').attr('placeholder', '');
+        $('#project_password').attr('style', 'background: #FFF');
+        $('#project_password').attr('placeholder', '');
+        $('#project_id').attr('style', 'background: #FFF');
+        $('#project_id').attr('placeholder', '');
+        $('#project_startdate').attr('style', 'background: #FFF');
+        $('#project_enddate').attr('style', 'background: #FFF');
+        $('.warning').text('');
+    })
+})
+
+function UpdateProject() {
+    let canSubmit = true;
+    if ($('#project_name').val().trim() == '') {
+        $('#project_name').attr('style', 'background: #FFCCCC');
+        $('#project_name').attr('placeholder', '專案標題不得空白');
+        canSubmit = false;
+    }
+    if ($('#project_password').val().trim() == '') {
+        $('#project_password').attr('style', 'background: #FFCCCC');
+        $('#project_password').attr('placeholder', '專案密碼不得空白');
+        canSubmit = false;
+    }
+    if ($('#project_id').val().trim() == '') {
+        $('#project_id').attr('style', 'background: #FFCCCC');
+        $('#project_id').attr('placeholder', '專案代碼不得空白');
+        canSubmit = false;
+    }
+
+    if (!UpdateProject_CheckDate()) {
+        canSubmit = false;
+    }
+    if (canSubmit) {
+        $('#project_id').attr('disabled', true);
+        $('#project_password').attr('disabled', true);
+        $('#project_name').attr('disabled', true);
+        $('#project_startdate').attr('disabled', true);
+        $('#project_enddate').attr('disabled', true);
+        $('#closeSetting').attr('disabled', true);
+        ajaxing++;
+        $.ajax({
+            method: 'POST',
+            url: "content/updateProjectName",
+            data: {
+                project_id: $('#project_id').val(),
+                project_name: $('#project_name').val(),
+                project_password: $('#project_password').val(),
+                project_startdate: $('#project_startdate').val(),
+                project_enddate: $('#project_enddate').val()
+            },
+            success: function (data) {
+                if (data.status == 'success!') {
+                    $('#project_id').attr('disabled', false);
+                    $('#project_password').attr('disabled', false);
+                    $('#project_name').attr('disabled', false);
+                    $('#project_startdate').attr('disabled', false);
+                    $('#project_enddate').attr('disabled', false);
+                    $('#closeSetting').attr('disabled', false);
+
+                    $('#projectset').modal('hide');
+
+                    value = {
+                        status: data.projectStatus,
+                        project_startdate: data.project_startdate,
+                        project_enddate: data.project_enddate
+                    }
+                    setTimeout(RedefineProject(value), 1000)
+                } else {
+                    alert('寫入資料庫時發生錯誤。')
+                }
+                ajaxing--;
+            },
+            error: function (data) {
+                alert('連接伺服器出現問題，請重試。')
+                console.log('error: \n' + data.error)
+            }
+        })
+    }
 }
 
 function AddProject_Content() {
-    $('#AddProjectName').attr('disabled', true);
-    $('#AddProjectPassword').attr('disabled', true);
-    $('#AddStartTime').attr('disabled', true);
-    $('#AddEndTime').attr('disabled', true);
-    $('#closeAddProject').attr('disabled', true);
-    ajaxing++;
-    $.ajax({
-        method: 'POST',
-        url: "content/addProject",
-        data: {
-            project_name: $('#AddProjectName').val(),
-            project_password: $('#AddProjectPassword').val(),
-            project_startdate: $('#AddStartTime').val(),
-            project_enddate: $('#AddEndTime').val()
-        },
-        success: function (data) {
-            ajaxing--;
-            location.reload();
-        },
-        error: function (data) {
-            alert('連接伺服器出現問題，請重試。')
-            console.log('error: \n' + data.error)
-        }
-    })
+    let canSubmit = true;
+    if ($('#AddProjectName').val().trim() == '') {
+        $('#AddProjectName').attr('style', 'background: #FFCCCC');
+        $('#AddProjectName').attr('placeholder', '專案標題不得空白');
+        canSubmit = false;
+    }
+    if ($('#AddProjectPassword').val().trim() == '') {
+        $('#AddProjectPassword').attr('style', 'background: #FFCCCC');
+        $('#AddProjectPassword').attr('placeholder', '專案密碼不得空白');
+        canSubmit = false;
+    }
+
+    if (!AddProject_CheckDate()) {
+        canSubmit = false;
+    }
+
+    if (canSubmit) {
+        $('#AddProjectName').attr('disabled', true);
+        $('#AddProjectPassword').attr('disabled', true);
+        $('#AddStartTime').attr('disabled', true);
+        $('#AddEndTime').attr('disabled', true);
+        $('#closeAddProject').attr('disabled', true);
+        ajaxing++;
+        $.ajax({
+            method: 'POST',
+            url: "content/addProject",
+            data: {
+                project_name: $('#AddProjectName').val(),
+                project_password: $('#AddProjectPassword').val(),
+                project_startdate: $('#AddStartTime').val(),
+                project_enddate: $('#AddEndTime').val()
+            },
+            success: function (data) {
+                ajaxing--;
+                location.reload();
+            },
+            error: function (data) {
+                alert('連接伺服器出現問題，請重試。')
+                console.log('error: \n' + data.error)
+            }
+        })
+    }
 }
 
 function LeaveProject(projectId) {
@@ -145,4 +258,96 @@ function LeaveProject(projectId) {
             console.log('error: \n' + data.error)
         }
     })
+}
+
+function AddProject_CheckDate() {
+    let isValid = false;
+
+    let startTime = $('#AddStartTime').val()
+        .replace(/-/g, ",")
+        .replace(/:/g, ",")
+        .replace(/ /g, ",")
+        .split(',');
+
+    let endTime = $('#AddEndTime').val()
+        .replace(/-/g, ",")
+        .replace(/:/g, ",")
+        .replace(/ /g, ",")
+        .split(',');
+
+    let invalid = false;
+    for (let a = 0; a < 5; a++) {
+        if (a < 4 && +endTime[a] != +startTime[a]) {
+            if (+endTime[a] < +startTime[a]) {
+                invalid = true;
+                break;
+            } else {
+                break;
+            }
+        } else {
+            if (a == 4 && +endTime[a] <= +startTime[a]) {
+                invalid = true;
+                break;
+            }
+        }
+    }
+
+    if (invalid) {
+        $('#AddStartTime').attr('style', 'background: #FFCCCC');
+        $('#AddEndTime').attr('style', 'background: #FFCCCC');
+        $('.warning').text('結束日期不得在開始日期之前');
+    } else {
+        $('#AddStartTime').attr('style', 'background: #FFF');
+        $('#AddEndTime').attr('style', 'background: #FFF');
+        $('.warning').text('');
+        isValid = true;
+    }
+
+    return isValid;
+}
+
+function UpdateProject_CheckDate() {
+    let isValid = false;
+
+    let startTime = $('#project_startdate').val()
+        .replace(/-/g, ",")
+        .replace(/:/g, ",")
+        .replace(/ /g, ",")
+        .split(',');
+
+    let endTime = $('#project_enddate').val()
+        .replace(/-/g, ",")
+        .replace(/:/g, ",")
+        .replace(/ /g, ",")
+        .split(',');
+
+    let invalid = false;
+    for (let a = 0; a < 5; a++) {
+        if (a < 4 && +endTime[a] != +startTime[a]) {
+            if (+endTime[a] < +startTime[a]) {
+                invalid = true;
+                break;
+            } else {
+                break;
+            }
+        } else {
+            if (a == 4 && +endTime[a] <= +startTime[a]) {
+                invalid = true;
+                break;
+            }
+        }
+    }
+
+    if (invalid) {
+        $('#project_startdate').attr('style', 'background: #FFCCCC');
+        $('#project_enddate').attr('style', 'background: #FFCCCC');
+        $('.warning').text('結束日期不得在開始日期之前');
+    } else {
+        $('#project_startdate').attr('style', 'background: #FFF');
+        $('#project_enddate').attr('style', 'background: #FFF');
+        $('.warning').text('');
+        isValid = true;
+    }
+
+    return isValid;
 }
