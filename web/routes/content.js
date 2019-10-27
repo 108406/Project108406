@@ -13,7 +13,11 @@ router.get('/', function (req, res, next) {
                 var result = [];
                 for (var s = 0; s < data.rows.length; s++) {
                     var projectStatus = -1;
-                    if (myFunction.IsAdateNotArrived(data.rows[s].project_startdate + "", Date())) {
+                    startDate = new Date(data.rows[s].project_startdate);
+                    endDate = new Date(data.rows[s].project_enddate);
+                    startDate.setHours(startDate.getHours() - 8);
+                    endDate.setHours(endDate.getHours() - 8);
+                    if (myFunction.IsAdateNotArrived(startDate + "", Date())) {
                         projectStatus = 0;
                     } else {
                         if (myFunction.IsAdateNotArrived(data.rows[s].project_enddate + "", Date())) {
@@ -26,7 +30,7 @@ router.get('/', function (req, res, next) {
                         "project_id": data.rows[s].project_id,
                         "project_name": data.rows[s].project_name,
                         "project_password": data.rows[s].project_password,
-                        "project_startdate": myFunction.SeparateDate(data.rows[s].project_startdate),
+                        "project_startdate": myFunction.SeparateDate(startDate),
                         "project_enddate": myFunction.SeparateDate(data.rows[s].project_enddate),
                         "project_status": projectStatus,
                         "isadmin": data.rows[s].isadmin

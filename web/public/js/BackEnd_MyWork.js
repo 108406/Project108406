@@ -53,7 +53,6 @@ function Upload(input, work) {
                         datatype: 'json',
                         data: { "work_id": work.work_id, "file": work.file, "file_name": work.file_name },
                         success: function (data) {
-                            console.log(data);
                             ajaxing--;
                             location.reload();
                         },
@@ -127,8 +126,8 @@ function SetWorkInfo(projectId, list_name, workId, workTitle, workContent, deadl
     if (tags.length > 0) {
         for (var i = 0; i < tags.length; i++) {
             $('.modal-label').append('<span class="modal-label-1" id="tag' + i + '"><span class="label-text" onmousemove="removeClassType(this)"></span></span>');
-            $('#tag' + i).text(tags[0][1]);
-            $('#tag' + i).css("background", tags[0][2]);
+            $('#tag' + i).text(tags[i][1]);
+            $('#tag' + i).css("background", tags[i][2]);
         }
     } else {
         $('.modal-label-left').remove();

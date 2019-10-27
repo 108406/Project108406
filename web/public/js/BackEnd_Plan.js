@@ -52,7 +52,7 @@ function UpdateWorkTitle(event) {
         newWorks[indexInWorks][1] = event.target.innerText.trim();
         newWorkData[1] = event.target.innerText.trim();
         $('#works').val(JSON.stringify(newWorks));
-        $($('#card-' + workIndex).children()[1]).children()[0].innerText = newWorkData[1];
+        $($('#' + $('#work_title').attr('title')).children()[1]).children()[0].innerText = newWorkData[1];
         let deadline;
         if (newWorkData[3].length != 6) {
             deadline = null;
@@ -70,8 +70,8 @@ function UpdateWorkTitle(event) {
             teammember: JSON.parse($('#teammember').val()),
             workData: newWorkData
         }
-        $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-            newWorkCard) + `, ` + workIndex + `)`)
+        $($('#' + $('#work_title').attr('title')).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+            newWorkCard) + `, "` + $('#work_title').attr('title') + `")`)
 
         nowWorkData = newWorkCard;
         ajaxing++;
@@ -241,20 +241,20 @@ function AddAdminpush() {
 function AddList() {
     if ($('#add-list-input').val().trim() != '') {
         listIndex = $('.work-total').length;
-        list_name = $('#add-list-input').val().trim()
+        list_name = $('#add-list-input').val().trim();
+        let tempListId = 'tempList_' + Math.floor(Math.random() * 1000000);
         $('#add-list').parent().parent().before(
-            '<div class="work-total"><div class="work-header"><input type="text" class="form-control input-style" placeholder="' +
+            '<div class="work-total" id="' + tempListId + '"><div class="work-header"><input type="text" class="form-control input-style" placeholder="' +
             list_name +
-            '"><div class="drpdown"><button class="btn btn-link btn-header" type="button" id="dropdownMenuLink" data-toggle="dropdown"\n\
+            `"><div class="drpdown"><button class="btn btn-link btn-header" type="button" id="dropdownMenuLink" data-toggle="dropdown"\n\
                 aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button><div class="dropdown-menu" \n\
                 style="min-width: 12em !important;" aria-labelledby="dropdownMenuLink"><div class="drop-right-header-title"><span \n\
                 class="drop-right-title">列表動作</span></div><div class="dropdown-right-content"><div><div><ul\n\
-                class="dropdown-right-list"><li><a href="#">新增卡片</a></li><li><a href="#">刪除所有卡片</a></li><li><a\n\
-                href="#">刪除列表</a></li></ul></div></div></div></div></div></div><div class="work-body"\n\
-                id="work-body-move-' + (listIndex + 1) + '"><div class="card add-card"><textarea class="card-add-text card-textarea"\n\
-                placeholder="為這張卡片輸入標題..."></textarea></div></div><div class="card-footer"><a href="#"\n\
-                class="a-footer add-card-textarea"><div class="footer-name"><i class="fas fa-plus">\n\
-                </i>新增另外一張卡片</div></a></div>'
+                class="dropdown-right-list"><li><a href="#" onclick="Action_AddCard('` + tempListId + `')">新增卡片</a></li><li><a href="#" \n\
+                onclick="DeleteWorksInList('` + tempListId + `')">刪除所有卡片</a></li><li><a href="#" onclick="DeleteList('` + tempListId + `')">刪除列表</a>\n\
+                </li></ul></div></div></div></div></div></div><div class="work-body" id="work-body-move-` + (listIndex + 1) + '"><div \n\
+                class="card add-card"><textarea class="card-add-text card-textarea"\n\
+                placeholder="為這張卡片輸入標題..."></textarea></div></div>'
         );
         $('#list-value').append('<option>' + list_name + '</option>')
         browserRedirect();
@@ -267,8 +267,41 @@ function AddList() {
                 list_name: list_name
             },
             success: function (data) {
-                $($('#add-list').parent().parent().prev().find('.dropdown-right-list a')[2])
-                    .attr('onclick', `DeleteList('` + data.list_id + `', ` + listIndex + `)`);
+                let deleteAllIndex = -1;
+                let addIndex = -1;
+                let deleteIndex = -1;
+                for (let a = 0; a < $($('#' + tempListId).get(0).querySelector('.dropdown-right-list')).children().length; a++) {
+                    switch ($($('#' + tempListId).get(0).querySelector('.dropdown-right-list')).children()[a].children[0].textContent) {
+                        case '刪除所有卡片':
+                            deleteAllIndex = a;
+                            break;
+                        case '新增卡片':
+                            addIndex = a;
+                            break;
+                        case '刪除列表':
+                            deleteIndex = a;
+                            break;
+                    }
+                }
+                if (deleteAllIndex != -1) {
+                    let aElement = $($('#' + tempListId).get(0).querySelector('.dropdown-right-list'))
+                        .children()[deleteAllIndex].children[0];
+                        $(aElement).attr('onclick', `DeleteWorksInList('` + data.list_id + `')`);
+                }
+                if (addIndex != -1) {
+                    let aElement = $($('#' + tempListId).get(0).querySelector('.dropdown-right-list'))
+                        .children()[addIndex].children[0];
+                        $(aElement).attr('onclick', `Action_AddCard('` + data.list_id + `')`);
+                }
+                if (deleteIndex != -1) {
+                    let aElement = $($('#' + tempListId).get(0).querySelector('.dropdown-right-list'))
+                        .children()[deleteIndex].children[0];
+                        $(aElement).attr('onclick', `DeleteList('` + data.list_id + `')`);
+                }
+                $('#' + tempListId).attr('id', data.list_id);
+                $('#' + data.list_id).append('<div class="card-footer"><a href="#"\n\
+                class="a-footer add-card-textarea"><div class="footer-name"><i class="fas fa-plus">\n\
+                </i>新增另外一張卡片</div></a></div>')
                 let newList = ["" + data.list_id, list_name];
                 let allLists = JSON.parse($('#lists').val());
                 allLists.push(newList);
@@ -284,52 +317,56 @@ function AddList() {
     }
 }
 
-function DeleteList(list_id, index) {
-    let allLists = JSON.parse($('#lists').val());
-    if (allLists.length > 1) {
-        let newList = allLists.slice();
-        let removeName;
-        let optionIndex = -1;
-        $($('.work-total')[index]).remove();
-        for (let a = 0; a < allLists.length; a++) {
-            if (allLists[a][0] == list_id) {
-                removeName = allLists[a][1]
-                newList.splice(a, 1);
-            }
-        }
-        $('#lists').val(JSON.stringify(newList))
-        let options = $('#list-value').children();
-        for (let b = 0; b < options.length; b++) {
-            if ($('#list-value').children()[b].text == removeName) {
-                optionIndex = b;
-            }
-        }
-        $($('#list-value').children()[optionIndex]).remove();
-        ajaxing++;
-        $.ajax({
-            method: 'POST',
-            url: '/content/plan/deleteList',
-            datatype: "json",
-            data: {
-                list_id: list_id
-            },
-            success: function (data) {
-
-                ajaxing--;
-            },
-            error: function (data) {
-                alert('連接伺服器出現問題，請重試。')
-                location.reload();
-            }
-        })
+function DeleteList(list_id) {     
+    if (list_id.includes('tempList_')) {
+        alert('系統忙碌中，請重試一次。')
     } else {
-        alert('一個專案必須至少存在一個列表。')
+        let allLists = JSON.parse($('#lists').val());
+        if (allLists.length > 1) {
+            let newList = allLists.slice();
+            let removeName;
+            let optionIndex = -1;
+            $('#' + list_id);
+            for (let a = 0; a < allLists.length; a++) {
+                if (allLists[a][0] == list_id) {
+                    removeName = allLists[a][1]
+                    newList.splice(a, 1);
+                }
+            }
+            $('#lists').val(JSON.stringify(newList))
+            let options = $('#list-value').children();
+            for (let b = 0; b < options.length; b++) {
+                if ($('#list-value').children()[b].text == removeName) {
+                    optionIndex = b;
+                }
+            }
+            $('#' + list_id).remove();
+            ajaxing++;
+            $.ajax({
+                method: 'POST',
+                url: '/content/plan/deleteList',
+                datatype: "json",
+                data: {
+                    list_id: list_id
+                },
+                success: function (data) {
+
+                    ajaxing--;
+                },
+                error: function (data) {
+                    alert('連接伺服器出現問題，請重試。')
+                    location.reload();
+                }
+            })
+        } else {
+            alert('一個專案必須至少存在一個列表。')
+        }
     }
 }
 
 let notification_SetWorkCard = false;
 
-function SetWorkCard(data, cardNo) {
+function SetWorkCard(data, workId) {
     let allWorks = JSON.parse($('#works').val());
     if (data.workData[0] == '' || data.workData[0] == null) {
         for (let a = 0; a < allWorks.length; a++) {
@@ -344,8 +381,8 @@ function SetWorkCard(data, cardNo) {
         }
         notification_SetWorkCard = true;
         setTimeout(function () {
-            SetWorkCard(data, cardNo)
-        }, 3000)
+            SetWorkCard(data, workId);
+        }, 500)
     } else {
         if (notification_SetWorkCard) {
             notification_SetWorkCard = false;
@@ -358,6 +395,7 @@ function SetWorkCard(data, cardNo) {
     data.teammember = JSON.parse($('#teammember').val());
     nowWorkData = data;
     $('#work_title').text(data.workData[1]);
+    $('#work_title').attr('title', data.workData[0]);
     $('#workInList').text(data.listname);
     if (data.workData[3] != '' && data.workData[3] != null) {
         deadlineText = data.workData[3][1] + '月' + data.workData[3][2] + '日 ' +
@@ -436,14 +474,14 @@ function SetWorkCard(data, cardNo) {
             $('#addMemberToWork').append(
                 `<a id="addMemberButton_` + data.teammember[a][0] +
                 `" class="dropdown-img-member-set" onclick='AddMemberToWork(` + JSON.stringify(
-                    addMemberToWorkData) + `, ` + cardNo + `)'><img src="/imgs/defaultPhoto.png" class="dropdown-member-img"><div class="member-name">` + data.teammember[a][1] +
+                    addMemberToWorkData) + `, ` + workId + `)'><img src="/imgs/defaultPhoto.png" class="dropdown-member-img"><div class="member-name">` + data.teammember[a][1] +
                 '</div></a>'
             )
         } else {
             $('#addMemberToWork').append(
                 `<a id="addMemberButton_` + data.teammember[a][0] +
                 `" class="dropdown-img-member-set" onclick='AddMemberToWork(` + JSON.stringify(
-                    addMemberToWorkData) + `, ` + cardNo + `)'><img src="data:image/png;base64,` + data.teammember[a][2] +
+                    addMemberToWorkData) + `, ` + workId + `)'><img src="data:image/png;base64,` + data.teammember[a][2] +
                 '" class="dropdown-member-img"><div class="member-name">' + data.teammember[a][1] +
                 '</div></a>'
             )
@@ -451,62 +489,62 @@ function SetWorkCard(data, cardNo) {
         }
         if (data.teammember[a][0] == data.workData[12] || data.teammember[a][0] == data.workData[13]) {
             if (data.teammember[a][2] == null || data.teammember[a][2] == '') {
-                $('#principal').append('<img id="principal_' + data.teammember[a][0] +
+                $('#principal').append('<img title="' + data.teammember[a][1] + '" id="principal_' + data.teammember[a][0] +
                     '" src="/imgs/defaultPhoto.png" class="modal-member-photo">');
             } else {
-                $('#principal').append('<img id="principal_' + data.teammember[a][0] +
+                $('#principal').append('<img title="' + data.teammember[a][1] + '" id="principal_' + data.teammember[a][0] +
                     '" src="data:image/png;base64,' + data.teammember[a][2] +
                     '" class="modal-member-photo">');
             }
         }
     }
     $('#fixedTags').empty();
-    for (var i = 0; i < data.tags.length; i++) {
-        for (var a = 4; a < 10; a++) {
-            if (data.workData[a] == data.tags[i][0]) {
-                if (data.tags[i][2] == '#61BD4F') {
+    for (let i = 0; i < data.tags.length; i++) {
+        for (let a = 4; a < 10; a++) {
+            if (data.workData[a] == data.tags[i].tag_id) {
+                if (data.tags[i].color == '#61BD4F') {
                     $('#fixedTags').append(
                         '<span class="modal-label-1"><span class="label-text" onmousemove="removeClassType(this)">' +
-                        data.tags[i][1] + '</span></span>'
+                        data.tags[i].tagname + '</span></span>'
                     )
                 } else
-                if (data.tags[i][2] == '#F2D600') {
+                if (data.tags[i].color == '#F2D600') {
                     $('#fixedTags').append(
                         '<span class="modal-label-2"><span class="label-text" onmousemove="removeClassType(this)">' +
-                        data.tags[i][1] + '</span></span>'
+                        data.tags[i].tagname + '</span></span>'
                     )
-                } else if (data.tags[i][2] == '#FF9F1A') {
+                } else if (data.tags[i].color == '#FF9F1A') {
                     $('#fixedTags').append(
                         '<span class="modal-label-3"><span class="label-text" onmousemove="removeClassType(this)">' +
-                        data.tags[i][1] + '</span></span>'
+                        data.tags[i].tagname + '</span></span>'
                     )
-                } else if (data.tags[i][2] == '#EB5A46') {
+                } else if (data.tags[i].color == '#EB5A46') {
                     $('#fixedTags').append(
                         '<span class="modal-label-4"><span class="label-text" onmousemove="removeClassType(this)">' +
-                        data.tags[i][1] + '</span></span>'
+                        data.tags[i].tagname + '</span></span>'
                     )
-                } else if (data.tags[i][2] == '#C377E0') {
+                } else if (data.tags[i].color == '#C377E0') {
                     $('#fixedTags').append(
                         '<span class="modal-label-5"><span class="label-text" onmousemove="removeClassType(this)">' +
-                        data.tags[i][1] + '</span></span>'
+                        data.tags[i].tagname + '</span></span>'
                     )
-                } else if (data.tags[i][2] == '#0079BF') {
+                } else if (data.tags[i].color == '#0079BF') {
                     $('#fixedTags').append(
                         '<span class="modal-label-6"><span class="label-text" onmousemove="removeClassType(this)">' +
-                        data.tags[i][1] + '</span></span>'
+                        data.tags[i].tagname + '</span></span>'
                     )
                 }
+                break;
             }
         }
     }
 
-    $('#MoveWorkToList').attr('onclick', 'MoveWorkToList(' + JSON.stringify(data) + ', ' + cardNo + ')')
+    $('#MoveWorkToList').attr('onclick', 'MoveWorkToList(' + JSON.stringify(data) + ', ' + workId + ')')
 
-    $('#deleteWork').attr('onclick', 'DeleteWork("' + data.workData[0] + '", "' + data.workData[1] + '", ' +
-        cardNo + ')')
+    $('#deleteWork').attr('onclick', 'DeleteWork("' + data.workData[0] + '")')
 }
 
-function AddMemberToWork(data, cardNo) {
+function AddMemberToWork(data, workId) {
     let allteammember = JSON.parse($('#teammember').val());
     let newWorkData = data.workData;
     let dontAppend = false;
@@ -514,21 +552,21 @@ function AddMemberToWork(data, cardNo) {
         if (data.workData[12] == data.teammember[0]) {
             newWorkData[12] = null;
             $('#principal_' + data.teammember[0]).remove();
-            for (let h = 0; h < $('#card-' + cardNo + ' div.work-img').children().length; h++) {
-                let workPrincipalAlt = $('#card-' + cardNo + ' div.work-img').children()[h].getAttribute(
+            for (let h = 0; h < $('#' + workId + ' div.work-img').children().length; h++) {
+                let workPrincipalAlt = $('#' + workId + ' div.work-img').children()[h].getAttribute(
                     'alt');
                 if (workPrincipalAlt.substr(14, workPrincipalAlt.length) == data.teammember[0]) {
-                    $($('#card-' + cardNo + ' div.work-img').children()[h]).remove();
+                    $($('#' + workId + ' div.work-img').children()[h]).remove();
                 }
             }
         } else if (data.workData[13] == data.teammember[0]) {
             newWorkData[13] = null;
             $('#principal_' + data.teammember[0]).remove();
-            for (let h = 0; h < $('#card-' + cardNo + ' div.work-img').children().length; h++) {
-                let workPrincipalAlt = $('#card-' + cardNo + ' div.work-img').children()[h].getAttribute(
+            for (let h = 0; h < $('#' + workId + ' div.work-img').children().length; h++) {
+                let workPrincipalAlt = $('#' + workId + ' div.work-img').children()[h].getAttribute(
                     'alt');
                 if (workPrincipalAlt.substr(14, workPrincipalAlt.length) == data.teammember[0]) {
-                    $($('#card-' + cardNo + ' div.work-img').children()[h]).remove();
+                    $($('#' + workId + ' div.work-img').children()[h]).remove();
                 }
             }
         }
@@ -545,17 +583,17 @@ function AddMemberToWork(data, cardNo) {
     }
     if (!dontAppend) {
         if (data.teammember[2] == null || data.teammember[2] == '') {
-            $('#card-' + cardNo + ' div.work-img').append('<img alt="workPrincipal_' + data.teammember[0] +
+            $('#' + workId + ' div.work-img').append('<img title="' + data.teammember[1] + '" alt="workPrincipal_' + data.teammember[0] +
                 '" src="/imgs/defaultPhoto.png" class="work-img-photo">')
 
-            $('#principal').append('<img id="principal_' + data.teammember[0] +
+            $('#principal').append('<img title="' + data.teammember[1] + '" id="principal_' + data.teammember[0] +
                 '" src="/imgs/defaultPhoto.png" class="modal-member-photo">');
         } else {
-            $('#card-' + cardNo + ' div.work-img').append('<img alt="workPrincipal_' + data.teammember[0] +
+            $('#' + workId + ' div.work-img').append('<img title="' + data.teammember[1] + '" alt="workPrincipal_' + data.teammember[0] +
                 '" src="data:image/png;base64,' + data.teammember[2] +
                 '" class="work-img-photo">')
 
-            $('#principal').append('<img id="principal_' + data.teammember[0] +
+            $('#principal').append('<img title="' + data.teammember[1] + '" id="principal_' + data.teammember[0] +
                 '" src="data:image/png;base64,' + data.teammember[2] +
                 '" class="modal-member-photo">');
         }
@@ -588,11 +626,11 @@ function AddMemberToWork(data, cardNo) {
         let thisElemntId = $(this).attr('id');
         let thisUserId = thisElemntId.substr(16, thisElemntId.length)
         $(this).attr('onclick', `AddMemberToWork(` + JSON.stringify(
-            addMemberToWorkData) + `, ` + cardNo + `)`)
+            addMemberToWorkData) + `, ` + workId + `)`)
     })
 
-    $($('#card-' + cardNo).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-        newWorkCard) + `, ` + cardNo + `)`)
+    $($('#' + workId).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+        newWorkCard) + `, ` + workId + `)`)
 
     nowWorkData = newWorkCard;
     ajaxing++;
@@ -761,6 +799,8 @@ function ChangeTagName(isLeft, index, tag_id) {
     }
 }
 
+let tagIsOpened = false;
+
 function ChangeTag(id, color) {
     let allTags = JSON.parse($('#tags').val());
     let status = 0;
@@ -832,8 +872,8 @@ function ChangeTag(id, color) {
                 workIndex = i;
             }
         }
-        if ($('#card-' + workIndex).children().length > 0) {
-            let tagsInFixedTags = $($('#card-' + workIndex).children()[0]).children();
+        if ($('#' + $('#work_title').attr('title')).children().length > 0) {
+            let tagsInFixedTags = $($('#' + $('#work_title').attr('title')).children()[0]).children();
             let beforeIndex = -1;
             let tagsIndexArray = [];
             for (let x = 0; x < $(tagsInFixedTags).length; x++) {
@@ -849,21 +889,42 @@ function ChangeTag(id, color) {
             }
 
             if (beforeIndex != -1) {
-                $($('#card-' + workIndex).children()[0]).children().closest('.card-label-' + beforeIndex)
-                    .before(
-                        '<span class="card-label-' + status +
-                        '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
-                        '</span></span>')
+                if (!tagIsOpened) {
+                    $($('#' + $('#work_title').attr('title')).children()[0]).children().closest('.card-label-' + beforeIndex)
+                        .before('<span class="card-label-' + status +
+                            '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                            '</span></span>');
+                } else {
+                    $($('#' + $('#work_title').attr('title')).children()[0]).children().closest('.card-label-' + beforeIndex)
+                        .before('<span class="card-label-' + status +
+                            '" style="height: 20px; max-width: 100%; line-height: 20px;"><span \n\
+                        class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                            '</span></span>');
+                }
             } else {
-                $($('#card-' + workIndex).children()[0]).append('<span class="card-label-' + status +
-                    '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
-                    '</span></span>');
+                if (!tagIsOpened) {
+                    $($('#' + $('#work_title').attr('title')).children()[0]).append('<span class="card-label-' + status +
+                        '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                        '</span></span>');
+                } else {
+                    $($('#' + $('#work_title').attr('title')).children()[0]).append('<span class="card-label-' + status +
+                        '" style="height: 20px; max-width: 100%; line-height: 20px;"><span \n\
+                        class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                        '</span></span>');
+                }
             }
 
         } else {
-            $($('#card-' + workIndex).children()[0]).append('<span class="card-label-' + status +
-                '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
-                '</span></span>');
+            if (!tagIsOpened) {
+                $($('#' + $('#work_title').attr('title')).children()[0]).append('<span class="card-label-' + status +
+                    '"><span class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                    '</span></span>');
+            } else {
+                $($('#' + $('#work_title').attr('title')).children()[0]).append('<span class="card-label-' + status +
+                    '" style="height: 20px; max-width: 100%; line-height: 20px;"><span \n\
+                    class="label-text" onmousemove="removeClassType(this)">' + textValue +
+                    '</span></span>');
+            }
         }
         let newTagArray = [];
         for (let s = 1; s < 7; s++) {
@@ -912,7 +973,7 @@ function ChangeTag(id, color) {
         }
 
         // Reset SetWorkCard
-        let tagsInFixedTags = $($('#card-' + workIndex).children()[0]).children();
+        let tagsInFixedTags = $($('#' + $('#work_title').attr('title')).children()[0]).children();
         let tagsIndexArray = [];
         let newTagsData = [];
         let thisWorkData = nowWorkData.workData;
@@ -946,9 +1007,9 @@ function ChangeTag(id, color) {
             teammember: JSON.parse($('#teammember').val()),
             workData: thisWorkData
         }
-        $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-            newWorkCard) + `, ` + workIndex + `)`)
-
+        $($('#' + $('#work_title').attr('title')).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+            newWorkCard) + `, "` + $('#work_title').attr('title') + `")`)
+        ActiveWorkTag();
         nowWorkData = newWorkCard;
         ajaxing++;
         $.ajax({
@@ -988,7 +1049,7 @@ function ChangeTag(id, color) {
                 workIndex = i;
             }
         }
-        $($('#card-' + workIndex).children()[0]).children().closest('.card-label-' + removeIndex).remove();
+        $($('#' + $('#work_title').attr('title')).children()[0]).children().closest('.card-label-' + removeIndex).remove();
 
         let newTagArray = [];
         for (let s = 1; s < 7; s++) {
@@ -1037,7 +1098,7 @@ function ChangeTag(id, color) {
         }
 
         // Reset SetWorkCard
-        let tagsInFixedTags = $($('#card-' + workIndex).children()[0]).children();
+        let tagsInFixedTags = $($('#' + $('#work_title').attr('title')).children()[0]).children();
         let tagsIndexArray = [];
         let newTagsData = [];
         let thisWorkData = nowWorkData.workData;
@@ -1072,8 +1133,8 @@ function ChangeTag(id, color) {
             teammember: JSON.parse($('#teammember').val()),
             workData: thisWorkData
         }
-        $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-            newWorkCard) + `, ` + workIndex + `)`)
+        $($('#' + $('#work_title').attr('title')).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+            newWorkCard) + `, "` + $('#work_title').attr('title') + `")`)
 
         nowWorkData = newWorkCard;
         ajaxing++;
@@ -1118,6 +1179,25 @@ function SaveDeadline() {
     newDeadlineSplit = newDeadlineSplit.replace(/ /g, ',');
     let newDeadlineArray = newDeadlineSplit.split(',');
 
+    let isnan = false;
+    for (let a = 0; a < newDeadlineArray.length; a++) {
+        if (isNaN(+newDeadlineArray[a]) || +newDeadlineArray[a] == '') {
+            isnan = true;
+        }
+    }
+
+    if (isnan) {
+        newDeadlineArray = SeparateDate(new Date(Date.now() + 604810000))
+        let setTimeDate = newDeadlineArray[0] + '-' +
+            (newDeadlineArray[1] < 10 ? '0' + newDeadlineArray[1] : newDeadlineArray[1]) + '-' +
+            (newDeadlineArray[2] < 10 ? '0' + newDeadlineArray[2] : newDeadlineArray[2]) + ' ' +
+            (newDeadlineArray[3] < 10 ? '0' + newDeadlineArray[3] : newDeadlineArray[3]) + ':' +
+            (newDeadlineArray[4] < 10 ? '0' + newDeadlineArray[4] : newDeadlineArray[4]) + ':' +
+            (newDeadlineArray[5] < 10 ? '0' + newDeadlineArray[5] : newDeadlineArray[5])
+        $('#TimeDate').val(setTimeDate);
+        newDeadline = setTimeDate;
+    }
+
     deadlineText = +newDeadlineArray[1] + '月' + +newDeadlineArray[2] + '日 ' +
         (+newDeadlineArray[3] > 12 ? ('下午' + (+newDeadlineArray[3] - 12) + '點') : ('上午' + +newDeadlineArray[
                 3] +
@@ -1161,8 +1241,8 @@ function SaveDeadline() {
         teammember: JSON.parse($('#teammember').val()),
         workData: thisWorkData
     }
-    $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-        newWorkCard) + `, ` + workIndex + `)`)
+    $($('#' + $('#work_title').attr('title')).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+        newWorkCard) + `, "` + $('#work_title').attr('title') + `")`)
 
     nowWorkData = newWorkCard;
 
@@ -1218,8 +1298,8 @@ function ClearDeadline() {
         teammember: JSON.parse($('#teammember').val()),
         workData: thisWorkData
     }
-    $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-        newWorkCard) + `, ` + workIndex + `)`)
+    $($('#' + $('#work_title').attr('title')).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+        newWorkCard) + `, "` + $('#work_title').attr('title') + `")`)
 
     nowWorkData = newWorkCard;
 
@@ -1352,9 +1432,9 @@ function uploadFile(file) {
                         teammember: JSON.parse($('#teammember').val()),
                         workData: thisWorkData
                     }
-                    $($('#card-' + workIndex).children()[1]).attr('onclick',
+                    $($('#' + $('#work_title').attr('title')).children()[1]).attr('onclick',
                         `javascript:SetWorkCard(` + JSON.stringify(
-                            newWorkCard) + `, ` + workIndex + `)`)
+                            newWorkCard) + `, "` + $('#work_title').attr('title') + `")`)
 
                     nowWorkData = newWorkCard;
                     ajaxing++;
@@ -1400,7 +1480,7 @@ function uploadFile(file) {
 
 let notification_MoveWorkToList = false;
 
-function MoveWorkToList(data, cardNo) {
+function MoveWorkToList(data, workId) {
     let workData = data.workData;
     let allLists = JSON.parse($('#lists').val());
     let allWorks = JSON.parse($('#works').val());
@@ -1460,7 +1540,7 @@ function MoveWorkToList(data, cardNo) {
         }
         notification_MoveWorkToList = true;
         setTimeout(function () {
-            MoveWorkToList(data, cardNo)
+            MoveWorkToList(data, workId)
         }, 3000)
     } else {
         if (notification_MoveWorkToList) {
@@ -1474,8 +1554,8 @@ function MoveWorkToList(data, cardNo) {
             teammember: nowWorkData.teammember,
             workData: nowWorkData.workData
         }
-        $($('#card-' + cardNo).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-            newWorkCard) + `, ` + cardNo + `)`)
+        $($('#' + workId).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+            newWorkCard) + `, "` + workId + `")`)
 
         nowWorkData = newWorkCard;
 
@@ -1505,6 +1585,24 @@ function MoveWorkToList(data, cardNo) {
 
 }
 
+function DeleteWorksInList(listId) {    
+    if (listId.includes('tempList_')) {
+        alert('系統忙碌中，請重試一次。')
+    } else {
+        let allDeleteWorkId = [];
+        for (let a = 0; a < $('#' + listId + ' .work-body').children().length; a++) {
+            if ($('#' + listId + ' .work-body').children()[a].id != '') {
+                allDeleteWorkId.push($('#' + listId + ' .work-body').children()[a].id);
+            }
+        }
+
+        for (let b = 0; b < allDeleteWorkId.length; b++) {
+            $('#' + allDeleteWorkId[b]).remove();
+            DeleteWork(allDeleteWorkId[b]);
+        }
+    }
+}
+
 let notification_DragWorkToList = false;
 
 function DragWorkToList(toListElement, fromListElement, workElement) {
@@ -1512,11 +1610,10 @@ function DragWorkToList(toListElement, fromListElement, workElement) {
     let allWorks = JSON.parse($('#works').val());
     let toListName = $($(toListElement).prev().children()[0]).attr('placeholder');
     let fromListName = $($(fromListElement).prev().children()[0]).attr('placeholder');
-    let thisWorkName = $($($(workElement).children()[1]).children()[0]).text().trim();
+    let thisWorkId = workElement.id;
     let thisWorkData;
     let toListId;
     let fromListId;
-    let thisWorkId;
     for (let c = 0; c < allLists.length; c++) {
         if (allLists[c][1] == toListName) {
             toListId = allLists[c][0];
@@ -1526,8 +1623,7 @@ function DragWorkToList(toListElement, fromListElement, workElement) {
         }
     }
     for (let c = 0; c < allWorks.length; c++) {
-        if (allWorks[c][1] == thisWorkName) {
-            thisWorkId = allWorks[c][0];
+        if (allWorks[c][0] == thisWorkId) {
             thisWorkData = allWorks[c];
         }
     }
@@ -1569,11 +1665,10 @@ function DragWorkToList(toListElement, fromListElement, workElement) {
             teammember: JSON.parse($('#teammember').val()),
             workData: thisWorkData
         }
-        $($('#card-' + workIndex).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-            newWorkCard) + `, ` + workIndex + `)`)
+        $($('#' + thisWorkId).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+            newWorkCard) + `, ` + thisWorkId + `)`)
 
         nowWorkData = newWorkCard;
-
         $('#show-modal').modal('hide');
         if (toListId != fromListId) {
             ajaxing++;
@@ -1621,19 +1716,12 @@ function AddCardK(event) {
 
 // 新增卡片用的function
 function AddCard(index, title) {
-    let checkAllWorks = JSON.parse($('#works').val());
     let allTags = JSON.parse($('#tags').val()).slice();
     let allTeammember = JSON.parse($('#teammember').val()).slice();
-    for (let a = 0; a < checkAllWorks.length; a++) {
-        if (checkAllWorks[a][1] == title.replace(/(\r\n|\n|\r)/gm, " ")) {
-            alert('已有相同的卡片名稱。');
-            return;
-        }
-    }
     let allLists = JSON.parse($('#lists').val());
     let listname = $($($('.work-header')[index]).children()[0]).attr('placeholder')
     let listId;
-    let workLength = $('.card.work-card').length;
+    let tempWorkId = 'tempWork_' + Math.floor(Math.random() * 100000);
     let workData = ["", title.replace(/(\r\n|\n|\r)/gm, " "), "", "", null, null, null, null, null, null, "", "", "",
         ""
     ]
@@ -1644,9 +1732,9 @@ function AddCard(index, title) {
         workData: workData
     }
     $($('.card.add-card')[index]).before(`\n\
-<div class="card work-card" id="card-` + workLength + `" style="position: relative; left: 0px; top: 0px;">\n\
-<div class="work-card-header"></div><div onclick='javascript:SetWorkCard(` + JSON.stringify(newCardData) + `, ` +
-        workLength + `)'>\n\
+<div class="card work-card" id="` + tempWorkId + `" style="position: relative; left: 0px; top: 0px;">\n\
+<div class="work-card-header"></div><div onclick='javascript:SetWorkCard(` + JSON.stringify(newCardData) + `, "` +
+        tempWorkId + `")'>\n\
 <div class="work-name" data-toggle="modal" data-target="#show-modal">` + title.replace(/(\r\n|\n|\r)/gm, " ") + `</div>\n\
 <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal"><div class="work-img">\n\
 </div></div></div></div>`)
@@ -1671,13 +1759,14 @@ function AddCard(index, title) {
             allWorks.push(workData)
             newCardData = {
                 listname: listname,
-                tags: [],
-                teammember: [],
+                tags: allTags,
+                teammember: allTeammember,
                 workData: workData
             }
-            $($('#card-' + workLength).children()[1]).attr('onclick',
-                `javascript:SetWorkCard(` + JSON.stringify(newCardData) + `, ` +
-                workLength + `)`)
+            $($('#' + tempWorkId).children()[1]).attr('onclick',
+                `javascript:SetWorkCard(` + JSON.stringify(newCardData) + `, "` +
+                data.work_id + `")`);
+            $('#' + tempWorkId).attr('id', data.work_id);
             $('#works').val(JSON.stringify(allWorks));
             ajaxing--;
         },
@@ -1688,10 +1777,10 @@ function AddCard(index, title) {
     })
 }
 
-function DeleteWork(work_id, work_title, workIndex) {
+function DeleteWork(work_id) {
     let allWorks = JSON.parse($('#works').val());
     let newWorks = allWorks.slice();
-    $('#card-' + workIndex).remove();
+    $('#' + work_id).remove();
     $('#show-modal').modal('hide');
     ajaxing++;
     $.ajax({
@@ -1746,15 +1835,7 @@ function DeleteMember(element, user_id) {
         let setWordCardString = $($($('.work-card')[c]).children()[1]).attr('onclick');
         let thisSetWorkCard = setWordCardString.substring(23, setWordCardString.lastIndexOf('}') + 1)
         thisSetWorkCard = JSON.parse(thisSetWorkCard);
-        let result = [];
-        for (let a = 0; a < JSON.parse($('#tags').val()).length; a++) {
-            let tags = [];
-            tags.push(JSON.parse($('#tags').val())[a].tag_id)
-            tags.push(JSON.parse($('#tags').val())[a].tagname)
-            tags.push(JSON.parse($('#tags').val())[a].color)
-            result.push(tags);
-        }
-        thisSetWorkCard.tags = result;
+        thisSetWorkCard.tags = JSON.parse($('#tags').val());
         thisSetWorkCard.teammember = JSON.parse($('#teammember').val());
 
         if (thisSetWorkCard.workData[12] == user_id) {
@@ -1829,8 +1910,8 @@ function DeleteMember(element, user_id) {
                 location.reload();
             }
         })
-        $($('#card-' + c).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
-            thisSetWorkCard) + `, ` + c + `)`)
+        $($($('.work-card')[c]).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+            thisSetWorkCard) + `, "` + thisSetWorkCard.workData[0] + `")`);
     }
 
     $(element).parent().remove();
@@ -1892,9 +1973,36 @@ function MoveMember(toMemberElement, fromMemberElement, memberElement) {
     }
 }
 
-function Action_AddCard(index) {
-    setTimeout(function () {
-        $('.add-card-textarea')[index].click()
-        $($('.add-card')[index]).focus();
-    }, 10)
+function Action_AddCard(listId) {
+    if (listId.includes('tempList_')) {
+        alert('系統忙碌中，請重試一次。')
+    } else {
+        setTimeout(function () {
+            $('#' + listId).get(0).querySelector('.card-footer > .add-card-textarea').click();
+            $('#' + listId).get(0).querySelector('.work-body > .add-card').focus();
+        }, 10)
+    }
+}
+
+var SeparateDate = function (date) {
+    var result = [6];
+    var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    date = (date + "").substring(4, date.length);
+    for (var i = 0; i < month.length; i++) {
+        if (date.substring(0, 3).toLowerCase() == month[i].toLowerCase()) {
+            result[1] = i + 1;
+        }
+    }
+    date = date.substring(4, date.length);
+    result[2] = +date.substring(0, 2);
+    date = date.substring(3, date.length);
+    result[0] = +date.substring(0, 4);
+    date = date.substring(5, date.length);
+    result[3] = +date.substring(0, 2);
+    date = date.substring(3, date.length);
+    result[4] = +date.substring(0, 2);
+    date = date.substring(3, date.length);
+    result[5] = +date.substring(0, 2);
+
+    return result;
 }

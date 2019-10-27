@@ -120,11 +120,11 @@
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (teammember[i][3]) { %>
                 <% if (teammember[i][2] != null && teammember[i][2] != '') { %>
-                <div id="<%= teammember[i][0] %>" class="member-img-trash">
+                <div id="<%= teammember[i][0] %>" title="<%= teammember[i][1] %>" class="member-img-trash">
                     <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
                 </div>
                 <% } else { %>
-                <div id="<%= teammember[i][0] %>" class="member-img-trash">
+                <div id="<%= teammember[i][0] %>" title="<%= teammember[i][1] %>" class="member-img-trash">
                     <img src="/imgs/defaultPhoto.png" class="img-photo">
                 </div>
                 <% } %>
@@ -140,13 +140,13 @@
                 <% for (var i = 0; i < teammember.length; i ++) { %>
                 <% if (!teammember[i][3]) { %>
                 <% if (teammember[i][2] != null && teammember[i][2] != '') { %>
-                <div id="<%= teammember[i][0] %>" class="member-img-trash">
+                <div id="<%= teammember[i][0] %>" title="<%= teammember[i][1] %>" class="member-img-trash">
                     <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
                     <a onclick="<%= `DeleteMember(this, '` + teammember[i][0] + `')` %>">
                         <img src="/imgs/delete1.png" class="member-delete-icon"></a>
                 </div>
                 <% } else { %>
-                <div id="<%= teammember[i][0] %>" class="member-img-trash">
+                <div id="<%= teammember[i][0] %>" title="<%= teammember[i][1] %>" class="member-img-trash">
                     <img src="/imgs/defaultPhoto.png" class="img-photo">
                     <a onclick="<%= `DeleteMember(this, '` + teammember[i][0] + `')` %>">
                         <img src="/imgs/delete1.png" class="member-delete-icon"></a>
@@ -209,9 +209,8 @@
             <% for (var b = 0; b < tempTeammember.length; b ++) { %>
             <%     tempTeammember[b][2] = tempTeammember[b][2] != null ? new Buffer(tempTeammember[b][2], 'base64').toString() : null %>
             <% } %>
-            <% var allWorkIndex = 0; %>
             <% for (var listIndex = 0; listIndex < lists.length; listIndex ++) { %>
-            <div class="work-total">
+            <div class="work-total" id="<%= lists[listIndex][0] %>">
                 <div class="work-header">
 
                     <% if (isAdmin || projectPermission[0]) { %>
@@ -237,14 +236,14 @@
                                         <ul class="dropdown-right-list">
                                             <% if (isAdmin || projectPermission[1]) { %>
                                             <li><a href="#"
-                                                    onclick="<%= 'Action_AddCard(' + listIndex + ')' %>">新增卡片</a></li>
+                                                    onclick="<%= `Action_AddCard('` + lists[listIndex][0] + `')` %>">新增卡片</a></li>
                                             <% } %>
                                             <% if (isAdmin || projectPermission[3]) { %>
-                                            <li><a href="#">刪除所有卡片</a></li>
+                                            <li><a href="#" onclick="<%= `DeleteWorksInList('` + lists[listIndex][0] + `')` %>">刪除所有卡片</a></li>
                                             <% } %>
                                             <% if (isAdmin || projectPermission[0]) { %>
                                             <li><a href="#"
-                                                    onclick="<%= 'DeleteList("' + lists[listIndex][0] + '", ' + listIndex + ')' %>">刪除列表</a>
+                                                    onclick="<%= `DeleteList('` + lists[listIndex][0] + `')` %>">刪除列表</a>
                                             </li>
                                             <% } %>
                                         </ul>
@@ -255,6 +254,7 @@
                     </div>
                 </div>
                 <div class="work-body" id="<%= 'work-body-move-' + (listIndex + 1) %>">
+                    <!--卡片-->
                     <% for (var workIndex = 0; workIndex < listwork[listIndex].length; workIndex ++) { %>
                     <% var thiswork = []; %>
                     <% for (var workDetail = 0; workDetail < works.length; workDetail ++) { %>
@@ -263,8 +263,7 @@
                     <% thiswork[10] = thiswork[10] != null ? new Buffer(thiswork[10], 'base64').toString() : null %>
                     <% } %>
                     <% } %>
-                    <!--卡片-->
-                    <div class="card work-card" id="<%= 'card-' + allWorkIndex %>">
+                    <div class="card work-card" id="<%= thiswork[0] %>">
                         <div class="work-card-header">
                             <% for (var i = 0; i < tags.length; i ++) { %>
                             <% for (var a = 4; a < 10; a ++) { %>
@@ -295,7 +294,7 @@
                         </div>
                         <% var tempWork = {listname:lists[listIndex][1], workData:thiswork, teammember: tempTeammember, tags: tags} %>
                         <div
-                            onclick="<%= 'javascript:SetWorkCard(' + JSON.stringify(tempWork) + ', ' + allWorkIndex + ')'%>">
+                            onclick="<%= 'javascript:SetWorkCard(' + JSON.stringify(tempWork) + `, '` + thiswork[0] + `')`%>">
                             <div class="work-name" data-toggle="modal" data-target="#show-modal">
                                 <%= thiswork[1] %>
                             </div>
@@ -308,10 +307,10 @@
                                     <% for (var a = 0; a < teammember.length; a ++) { %>
                                     <% if (teammember[a][0] == thiswork[12] || teammember[a][0] == thiswork[13]) { %>
                                     <% if (teammember[a][2] != null && teammember[a][2] != '') { %>
-                                    <img alt="<%= 'workPrincipal_' + teammember[a][0] %>"
+                                    <img title="<%= teammember[a][1] %>" alt="<%= 'workPrincipal_' + teammember[a][0] %>"
                                         src=<%= 'data:image/png;base64,' + teammember[a][2] %> class="work-img-photo">
                                     <% } else { %>
-                                    <img alt="<%= 'workPrincipal_' + teammember[a][0] %>" src="/imgs/defaultPhoto.png"
+                                    <img title="<%= teammember[a][1] %>" alt="<%= 'workPrincipal_' + teammember[a][0] %>" src="/imgs/defaultPhoto.png"
                                         class="work-img-photo">
                                     <% } %>
                                     <% } %>
@@ -320,9 +319,8 @@
                             </div>
                         </div>
                     </div>
-                    <% allWorkIndex++ %>
-                    <!--卡片-->
                     <% } %>
+                    <!--卡片-->
 
 
                     <% if (isAdmin || projectPermission[1]) { %>

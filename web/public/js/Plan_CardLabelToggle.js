@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function ActiveWorkTag() {
     var isTrue = true;
 
     $('.work-card-header').click(function () {
@@ -22,6 +22,7 @@ $(document).ready(function () {
             $(".card-label-5").css("max-width","100%");
             $(".card-label-6").css("max-width","100%");
             isTrue=false;
+            tagIsOpened = true;
         }
         else{
             $('.card-label-1').animate({ height: '8px' });
@@ -43,7 +44,10 @@ $(document).ready(function () {
             $(".card-label-5").css("max-width","45px");
             $(".card-label-6").css("max-width","45px");
             isTrue=true;
+            tagIsOpened = false;
         }
     });
-
+}
+$(document).ready(function () {
+    ActiveWorkTag();
 });
