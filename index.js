@@ -13,15 +13,15 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1627582693',
+	channelSecret: '7e8291f8ca70e509c82447b342850c26',
+	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
 
 var client = new line.Client({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1627582693',
+	channelSecret: '7e8291f8ca70e509c82447b342850c26',
+	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
 
 const app = express();
@@ -404,7 +404,7 @@ function _bot() {
 							}
 						}
 
-						event.reply('請輸入專案代碼').then(function (data) {
+						event.reply('請輸入專案代碼\n（Ex: [Jfi310DF]）').then(function (data) {
 							console.log(replyMsg);
 						}).catch(function (error) {
 							console.log('error');
@@ -1737,6 +1737,7 @@ function _bot() {
 					})
 
 				} else if (msg == '不要') {
+					talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
 					event.reply('好吧......(ಥ_ಥ)').then(function (data) {
 						console.log(replyMsg);
 					}).catch(function (error) {
