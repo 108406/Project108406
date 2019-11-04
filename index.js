@@ -404,7 +404,7 @@ function _bot() {
 							}
 						}
 
-						event.reply('請輸入專案代碼').then(function (data) {
+						event.reply('請輸入專案代碼\n（Ex: [Jfi310DF]）').then(function (data) {
 							console.log(replyMsg);
 						}).catch(function (error) {
 							console.log('error');
@@ -1635,7 +1635,7 @@ function _bot() {
 									{
 										"type": "text",
 										"wrap": true,
-										"text": "快到期計畫\n快到期計劃\n快到期專案",
+										"text": "我的快到期計畫\n我的快到期計劃\n我的快到期專案",
 										"align": "center",
 										"size": "sm",
 										"position": "relative",
@@ -1737,6 +1737,7 @@ function _bot() {
 					})
 
 				} else if (msg == '不要') {
+					talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
 					event.reply('好吧......(ಥ_ಥ)').then(function (data) {
 						console.log(replyMsg);
 					}).catch(function (error) {
