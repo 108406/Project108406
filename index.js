@@ -13,15 +13,15 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1627582693',
+	channelSecret: '7e8291f8ca70e509c82447b342850c26',
+	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
 
 var client = new line.Client({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1627582693',
+	channelSecret: '7e8291f8ca70e509c82447b342850c26',
+	channelAccessToken: 'yGyJ8rmKut2x0ie7yLZD3Raeln0IUfSsegVEsESsA5a4/xdGL5Dye3PaFG7U/s5PW+EYmOZEE/zTKqyD9VGnsVInn7qY/Tgpybe9Rs7hgGIxYCiIA9S9y6HfUkBJ9/OFQV8vtPrYAZRYNwlkUGcH6wdB04t89/1O/w1cDnyilFU='
 });
 
 const app = express();
@@ -34,11 +34,110 @@ var server = app.listen(process.env.PORT || 8080, function () {
 	console.log("App now running on port", port);
 });
 
-client.linkRichMenuToUser('all', 'richmenu-7df9281c51148171a43ad6111eee7b50').then(data => {
+const richmenu = {
+	"size": {
+		"width": 800,
+		"height": 540
+	},
+	"selected": false,
+	"name": "Plan Yourself",
+	"chatBarText": "快速選單",
+	"areas": [{
+		"bounds": {
+			"x": 0,
+			"y": 0,
+			"width": 400,
+			"height": 270
+		},
+		"action": {
+			"type": "message",
+			"text": "#我的專案"
+		}
+	}, {
+		"bounds": {
+			"x": 400,
+			"y": 0,
+			"width": 400,
+			"height": 270
+		},
+		"action": {
+			"type": "message",
+			"text": "#我的工作"
+		}
+	}, {
+		"bounds": {
+			"x": 0,
+			"y": 270,
+			"width": 400,
+			"height": 270
+		},
+		"action": {
+			"type": "message",
+			"text": "#我的快到期計畫"
+		}
+	}, {
+		"bounds": {
+			"x": 400,
+			"y": 270,
+			"width": 400,
+			"height": 270
+		},
+		"action": {
+			"type": "message",
+			"text": "#幫助"
+		}
+	}]
+	// Other rich menu object properties
+	// ...
+}
+
+// client.getRichMenuList().then((list) => {
+// 	console.log(list);
+// 	for (let index = 0; index < list.length; index++) {
+// 		client.deleteRichMenu(list[index].richMenuId).then(data => {
+// 			console.log('delete successful!')
+// 		}).catch(err => {
+// 			console.log(err)
+// 		})
+// 	}
+// }).catch((err) => {
+// 	console.log(err)
+// })
+
+// client.getRichMenuIdOfUser('U30986dc43eb2232855acbb5718be7c87').then(data => {
+// 	console.log('getRichMenuIdOfUser: ')
+// 	console.log(data)
+// }).catch(err => {
+// 	console.log('getRichMenuIdOfUser_ERR: ')
+// 	console.log(err)
+// }) 
+
+// client.getRichMenuList().then(data => {
+// 	console.log('getRichMenuList: ')
+// 	console.log(data)
+// }).catch(err => {
+// 	console.log('getRichMenuList_ERR: ')
+// 	console.log(err)
+// })
+
+// client.setRichMenuImage('richmenu-614e24c499c23bba69a8ccd930e5e5d4', fs.createReadStream('./img/menu.jpg')).then(data => {
+// 	console.log(data)
+// }).catch(err => {
+// 	console.log(err)
+// })
+ 
+client.linkRichMenuToUser('all', 'richmenu-614e24c499c23bba69a8ccd930e5e5d4').then(data => {
 	console.log('successful!')
 }).catch(err => {
 	console.log(err)
 })
+
+// client.createRichMenu(richmenu).then((richMenuId) => {
+// 	console.log(richMenuId)
+// }).catch((err) => {
+// 	console.log('err: ');
+// 	console.log(err);
+// })
 
 // 每十分鐘更新一次資料
 function UpdateAllWorkData() {
@@ -742,7 +841,7 @@ function _bot() {
 										"text": "　",
 										"align": "center"
 									}]
-								},{
+								}, {
 									"type": "box",
 									"layout": "vertical",
 									"contents": [{
@@ -891,8 +990,7 @@ function _bot() {
 											}]
 										}
 									]
-								}
-								]
+								}]
 							}
 						}
 					};
@@ -923,7 +1021,19 @@ function _bot() {
 							]
 						}
 					}
-					bot.push(event.source.userId, [replyFlex])
+					// bot.push(event.source.userId, [replyFlex])
+					// event.reply(replyFlex).then(function (data) {
+					// 	console.log(replyMsg);
+					// }).catch(function (error) {
+					// 	console.log('error');
+					// });
+
+					// event.reply('不要 >.0').then(function (data) {
+					// 	console.log(replyMsg);
+					// }).catch(function (error) {
+					// 	console.log('error');
+					// });
+
 				}
 
 			}
@@ -939,13 +1049,17 @@ function _bot() {
 								let pushWorkText = [];
 								for (let i = 0; i < data.length; i++) {
 									if (data[i].linebotpush) {
+										date = myFunction.SeparateDate(data[i].project_startdate)
+										endDate = myFunction.SeparateDate(data[i].project_enddate)
 										pushWorkText.push({
-											"title": "【您的計畫】",
-											"text": data[i].project_name,
+											"title": "【您的全部計畫】",
+											"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+												date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
+												endDate[3] + ':' + endDate[4] + ':' + endDate[5],
 											"actions": [{
 												"type": "uri",
 												"label": "查看網站",
-												"uri": "https://zh.wikipedia.org/wiki/星夜"
+												"uri": "https://planyourself-connection.herokuapp.com"
 											}]
 										});
 									}
@@ -966,43 +1080,55 @@ function _bot() {
 					if (event.message.text == "#我的尚未開始計畫" || event.message.text == "#我的尚未開始計劃" || event.message.text == "#我的尚未開始專案") {
 						Messenge.MessengeSelectSearch(profile.userId).then(data => {
 							if (data == -1) {
-								event.reply('您可能還沒加入任何計畫哦！')
+								event.reply('您可能還沒任何計畫哦！')
 							} else {
 								let pushWorkText = [];
 
 								function dateJudge(date) {
-									var dateBegin = new Date(date); //将-转化为/，使用new Date
-									console.log(dateBegin);
-									var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000)); //获取当前时间
-									console.log(dateEnd);
-									var dateDiff = dateBegin.getTime() - dateEnd.getTime(); //时间差的毫秒数
-									console.log(dateDiff);
-									return dateDiff
+									var projectStart = new Date(date.project_startdate);
+									var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000));
+									var startTime = projectStart.getTime() - dateEnd.getTime();
+									if (startTime > 0) {
+										return true;
+									} else {
+										return false;
+									}
 								}
 								for (let i = 0; i < data.length; i++) {
-									if (dateJudge(data[i].project_startdate) > 0) {
+									getVaue = dateJudge(data[i]);
+									if (getVaue) {
 										if (data[i].linebotpush) {
+											date = myFunction.SeparateDate(data[i].project_startdate)
+											endDate = myFunction.SeparateDate(data[i].project_enddate)
 											pushWorkText.push({
-												"title": "【您的計畫】",
-												"text": data[i].project_name,
+												"title": "【您的尚未開始計畫】",
+												"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+													date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
+													endDate[3] + ':' + endDate[4] + ':' + endDate[5],
 												"actions": [{
 													"type": "uri",
 													"label": "查看網站",
-													"uri": "https://zh.wikipedia.org/wiki/星夜"
+													"uri": "https://planyourself-connection.herokuapp.com"
 												}]
 											});
 										}
 									}
 								}
-								console.log(pushWorkText);
-								event.reply({
-									"type": "template",
-									"altText": "這是一個輪播樣板",
-									"template": {
-										"type": "carousel",
-										"columns": pushWorkText
-									},
-								});
+								if (pushWorkText == "") {
+									console.log('here')
+									event.reply('您可能還沒任何計畫哦！')
+								} else {
+									console.log(pushWorkText)
+									console.log('應該要進入這邊')
+									event.reply({
+										"type": "template",
+										"altText": "這是一個輪播樣板",
+										"template": {
+											"type": "carousel",
+											"columns": pushWorkText
+										},
+									});
+								}
 							}
 						})
 					}
@@ -1010,52 +1136,122 @@ function _bot() {
 					if (event.message.text == "#我的執行中計畫" || event.message.text == "#我的執行中計劃" || event.message.text == "#我的執行中專案") {
 						Messenge.MessengeSelectSearch(profile.userId).then(data => {
 							if (data == -1) {
-								event.reply('您可能還沒加入任何計畫哦！')
+								event.reply('您可能還沒任何計畫進行中哦！')
 							} else {
 								let pushWorkText = [];
 
 								function dateJudge(date) {
-									var dateBegin = new Date(date); //将-转化为/，使用new Date
-									console.log(dateBegin);
-									var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000)); //获取当前时间
-									console.log(dateEnd);
-									var dateDiff = dateBegin.getTime() - dateEnd.getTime(); //时间差的毫秒数
-									console.log(dateDiff);
-									return dateDiff
+									var projectStart = new Date(date.project_startdate);
+									var projectEnd = new Date(date.project_enddate);
+									var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000));
+									var startTime = projectStart.getTime() - dateEnd.getTime();
+									var endTime = projectEnd.getTime() - dateEnd.getTime();
+									if (startTime < 0 && endTime > 0) {
+										return true;
+									} else {
+										return false;
+									}
 								}
 								for (let i = 0; i < data.length; i++) {
-									if (dateJudge(data[i].project_startdate) < 0 && dateJudge(data[i].project_enddate > 0)) {
+									getVaue = dateJudge(data[i]);
+									if (getVaue) {
 										if (data[i].linebotpush) {
+											date = myFunction.SeparateDate(data[i].project_startdate)
+											endDate = myFunction.SeparateDate(data[i].project_enddate)
 											pushWorkText.push({
 												"title": "【您的執行中計畫】",
-												"text": data[i].project_name + '\n' +
-													'結束時間：' + data[i].project_enddate,
+												"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+													date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
+													endDate[3] + ':' + endDate[4] + ':' + endDate[5],
 												"actions": [{
 													"type": "uri",
 													"label": "查看網站",
-													"uri": "https://zh.wikipedia.org/wiki/星夜"
+													"uri": "https://planyourself-connection.herokuapp.com"
 												}]
 											});
 										}
 									}
 								}
+								console.log('顯示快到期計畫在這邊');
 								console.log(pushWorkText);
-								event.reply({
-									"type": "template",
-									"altText": "這是一個輪播樣板",
-									"template": {
-										"type": "carousel",
-										"columns": pushWorkText
-									},
-								});
+								if (pushWorkText == "") {
+									console.log('顯示快到期計畫進入!');
+									event.reply('您可能還沒任何計畫進行中哦！')
+								} else {
+									event.reply({
+										"type": "template",
+										"altText": "這是一個輪播樣板",
+										"template": {
+											"type": "carousel",
+											"columns": pushWorkText
+										},
+									});
+								}
 							}
 						})
 					}
+					//已完成計畫
+					if (event.message.text == "#我的已完成計畫" || event.message.text == "#我的已完成計劃" || event.message.text == "#我的已完成專案") {
+						Messenge.MessengeSelectSearch(profile.userId).then(data => {
+							if (data == -1) {
+								event.reply('您可能還沒加入任何計畫哦！')
+							} else {
+								let pushWorkText = [];
+
+								function dateJudge(date) {
+									var projectStart = new Date(date.project_startdate);
+									var projectEnd = new Date(date.project_enddate);
+									var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000));
+									var startTime = projectStart.getTime() - dateEnd.getTime();
+									var endTime = projectEnd.getTime() - dateEnd.getTime();
+									if (startTime < 0 && endTime < 0) {
+										return true;
+									} else {
+										return false;
+									}
+								}
+								for (let i = 0; i < data.length; i++) {
+									getVaue = dateJudge(data[i]);
+									if (getVaue) {
+										if (data[i].linebotpush) {
+											date = myFunction.SeparateDate(data[i].project_startdate)
+											endDate = myFunction.SeparateDate(data[i].project_enddate)
+											pushWorkText.push({
+												"title": "【您的已完成計畫】",
+												"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+													date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
+													endDate[3] + ':' + endDate[4] + ':' + endDate[5],
+												"actions": [{
+													"type": "uri",
+													"label": "查看網站",
+													"uri": "https://planyourself-connection.herokuapp.com"
+												}]
+											});
+										}
+									}
+								}
+								if (pushWorkText == "") {
+									event.reply('您可能還沒任何計畫已完成哦！')
+								} else {
+									console.log(pushWorkText)
+									console.log('應該要進入這邊')
+									event.reply({
+										"type": "template",
+										"altText": "這是一個輪播樣板",
+										"template": {
+											"type": "carousel",
+											"columns": pushWorkText
+										},
+									});
+								}
+							}
+						})
+					}
+
 					//我的工作
 					if (event.message.text == "#我的工作") {
+						console.log(profile.userId);
 						Messenge.WorkSelectSearch(profile.userId).then(data => {
-							console.log('index');
-							console.log(data);
 							if (data == -1) {
 								console.log('come')
 								event.reply('您可能還沒任何工作哦！');
@@ -1064,33 +1260,85 @@ function _bot() {
 								for (let i = 0; i < data.length; i++) {
 									if (data[i].work_hint) {
 										pushWorkText.push({
-											"title": data[i].list_name + '列表下',
-											"text": data[i].work_title,
-											"actions": [{
-												"type": "uri",
-												"label": "查看網站",
-												"uri": "https://zh.wikipedia.org/wiki/星夜"
+											"type": "box",
+											"layout": "vertical",
+											"contents": [{
+													"type": "text",
+													"text": data[i].list_name + '列表下的工作',
+													"wrap": true,
+													"align": "center",
+													"position": "relative",
+													"weight": "bold"
+												},
+												{
+													"type": "text",
+													"text": "　",
+													"align": "center"
+												},
+												{
+													"type": "text",
+													"text": data[i].work_title,
+													"wrap": true,
+													"align": "center",
+													"position": "relative"
+												}, {
+													"type": "text",
+													"text": "　",
+													"align": "center"
+												}, {
+													"type": "box",
+													"layout": "vertical",
+													"cornerRadius": "xl",
+													"backgroundColor": "#000000FF",
+													"height": "1px",
+													"contents": [{
+														"type": "text",
+														"text": "　",
+														"align": "center"
+													}]
+												}, {
+													"type": "box",
+													"layout": "vertical",
+													"height": "10px",
+													"contents": [{
+														"type": "text",
+														"text": "　",
+														"align": "center"
+													}]
+												},
+											]
+										}, {
+											"type": "box",
+											"layout": "vertical",
+											"height": "10px",
+											"contents": [{
+												"type": "text",
+												"text": "　",
+												"align": "center"
 											}]
 										});
 									}
 								}
 								event.reply({
-									"type": "template",
-									"altText": "這是一個輪播樣板",
-									"template": {
-										"type": "carousel",
-										"columns": pushWorkText
-									},
+									"type": "flex",
+									"altText": "this is a flex message",
+									"contents": {
+										"type": "bubble",
+										"body": {
+											"type": "box",
+											"layout": "vertical",
+											"contents": pushWorkText
+										}
+									}
 								});
 
 							}
 						})
 					}
+
 					//快到期計畫
 					if (event.message.text == "#我的快到期計畫" || event.message.text == "#我的快到期計劃" || event.message.text == "#我的快到期專案") {
 						Messenge.MessengeSelectSearch(profile.userId).then(data => {
-							console.log('index');
-							console.log(data);
 							if (data == -1) {
 								event.reply('您可能還沒任何計畫快到期哦！');
 							} else {
@@ -1099,9 +1347,7 @@ function _bot() {
 									// let pushWorkText = '';
 									if (data[i].linebotpush) {
 										var dateBegin = new Date(data[i].project_enddate); //将-转化为/，使用new Date
-										console.log(dateBegin);
 										var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000)); //获取当前时间
-										console.log(dateEnd);
 										var dateDiff = dateBegin.getTime() - dateEnd.getTime(); //时间差的毫秒数
 										var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000)); //计算出相差天数
 										var leave1 = dateDiff % (24 * 3600 * 1000) //计算天数后剩余的毫秒数
@@ -1112,7 +1358,6 @@ function _bot() {
 										//计算相差秒数
 										var leave3 = leave2 % (60 * 1000) //计算分钟数后剩余的毫秒数
 										var seconds = Math.round(leave3 / 1000)
-										console.log(" 相差 " + dayDiff + "天 " + hours + "小时 " + minutes + " 分钟" + seconds + " 秒")
 										if (hours < 5 && hours >= 0) {
 											date = myFunction.SeparateDate(data[i].project_enddate)
 											pushWorkText.push({
@@ -1122,27 +1367,29 @@ function _bot() {
 												"actions": [{
 													"type": "uri",
 													"label": "查看網站",
-													"uri": "https://zh.wikipedia.org/wiki/星夜"
+													"uri": "https://planyourself-connection.herokuapp.com"
 												}]
 											});
-											// pushWorkText ='專案名稱'+'\n'+
-											//                 +'〖'+ data[i].project_name +'】'+'\n'+
-											//                 '結束時間:'+date[0] + '/' + date[1] + '/' + date[2] + ' ' +
-											//                 date[3] + ':' + date[4] + ':' + date[5];
-											// bot.push(profile.userId, [pushWorkText]);
 										}
 									}
 								}
-								event.reply({
-									"type": "template",
-									"altText": "這是一個輪播樣板",
-									"template": {
-										"type": "carousel",
-										"columns": pushWorkText
-									},
-									"imageAspectRatio": "rectangle",
-									"imageSize": "cover"
-								});
+								console.log('herhehrieiwehofowho');
+								console.log(pushWorkText);
+								if (pushWorkText == "") {
+									console.log('here go go')
+									event.reply('您可能還沒任何計畫快到期哦！');
+								} else {
+									event.reply({
+										"type": "template",
+										"altText": "這是一個輪播樣板",
+										"template": {
+											"type": "carousel",
+											"columns": pushWorkText
+										},
+										"imageAspectRatio": "rectangle",
+										"imageSize": "cover"
+									});
+								}
 							}
 						})
 					}
