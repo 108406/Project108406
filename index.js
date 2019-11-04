@@ -13,15 +13,15 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1619171290',
+	channelSecret: 'eb906d05aa2d55ad9fd3d44562bbc1eb',
+	channelAccessToken: 'T4VksJVAcLkbzWzKJqhBw/4hofpAGv3DMbCWMeKAVZVcMJWqe+NB+z2bmqnWN9PSwJ5y2eo/FMu0ZvwZHULlu/wU5YTUT2ZQLrviHO8oZ13OYuw97REDgCF31C/1YDxTgjj2A6ywMaAVO144M7siFwdB04t89/1O/w1cDnyilFU='
 });
 
 var client = new line.Client({
-	channelId: '',
-	channelSecret: '',
-	channelAccessToken: ''
+	channelId: '1619171290',
+	channelSecret: 'eb906d05aa2d55ad9fd3d44562bbc1eb',
+	channelAccessToken: 'T4VksJVAcLkbzWzKJqhBw/4hofpAGv3DMbCWMeKAVZVcMJWqe+NB+z2bmqnWN9PSwJ5y2eo/FMu0ZvwZHULlu/wU5YTUT2ZQLrviHO8oZ13OYuw97REDgCF31C/1YDxTgjj2A6ywMaAVO144M7siFwdB04t89/1O/w1cDnyilFU='
 });
 
 const app = express();
@@ -126,11 +126,11 @@ const richmenu = {
 // 	console.log(err)
 // })
  
-client.linkRichMenuToUser('all', 'richmenu-614e24c499c23bba69a8ccd930e5e5d4').then(data => {
-	console.log('successful!')
-}).catch(err => {
-	console.log(err)
-})
+// client.linkRichMenuToUser('all', 'richmenu-614e24c499c23bba69a8ccd930e5e5d4').then(data => {
+// 	console.log('successful!')
+// }).catch(err => {
+// 	console.log(err)
+// })
 
 // client.createRichMenu(richmenu).then((richMenuId) => {
 // 	console.log(richMenuId)
@@ -161,7 +161,7 @@ function UpdateAllWorkData() {
 
 			if (!stringAllWorkData.includes(JSON.stringify(workData))) {
 				stringAllWorkData.push(JSON.stringify(workData))
-				allWorkData.push(workData)
+				allWorkData.push(workData) 
 			}
 
 		}
@@ -654,388 +654,6 @@ function _bot() {
 					}
 				}
 			} else {
-				if (event.source.userId == 'U30986dc43eb2232855acbb5718be7c87') {
-					let replyFlex = {
-						"type": "flex",
-						"altText": "this is a flex message",
-						"contents": {
-							"type": "bubble",
-							"body": {
-								"type": "box",
-								"layout": "vertical",
-								"contents": [{
-									"type": "box",
-									"layout": "vertical",
-									"contents": [{
-											"type": "box",
-											"layout": "vertical",
-											"contents": [{
-												"type": "text",
-												"text": "這是專案名稱1",
-												"align": "center",
-												"position": "relative",
-												"weight": "bold"
-											}, {
-												"type": "text",
-												"text": "　",
-												"align": "center"
-											}]
-										},
-										{
-											"type": "box",
-											"layout": "horizontal",
-											"cornerRadius": "xs",
-											"backgroundColor": "#AAAADDFF",
-											"contents": [{
-													"type": "text",
-													"text": "工作標題",
-													"align": "center",
-													"size": "sm",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"text": "工作內容",
-													"align": "center",
-													"size": "sm",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"cornerRadius": "xs",
-											"backgroundColor": "#BFBFEEFF",
-											"contents": [{
-													"type": "text",
-													"align": "center",
-													"size": "sm",
-													"text": "工作標題1",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"align": "center",
-													"size": "sm",
-													"text": "工作內容1",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"position": "relative",
-											"cornerRadius": "xs",
-											"backgroundColor": "#CCCCFFFF",
-											"contents": [{
-													"type": "text",
-													"text": "工作標題2",
-													"align": "center",
-													"size": "sm",
-													"position": "relative",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"text": "工作內容2",
-													"align": "center",
-													"maxLines": 0,
-													"size": "sm",
-													"position": "relative",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"cornerRadius": "xs",
-											"backgroundColor": "#BFBFEEFF",
-											"contents": [{
-													"type": "text",
-													"align": "center",
-													"size": "sm",
-													"text": "工作標題3",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"align": "center",
-													"size": "sm",
-													"text": "工作內容3",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"position": "relative",
-											"cornerRadius": "xs",
-											"backgroundColor": "#CCCCFFFF",
-											"contents": [{
-													"type": "text",
-													"text": "工作標題4",
-													"align": "center",
-													"size": "sm",
-													"position": "relative",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"text": "工作內容4",
-													"align": "center",
-													"maxLines": 0,
-													"size": "sm",
-													"position": "relative",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "text",
-											"text": "　",
-											"align": "center"
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"cornerRadius": "xs",
-											"paddingStart": "40px",
-											"paddingEnd": "40px",
-											"contents": [{
-												"type": "button",
-												"height": "sm",
-												"action": {
-													"type": "message",
-													"label": "查看更多",
-													"text": "?"
-												},
-												"style": "primary",
-												"color": "#4C62C7"
-											}]
-										}
-									]
-								}, {
-									"type": "box",
-									"layout": "vertical",
-									"height": "10px",
-									"contents": [{
-										"type": "text",
-										"text": "　",
-										"align": "center"
-									}]
-								}, {
-									"type": "box",
-									"layout": "vertical",
-									"cornerRadius": "xl",
-									"backgroundColor": "#000000FF",
-									"height": "3px",
-									"contents": [{
-										"type": "text",
-										"text": "　",
-										"align": "center"
-									}]
-								}, {
-									"type": "box",
-									"layout": "vertical",
-									"height": "10px",
-									"contents": [{
-										"type": "text",
-										"text": "　",
-										"align": "center"
-									}]
-								}, {
-									"type": "box",
-									"layout": "vertical",
-									"contents": [{
-											"type": "box",
-											"layout": "vertical",
-											"contents": [{
-												"type": "text",
-												"text": "這是專案名稱2",
-												"align": "center",
-												"position": "relative",
-												"weight": "bold"
-											}, {
-												"type": "text",
-												"text": "　",
-												"align": "center"
-											}]
-										},
-										{
-											"type": "box",
-											"layout": "horizontal",
-											"cornerRadius": "xs",
-											"backgroundColor": "#AAAADDFF",
-											"contents": [{
-													"type": "text",
-													"text": "工作標題",
-													"align": "center",
-													"size": "sm",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"text": "工作內容",
-													"align": "center",
-													"size": "sm",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"cornerRadius": "xs",
-											"backgroundColor": "#BFBFEEFF",
-											"contents": [{
-													"type": "text",
-													"align": "center",
-													"size": "sm",
-													"text": "工作標題1",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"align": "center",
-													"size": "sm",
-													"text": "工作內容1",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"position": "relative",
-											"cornerRadius": "xs",
-											"backgroundColor": "#CCCCFFFF",
-											"contents": [{
-													"type": "text",
-													"text": "工作標題2",
-													"align": "center",
-													"size": "sm",
-													"position": "relative",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"text": "工作內容2",
-													"align": "center",
-													"maxLines": 0,
-													"size": "sm",
-													"position": "relative",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"cornerRadius": "xs",
-											"backgroundColor": "#BFBFEEFF",
-											"contents": [{
-													"type": "text",
-													"align": "center",
-													"size": "sm",
-													"text": "工作標題3",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"align": "center",
-													"size": "sm",
-													"text": "工作內容3",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"position": "relative",
-											"cornerRadius": "xs",
-											"backgroundColor": "#CCCCFFFF",
-											"contents": [{
-													"type": "text",
-													"text": "工作標題4",
-													"align": "center",
-													"size": "sm",
-													"position": "relative",
-													"flex": 2
-												},
-												{
-													"type": "text",
-													"text": "工作內容4",
-													"align": "center",
-													"maxLines": 0,
-													"size": "sm",
-													"position": "relative",
-													"flex": 3
-												}
-											]
-										}, {
-											"type": "text",
-											"text": "　",
-											"align": "center"
-										}, {
-											"type": "box",
-											"layout": "horizontal",
-											"cornerRadius": "xs",
-											"paddingStart": "40px",
-											"paddingEnd": "40px",
-											"contents": [{
-												"type": "button",
-												"height": "sm",
-												"action": {
-													"type": "message",
-													"label": "查看更多",
-													"text": "?"
-												},
-												"style": "primary",
-												"color": "#4C62C7"
-											}]
-										}
-									]
-								}]
-							}
-						}
-					};
-
-					replyFlex = {
-						"type": "template",
-						"altText": "this is a carousel template",
-						"template": {
-							"type": "carousel",
-							"columns": [{
-									"title": "專案名稱",
-									"text": "工作1\n工作2\n工作3",
-									"actions": [{
-										"type": "message",
-										"label": "查看更多",
-										"text": "?"
-									}]
-								},
-								{
-									"title": "專案名稱",
-									"text": "工作1\n工作2\n工作3",
-									"actions": [{
-										"type": "message",
-										"label": "查看更多工作",
-										"text": "?"
-									}]
-								}
-							]
-						}
-					}
-					// bot.push(event.source.userId, [replyFlex])
-					// event.reply(replyFlex).then(function (data) {
-					// 	console.log(replyMsg);
-					// }).catch(function (error) {
-					// 	console.log('error');
-					// });
-
-					// event.reply('不要 >.0').then(function (data) {
-					// 	console.log(replyMsg);
-					// }).catch(function (error) {
-					// 	console.log('error');
-					// });
-
-				}
-
 			}
 
 			event.source.profile().then(
@@ -1064,7 +682,7 @@ function _bot() {
 										});
 									}
 								}
-								console.log(pushWorkText);
+								console.log(data);
 								event.reply({
 									"type": "template",
 									"altText": "這是一個輪播樣板",
@@ -1250,7 +868,8 @@ function _bot() {
 
 					//我的工作
 					if (event.message.text == "#我的工作") {
-						console.log(profile.userId);
+						// console.log(profile.userId);
+						console.log('進入我的工作了');
 						Messenge.WorkSelectSearch(profile.userId).then(data => {
 							if (data == -1) {
 								console.log('come')
@@ -1319,6 +938,7 @@ function _bot() {
 										});
 									}
 								}
+								console.log(data);
 								event.reply({
 									"type": "flex",
 									"altText": "this is a flex message",
