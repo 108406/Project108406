@@ -51,7 +51,7 @@ const richmenu = {
 		},
 		"action": {
 			"type": "message",
-			"text": "#我的專案"
+			"text": "#我的計畫"
 		}
 	}, {
 		"bounds": {
@@ -125,7 +125,7 @@ const richmenu = {
 // }).catch(err => {
 // 	console.log(err)
 // })
- 
+
 // client.linkRichMenuToUser('all', 'richmenu-614e24c499c23bba69a8ccd930e5e5d4').then(data => {
 // 	console.log('successful!')
 // }).catch(err => {
@@ -161,7 +161,7 @@ function UpdateAllWorkData() {
 
 			if (!stringAllWorkData.includes(JSON.stringify(workData))) {
 				stringAllWorkData.push(JSON.stringify(workData))
-				allWorkData.push(workData) 
+				allWorkData.push(workData)
 			}
 
 		}
@@ -199,8 +199,8 @@ let hint = setInterval(function () {
 		let pushProjectText = '';
 		let pushWorkText = '';
 
-		// =================================專案提醒判斷================================
-		// 在12小時以前提醒專案到期
+		// =================================計畫提醒判斷================================
+		// 在12小時以前提醒計畫到期
 		let projectPushTime_12h = myFunction.BeforeDate(project_enddate, [0, 0, 0, 12, 0, 0]);
 		let projectPushMessage_12h = true;
 		for (let a = 0; a < 6; a++) {
@@ -209,7 +209,7 @@ let hint = setInterval(function () {
 			}
 		}
 
-		// 在一個禮拜以前提醒專案到期
+		// 在一個禮拜以前提醒計畫到期
 		let projectPushTime_7d = myFunction.BeforeDate(project_enddate, [0, 0, 7, 0, 0, 0]);
 		let projectPushMessage_7d = true;
 		for (let a = 0; a < 6; a++) {
@@ -218,7 +218,7 @@ let hint = setInterval(function () {
 			}
 		}
 
-		// 在一個月以前提醒專案到期
+		// 在一個月以前提醒計畫到期
 		let projectPushTime_1m = myFunction.BeforeDate(project_enddate, [0, 1, 0, 0, 0, 0]);
 		let projectPushMessage_1m = true;
 		for (let a = 0; a < 6; a++) {
@@ -229,7 +229,7 @@ let hint = setInterval(function () {
 
 		if (projectPushMessage_12h || projectPushMessage_7d || projectPushMessage_1m) {
 			pushProjectText = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
-				'您的專案【' + allWorkData[allDataIndex].project_name + '】將在\n' +
+				'您的計畫【' + allWorkData[allDataIndex].project_name + '】將在\n' +
 				project_enddate[0] + '/' + project_enddate[1] + '/' + project_enddate[2] + ' ' +
 				project_enddate[3] + ':' + project_enddate[4] + ':' + project_enddate[5] + '結束';
 			if (allWorkData[allDataIndex].linebotpush && allWorkData[allDataIndex].project_hint) {
@@ -258,7 +258,7 @@ let hint = setInterval(function () {
 				}
 			}
 
-			// 在三天以前提醒專案到期
+			// 在三天以前提醒計畫到期
 			let workPushTime_1m = myFunction.BeforeDate(deadline, [0, 0, 3, 0, 0, 0]);
 			let workPushMessage_1m = true;
 			for (let a = 0; a < 6; a++) {
@@ -269,7 +269,7 @@ let hint = setInterval(function () {
 
 			if (workPushMessage_12h || workPushMessage_7d || workPushMessage_1m) {
 				pushWorkText = 'Hi! ' + allWorkData[allDataIndex].member_name + '\n' +
-					'您在專案【' + allWorkData[allDataIndex].project_name + '】的工作\n' +
+					'您在計畫【' + allWorkData[allDataIndex].project_name + '】的工作\n' +
 					'「' + allWorkData[allDataIndex].work_title + '」將在\n' +
 					deadline[0] + '/' + deadline[1] + '/' + deadline[2] + ' ' +
 					deadline[3] + ':' + deadline[4] + ':' + deadline[5] + '結束';
@@ -292,7 +292,7 @@ let push = setInterval(function () {
 	for (let allDataIndex = 0; allDataIndex < allWorkData.length; allDataIndex++) {
 		let adminpush_enddate = allWorkData[allDataIndex].adminpush_enddate;
 		let pushWorkText = [];
-		// =================================專案提醒判斷================================
+		// =================================計畫提醒判斷================================
 		if (adminpush_enddate != null) {
 			// 在5個小時前
 			let AdminPushTime_5h = myFunction.BeforeDate(adminpush_enddate, [0, 0, 0, 5, 0, 0]);
@@ -333,37 +333,37 @@ let push = setInterval(function () {
 							"layout": "vertical",
 							"spacing": "md",
 							"contents": [{
-									"type": "box",
-									"layout": "vertical",
-									"contents": [{
-											"type": "text",
-											"text": "組長提醒",
-											"align": "center",
-											"size": "lg",
-											"weight": "bold"
-										},
-										{
-											"type": "text",
-											"text": allWorkData[allDataIndex].adminpush_content,
-											"wrap": true,
-											"margin": "lg"
-										}
-									]
-								},
-								{
-									"type": "separator"
+								"type": "box",
+								"layout": "vertical",
+								"contents": [{
+									"type": "text",
+									"text": "組長提醒",
+									"align": "center",
+									"size": "lg",
+									"weight": "bold"
 								},
 								{
 									"type": "text",
-									"text": '結束時間:' +
-										adminpush_enddate[0] + '/' + adminpush_enddate[1] + '/' + adminpush_enddate[2] + ' ' +
-										adminpush_enddate[3] + ':' + adminpush_enddate[4] + ':' + adminpush_enddate[5],
+									"text": allWorkData[allDataIndex].adminpush_content,
 									"wrap": true,
-									"size": "xs",
-									"align": "center",
-									"weight": "bold",
 									"margin": "lg"
 								}
+								]
+							},
+							{
+								"type": "separator"
+							},
+							{
+								"type": "text",
+								"text": '結束時間:' +
+									adminpush_enddate[0] + '/' + adminpush_enddate[1] + '/' + adminpush_enddate[2] + ' ' +
+									adminpush_enddate[3] + ':' + adminpush_enddate[4] + ':' + adminpush_enddate[5],
+								"wrap": true,
+								"size": "xs",
+								"align": "center",
+								"weight": "bold",
+								"margin": "lg"
+							}
 							]
 						}
 					}
@@ -404,7 +404,7 @@ function _bot() {
 							}
 						}
 
-						event.reply('請輸入專案代碼\n（Ex: [Jfi310DF]）').then(function (data) {
+						event.reply('請輸入計畫代碼\n（Ex: [Jfi310DF]）').then(function (data) {
 							console.log(replyMsg);
 						}).catch(function (error) {
 							console.log('error');
@@ -442,7 +442,7 @@ function _bot() {
 										console.log('已將使用者' + profile.displayName + '加入資料庫');
 										teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
 											if (result) {
-												replyMsg = '已成功將' + profile.displayName + '加入專案【' +
+												replyMsg = '已成功將' + profile.displayName + '加入計畫【' +
 													bindGroupAndProjectId[bindIndex][2] + '】中。'
 												event.reply(replyMsg).then(function (data) {
 													console.log(replyMsg);
@@ -452,7 +452,7 @@ function _bot() {
 												let userInGroup = [event.source.groupId, event.source.userId]
 												lockUserInGroup.push(userInGroup);
 											} else {
-												replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
+												replyMsg = '抱歉。將' + profile.displayName + '加入計畫【' +
 													bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
 													'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
 												event.reply(replyMsg).then(function (data) {
@@ -472,7 +472,7 @@ function _bot() {
 									if (!data) {
 										teammember.addTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, false).then(result => {
 											if (result) {
-												replyMsg = '已成功將' + profile.displayName + '加入專案【' +
+												replyMsg = '已成功將' + profile.displayName + '加入計畫【' +
 													bindGroupAndProjectId[bindIndex][2] + '】中。'
 												event.reply(replyMsg).then(function (data) {
 													console.log(replyMsg);
@@ -482,7 +482,7 @@ function _bot() {
 												let userInGroup = [event.source.groupId, event.source.userId]
 												lockUserInGroup.push(userInGroup);
 											} else {
-												replyMsg = '抱歉。將' + profile.displayName + '加入專案【' +
+												replyMsg = '抱歉。將' + profile.displayName + '加入計畫【' +
 													bindGroupAndProjectId[bindIndex][2] + '】時發生問題。\n' +
 													'請再重新嘗試一次。\n\n若多次嘗試仍未成功，請聯繫我們。'
 												event.reply(replyMsg).then(function (data) {
@@ -496,7 +496,7 @@ function _bot() {
 										teammember.FetchTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1]).then(data => {
 											if (data.group_id == null || data.group_id == '') {
 												teammember.updateTeamMember(event.source.userId, bindGroupAndProjectId[bindIndex][1], groupId, data.isadmin).then(data => {
-													replyMsg = '您好，' + profile.displayName + '。\n已將您與專案【' +
+													replyMsg = '您好，' + profile.displayName + '。\n已將您與計畫【' +
 														bindGroupAndProjectId[bindIndex][2] + '】連結。'
 													event.reply(replyMsg).then(function (data) {
 														console.log(replyMsg);
@@ -508,7 +508,7 @@ function _bot() {
 												});
 											} else {
 												if (data.group_id == groupId) {
-													replyMsg = '您好，' + profile.displayName + '。\n您已經在專案【' +
+													replyMsg = '您好，' + profile.displayName + '。\n您已經在計畫【' +
 														bindGroupAndProjectId[bindIndex][2] + '】中囉。'
 													event.reply(replyMsg).then(function (data) {
 														console.log(replyMsg);
@@ -518,11 +518,11 @@ function _bot() {
 													let userInGroup = [event.source.groupId, event.source.userId]
 													lockUserInGroup.push(userInGroup);
 												} else {
-													replyMsg = '您好，' + profile.displayName + '。\n很抱歉，您在專案【' +
+													replyMsg = '您好，' + profile.displayName + '。\n很抱歉，您在計畫【' +
 														bindGroupAndProjectId[bindIndex][2] + '】中已經與其他群組連結囉。\n' +
 														'請問是否要取消與先前群組的連結，並重新連結此群組呢？';
 													let updateGroupIdData = [event.source.userId, event.source.groupId,
-														bindGroupAndProjectId[bindIndex][1], bindGroupAndProjectId[bindIndex][2]
+													bindGroupAndProjectId[bindIndex][1], bindGroupAndProjectId[bindIndex][2]
 													];
 													updateGroupId.push(updateGroupIdData);
 													// 在這裡開始要做個回應讓使用者選擇，並做判斷讓使用者的群組ID更新或不更新。
@@ -540,52 +540,52 @@ function _bot() {
 																"type": "box",
 																"layout": "vertical",
 																"contents": [{
-																		"type": "box",
-																		"layout": "vertical",
-																		"contents": [{
-																			"type": "text",
-																			"text": "是否重新連結",
-																			"align": "center"
-																		}]
-																	}, {
+																	"type": "box",
+																	"layout": "vertical",
+																	"contents": [{
 																		"type": "text",
-																		"text": "　",
+																		"text": "是否重新連結",
 																		"align": "center"
+																	}]
+																}, {
+																	"type": "text",
+																	"text": "　",
+																	"align": "center"
+																},
+																{
+																	"type": "box",
+																	"layout": "horizontal",
+																	"paddingStart": "40px",
+																	"paddingEnd": "40px",
+																	"contents": [{
+																		"type": "button",
+																		"action": {
+																			"type": "message",
+																			"label": "是",
+																			"text": "#重新連結"
+																		},
+																		"style": "primary",
+																		"height": "sm",
+																		"color": "#52C759",
+																		"position": "relative",
+																		"flex": 2
 																	},
 																	{
-																		"type": "box",
-																		"layout": "horizontal",
-																		"paddingStart": "40px",
-																		"paddingEnd": "40px",
-																		"contents": [{
-																				"type": "button",
-																				"action": {
-																					"type": "message",
-																					"label": "是",
-																					"text": "#重新連結"
-																				},
-																				"style": "primary",
-																				"height": "sm",
-																				"color": "#52C759",
-																				"position": "relative",
-																				"flex": 2
-																			},
-																			{
-																				"type": "button",
-																				"action": {
-																					"type": "message",
-																					"label": "否",
-																					"text": "#保留"
-																				},
-																				"style": "primary",
-																				"height": "sm",
-																				"color": "#C74741",
-																				"position": "relative",
-																				"flex": 2,
-																				"margin": "md",
-																			}
-																		]
+																		"type": "button",
+																		"action": {
+																			"type": "message",
+																			"label": "否",
+																			"text": "#保留"
+																		},
+																		"style": "primary",
+																		"height": "sm",
+																		"color": "#C74741",
+																		"position": "relative",
+																		"flex": 2,
+																		"margin": "md",
 																	}
+																	]
+																}
 																]
 															}
 														}
@@ -616,7 +616,7 @@ function _bot() {
 							event.source.profile().then(function (profile) {
 								teammember.FetchTeamMember(event.source.userId, updateGroupId[updateGroupIdIndex][2]).then(data => {
 									teammember.updateTeamMember(event.source.userId, data.project_id, event.source.groupId, data.isadmin).then(data => {
-										replyMsg = '您好，' + profile.displayName + '。\n已將您與專案【' +
+										replyMsg = '您好，' + profile.displayName + '。\n已將您與計畫【' +
 											updateGroupId[updateGroupIdIndex][3] + '】重新連結至此群組。'
 										event.reply(replyMsg).then(function (data) {
 											console.log(replyMsg);
@@ -644,7 +644,7 @@ function _bot() {
 								}
 							}
 
-							replyMsg = '您好，' + profile.displayName + '。\n我們將保留您原本的專案連結。'
+							replyMsg = '您好，' + profile.displayName + '。\n我們將保留您原本的計畫連結。'
 							event.reply(replyMsg).then(function (data) {
 								console.log(replyMsg);
 							}).catch(function (error) {
@@ -666,21 +666,19 @@ function _bot() {
 							} else {
 								let pushWorkText = [];
 								for (let i = 0; i < data.length; i++) {
-									if (data[i].linebotpush) {
-										date = myFunction.SeparateDate(data[i].project_startdate)
-										endDate = myFunction.SeparateDate(data[i].project_enddate)
-										pushWorkText.push({
-											"title": "【您的全部計畫】",
-											"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
-												date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
-												endDate[3] + ':' + endDate[4] + ':' + endDate[5],
-											"actions": [{
-												"type": "uri",
-												"label": "查看網站",
-												"uri": "https://planyourself-connection.herokuapp.com"
-											}]
-										});
-									}
+									date = myFunction.SeparateDate(data[i].project_startdate)
+									endDate = myFunction.SeparateDate(data[i].project_enddate)
+									pushWorkText.push({
+										"title": "【您的全部計畫】",
+										"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+											date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
+											endDate[3] + ':' + endDate[4] + ':' + endDate[5],
+										"actions": [{
+											"type": "uri",
+											"label": "查看網站",
+											"uri": "https://planyourself-connection.herokuapp.com"
+										}]
+									});
 								}
 								console.log(data);
 								event.reply({
@@ -695,7 +693,7 @@ function _bot() {
 						})
 					}
 					//尚未開始計畫
-					if (event.message.text == "#我的尚未開始計畫" || event.message.text == "#我的尚未開始計劃" || event.message.text == "#我的尚未開始專案") {
+					if (event.message.text == "#我的尚未開始計畫" || event.message.text == "#我的尚未開始計劃" || event.message.text == "#我的尚未開始計畫") {
 						Messenge.MessengeSelectSearch(profile.userId).then(data => {
 							if (data == -1) {
 								event.reply('您可能還沒任何計畫哦！')
@@ -715,21 +713,19 @@ function _bot() {
 								for (let i = 0; i < data.length; i++) {
 									getVaue = dateJudge(data[i]);
 									if (getVaue) {
-										if (data[i].linebotpush) {
-											date = myFunction.SeparateDate(data[i].project_startdate)
-											endDate = myFunction.SeparateDate(data[i].project_enddate)
-											pushWorkText.push({
-												"title": "【您的尚未開始計畫】",
-												"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
-													date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
-													endDate[3] + ':' + endDate[4] + ':' + endDate[5],
-												"actions": [{
-													"type": "uri",
-													"label": "查看網站",
-													"uri": "https://planyourself-connection.herokuapp.com"
-												}]
-											});
-										}
+										date = myFunction.SeparateDate(data[i].project_startdate)
+										endDate = myFunction.SeparateDate(data[i].project_enddate)
+										pushWorkText.push({
+											"title": "【您的尚未開始計畫】",
+											"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+												date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
+												endDate[3] + ':' + endDate[4] + ':' + endDate[5],
+											"actions": [{
+												"type": "uri",
+												"label": "查看網站",
+												"uri": "https://planyourself-connection.herokuapp.com"
+											}]
+										});
 									}
 								}
 								if (pushWorkText == "") {
@@ -773,21 +769,19 @@ function _bot() {
 								for (let i = 0; i < data.length; i++) {
 									getVaue = dateJudge(data[i]);
 									if (getVaue) {
-										if (data[i].linebotpush) {
-											date = myFunction.SeparateDate(data[i].project_startdate)
-											endDate = myFunction.SeparateDate(data[i].project_enddate)
-											pushWorkText.push({
-												"title": "【您的執行中計畫】",
-												"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
-													date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
-													endDate[3] + ':' + endDate[4] + ':' + endDate[5],
-												"actions": [{
-													"type": "uri",
-													"label": "查看網站",
-													"uri": "https://planyourself-connection.herokuapp.com"
-												}]
-											});
-										}
+										date = myFunction.SeparateDate(data[i].project_startdate)
+										endDate = myFunction.SeparateDate(data[i].project_enddate)
+										pushWorkText.push({
+											"title": "【您的執行中計畫】",
+											"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+												date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
+												endDate[3] + ':' + endDate[4] + ':' + endDate[5],
+											"actions": [{
+												"type": "uri",
+												"label": "查看網站",
+												"uri": "https://planyourself-connection.herokuapp.com"
+											}]
+										});
 									}
 								}
 								console.log('顯示快到期計畫在這邊');
@@ -831,21 +825,19 @@ function _bot() {
 								for (let i = 0; i < data.length; i++) {
 									getVaue = dateJudge(data[i]);
 									if (getVaue) {
-										if (data[i].linebotpush) {
-											date = myFunction.SeparateDate(data[i].project_startdate)
-											endDate = myFunction.SeparateDate(data[i].project_enddate)
-											pushWorkText.push({
-												"title": "【您的已完成計畫】",
-												"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
-													date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
-													endDate[3] + ':' + endDate[4] + ':' + endDate[5],
-												"actions": [{
-													"type": "uri",
-													"label": "查看網站",
-													"uri": "https://planyourself-connection.herokuapp.com"
-												}]
-											});
-										}
+										date = myFunction.SeparateDate(data[i].project_startdate)
+										endDate = myFunction.SeparateDate(data[i].project_enddate)
+										pushWorkText.push({
+											"title": "【您的已完成計畫】",
+											"text": data[i].project_name + "\n" + "開始時間：" + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+												date[3] + ':' + date[4] + ':' + date[5] + "\n" + "結束時間：" + endDate[0] + '/' + endDate[1] + '/' + endDate[2] + ' ' +
+												endDate[3] + ':' + endDate[4] + ':' + endDate[5],
+											"actions": [{
+												"type": "uri",
+												"label": "查看網站",
+												"uri": "https://planyourself-connection.herokuapp.com"
+											}]
+										});
 									}
 								}
 								if (pushWorkText == "") {
@@ -882,49 +874,49 @@ function _bot() {
 											"type": "box",
 											"layout": "vertical",
 											"contents": [{
-													"type": "text",
-													"text": data[i].list_name + '列表下的工作',
-													"wrap": true,
-													"align": "center",
-													"position": "relative",
-													"weight": "bold"
-												},
-												{
+												"type": "text",
+												"text": data[i].list_name + '列表下的工作',
+												"wrap": true,
+												"align": "center",
+												"position": "relative",
+												"weight": "bold"
+											},
+											{
+												"type": "text",
+												"text": "　",
+												"align": "center"
+											},
+											{
+												"type": "text",
+												"text": data[i].work_title,
+												"wrap": true,
+												"align": "center",
+												"position": "relative"
+											}, {
+												"type": "text",
+												"text": "　",
+												"align": "center"
+											}, {
+												"type": "box",
+												"layout": "vertical",
+												"cornerRadius": "xl",
+												"backgroundColor": "#000000FF",
+												"height": "1px",
+												"contents": [{
 													"type": "text",
 													"text": "　",
 													"align": "center"
-												},
-												{
-													"type": "text",
-													"text": data[i].work_title,
-													"wrap": true,
-													"align": "center",
-													"position": "relative"
-												}, {
+												}]
+											}, {
+												"type": "box",
+												"layout": "vertical",
+												"height": "10px",
+												"contents": [{
 													"type": "text",
 													"text": "　",
 													"align": "center"
-												}, {
-													"type": "box",
-													"layout": "vertical",
-													"cornerRadius": "xl",
-													"backgroundColor": "#000000FF",
-													"height": "1px",
-													"contents": [{
-														"type": "text",
-														"text": "　",
-														"align": "center"
-													}]
-												}, {
-													"type": "box",
-													"layout": "vertical",
-													"height": "10px",
-													"contents": [{
-														"type": "text",
-														"text": "　",
-														"align": "center"
-													}]
-												},
+												}]
+											},
 											]
 										}, {
 											"type": "box",
@@ -965,32 +957,30 @@ function _bot() {
 								let pushWorkText = [];
 								for (let i = 0; i < data.length; i++) {
 									// let pushWorkText = '';
-									if (data[i].linebotpush) {
-										var dateBegin = new Date(data[i].project_enddate); //将-转化为/，使用new Date
-										var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000)); //获取当前时间
-										var dateDiff = dateBegin.getTime() - dateEnd.getTime(); //时间差的毫秒数
-										var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000)); //计算出相差天数
-										var leave1 = dateDiff % (24 * 3600 * 1000) //计算天数后剩余的毫秒数
-										var hours = Math.floor(leave1 / (3600 * 1000)) //计算出小时数
-										//计算相差分钟数
-										var leave2 = leave1 % (3600 * 1000) //计算小时数后剩余的毫秒数
-										var minutes = Math.floor(leave2 / (60 * 1000)) //计算相差分钟数
-										//计算相差秒数
-										var leave3 = leave2 % (60 * 1000) //计算分钟数后剩余的毫秒数
-										var seconds = Math.round(leave3 / 1000)
-										if (hours < 5 && hours >= 0) {
-											date = myFunction.SeparateDate(data[i].project_enddate)
-											pushWorkText.push({
-												"title": data[i].project_name,
-												"text": '結束時間:' + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
-													date[3] + ':' + date[4] + ':' + date[5],
-												"actions": [{
-													"type": "uri",
-													"label": "查看網站",
-													"uri": "https://planyourself-connection.herokuapp.com"
-												}]
-											});
-										}
+									var dateBegin = new Date(data[i].project_enddate); //将-转化为/，使用new Date
+									var dateEnd = new Date(Date.now() + (8 * 60 * 60 * 1000)); //获取当前时间
+									var dateDiff = dateBegin.getTime() - dateEnd.getTime(); //时间差的毫秒数
+									var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000)); //计算出相差天数
+									var leave1 = dateDiff % (24 * 3600 * 1000) //计算天数后剩余的毫秒数
+									var hours = Math.floor(leave1 / (3600 * 1000)) //计算出小时数
+									//计算相差分钟数
+									var leave2 = leave1 % (3600 * 1000) //计算小时数后剩余的毫秒数
+									var minutes = Math.floor(leave2 / (60 * 1000)) //计算相差分钟数
+									//计算相差秒数
+									var leave3 = leave2 % (60 * 1000) //计算分钟数后剩余的毫秒数
+									var seconds = Math.round(leave3 / 1000)
+									if (hours < 5 && hours >= 0) {
+										date = myFunction.SeparateDate(data[i].project_enddate)
+										pushWorkText.push({
+											"title": data[i].project_name,
+											"text": '結束時間:' + date[0] + '/' + date[1] + '/' + date[2] + ' ' +
+												date[3] + ':' + date[4] + ':' + date[5],
+											"actions": [{
+												"type": "uri",
+												"label": "查看網站",
+												"uri": "https://planyourself-connection.herokuapp.com"
+											}]
+										});
 									}
 								}
 								console.log('herhehrieiwehofowho');
@@ -1061,29 +1051,29 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#AAAADDFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"text": "命令",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"text": "說明",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"text": "命令",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"text": "說明",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}, {
 								"type": "box",
@@ -1092,49 +1082,49 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "加入專案\n加入計畫\n加入計劃",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "若您想將群組中的其他人加入您的專案中。\n請在群組內使用這項命令",
-										"align": "center",
-										"maxLines": 0,
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "加入計畫\n加入計劃\n加入專案",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "若您想將群組中的其他人加入您的計畫中。\n請在群組內使用這項命令",
+									"align": "center",
+									"maxLines": 0,
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}, {
 								"type": "box",
 								"layout": "horizontal",
 								"backgroundColor": "#BFBFEEFF",
 								"contents": [{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									}
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								}
 								]
 							}, {
 								"type": "box",
@@ -1143,49 +1133,49 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "我的專案\n我的計畫\n我的計劃",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "若您想查詢您參與的專案。\n請直接使用這項命令。",
-										"align": "center",
-										"maxLines": 0,
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "我的計畫\n我的計劃\n我的專案",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "若您想查詢您參與的計畫。\n請直接使用這項命令。",
+									"align": "center",
+									"maxLines": 0,
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}, {
 								"type": "box",
 								"layout": "horizontal",
 								"backgroundColor": "#BFBFEEFF",
 								"contents": [{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									}
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								}
 								]
 							}, {
 								"type": "box",
@@ -1194,49 +1184,49 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "我的工作",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "查詢屬於自己的工作（不管是主要還是次要）。",
-										"align": "center",
-										"maxLines": 0,
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "我的工作",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "查詢屬於自己的工作（不管是主要還是次要）。",
+									"align": "center",
+									"maxLines": 0,
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}, {
 								"type": "box",
 								"layout": "horizontal",
 								"backgroundColor": "#BFBFEEFF",
 								"contents": [{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									},
-									{
-										"type": "text",
-										"text": "　",
-									}
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								},
+								{
+									"type": "text",
+									"text": "　",
+								}
 								]
 							}, {
 								"type": "box",
@@ -1245,32 +1235,32 @@ function _bot() {
 								"cornerRadius": "xs",
 								"backgroundColor": "#CCCCFFFF",
 								"contents": [{
-										"type": "text",
-										"text": "#",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 1
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "我的快到期計畫\n我的快到期計劃\n我的快到期專案",
-										"align": "center",
-										"size": "sm",
-										"position": "relative",
-										"flex": 2
-									},
-									{
-										"type": "text",
-										"wrap": true,
-										"text": "查詢自己的專案什麼時候到期。",
-										"align": "center",
-										"maxLines": 0,
-										"size": "sm",
-										"position": "relative",
-										"flex": 3
-									}
+									"type": "text",
+									"text": "#",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 1
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "我的快到期計畫\n我的快到期計劃\n我的快到期專案",
+									"align": "center",
+									"size": "sm",
+									"position": "relative",
+									"flex": 2
+								},
+								{
+									"type": "text",
+									"wrap": true,
+									"text": "查詢自己的計畫什麼時候到期。",
+									"align": "center",
+									"maxLines": 0,
+									"size": "sm",
+									"position": "relative",
+									"flex": 3
+								}
 								]
 							}]
 						}
@@ -1287,7 +1277,7 @@ function _bot() {
 			if (talkingUser.includes(event.source.userId)) {
 				if (msg.indexOf('[') != -1 && msg.indexOf(']') != -1) {
 					let projectId = msg.substring(1, msg.length - 1);
-					// 查詢專案
+					// 查詢計畫
 					project.fetchProject(projectId).then(projectData => {
 						talkingUser.splice(talkingUser.indexOf(event.source.userId), 1);
 						if (projectData) {
@@ -1304,31 +1294,31 @@ function _bot() {
 												"type": "box",
 												"layout": "vertical",
 												"contents": [{
-														"type": "text",
-														"text": "請點選下方按鈕以加入專案",
-														"align": "center"
-													}, {
-														"type": "text",
-														"text": "　",
-														"align": "center"
-													}, {
-														"type": "box",
-														"layout": "horizontal",
-														"cornerRadius": "xs",
-														"paddingStart": "40px",
-														"paddingEnd": "40px",
-														"contents": [{
-															"type": "button",
-															"height": "sm",
-															"action": {
-																"type": "message",
-																"label": projectData[0].project_name,
-																"text": "#我要加入"
-															},
-															"style": "primary",
-															"color": "#4C62C7"
-														}]
-													}
+													"type": "text",
+													"text": "請點選下方按鈕以加入計畫",
+													"align": "center"
+												}, {
+													"type": "text",
+													"text": "　",
+													"align": "center"
+												}, {
+													"type": "box",
+													"layout": "horizontal",
+													"cornerRadius": "xs",
+													"paddingStart": "40px",
+													"paddingEnd": "40px",
+													"contents": [{
+														"type": "button",
+														"height": "sm",
+														"action": {
+															"type": "message",
+															"label": projectData[0].project_name,
+															"text": "#我要加入"
+														},
+														"style": "primary",
+														"color": "#4C62C7"
+													}]
+												}
 
 												]
 											}
@@ -1340,7 +1330,7 @@ function _bot() {
 										console.log('error');
 									});
 								} else {
-									event.reply('你不在專案中哦。').then(function (data) {
+									event.reply('你不在計畫中哦。').then(function (data) {
 										console.log(replyMsg);
 									}).catch(function (error) {
 										console.log('error');
@@ -1348,7 +1338,7 @@ function _bot() {
 								}
 							})
 						} else {
-							event.reply('找不到專案。').then(function (data) {
+							event.reply('找不到計畫。').then(function (data) {
 								console.log(replyMsg);
 							}).catch(function (error) {
 								console.log('error');

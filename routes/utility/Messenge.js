@@ -51,7 +51,7 @@ var WorkSelectSearch = async function(id){
     //存放結果
     let result;  
     //讀取資料庫
-    await query('SELECT first_principal,mywork_view.second_principal,mywork_view,mywork_view.work_hint,list_name FROM mywork_view WHERE first_principal=$1 OR second_principal=$1', [id])
+    await query('SELECT mywork_view.first_principal,mywork_view.second_principal,mywork_view.work_title,mywork_view.work_hint,mywork_view.list_name FROM mywork_view WHERE first_principal=$1 OR second_principal=$1', [id])
         .then((data) => {
             if(data.rows.length > 0){
                 result = data.rows;  //學生資料(物件)
@@ -63,7 +63,7 @@ var WorkSelectSearch = async function(id){
         });
 
     //回傳執行結果
-        console.log(result);
+        // console.log(result);
         return result;  
 }
 
