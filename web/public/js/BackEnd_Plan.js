@@ -1181,7 +1181,7 @@ function SaveDeadline() {
 
     let isnan = false;
     for (let a = 0; a < newDeadlineArray.length; a++) {
-        if (isNaN(+newDeadlineArray[a]) || +newDeadlineArray[a] == '') {
+        if (isNaN(+newDeadlineArray[a]) || +newDeadlineArray[a] === '') {
             isnan = true;
         }
     }
@@ -1768,6 +1768,7 @@ function AddCard(index, title) {
                 data.work_id + `")`);
             $('#' + tempWorkId).attr('id', data.work_id);
             $('#works').val(JSON.stringify(allWorks));
+            browserRedirect();
             ajaxing--;
         },
         error: function (data) {

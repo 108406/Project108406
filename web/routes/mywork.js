@@ -7,6 +7,7 @@ const myFunction = require('./utility/myFunction');
 
 //接收GET請求
 router.get('/', function (req, res, next) {
+    req.cookies.userid = 'U87f8306f6fa69ec1baa033d4a9d7ab6b';
     view.workWithUser(req.cookies.userid).then(data => {
         if (data != false) {
             var result = [];
@@ -106,11 +107,11 @@ function SetWorkResult(data, list_id) {
 
     for (var j = 0; j < data.rowCount; j++) {
         if (data.rows[j].list_id == list_id) { //確認同一個list
-            if (data.rows[j].work_id != null) {
+            if (data.rows[j].work_id != null && !workId.includes(data.rows[j].work_id)) {  //確認workid不是空的&&workid不重複
+                workId.push(data.rows[j].work_id);
                 if (data.rows[j].deadline != null) {
                     deadline = setDateFormat(myFunction.SeparateDate(data.rows[j].deadline));
                 }
-                workId.push(data.rows[j].work_id);
                 // 整理tag
                 if (data.rows[j].tag_id1 != null) {
                     tags.push([data.rows[j].tag_id1, data.rows[j].tagname1, data.rows[j].color1]);
