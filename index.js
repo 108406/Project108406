@@ -168,8 +168,8 @@ function UpdateAllWorkData() {
 	})
 	Admin.AdminMessengePushJdge().then(data => {
 		clearTimeout(updataData);
-		allWorkData = [];
-		stringAllWorkData = [];
+		AdminallWorkData = [];
+		AdminstringAllWorkData = [];
 		for (let a = 0; a < data.length; a++) {
 			let adminpush_enddate = myFunction.SeparateDate(data[a].adminpush_enddate + '')
 			let workData = {
@@ -178,9 +178,9 @@ function UpdateAllWorkData() {
 				adminpush_content: data[a].adminpush_content,
 				adminpush_enddate: adminpush_enddate,
 			}
-			if (!stringAllWorkData.includes(JSON.stringify(workData))) {
-				stringAllWorkData.push(JSON.stringify(workData))
-				allWorkData.push(workData)
+			if (!AdminstringAllWorkData.includes(JSON.stringify(workData))) {
+				AdminstringAllWorkData.push(JSON.stringify(workData))
+				AdminallWorkData.push(workData)
 			}
 		}
 	})
@@ -289,10 +289,10 @@ let hint = setInterval(function () {
 let push = setInterval(function () {
 	let nowDateArray = myFunction.SeparateDate(Date());
 	nowDateArray[3] += 8;
-	for (let allDataIndex = 0; allDataIndex < allWorkData.length; allDataIndex++) {
-		let adminpush_enddate = allWorkData[allDataIndex].adminpush_enddate;
+	for (let allDataIndex = 0; allDataIndex < AdminallWorkData.length; allDataIndex++) {
+		let adminpush_enddate = AdminallWorkData[allDataIndex].adminpush_enddate;
 		let pushWorkText = [];
-		// =================================計畫提醒判斷================================
+		// =================================專案提醒判斷================================
 		if (adminpush_enddate != null) {
 			// 在5個小時前
 			let AdminPushTime_5h = myFunction.BeforeDate(adminpush_enddate, [0, 0, 0, 5, 0, 0]);
@@ -322,7 +322,6 @@ let push = setInterval(function () {
 			}
 
 			if (AdminPushMessage_1h || AdminPushMessage_3h || AdminPushMessage_5h) {
-				console.log('可以推波囉 正確進入了');
 				pushWorkText.push({
 					"type": "flex",
 					"altText": "組長提醒：",
@@ -344,7 +343,7 @@ let push = setInterval(function () {
 								},
 								{
 									"type": "text",
-									"text": allWorkData[allDataIndex].adminpush_content,
+									"text": AdminallWorkData[allDataIndex].adminpush_content,
 									"wrap": true,
 									"margin": "lg"
 								}
@@ -368,10 +367,8 @@ let push = setInterval(function () {
 						}
 					}
 				})
-				if (allWorkData[allDataIndex].linebotpush) {
-					console.log('here');
-					console.log(pushWorkText);
-					userId = allWorkData[allDataIndex].user_id;
+				if (AdminallWorkData[allDataIndex].linebotpush) {
+					userId = AdminallWorkData[allDataIndex].user_id;
 					bot.push(userId, pushWorkText);
 				}
 			}
