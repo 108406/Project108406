@@ -133,10 +133,15 @@ function SetWorkInfo(projectId, list_name, workId, workTitle, workContent, deadl
         $('.modal-label-left').remove();
     }
 
+    $('.modal-timeout').empty();
     if (deadline != "null") {
-        $('#deadline').text(deadline);
-    } else {
-        $('.modal-timeout').remove();
+        $('.modal-timeout').append('<div class="modal-timeout-header">\n\
+        <i class="far fa-clock timeout-icon fa-lg"></i>\n\
+        <div class="modal-timeout-name">到期日</div>\n\
+    </div>\n\
+    <div class="timeout">\n\
+        <span class="deadtime" id="deadline">' + deadline + '<i class="far fa-clock"></i></span>\n\
+    </div>')
     }
 
     if (file.length > 0) {
