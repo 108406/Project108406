@@ -1,0 +1,30 @@
+var express = require('express');
+var router = express.Router();
+
+//增加引用函式
+const tag = require('./utility/tag');
+
+// 新增標籤
+router.post('/', function (req, res, next) {
+    if (req.cookies.userid != undefined) {
+        // 自動產生標籤ID
+        var tag_id = Date.now() * 1000 + Math.floor(Math.random() * 1000)
+        tag.addTag(tag_id, req.cookies.projectid, req.body.tagname, req.body.color).then(data => {
+            if (data) {
+                console.log('標籤新增成功。')
+                return res.status(200).send({
+                    message: '標籤新增成功。',
+                });
+            } else {
+                console.log('新增標籤時發生錯誤。')
+                return res.status(400).send({
+                    message: '新增標籤時發生錯誤。'
+                });
+            }
+        })
+    } else {
+        res.redirect('/login');
+    }
+});
+
+module.exports = router;
