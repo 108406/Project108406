@@ -1,5 +1,5 @@
 $('div.add-list-submit').hide();
-
+//新增列表
 $(document).ready(function () {
     $('#add-list').on("click", function (e) {
         $('div.add-list-submit').show();

@@ -1,3 +1,4 @@
+//組長推播的日期顯示
 $("#TimeDate").kendoDateTimePicker({
     value: new Date(),
     format: "yyyy-MM-dd HH:mm:ss",

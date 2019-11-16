@@ -20,15 +20,14 @@
     display:none;
     z-index:1040;
 }
-
-html{
-    background: url(../imgs/background-2.png)center center fixed no-repeat;
-    background-size: cover;
-}
-.body {
+html {
     font-family: 'Noto Serif TC', serif;
     height: 100%;
     overflow-y: hidden;
+}
+body{
+    background: url(../imgs/background-1.jpg)center center fixed no-repeat;
+    background-size: cover;
 }
 
 div.container-fluid {
@@ -67,18 +66,18 @@ a:hover {
 /*                輪播              */
 
 /*----------------------------------*/
-
+/*Plan特別版本*/
 .carousel {
-    position: relative;
-    top: 3.6em;
+    display: none;
+    position: absolute;
+    top:6.4em;
 }
-
 .carousel-item {
-    height: 30em;
+    /* height: 30em; */
 }
 
 .carousel-item img {
-    height: 30em;
+    /* height: 30em; */
 }
 .carousel-indicators li{
     background-color: #333;
@@ -150,13 +149,12 @@ z-index:20;
 div.member-bottom {
     position: absolute;
     display: flex;
-    /* top: 3.1em; */
     width: 100%;
-    /* left: 0; */
     height: 3.2em;
     overflow-x: auto;
     overflow-y: hidden;
     background: rgba(231, 230, 230, 0.6);
+    top:3.2em;
 }
 
 div.administrator-img {
@@ -340,10 +338,6 @@ div.work-card:hover {
 /*    dropdown bootstrap調整        */
 
 /*----------------------------------*/
-
-/* .dropdown, .dropleft, .dropright, .dropup {
-    position: static !important;
-} */
 
 .dropdown-menu {
     padding: 0 !important;
@@ -1661,24 +1655,6 @@ div.create-label:hover {
 
 a.create-label-a {
     color: black;
-}
-
-/*----------------------------------*/
-
-/*                輪播              */
-
-/*----------------------------------*/
-
-.carousel {
-    margin-top: -0.5em;
-}
-
-.carousel-item {
-    height: 30em;
-}
-
-.carousel-item img {
-    height: 30em;
 }
 
 /*----------------------------------*/

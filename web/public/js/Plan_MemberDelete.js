@@ -1,3 +1,4 @@
+//會員刪除
 $(document).ready(function(){
     var isTrue=true;
     $('#member-delete').click(function(){

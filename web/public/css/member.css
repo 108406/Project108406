@@ -20,14 +20,15 @@
     display:none;
     z-index:1040;
 }
-html, body {
+html {
     font-family: 'Noto Serif TC', serif;
-    background: url(../imgs/background-2.png)center center fixed no-repeat;
-    background-size: cover;
     height: 100%;
     overflow-x: hidden;
 }
-
+body{
+    background: url(../imgs/background-1.jpg)center center fixed no-repeat;
+    background-size: cover;
+}
 div.container-fluid {
     padding: 0 !important;
     margin: 0 !important;
@@ -50,15 +51,16 @@ a:hover {
     /*----------------------------------*/
 
     .carousel {
+        display:none;
         margin-top: -0.5em;
     }
 
     .carousel-item {
-        height: 30em;
+        /* height: 30em; */
     }
 
     .carousel-item img {
-        height: 30em;
+        /* height: 30em; */
     }
     .carousel-indicators li{
         background-color: #333;
@@ -69,6 +71,7 @@ a:hover {
     .carousel-control-next-icon {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
     }
+       
 /*----------------------------------*/
 
 /*            Loding               */

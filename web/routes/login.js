@@ -27,15 +27,15 @@ router.get('/auth/line/logout', (req, res) => { //登出帳號清除session
 
 //自訂的畫面路由
 router.get('/', (req, res) => {
-  // if (req.cookies.userid != undefined) {
-    // res.redirect('https://' + req.get('host') + '/content'); //自訂成功登入頁面
-  // } else if (req.session.errMsg) {
-  //   res.render('login.ejs', {  //自訂尚未登入頁面，顯示錯誤訊息
-  //     ErrMsg: req.session.errMsg
-  //   });
-  // } else {
+  if (req.cookies.userid != undefined) {
+    res.redirect('https://' + req.get('host') + '/content'); //自訂成功登入頁面
+  } else if (req.session.errMsg) {
+    res.render('login.ejs', {  //自訂尚未登入頁面，顯示錯誤訊息
+      ErrMsg: req.session.errMsg
+    });
+  } else {
     res.render('login.ejs');  //自訂尚未登入頁面，沒有錯誤訊息
-  // }
+  }
 });
 
 //LINE Login相關的API

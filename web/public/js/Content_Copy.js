@@ -1,11 +1,7 @@
 function myFunction() {
-    /* Get the text field */
-    var copyText = document.getElementById("copy");
-  
-    /* Select the text field */
-    copyText.select();
-  
-    /* Copy the text inside the text field */
-    document.execCommand("copy");
-  
+  //複製
+  var copyText = document.getElementById("project_id");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
   }

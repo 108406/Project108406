@@ -38,7 +38,7 @@ var IsAdateNotArrived = function (date1, date2) {
 }
 
 var nowTimeToDB = function () {
-    var nowTime = SeparateDate(new Date());
+    var nowTime = SeparateDate(new Date(new Date().getTime() + 28800000) + '');
     var result = nowTime[0] + '-' +
         (nowTime[1] < 10 ? ('0' + nowTime[1]) : nowTime[1]) + '-' +
         (nowTime[2] < 10 ? ('0' + nowTime[2]) : nowTime[2]) + 'T' +

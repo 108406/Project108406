@@ -5,15 +5,17 @@
 /*            總體設定               */
 
 /*----------------------------------*/
-body, html {
+
+html {
   font-family: 'Noto Serif TC', serif;
   height: 100%;
-  width: 100%;
-  background: url(/imgs/background-2.png)center center fixed no-repeat;
-  background-size: cover;
+  overflow-x: hidden;
   zoom: 0.85;
 }
-
+body{
+  background: url(../imgs/background-1.jpg)center center fixed no-repeat;
+  background-size: cover;
+}
 
 
 div.contain {
@@ -21,7 +23,7 @@ div.contain {
   align-self: center;
 }
 
-div.content {
+div.LineImg {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

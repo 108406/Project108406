@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //展開
     $(".list-a").each(function (index) {
         $(this).on("click",function(){
             CardListEdit(index)

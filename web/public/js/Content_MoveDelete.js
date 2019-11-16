@@ -1,4 +1,5 @@
 let isDragging = false;
+//計畫拖曳
 $('document').ready(function () {
     $(function () {
         $("[name='delete-tub']").click(function (event) {
@@ -10,6 +11,7 @@ $('document').ready(function () {
             }
         })
         $("[name='delete-tub']").draggable({
+            containment: ".container-fluid",
             revert: true,
             zIndex: 40,
             opacity: 0.7,

@@ -1,3 +1,4 @@
+//搜尋
 $(document).ready(function () {
     InitSearchForBox();
 })

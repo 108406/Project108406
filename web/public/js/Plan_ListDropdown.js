@@ -1,3 +1,4 @@
+//下拉選單
 $(document).ready(function(){
     var isTrue=true;
     var isTrue2=true;

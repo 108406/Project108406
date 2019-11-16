@@ -20,19 +20,20 @@
     display:none;
     z-index:1040;
 }
-html, body {
+html {
     font-family: 'Noto Serif TC', serif;
-    background: url(../imgs/background-2.png)center center fixed no-repeat;
-    background-size: cover;
     height: 100%;
     overflow-x: hidden;
 }
-
+body{
+    background: url(../imgs/background-1.jpg)center center fixed no-repeat;
+    background-size: cover;
+}
 div.container-fluid {
     padding: 0 !important;
     margin: 0 !important;
     position: absolute;
-    top: 3.3em;
+    /* top: 3.3em; */
 }
 
 .content {
@@ -51,15 +52,16 @@ a:hover {
 /*----------------------------------*/
 
 .carousel {
+    display:none;
     margin-top: -0.5em;
 }
 
 .carousel-item {
-    height: 30em;
+    /* height: 30em; */
 }
 
 .carousel-item img {
-    height: 30em;
+    /* height: 30em; */
 }
 .carousel-indicators li{
     background-color: #333;
@@ -180,7 +182,7 @@ a:hover {
 .card-deck {
     margin-left: 5%;
     min-height: 10em;
-    margin-bottom: 2%;
+    /* margin-bottom: 2%; */
 }
 
 .card {
@@ -289,10 +291,11 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    right: 1em;
     right: 0;
-    bottom: 0;
-    width: 120px;
-    height: 120px;
+    bottom: 0em;
+    width: 140px;
+    height: 140px;
     font-size: 1em;
 }
 
@@ -353,137 +356,10 @@ a:hover {
 .datetime-local-set {
     width: 100%;
 }
-
-/* @media(max-width:1280px){
-    .card{
-        max-width: 14em;
-        min-width: 14em;
-        height: 6em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-    .card-title {
-        width: 85%;
-        position: relative;
-        top: 0.5em;
-        z-index: 10;
-        text-align: center;
-        overflow: hidden;
-        letter-spacing: 0.2em;
-        font-weight: 700;
-        padding-bottom: 0.5em;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size:1em;
-    }
-} */
-
-/* @media screen and (max-width:1720px){
-    .card {
-        max-width: 16em;
-        min-width: 16em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
- @media screen and (max-width:1600px){
-    .card {
-        max-width: 16em;
-        min-width: 16em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
-@media screen and (max-width:1540px){
-    .card {
-        max-width: 15em;
-        min-width: 15em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
-@media screen and (max-width:1425px){
-    .card {
-        max-width: 14em;
-        min-width: 14em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
-@media screen and (max-width:1400px){
-    .card {
-        max-width: 16em;
-        min-width: 16em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
-@media screen and (max-width:1345px){
-    .card {
-        max-width: 13em;
-        min-width: 13em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
-@media screen and (max-width:1280px){
-    .card {
-        max-width: 17em;
-        min-width: 17em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
-@media screen and (max-width:1260px){
-    .card {
-        max-width: 15em;
-        min-width: 15em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
-@media screen and (max-width:1150px){
-    .card {
-        max-width: 19em;
-        min-width: 19em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-}
-@media screen and (max-width:1050px){
-    .card {
-        max-width: 19em;
-        min-width: 19em;
-        height: 8em;    
-        margin-top: 2em;
-        padding: 0;
-        border: none;
-    }
-} */
-
 @media screen and (max-width:667px) {
     .card {
-        max-width: 80%;
-        min-width: 80%;
+        max-width: 85%;
+        min-width: 85%;
         margin-top: 2em;
         height: 8em;
         padding: 0;
@@ -494,13 +370,28 @@ a:hover {
         display: flex;
         align-items: center;
         justify-content: center;
-        right: 0;
-        bottom: 0;
-        width: 100px;
-        height: 100px;
+        right: 0em;
+        margin-right: 1em;
+        margin-bottom: 0em;
+        bottom: 0em;
+        width: 150px;
+        height: 150px;
         font-size: 1em;
     }
     .straight-line {
         display: none;
+    }
+}
+@media (min-width: 576px){
+    .card-deck .card {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex: 1 0 0%;
+        flex: 1 0 0%;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-right: 0 !important;
+        margin-bottom: 0;
+        margin-left: 0 !important;
     }
 }

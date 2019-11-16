@@ -1,3 +1,4 @@
+//新增卡片
 $(document).ready(function() {
     $('.add-card').each(function () {
         $(this).hide();

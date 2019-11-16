@@ -1,3 +1,4 @@
+//組長推播訊息
 $(document).ready(function () {
     var isTrue=true;
     $(".clickShow").each(function (index) {
