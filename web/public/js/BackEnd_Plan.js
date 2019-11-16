@@ -1181,7 +1181,11 @@ function SaveDeadline() {
 
     let isnan = false;
     for (let a = 0; a < newDeadlineArray.length; a++) {
+<<<<<<< HEAD
         if (isNaN(+newDeadlineArray[a]) || +newDeadlineArray[a] === '') {
+=======
+        if (isNaN(+newDeadlineArray[a]) || newDeadlineArray[a] === '') {
+>>>>>>> 0656bb9ae1466033e021fc7508ad1900699418fd
             isnan = true;
         }
     }
