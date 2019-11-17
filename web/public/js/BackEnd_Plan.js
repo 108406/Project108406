@@ -163,8 +163,22 @@ function UpdateListname(event) {
     if (event.target.value != '' && event.target.placeholder != event.target.value) {
         lists[listIndex][1] = event.target.value;
         $('#lists').val(JSON.stringify(lists))
+        for (let c = 0; c < $('.work-card').length; c++) {
+            let setWordCardString = $($($('.work-card')[c]).children()[1]).attr('onclick');
+            let thisSetWorkCard = setWordCardString.substring(23, setWordCardString.lastIndexOf('}') + 1)
+            thisSetWorkCard = JSON.parse(thisSetWorkCard);
+            if (thisSetWorkCard.listname == event.target.placeholder) {
+                thisSetWorkCard.listname = event.target.value;
+            }
+            $($($('.work-card')[c]).children()[1]).attr('onclick', `javascript:SetWorkCard(` + JSON.stringify(
+                thisSetWorkCard) + `, "` + thisSetWorkCard.workData[0] + `")`);
+        }
         event.target.placeholder = event.target.value;
         event.target.value = '';
+        $('#list-value').empty();
+        for (let a = 0; a < JSON.parse($('#lists').val()).length; a++) {
+            $('#list-value').append('<option>' + JSON.parse($('#lists').val())[a][1] + '</option>')
+        }
         ajaxing++;
         $.ajax({
             method: 'POST',
@@ -286,17 +300,17 @@ function AddList() {
                 if (deleteAllIndex != -1) {
                     let aElement = $($('#' + tempListId).get(0).querySelector('.dropdown-right-list'))
                         .children()[deleteAllIndex].children[0];
-                        $(aElement).attr('onclick', `DeleteWorksInList('` + data.list_id + `')`);
+                    $(aElement).attr('onclick', `DeleteWorksInList('` + data.list_id + `')`);
                 }
                 if (addIndex != -1) {
                     let aElement = $($('#' + tempListId).get(0).querySelector('.dropdown-right-list'))
                         .children()[addIndex].children[0];
-                        $(aElement).attr('onclick', `Action_AddCard('` + data.list_id + `')`);
+                    $(aElement).attr('onclick', `Action_AddCard('` + data.list_id + `')`);
                 }
                 if (deleteIndex != -1) {
                     let aElement = $($('#' + tempListId).get(0).querySelector('.dropdown-right-list'))
                         .children()[deleteIndex].children[0];
-                        $(aElement).attr('onclick', `DeleteList('` + data.list_id + `')`);
+                    $(aElement).attr('onclick', `DeleteList('` + data.list_id + `')`);
                 }
                 $('#' + tempListId).attr('id', data.list_id);
                 $('#' + data.list_id).append('<div class="card-footer"><a href="#"\n\
@@ -317,7 +331,7 @@ function AddList() {
     }
 }
 
-function DeleteList(list_id) {     
+function DeleteList(list_id) {
     if (list_id.includes('tempList_')) {
         alert('系統忙碌中，請重試一次。')
     } else {
@@ -1181,11 +1195,7 @@ function SaveDeadline() {
 
     let isnan = false;
     for (let a = 0; a < newDeadlineArray.length; a++) {
-<<<<<<< HEAD
-        if (isNaN(+newDeadlineArray[a]) || +newDeadlineArray[a] === '') {
-=======
         if (isNaN(+newDeadlineArray[a]) || newDeadlineArray[a] === '') {
->>>>>>> 0656bb9ae1466033e021fc7508ad1900699418fd
             isnan = true;
         }
     }
@@ -1589,7 +1599,7 @@ function MoveWorkToList(data, workId) {
 
 }
 
-function DeleteWorksInList(listId) {    
+function DeleteWorksInList(listId) {
     if (listId.includes('tempList_')) {
         alert('系統忙碌中，請重試一次。')
     } else {
@@ -2011,6 +2021,7 @@ var SeparateDate = function (date) {
 
     return result;
 }
+
 function browserRedirect2() {
     var sUserAgent = navigator.userAgent.toLowerCase();
     var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
