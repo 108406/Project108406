@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+
+<head>
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/MyworkNavbar.css">
+    <link rel="stylesheet" href="/css/mywork.css">
+    <link rel="stylesheet" href="/css/triangle.css">
+    <link rel="stylesheet" href="/css/card-list-color.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!--------------------------navbar-------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="nav-brand">PlanYourself</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="/Member"> <i class="far fa-user fa-lg"></i>會員</a>
+                </li>
+                <li>
+                    <a href="/content"><i class="fas fa-book fa-lg"></i>計畫</a>
+                </li>
+                <li>
+                    <a href="/mywork"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                </li>
+            </ul>
+            <div class="search">
+                <input id="projectId" class="search-input" type="text" name="search" placeholder="查詢計畫(#123456)">
+                <a href="#" id="SearchForBox"><i class="fas fa-search search-icon"></i></a>
+                <div class="Search_Box">
+                </div>
+            </div>
+
+            <div class="study-logout">
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel"><i
+                        class="fas fa-question-circle fa-lg" style="padding-right:5px;"></i>教學</button>
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
+                    onclick="Logout()"><i class="fas fa-sign-out-alt" style="padding-right:5px;"></i>登出</button>
+            </div>
+        </div>
+    </nav>
+    <!----------------------------------------------------------------->
+    <div class="container-fluid">
+        <div class="slider-left" id="slider-left">
+            <div class="left-top">
+                <div class="slider-header-name">
+                    目前所在位置:
+                </div>
+                <div class="card mx-auto">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="slider-card-list">
+                                <div class="left-header-list" id="list_name">這是列表一</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="slider-header-name">移動到:</div>
+            <div class="left-bottom">
+                <div class="card text-center mx-auto">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="slider-card-list">
+                                <div class="left-header-list">其他列表:</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="options">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="slider-btn">
+                <button type="button" class="btn btn-secondary button-submit" id="return"
+                    onclick="javascript:$('option').remove();">返回</button>
+                <button type="button" class="btn btn-danger button-submit" style="margin-left:1em;"
+                    onclick="javascript:UpdateListWork();">確定</button>
+            </form>
+        </div>
+        <!--~~~~~~~~~~~~~~~~~-->
+        <!--測試成功&失敗訊息-->
+        <div class="alert alert-success SuccessMessenge" role="alert">
+            成功加入
+        </div>
+        <div class="alert alert-danger FailMessenge" role="alert">
+            失敗
+        </div>
+        <!---->
+        <!--輪播-->
+        <div id="carouselExampleIndicators" class="carousel slide"  data-interval="false" data-pause="hover">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/imgs/web-photo1.png" class="d-block w-100" alt="..." id="carousel-4">
+                </div>
+                <div class="carousel-item">
+                    <img src="/imgs/web-photo2.png" class="d-block w-100" alt="..." id="carousel-5">
+                </div>
+                <div class="carousel-item">
+                    <img src="/imgs/web-photo3.png" class="d-block w-100" alt="..." id="carousel-6">
+                </div>
+                <div class="carousel-item">
+                    <img src="/imgs/web-photo4.png" class="d-block w-100" alt="..." id="carousel-7">
+                </div>
+                <div class="carousel-item">
+                    <img src="/imgs/web-photo5.png" class="d-block w-100" alt="..." id="carousel-8">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <!---->
+        <!-- 每項計畫-->
+        <div class="content">
+            <div class="typesetting">
+                <% for(var i=0; i<items.length; i++) { %>
+                <div class="card mywork">
+                    <!-----------------------標題-------------------------------------->
+                    <% for(var p=0; p<items[i].project.length; p++) { %>
+                    <!-----------------------標題----------------------->
+                    <div class="header">
+                        <div class="text"><%= items[i].project[p].project_name %></div>
+                        <div class="switch-move-top">
+                            <% var result = ""; %>
+                            <% if (items[i].project[p].project_hint) {
+                                                result = "checked";
+                                            }
+                                        %>
+                            <label class="switch-top">
+                                <input type="checkbox" id="projecthint" onclick="<%= "javascript:UpdateProjectLinebotPush('" + 
+                                                items[i].project[p].project_id + "', " + 
+                                                items[i].project[p].project_hint + ")" %>" <%= result %>>
+                                <span class="slider-top round-top"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <center>
+                        <hr class="highlight">
+                    </center>
+                    <div class="body-show">
+                        <!-----------------------列表--------------------------------->
+                        <% for(var lw=0; lw<items[i].listwork.length; lw++) { %>
+                        <a href="#" data-toggle="collapse" data-target=<%="#list-work-" + i + lw %> aria-expanded="true"
+                            class="list-a" id="list-1">
+                            <div class="card-list">
+                                <div class="list-header"><%= items[i].listwork[lw].list.list_name %></div>
+                                <button class="btn btn-link card-list-btn" type="button" data-toggle="collapse"
+                                    data-target=<%="#list-work-" + lw %> aria-expanded="true">
+                                    <div class="triangle"></div>
+                                </button>
+                            </div>
+                        </a>
+                        <!------------------------列表裡工作------------------------------->
+                        <% for(var w=0; w<items[i].listwork[lw].work.length; w++) { %>
+                        <div class="collapse show work-total" id=<%="list-work-"+ i + lw %>>
+                            <div class="card-content">
+                                <button class="btn btn-link btn-work" type="button" name="left-show" onclick="<%= "javascript:SetListInfo(" + 
+                                            JSON.stringify(items[i].options) + ", '" + 
+                                            items[i].listwork[lw].listwork_serno + "', '" + 
+                                            items[i].listwork[lw].list.list_name + "')" %>">
+                                    <i class="fas fa-square"></i></button>
+                                <% var tags = JSON.stringify(items[i].listwork[lw].work[w].tags); %>
+                                <a href="#" class="work-a" data-toggle="modal" data-target="#modalshow" onclick="
+                                            <%= "javascript:SetWorkInfo('" + 
+                                            items[i].project[p].project_id + "', '" + 
+                                            items[i].listwork[lw].list.list_name + "', '" + 
+                                            items[i].listwork[lw].work[w].work_id + "', '" + 
+                                            items[i].listwork[lw].work[w].work_title + "', '" + 
+                                            items[i].listwork[lw].work[w].work_content + "', '" + 
+                                            items[i].listwork[lw].work[w].deadline + "', " + 
+                                            tags + ", '" + 
+                                            items[i].listwork[lw].work[w].file_name + "', '" + 
+                                            items[i].listwork[lw].work[w].file + "', '" + 
+                                            items[i].listwork[lw].work[w].first_principal + "', '" + 
+                                            items[i].listwork[lw].work[w].second_principal + "', '" + 
+                                            items[i].listwork[lw].work[w].principal_photo1 + "', '" + 
+                                            items[i].listwork[lw].work[w].principal_photo2 + "')" %>
+                                            ">
+                                    <%= items[i].listwork[lw].work[w].work_title %>
+                                </a>
+                                <div class="switch-move">
+                                    <label class="upload_cover">
+                                        <% var work = JSON.stringify(items[i].listwork[lw].work[w]); %>
+                                        <input id="upload_input" type="file"
+                                            onchange="<%= "javascript:Upload(this" + "," + work + ")" %>">
+                                        <span class="upload_icon"><img src="./imgs/paperclip-2x.png"></span>
+                                    </label>
+                                    <label class="switch">
+                                        <% var result = ""; %>
+                                        <% if (items[i].listwork[lw].work[w].work_hint) {
+                                                            result = "checked";
+                                                        }
+                                                    %>
+                                        <input type="checkbox" id="workhint" onclick="<%= "javascript:UpdateWorkLinebotPush('" + 
+                                                items[i].listwork[lw].work[w].work_id + "', " + 
+                                                items[i].listwork[lw].work[w].work_hint + ")" %>" <%= result %>>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% } %>
+                    </div>
+                    <% } %>
+                    <div class="card-footer">
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <!-- Modal 點選卡片出現 -->
+        <div class="modal fade bd-example-modal-lg" id="modalshow" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" style="max-width:30em;" role="document">
+                <div class="modal-content">
+                    <!--標題-->
+                    <div class="modal-header">
+                        <i class="far fa-credit-card fa-lg" style="font-size: 1.5em;"></i>
+                        <div class="modal-header-name" role="textbox" id="work_title">html 手機模式下列表會消失 修正問題</div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!--狀態位置-->
+                    <p class="u-inline-block">
+                        在「
+                        <a href="#">
+                            <u id="workInList">尚未完成</u>
+                        </a>
+                        」列表中
+                    </p>
+                    <!---->
+                    <!--畫面分割-->
+                    <div class="modal-body">
+                        <div class="row no-gutters">
+                            <!--區塊-->
+                            <div class="col-md-12">
+                                <!--會員-->
+                                <div class="modal-member">
+                                    <div class="modal-description-header">
+                                        <i class="fas fa-user icon-member fa-lg"></i>
+                                        <div class="modal-description-name">負責人</div>
+                                    </div>
+                                    <div class="modal-member-show" id="principal">
+                                    </div>
+                                </div>
+                                <!--標籤-->
+                                <div class="modal-label-left">
+                                    <div class="modal-label-header">
+                                        <i class="far fa-bookmark label-icon fa-lg"></i>
+                                        <div class="modal-label-name">標籤</div>
+                                    </div>
+                                    <div class="label-set">
+                                        <div class="modal-label" name="modal-label-show">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--到期日-->
+                                <div class="modal-timeout">
+                                    <div class="modal-timeout-header">
+                                        <i class="far fa-clock timeout-icon fa-lg"></i>
+                                        <div class="modal-timeout-name">到期日</div>
+                                    </div>
+                                    <div class="timeout">
+                                        <span class="deadtime" id="deadline"><i class="far fa-clock"></i></span>
+                                    </div>
+                                </div>
+                                <!--檔案-->
+                                <div class="modal-file">
+                                    <div class="modal-file-header">
+                                        <i class="far fa-file icon-file fa-lg"></i>
+                                        <div class="modal-file-name">下載附件</div>
+                                    </div>
+                                    <div class="file-set">
+                                        <a class="box-rar" id="file">
+                                            <span class="box-rar-text"></span>
+                                        </a>
+                                        <p class="file-set-show">
+                                            <a class="file-name" id="file_name"></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--編輯按鈕-->
+                                <div class="edit-btn">
+                                    <button type="button" class="btn btn-edit" onclick="gotoPlan(this.value);">編輯</button>
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-----------------------------------scrpit-------------------------------------------->
+    <script src="/js/BackEnd_MyWork.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/js/Mywork_SliderLeft.js"></script>
+    <script src="/js/Mywork_ListOnClick.js"></script>
+    <script src="/js/Mywork_Carousel.js"></script>
+    <script src="/js/Mywork_MoveHoverText.js"></script>
+    <script src="/js/SearchBox.js"></script>
+    <script src="/js/AlertMessenge.js"></script>
+    <script src="/js/Common.js"></script>
+    <script src="/js/BackgroundChange.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!------------------------------------------------------------------------------------->
+</body>
+
+</html>

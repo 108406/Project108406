@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+
+<head>
+
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/kendo.common-material.min.css">
+    <link rel="stylesheet" href="../css/kendo.material.min.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/Plan.css">
+    <%
+    var SeparateDate = function(date) {
+        var result = [6];
+        var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];  
+        date = (date + "").substring(4, date.length);
+        for (var i = 0; i < month.length; i ++) {
+            if (date.substring(0,3).toLowerCase() == month[i].toLowerCase()) {
+                result[1] = i + 1;
+            }
+        }  
+        date = date.substring(4, date.length);
+        result[2] = +date.substring(0,2);
+        date = date.substring(3, date.length);
+        result[0] = +date.substring(0,4);
+        date = date.substring(5, date.length);
+        result[3] = +date.substring(0,2);
+        date = date.substring(3, date.length);
+        result[4] = +date.substring(0,2);
+        date = date.substring(3, date.length);
+        result[5] = +date.substring(0,2);
+    
+        return result;
+    }
+    %>
+    <%
+    var IsAdateNotArrived = function(date1, date2) {
+        date2 = SeparateDate(date2);
+        for (var i = 0; i < 6; i++) {
+            if (date1[i] > date2[i]) {
+                return true;
+            } else if (date1[i] < date2[i]) {
+                return false;
+            }
+        }
+        return false;
+    }
+    %>
+</head>
+
+<body>
+    <!--------------------------navbar-------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+
+        <div class="nav-brand">PlanYourself</div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav">
+                <li>
+                    <a href="/member"> <i class="far fa-user fa-lg"></i>會員</a>
+                </li>
+                <li>
+                    <a href="/content"><i class="fas fa-book fa-lg"></i>計畫</a>
+                </li>
+                <li>
+                    <a href="/mywork"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                </li>
+            </ul>
+
+            <div class="search">
+                <input id="projectId" class="search-input" type="text" name="search" placeholder="查詢計畫(#123456)">
+                <a href="#" id="SearchForBox"><i class="fas fa-search search-icon"></i></a>
+                <div class="Search_Box">
+                </div>
+            </div>
+
+            <div class="study-logout">
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel"><i
+                        class="fas fa-question-circle fa-lg" style="padding-right:5px;"></i>教學</button>
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
+                    onclick="Logout()"><i class="fas fa-sign-out-alt" style="padding-right:5px;"></i>登出</button>
+            </div>
+
+        </div>
+
+    </nav>
+    <!----------------------------------------------------------------->
+
+    <div class="container-fluid">
+
+        <!--測試成功&失敗訊息-->
+        <div class="alert alert-success SuccessMessenge" role="alert">
+            成功加入
+        </div>
+        <div class="alert alert-danger FailMessenge" role="alert">
+            失敗
+        </div>
+        <!---->
+        <!-----------------------------組會員&管理者--------------------------------->
+        <div class="member-bottom" id="member">
+            <div class="plan-name">
+                <%= project_name %>
+            </div>
+            <div class="hr-set"></div>
+            <div class="admin-name">管理者</div>
+            <div class="administrator-img" id="admin-move">
+                <% for (var i = 0; i < teammember.length; i ++) { %>
+                <% if (teammember[i][3]) { %>
+                <% if (teammember[i][2] != null && teammember[i][2] != '') { %>
+                <div id="<%= teammember[i][0] %>" title="<%= teammember[i][1] %>" class="member-img-trash">
+                    <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
+                </div>
+                <% } else { %>
+                <div id="<%= teammember[i][0] %>" title="<%= teammember[i][1] %>" class="member-img-trash">
+                    <img src="/imgs/defaultPhoto.png" class="img-photo">
+                </div>
+                <% } %>
+                <% } %>
+                <% } %>
+            </div>
+            <!-- <div class="hr-set">
+                <div class="hightline"></div>
+            </div> -->
+            <div class="admin-name">成員</div>
+
+            <div class="member-img" id="member-move">
+                <% for (var i = 0; i < teammember.length; i ++) { %>
+                <% if (!teammember[i][3]) { %>
+                <% if (teammember[i][2] != null && teammember[i][2] != '') { %>
+                <div id="<%= teammember[i][0] %>" title="<%= teammember[i][1] %>" class="member-img-trash">
+                    <img src=<%= 'data:image/png;base64,' + teammember[i][2] %> class="img-photo">
+                    <a onclick="<%= `DeleteMember(this, '` + teammember[i][0] + `')` %>">
+                        <img src="/imgs/delete1.png" class="member-delete-icon"></a>
+                </div>
+                <% } else { %>
+                <div id="<%= teammember[i][0] %>" title="<%= teammember[i][1] %>" class="member-img-trash">
+                    <img src="/imgs/defaultPhoto.png" class="img-photo">
+                    <a onclick="<%= `DeleteMember(this, '` + teammember[i][0] + `')` %>">
+                        <img src="/imgs/delete1.png" class="member-delete-icon"></a>
+                </div>
+                <% } %>
+                <% } %>
+                <% } %>
+            </div>
+            <% if (isAdmin) { %>
+            <div class="admin-set">
+                <button class="btn btn-light btn-admin-set" data-toggle="modal" data-target="#member-set"><i
+                        class="fas fa-cog fa-lg" style="padding-right:5px;"></i>設定</button>
+                <button class="btn btn-light btn-admin-set" id="member-delete"><i class="fas fa-trash-alt fa-lg"
+                        style="padding-right:5px;"></i>刪除</button>
+            </div>
+            <% } %>
+        </div>
+        <!-----------------------------bottom結束--------------------------------->
+
+        <!--輪播-->
+        <div id="PlanCarousel" class="carousel slide" data-ride="carousel" data-interval="false" data-pause="hover">
+            <ol class="carousel-indicators">
+                <li data-target="#PlanCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#PlanCarousel" data-slide-to="1"></li>
+                <li data-target="#PlanCarousel" data-slide-to="2"></li>
+                <li data-target="#PlanCarousel" data-slide-to="3"></li>
+                <li data-target="#PlanCarousel" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/imgs/web-photo1.png" class="d-block w-100" alt="..." id="carousel-4">
+                </div>
+                <div class="carousel-item">
+                    <img src="/imgs/web-photo2.png" class="d-block w-100" alt="..." id="carousel-5">
+                </div>
+                <div class="carousel-item">
+                    <img src="/imgs/web-photo3.png" class="d-block w-100" alt="..." id="carousel-6">
+                </div>
+                <div class="carousel-item">
+                    <img src="/imgs/web-photo4.png" class="d-block w-100" alt="..." id="carousel-7">
+                </div>
+                <div class="carousel-item">
+                    <img src="/imgs/web-photo5.png" class="d-block w-100" alt="..." id="carousel-8">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#PlanCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#PlanCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <!---->
+        <!--列表-->
+        <div class="deck" id="work-total-move">
+            <!-- 列表開始 -->
+            <% var tempTeammember = teammember; %>
+            <% for (var b = 0; b < tempTeammember.length; b ++) { %>
+            <%     tempTeammember[b][2] = tempTeammember[b][2] != null ? new Buffer(tempTeammember[b][2], 'base64').toString() : null %>
+            <% } %>
+            <% for (var listIndex = 0; listIndex < lists.length; listIndex ++) { %>
+            <div class="work-total" id="<%= lists[listIndex][0] %>">
+                <div class="work-header">
+
+                    <% if (isAdmin || projectPermission[0]) { %>
+                    <input type="text" class="form-control input-style listname"
+                        placeholder="<%= lists[listIndex][1] %>">
+                    <% } else { %>
+                    <div class="form-control input-style listname" style="line-height: 0;"><%= lists[listIndex][1] %>
+                    </div>
+                    <% } %>
+                    <div class="drpdown">
+                        <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu" style="min-width: 12em !important;"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="drop-right-header-title">
+                                <span class="drop-right-title">列表動作</span>
+                            </div>
+                            <div class="dropdown-right-content">
+                                <div>
+                                    <div>
+                                        <ul class="dropdown-right-list">
+                                            <% if (isAdmin || projectPermission[1]) { %>
+                                            <li><a href="#"
+                                                    onclick="<%= `Action_AddCard('` + lists[listIndex][0] + `')` %>">新增卡片</a></li>
+                                            <% } %>
+                                            <% if (isAdmin || projectPermission[3]) { %>
+                                            <li><a href="#" onclick="<%= `DeleteWorksInList('` + lists[listIndex][0] + `')` %>">刪除所有卡片</a></li>
+                                            <% } %>
+                                            <% if (isAdmin || projectPermission[0]) { %>
+                                            <li><a href="#"
+                                                    onclick="<%= `DeleteList('` + lists[listIndex][0] + `')` %>">刪除列表</a>
+                                            </li>
+                                            <% } %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-body" id="<%= 'work-body-move-' + (listIndex + 1) %>">
+                    <!--卡片-->
+                    <% for (var workIndex = 0; workIndex < listwork[listIndex].length; workIndex ++) { %>
+                    <% var thiswork = []; %>
+                    <% for (var workDetail = 0; workDetail < works.length; workDetail ++) { %>
+                    <% if (works[workDetail][0] == listwork[listIndex][workIndex]) { %>
+                    <% thiswork = works[workDetail]; %>
+                    <% thiswork[10] = thiswork[10] != null ? new Buffer(thiswork[10], 'base64').toString() : null %>
+                    <% } %>
+                    <% } %>
+                    <div class="card work-card" id="<%= thiswork[0] %>">
+                        <div class="work-card-header">
+                            <% for (var i = 0; i < tags.length; i ++) { %>
+                            <% for (var a = 4; a < 10; a ++) { %>
+                            <% if (thiswork[a] == tags[i][0]) { %>
+                            <% if (tags[i][2] == '#61BD4F') { %>
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)"><%= tags[i][1] %></span></span>
+                            <% } else %>
+                            <% if (tags[i][2] == '#F2D600') { %>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)"><%= tags[i][1] %></span></span>
+                            <% } else if (tags[i][2] == '#FF9F1A') { %>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)"><%= tags[i][1] %></span></span>
+                            <% } else if (tags[i][2] == '#EB5A46') { %>
+                            <span class="card-label-4"><span class="label-text"
+                                    onmousemove="removeClassType(this)"><%= tags[i][1] %></span></span>
+                            <% } else if (tags[i][2] == '#C377E0') { %>
+                            <span class="card-label-5"><span class="label-text"
+                                    onmousemove="removeClassType(this)"><%= tags[i][1] %></span></span>
+                            <% } else if (tags[i][2] == '#0079BF') { %>
+                            <span class="card-label-6"><span class="label-text"
+                                    onmousemove="removeClassType(this)"><%= tags[i][1] %></span></span>
+                            <% } %>
+                            <% } %>
+                            <% } %>
+                            <% } %>
+                        </div>
+                        <% var tempWork = {listname:lists[listIndex][1], workData:thiswork, teammember: tempTeammember, tags: tags} %>
+                        <div
+                            onclick="<%= 'javascript:SetWorkCard(' + JSON.stringify(tempWork) + `, '` + thiswork[0] + `')`%>">
+                            <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                                <%= thiswork[1] %>
+                            </div>
+                            <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                                <% if (thiswork[3] != '') { %>
+                                <span class="deadtime"><i
+                                        class="far fa-clock"></i><%= thiswork[3][1] + '月' + thiswork[3][2] + '日' %></span>
+                                <% } %>
+                                <div class="work-img">
+                                    <% for (var a = 0; a < teammember.length; a ++) { %>
+                                    <% if (teammember[a][0] == thiswork[12] || teammember[a][0] == thiswork[13]) { %>
+                                    <% if (teammember[a][2] != null && teammember[a][2] != '') { %>
+                                    <img title="<%= teammember[a][1] %>" alt="<%= 'workPrincipal_' + teammember[a][0] %>"
+                                        src=<%= 'data:image/png;base64,' + teammember[a][2] %> class="work-img-photo">
+                                    <% } else { %>
+                                    <img title="<%= teammember[a][1] %>" alt="<%= 'workPrincipal_' + teammember[a][0] %>" src="/imgs/defaultPhoto.png"
+                                        class="work-img-photo">
+                                    <% } %>
+                                    <% } %>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    <!--卡片-->
+
+
+                    <% if (isAdmin || projectPermission[1]) { %>
+                    <!--點選新增卡片出現的框架##可以刪除-->
+                    <div class="card add-card">
+                        <textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
+                    </div>
+                    <!---->
+                    <% } %>
+                </div>
+                <!---->
+
+                <!--列表尾部-->
+                <% if (isAdmin || projectPermission[1]) { %>
+                <div class="card-footer">
+                    <a href="#" class="a-footer add-card-textarea">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+                <% } %>
+                <!---->
+            </div>
+            <% } %>
+            <!-- 列表結束 -->
+            <!--新增列表-->
+            <% if (isAdmin || projectPermission[0]) { %>
+            <div class="add-list">
+                <div class="add-list-header">
+                    <a href="#" id="add-list">
+                        <input type="text" class="form-control add-input-style" placeholder="新增工作列表"
+                            id="add-list-input">
+                    </a>
+
+                    <div class="add-list-submit">
+                        <button class="btn btn-danger btn-add-list" onclick="AddList();">新增列表</button>
+                        <a href="#" id="add-cancel">
+                            <i class="fas fa-times fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--組長推播-->
+            <% } %>
+            <a href="#" class="admin-push-text" data-target="#modal-admin-push" data-toggle="modal"><i
+                    class="fas fa-bell"></i></a>
+        </div>
+
+
+        <!-- Modal 點選卡片出現 -->
+        <div class="modal fade bd-example-modal-lg" id="show-modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <!--標題-->
+                    <div class="modal-header">
+                        <i class="far fa-credit-card fa-lg" style="font-size: 1.5em;"></i>
+                        <% if (isAdmin || projectPermission[2]) { %>
+                        <div id="work_title" class="mod-card-back-title" role="textbox" contenteditable="true">html
+                            手機模式下列表會消失 修正問題</div>
+                        <% } else { %>
+                        <div id="work_title" class="mod-card-back-title" role="textbox">html
+                            手機模式下列表會消失 修正問題</div>
+                        <% } %>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!---->
+                    <!--狀態位置-->
+                    <p class="u-inline-block">
+                        在「
+                        <a href="#">
+                            <u id="workInList">尚未完成</u>
+                        </a>
+                        」列表中
+                    </p>
+                    <!---->
+                    <!--畫面分割兩塊-->
+                    <div class="modal-body">
+                        <div class="row no-gutters">
+                            <!--左邊區塊-->
+                            <div class="col-md-8">
+                                <!--會員-->
+                                <div class="modal-member">
+                                    <div class="modal-description-header">
+                                        <i class="fas fa-user icon-member fa-lg"></i>
+                                        <div class="modal-description-name">負責人</div>
+                                    </div>
+                                    <div id="principal" class="modal-member-show">
+                                        <img src="/imgs/gray-cat.png" class="modal-member-photo">
+                                        <img src="/imgs/gray-cat.png" class="modal-member-photo">
+                                    </div>
+                                </div>
+                                <!---->
+                                <!--標籤-->
+                                <div class="modal-label-left">
+                                    <div class="modal-label-header">
+                                        <i class="far fa-bookmark label-icon fa-lg"></i>
+                                        <div class="modal-label-name">標籤</div>
+                                    </div>
+                                    <div class="label-set">
+                                        <div class="modal-label" name="modal-label-show">
+                                            <span id="fixedTags">
+                                                <span class="modal-label-1">
+                                                    <span class="label-text"
+                                                        onmousemove="removeClassType(this)">功能</span>
+                                                </span>
+                                            </span>
+                                            <% if (isAdmin || projectPermission[2]) { %>
+                                            <!--左側新增標籤-->
+                                            <div class="dropdown-total">
+                                                <button class="modal-add-label" href="#" role="button" id="add-label"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+
+                                                <div class="dropdown-menu" aria-labelledby="add-label"
+                                                    data-stopPropagation="true">
+                                                    <div class="dropdown-label-header">
+                                                        <span class="dropdown-label-header-title">標籤</span>
+                                                    </div>
+                                                    <div class="label-color-all" name="label-color-all-right">
+                                                        <% var haveTag = [false, false, false, false, false, false]; %>
+                                                        <% var alltags_left = alltags %>
+                                                        <% for (var x = 0; x < 6; x ++) { %>
+                                                        <% try { %>
+                                                        <%     if (alltags_left[x].color != undefined) { %>
+                                                        <%     } %>
+                                                        <% } catch { %>
+                                                        <%     alltags_left[x] = {tag_id: 0,color: '', tagname: ''}; %>
+                                                        <% } %>
+                                                        <% } %>
+                                                        <% for (var a = 0; a < 6; a ++) { %>
+
+                                                        <div class="label-total">
+                                                            <% if (haveTag[0] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#61BD4F') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-green-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-green-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-green-a"
+                                                                onclick="ChangeTag(this.id, '#61BD4F')"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-green-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[0] = true %>
+                                                            <% } else if (haveTag[1] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#F2D600') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-yellow-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-yellow-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-yellow-a"
+                                                                onclick="ChangeTag(this.id, '#F2D600')"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-yellow-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[1] = true %>
+                                                            <% } else if (haveTag[2] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#FF9F1A') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-orange-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-orange-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-orange-a"
+                                                                onclick="ChangeTag(this.id, '#FF9F1A')"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-orange-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[2] = true %>
+                                                            <% } else if (haveTag[3] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#EB5A46') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-red-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-red-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-red-a"
+                                                                onclick="ChangeTag(this.id, '#EB5A46')"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-red-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[3] = true %>
+                                                            <% } else if (haveTag[4] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#C377E0') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-purple-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-purple-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-purple-a"
+                                                                onclick="ChangeTag(this.id, '#C377E0')"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-purple-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[4] = true %>
+                                                            <% } else if (haveTag[5] == false) { %>
+                                                            <% let putin = false; %>
+                                                            <% let nameIndex = -1; %>
+                                                            <% for (let b = 0; b < 6 ; b ++) { %>
+                                                            <%     if (alltags_left[b].color == '#0079BF') { %>
+                                                            <%         putin = true; %>
+                                                            <% nameIndex = b %>
+                                                            <%     } %>
+                                                            <% } %>
+                                                            <% if (putin) { %>
+                                                            <a href="#" class="label-color-blue-a"
+                                                                onclick="ChangeTag(this.id, <%= `'` + alltags_left[nameIndex].color + `'` %>)"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-blue-a">
+                                                                <%= alltags_left[nameIndex].tagname %>
+                                                            </a>
+                                                            <% } else { %>
+                                                            <a href="#" class="label-color-blue-a"
+                                                                onclick="ChangeTag(this.id, '#0079BF')"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-blue-a"></a>
+                                                            <% } %>
+                                                            <% haveTag[5] = true %>
+                                                            <% } %>
+                                                            <!--左側編輯標籤-->
+                                                            <div class="dropdown-edit">
+                                                                <button class="label-color-edit-btn"
+                                                                    id="<%= 'edit-label-dropdown-' + (a + 1) %>">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
+                                                                <div class="dropdown-content"
+                                                                    data-stopPropagation="true"
+                                                                    id="<%= 'dropdown-content-' + (a + 1) %>">
+                                                                    <span class="dropdown-label-header-title">
+                                                                        改變標籤
+                                                                        <a href="#" class="add-label-icon-a"
+                                                                            name="label-edit-off">
+                                                                            <i
+                                                                                class="fas fa-times change-label-icon"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                    <div class="label-color-total">
+                                                                        <label class="label-name">名字</label>
+                                                                        <% let nowColor; %>
+                                                                        <% let nothing = true %>
+                                                                        <% if (a == 0) { %>
+                                                                        <%     nowColor = '#61BD4F'; %>
+                                                                        <% } else if (a == 1) { %>
+                                                                        <%     nowColor = '#F2D600'; %>
+                                                                        <% } else if (a == 2) { %>
+                                                                        <%     nowColor = '#FF9F1A'; %>
+                                                                        <% } else if (a == 3) { %>
+                                                                        <%     nowColor = '#EB5A46'; %>
+                                                                        <% } else if (a == 4) { %>
+                                                                        <%     nowColor = '#C377E0';  %>
+                                                                        <% } else if (a == 5) { %>
+                                                                        <%     nowColor = '#0079BF'; %>
+                                                                        <% } %>
+                                                                        <% for (let n = 0; n < alltags.length ; n ++) { %>
+                                                                        <%     if (alltags[n].color == nowColor) { %>
+                                                                        <input class="label-edit-input-search"
+                                                                            type="text"
+                                                                            id="<%= 'label-edit-input-search-' + (a + 1) %>"
+                                                                            value="<%= alltags_left[n].tagname %>">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                onclick="<%= 'ChangeTagName(true, ' + (a + 1) + ', ' + alltags_left[n].tag_id + ')' %>"
+                                                                                id="<%= 'add-label-edit-btn-' + (a + 1) %>">儲存</button>
+                                                                        </div>
+                                                                        <% nothing = false; %>
+                                                                        <%     } %>
+                                                                        <% } %>
+                                                                        <% if (nothing) { %>
+                                                                        <input class="label-edit-input-search"
+                                                                            id="<%= 'label-edit-input-search-right-' + (a + 1) %>"
+                                                                            type="text" value="">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                onclick="<%= 'ChangeTagName(false, ' + (a + 1) + ', undefined)' %>"
+                                                                                id="<%= 'add-label-edit-btn-right-' + (a + 1) %>">儲存</button>
+                                                                        </div>
+                                                                        <% } %>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--左側編輯標籤結束-->
+                                                        </div>
+                                                        <% } %>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--左側點選新增標籤結束-->
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---->
+
+                                <!--到期日-->
+                                <div class="modal-timeout">
+                                    <div class="modal-timeout-header">
+                                        <i class="far fa-clock timeout-icon fa-lg"></i>
+                                        <div class="modal-timeout-name">到期日</div>
+                                    </div>
+                                    <div class="timeout">
+                                        <span class="deadtime"><i class="far fa-clock"></i><span id="work_deadline">5月5日
+                                                下午7點12分</span></span>
+                                    </div>
+                                </div>
+                                <!---->
+                                <!--檔案-->
+                                <div class="modal-file">
+                                    <div class="modal-file-header">
+                                        <i class="far fa-file icon-file fa-lg"></i>
+                                        <div class="modal-file-name">下載附件</div>
+                                    </div>
+                                    <div class="file-set">
+                                        <a id="downloadFileBlock" class="box-rar" download href="./test.rar">
+                                            <span class="box-rar-text">rar</span>
+                                        </a>
+                                        <p class="file-set-show">
+                                            <a id="downloadFileText" download href="./test.rar"
+                                                class="file-name">2.0.rar</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!---->
+
+                            </div>
+                            <!--右側區塊-->
+                            <div class="col-md-4">
+                                <% if (isAdmin || projectPermission[2]) { %>
+                                <!--新增至卡片區塊-->
+                                <div class="add-to-card">
+
+                                    <div class="add-to-card-name">新增至卡片</div>
+                                    <!--成員-->
+                                    <div class="dropdown-member">
+
+                                        <a class="button-link js-change-card-members" href="#" role="button"
+                                            id="dropdown-member" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="far fa-user" style="margin-right: 0.35em;"></i>
+                                                負責人
+                                            </span>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-member">
+                                            <span class="pop-over-header-title">成員</span>
+                                            <div id="addMemberToWork" class="dropdown-member-edit">
+                                                <a class="dropdown-img-member-set" href="#">
+                                                    <img src="/imgs/gray-cat.png" class="dropdown-member-img">
+                                                    <div class="member-name">張智皓(JD12358)</div>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!---->
+                                    <!--右側標籤-->
+                                    <div class="dropdown-right-total">
+                                        <a class="button-link" href="#" role="button" id="add-right-label"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="far fa-bookmark" style="margin-right: 0.65em;"></i>
+                                                標籤
+                                            </span>
+                                        </a>
+
+                                        <!--右邊的標籤第一層-->
+                                        <div class="dropdown-menu" aria-labelledby="add-right-label"
+                                            data-stopPropagation="true">
+
+                                            <div class="dropdown-label-header">
+                                                <span class="dropdown-label-header-title">標籤</span>
+                                            </div>
+
+                                            <div class="label-color-all" name="label-color-all-right">
+
+                                                <% var haveTag_right = [false, false, false, false, false, false]; %>
+                                                <% var alltags_right = alltags %>
+                                                <% for (var x = 0; x < 6; x ++) { %>
+                                                <% try { %>
+                                                <%     if (alltags_right[x].color != undefined) { %>
+                                                <%     } %>
+                                                <% } catch { %>
+                                                <%     alltags_right[x] = {tag_id: 0,color: '', tagname: ''}; %>
+                                                <% } %>
+                                                <% } %>
+                                                <% for (var c = 0; c < 6; c ++) { %>
+                                                <div class="label-total">
+
+                                                    <% if (haveTag_right[0] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#61BD4F') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
+                                                    <a href="#" class="label-color-green-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-green-a-right">
+                                                        <%= alltags_right[nameIndex].tagname %>
+                                                    </a>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-green-a"
+                                                        onclick="ChangeTag(this.id, '#61BD4F')"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-green-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[0] = true %>
+                                                    <% } else if (haveTag_right[1] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#F2D600') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
+                                                    <a href="#" class="label-color-yellow-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-yellow-a-right">
+                                                        <%= alltags_right[nameIndex].tagname %>
+                                                    </a>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-yellow-a"
+                                                        onclick="ChangeTag(this.id, '#F2D600')"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-yellow-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[1] = true %>
+                                                    <% } else if (haveTag_right[2] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#FF9F1A') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
+                                                    <a href="#" class="label-color-orange-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-orange-a-right">
+                                                        <%= alltags_right[nameIndex].tagname %>
+                                                    </a>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-orange-a"
+                                                        onclick="ChangeTag(this.id, '#FF9F1A')"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-orange-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[2] = true %>
+                                                    <% } else if (haveTag_right[3] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#EB5A46') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
+                                                    <a href="#" class="label-color-red-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-red-a-right">
+                                                        <%= alltags_right[nameIndex].tagname %>
+                                                    </a>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-red-a"
+                                                        onclick="ChangeTag(this.id, '#EB5A46')"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-red-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[3] = true %>
+                                                    <% } else if (haveTag_right[4] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#C377E0') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
+                                                    <a href="#" class="label-color-purple-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-purple-a-right">
+                                                        <%= alltags_right[nameIndex].tagname %>
+                                                    </a>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-purple-a"
+                                                        onclick="ChangeTag(this.id, '#C377E0')"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-purple-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[4] = true %>
+                                                    <% } else if (haveTag_right[5] == false) { %>
+                                                    <% let putin = false; %>
+                                                    <% let nameIndex = -1; %>
+                                                    <% for (let b = 0; b < 6 ; b ++) { %>
+                                                    <%     if (alltags_left[b].color == '#0079BF') { %>
+                                                    <%         putin = true; %>
+                                                    <% nameIndex = b %>
+                                                    <%     } %>
+                                                    <% } %>
+                                                    <% if (putin) { %>
+                                                    <a href="#" class="label-color-blue-a"
+                                                        onclick="ChangeTag(this.id, <%= `'` + alltags_right[nameIndex].color + `'` %>)"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-blue-a-right">
+                                                        <%= alltags_right[nameIndex].tagname %>
+                                                    </a>
+                                                    <% } else { %>
+                                                    <a href="#" class="label-color-blue-a"
+                                                        onclick="ChangeTag(this.id, '#0079BF')"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-blue-a-right"></a>
+                                                    <% } %>
+                                                    <% haveTag_right[5] = true %>
+                                                    <% } %>
+
+                                                    <!--右側編輯標籤-->
+                                                    <div class="dropdown-edit">
+                                                        <button class="label-color-edit-btn"
+                                                            id="<%= 'edit-right-dropdown-' + (c + 1) %>">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <div class="dropdown-content-right" data-stopPropagation="true"
+                                                            id="<%= 'dropdown-content-right-' + (c + 1) %>">
+                                                            <span class="dropdown-label-header-title">
+                                                                改變標籤
+                                                                <a href="#" class="add-label-icon-a"
+                                                                    name="label-edit-off">
+                                                                    <i class="fas fa-times change-label-icon"></i>
+                                                                </a>
+                                                            </span>
+                                                            <div class="label-color-total">
+                                                                <label class="label-name">名字</label>
+                                                                <% let nowColor; %>
+                                                                <% let nothing = true %>
+                                                                <% if (c == 0) { %>
+                                                                <%     nowColor = '#61BD4F'; %>
+                                                                <% } else if (c == 1) { %>
+                                                                <%     nowColor = '#F2D600'; %>
+                                                                <% } else if (c == 2) { %>
+                                                                <%     nowColor = '#FF9F1A'; %>
+                                                                <% } else if (c == 3) { %>
+                                                                <%     nowColor = '#EB5A46'; %>
+                                                                <% } else if (c == 4) { %>
+                                                                <%     nowColor = '#C377E0';  %>
+                                                                <% } else if (c == 5) { %>
+                                                                <%     nowColor = '#0079BF'; %>
+                                                                <% } %>
+                                                                <% for (let n = 0; n < alltags.length ; n ++) { %>
+                                                                <%     if (alltags[n].color == nowColor) { %>
+                                                                <input class="label-edit-input-search"
+                                                                    id="<%= 'label-edit-input-search-right-' + (c + 1) %>"
+                                                                    type="text" value="<%= alltags_right[n].tagname %>">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        onclick="<%= 'ChangeTagName(false, ' + (c + 1) + ', ' + alltags_right[n].tag_id + ')' %>"
+                                                                        id="<%= 'add-label-edit-btn-right-' + (c + 1) %>">儲存</button>
+                                                                </div>
+                                                                <% nothing = false; %>
+                                                                <% } %>
+                                                                <% } %>
+                                                                <% if (nothing) { %>
+                                                                <input class="label-edit-input-search"
+                                                                    id="<%= 'label-edit-input-search-right-' + (c + 1) %>"
+                                                                    type="text" value="">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        onclick="<%= 'ChangeTagName(false, ' + (c + 1) + ', undefined)' %>"
+                                                                        id="<%= 'add-label-edit-btn-right-' + (c + 1) %>">儲存</button>
+                                                                </div>
+                                                                <% } %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--右側編輯標籤結束-->
+                                                </div>
+                                                <% } %>
+
+                                            </div>
+                                            <!--右邊新標籤結束-->
+                                        </div>
+                                        <!--右邊最初的結束-->
+                                    </div>
+                                    <!---->
+
+                                    <!--到期時間-->
+                                    <div class="dropdown-timeout">
+                                        <a class="button-link js-change-card-times" href="#" role="button"
+                                            id="dropdown-timeout" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="true">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="far fa-clock" style="margin-right: 0.65em;"></i>到期日
+                                            </span>
+                                        </a>
+                                        <div id="TimeSet" class="dropdown-menu">
+                                            <span class="pop-over-header-title">到期日</span>
+                                            <div class="dropdown-timeout-edit">
+                                                <input id="TimeDate" class="timeout-date">
+                                                <div class="label-edit-btn-set">
+                                                    <button onclick="SaveDeadline()" class="btn-save">儲存</button>
+                                                    <button onclick="ClearDeadline();" class="btn-cancel">刪除</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+
+                                    <!--上傳檔案-->
+                                    <label class="upload_cover">
+                                        <span class="upload_cover_span"><i class="far fa-file"
+                                                style="margin-right: 0.65em;"></i>上傳附件</span>
+                                        <input id="upload_input" type="file" onchange="uploadFile(this)">
+                                    </label>
+                                    <!---->
+
+                                </div>
+                                <hr>
+                                <% } %>
+                                <!--動作區塊-->
+                                <div class="modal-action">
+                                    <% if (isAdmin || (!(!projectPermission[2] && !projectPermission[3]))) { %>
+                                    <div class="add-to-card-name">動作</div>
+                                    <% } %>
+
+                                    <% if (isAdmin || projectPermission[2]) { %>
+                                    <!--移動卡片-->
+                                    <div class="dropdown">
+
+                                        <a class="button-link js-change-card-moves" role="button" id="drop_move"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                                style="margin-left: 0.5em;color: #091e42;"><i class="fas fa-arrow-right"
+                                                    style="margin-right: 0.55em;"></i>移動</span></a>
+
+                                        <div class="dropdown-menu" aria-labelledby="drop_move"
+                                            data-stopPropagation="true">
+
+                                            <span class="dropdown-label-header-title">移動卡片</span>
+
+                                            <div class="move-card-modal">
+                                                <div class="form-grid">
+
+                                                    <div class="button-drop-move-left">
+                                                        <span class="move-label">列表</span>
+                                                        <span class="move-value" id="list-get"
+                                                            onmousemove="removeClassType(this)">代辦事項:</span>
+                                                        <select id="list-value" onclick="list_value(this.id)">
+                                                            <% for (var l = 0; l < lists.length; l ++) { %>
+                                                            <option><%= lists[l][1] %></option>
+                                                            <% } %>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <button id="MoveWorkToList" class="move-btn">移動</button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!---->
+                                    <% } %>
+                                    <% if (isAdmin || projectPermission[3]) { %>
+                                    <!--刪除卡片-->
+                                    <div class="delete-card">
+                                        <a class="button-link change-card-deletes" href="#"><span
+                                                style="margin-left: 0.5em;"><i class="fas fa-ban"
+                                                    style="margin-right: 0.45em;"></i>刪除</span></a>
+
+                                        <a id="deleteWork" class="button-link change-card-deletes-check"><span
+                                                style="margin-left: 0.5em;"><i class="fas fa-ban"
+                                                    style="margin-right: 0.45em;"></i>刪除卡片</span></a>
+                                        <button type="button" class="btn-delete-close">取消</button>
+                                    </div>
+                                    <!---->
+                                    <% } %>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Modal 設定會員權限-->
+        <div class="modal fade" id="member-set" tabindex="-1" role="dialog" aria-labelledby="member-set"
+            aria-hidden="true">
+            <div class="modal-dialog" style="max-width:28em;border-radius: 4px;" role="document">
+                <div class="modal-content modal-member-content" style="border-radius: 4px;">
+                    <div class="modal-header" style="background: rgb(59, 76, 105);color:#fff;border-radius: 4px;">
+                        <h5 class="modal-title" style="border-radius: 4px; font-size:1em;">會員權限設定:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                            <span aria-hidden="true" style="color:#fff;">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="border-radius: 4px;">
+                        <div class="member-modal-label-set">
+                            <div class="member-modal-name">列表權限:</div>
+                            <label class="switch">
+                                <input id="listPermission" type="checkbox" <%= projectPermission[0] ? 'checked' : '' %>>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="member-modal-label-set">
+                            <div class="member-modal-name">工作新增:</div>
+                            <label class="switch">
+                                <input id="addWorkPermission" type="checkbox"
+                                    <%= projectPermission[1] ? 'checked' : '' %>>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="member-modal-label-set">
+                            <div class="member-modal-name">工作編輯:</div>
+                            <label class="switch">
+                                <input id="editWorkPermission" type="checkbox"
+                                    <%= projectPermission[2] ? 'checked' : '' %>>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="member-modal-label-set">
+                            <div class="member-modal-name">工作刪除:</div>
+                            <label class="switch">
+                                <input id="deleteWorkPermission" type="checkbox"
+                                    <%= projectPermission[3] ? 'checked' : '' %>>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark btn-member-close" data-dismiss="modal">關閉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal組長推播-->
+        <div class="modal fade" id="modal-admin-push" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-admin-push">
+                        <h5 class="modal-title">前三公告</h5>
+                        <div class="admin-icon-set">
+                            <% if (isAdmin) { %>
+                            <div class="plus-square-admin">
+                                <a href="#"><i class="far fa-plus-square fa-lg" data-toggle="modal"
+                                        data-target="#admin-text"></i></a>
+                            </div>
+                            <% } %>
+                            <div class="double-down-member">
+                                <a href="#" id="admin-text-show"><i class="fas fa-angle-double-down fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="adminpushBody" class="modal-body">
+                        <% for (var p = 0; p < adminpush.length; p ++) { %>
+                        <% var now = SeparateDate(Date()) %>
+                        <% var pushStartData = SeparateDate(adminpush[p][1]) %>
+                        <% var pushEndData = SeparateDate(adminpush[p][2]) %>
+
+                        <% if (IsAdateNotArrived(pushEndData, Date())) { %>
+                        <div class="show-messenge clickShow">
+                            <div class="messenge">
+                                <div class="messenge-text">
+                                    <%= adminpush[p][0] %>
+                                </div>
+                                <div class="time-show">
+                                    <%= pushStartData[0] + '/' +
+                        (pushStartData[1] < 10 ? ('0' + pushStartData[1]) : pushStartData[1]) + '/' +
+                        (pushStartData[2] < 10 ? ('0' + pushStartData[2]) : pushStartData[2]) + ' ' +
+                        (pushStartData[3] >= 12 ? ('下午' + (pushStartData[3] - 12)) : ('上午' + pushStartData[3])) + ':' +
+                        (pushStartData[4] < 10 ? ('0' + pushStartData[4]) : pushStartData[4]) %>
+                                </div>
+                            </div>
+                            <hr class="hr-admin">
+                        </div>
+                        <% } %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <!-- Modal組長新增訊息-->
+        <div class="modal fade" id="admin-text" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="admin-text">新增訊息</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">設定結束時間:</label>
+                            <input id="adminpushEndDate" class="timeout-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">訊息:</label>
+                            <textarea id="adminpushContent" class="form-control" cols="50" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">關閉</button>
+                        <button type="button" class="btn btn-light" onclick="AddAdminpush();">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input id="permission_serno" type="hidden" value="<%= projectPermission[4] %>">
+        <input id="teammember" type="hidden" value="<%= JSON.stringify(teammember) %>">
+        <input id="lists" type="hidden" value="<%= JSON.stringify(lists) %>">
+        <input id="works" type="hidden" value="<%= JSON.stringify(works) %>">
+        <input id="tags" type="hidden" value="<%= JSON.stringify(alltags) %>">
+        <input id="isAdmin" type="hidden" value="<%= isAdmin %>">
+        <input id="projectPermission" type="hidden" value="<%= projectPermission %>">
+
+        <!-----------------------------------scrpit-------------------------------------------->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        </script>
+        <script src="/js/BackEnd_Plan.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="/js/jquery.ui.touch-punch.min.js"></script>
+
+        <script src="/js/Plan_AddTextarea.js"></script>
+        <script src="/js/Plan_Draggable.js"></script>
+        <script src="/js/Plan_AddList.js"></script>
+        <script src="/js/Plan_CardLabelToggle.js"></script>
+        <script src="/js/Plan_Coursel.js"></script>
+        <script src="/js/Plan_ModalLabelLeft.js"></script>
+        <script src="/js/Plan_ModalLabelRight.js"></script>
+        <script src="/js/Plan_ModalMoveCard.js"></script>
+        <script src="/js/Plan_ModalDeleteCard.js"></script>
+        <script src="/js/Plan_ListDropdown.js"></script>
+        <script src="/js/Plan_MemberDelete.js"></script>
+        <script src="/js/Plan_AdminMessenge.js"></script>
+        <script src="/js/Plan_MoveHoverText.js"></script>
+        <script src="/js/Plan_StopPropagation.js"></script>
+        <script src="/js/Plan_Datetime.js"></script>
+        <script src="/js/kendo.all.min.js"></script>
+        <script src="/js/Plan_KendoDatePicker.js"></script>
+        <script src="/js/SearchBox.js"></script>
+        <script src="/js/AlertMessenge.js"></script>
+        <script src="/js/Common.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+
+        <!------------------------------------------------------------------------------------->
+</body>
+
+</html>
