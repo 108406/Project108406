@@ -1161,21 +1161,20 @@
                     <div id="adminpushBody" class="modal-body">
                         <% for (var p = 0; p < adminpush.length; p ++) { %>
                         <% var now = SeparateDate(Date()) %>
-                        <% var pushStartData = SeparateDate(adminpush[p][1]) %>
                         <% var pushEndData = SeparateDate(adminpush[p][2]) %>
 
-                        <% if (IsAdateNotArrived(pushEndData, Date())) { %>
+                        <% if (new Date(adminpush[p][2]).getTime() - Date.now() > 0) { %>
                         <div class="show-messenge clickShow">
                             <div class="messenge">
                                 <div class="messenge-text">
                                     <%= adminpush[p][0] %>
                                 </div>
                                 <div class="time-show">
-                                    <%= pushStartData[0] + '/' +
-                        (pushStartData[1] < 10 ? ('0' + pushStartData[1]) : pushStartData[1]) + '/' +
-                        (pushStartData[2] < 10 ? ('0' + pushStartData[2]) : pushStartData[2]) + ' ' +
-                        (pushStartData[3] >= 12 ? ('下午' + (pushStartData[3] - 12)) : ('上午' + pushStartData[3])) + ':' +
-                        (pushStartData[4] < 10 ? ('0' + pushStartData[4]) : pushStartData[4]) %>
+                                    <%= pushEndData[0] + '/' +
+                        (pushEndData[1] < 10 ? ('0' + pushEndData[1]) : pushEndData[1]) + '/' +
+                        (pushEndData[2] < 10 ? ('0' + pushEndData[2]) : pushEndData[2]) + ' ' +
+                        (pushEndData[3] >= 12 ? ('下午' + (pushEndData[3] - 12)) : ('上午' + pushEndData[3])) + ':' +
+                        (pushEndData[4] < 10 ? ('0' + pushEndData[4]) : pushEndData[4]) %>
                                 </div>
                             </div>
                             <hr class="hr-admin">
