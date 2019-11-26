@@ -252,20 +252,41 @@ function AddProject_Content() {
 function LeaveProject(projectId) {
     ajaxing++;
     $.ajax({
-        method: 'POST',
-        url: "content/leaveProject",
-        data: {
-            project_id: projectId
-        },
-        success: function (data) {
-            ajaxing--;
-        },
-        error: function (data) {
-            alert('連接伺服器出現問題，請重試。')
-            console.log('error: \n' + data.error)
-        }
+    method: 'POST',
+    url: "content/checkprincipal",
+    data: {
+    project_id: projectId
+    },
+    success: function (data) {
+    if (data.status == 0) {
+    ajaxing--;
+    ajaxing++;
+    $.ajax({
+    method: 'POST',
+    url: "content/leaveProject",
+    data: {
+    project_id: projectId
+    },
+    success: function (data) {
+    ajaxing--;
+    },
+    error: function (data) {
+    alert('連接伺服器出現問題，請重試。')
+    console.log('error: \n' + data.error)
+    }
     })
-}
+    } else {
+    alert('您在該專案還有負責的工作，請確認沒有負責的工作後再重試。')
+    location.reload();
+    }
+    },
+    error: function (data) {
+    alert('連接伺服器出現問題，請重試。')
+    console.log('error: \n' + data.error)
+    }
+    })
+    
+    }
 
 // 新增計畫的日期錯誤偵測
 function AddProject_CheckDate() {

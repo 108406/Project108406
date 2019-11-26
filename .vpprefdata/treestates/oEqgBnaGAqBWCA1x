@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ProjectTreeState projectID="p7VCRVaGAqACaADr" projectPath="C:\Users\imd-nb\Desktop\PlanYourself\\u5faa\u5e8f\u5716\u3001\u985e\u5225\u5716\\u5206\u6790\u985e\u5225\u5716\u548c\u5faa\u5e8f\u5716.vpp">
 	<TreeState name="ModelRepository" viewX="0" viewY="0"/>
-	<TreeState name="DiagramNavigator" viewX="0" viewY="0">
+	<TreeState name="DiagramNavigator" viewX="0" viewY="18">
 		<ExpandedPath>DiagramNavigator</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,UML Diagrams</ExpandedPath>
+		<ExpandedPath>InteractionDiagram</ExpandedPath>
+		<SelectedPath>InteractionDiagram,gqIT9naD.AAAAVWV</SelectedPath>
 	</TreeState>
 	<TreeState name="ClassBrowser" viewX="0" viewY="0"/>
 	<TreeState name="LogicalView" viewX="0" viewY="0"/>
