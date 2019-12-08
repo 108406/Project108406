@@ -33,14 +33,12 @@ body{
 div.container-fluid {
     margin: 0 !important;
     padding: 0 !important;
-    /* height: 100%;
-    width: 100%; */
     display: flex;
 }
 
 div.deck {
     position: absolute;
-    top: 6.0em;
+    top: 8em;
     bottom: 0;
     overflow-x: auto;
     overflow-y: hidden;
@@ -70,14 +68,7 @@ a:hover {
 .carousel {
     display: none;
     position: absolute;
-    top:6.4em;
-}
-.carousel-item {
-    /* height: 30em; */
-}
-
-.carousel-item img {
-    /* height: 30em; */
+    top:8.6em;
 }
 .carousel-indicators li{
     background-color: #333;
@@ -139,7 +130,26 @@ z-index:20;
     border-radius: 4px;
     background: #808080;
 }
+/*----------------------------------*/
 
+/*              跑馬燈              */
+
+/*----------------------------------*/
+div.marqueeTotal{
+    position: absolute;
+    display: flex;
+    height: 2.2em;
+    top:6.4em;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    width: 100%;
+}
+.fa-bullhorn{
+    font-size: 1.5em;
+    color: #ec7c7c;
+    margin-left: 0.3em;
+}
 /*----------------------------------*/
 
 /*    member&administrator          */

@@ -21,17 +21,17 @@ function browserRedirect() {
             $('#show-carousel').on("click", function () {
                 if (isTrue) {
                     $('#PlanCarousel').show();
-                    $('.body').css({ 'overflow-y': 'auto' })
+                    $('html').css({ 'overflow-y': 'auto' })
                     $('.deck').css({ 
-                        'top': '90%',
+                        'top': '92%',
                         'bottom':"auto",
                 })
                 isTrue=false;
                 }
                 else{
                     $('#PlanCarousel').hide();
-                    $('.body').css({ 'overflow-y': 'hidden' })
-                    $('.deck').css({ 'top': '6em' })
+                    $('html').css({ 'overflow-y': 'hidden' })
+                    $('.deck').css({ 'top': '8em' })
                     $('.deck').css({ 'bottom': '0' })
                     isTrue=true;
                 }
@@ -44,17 +44,17 @@ function browserRedirect() {
             $('#show-carousel').on("click", function () {
                 if (isTrue) {
                     $('#PlanCarousel').show();
-                    $('.body').css({ 'overflow-y': 'auto' })
+                    $('html').css({ 'overflow-y': 'auto' })
                     $('.deck').css({ 
-                        'top': '62%',
+                        'top': '64%',
                         'bottom':"auto",
                 })
                 isTrue=false;
                 }
                 else{
                     $('#PlanCarousel').hide();
-                    $('.body').css({ 'overflow-y': 'hidden' })
-                    $('.deck').css({ 'top': '6em' })
+                    $('html').css({ 'overflow-y': 'hidden' })
+                    $('.deck').css({ 'top': '8em' })
                     $('.deck').css({ 'bottom': '0' })
                     isTrue=true;
                 }
