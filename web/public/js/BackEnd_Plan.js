@@ -239,7 +239,8 @@ function AddAdminpush() {
                     '<div class="show-messenge clickShow"><div class="messenge"><div class="messenge-text">' +
                     adminpushContent + '</div><div class="time-show">' + endDataText +
                     '</div></div><hr class="hr-admin"></div>')
-
+                $($('#marquee').children()[0]).before(`<span>第${$('#marquee')
+                .children().length + 1}則{${adminpushContent}}&emsp;&emsp;&emsp;&emsp;&emsp;</span>`);
                 ajaxing--;
             },
             error: function (data) {

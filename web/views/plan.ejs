@@ -165,7 +165,17 @@
             <% } %>
         </div>
         <!-----------------------------bottom結束--------------------------------->
-
+        <!--跑馬燈-->
+        <div class="marqueeTotal">
+        <i class="fas fa-bullhorn"></i>
+        <marquee direction="right" scrollamount="5" id="marquee">
+            <% for (var p = adminpush.length - 1; p >= 0; p --) { %>
+                <% if (new Date(adminpush[p][2]).getTime() - Date.now() > 0) { %>
+            <span>第<%= (p + 1) %>則{<%= adminpush[p][0] %>}&emsp;&emsp;&emsp;&emsp;&emsp;</span>
+            <% } %>
+            <% } %>
+        </marquee>
+        </div>
         <!--輪播-->
         <div id="PlanCarousel" class="carousel slide" data-ride="carousel" data-interval="false" data-pause="hover">
             <ol class="carousel-indicators">
