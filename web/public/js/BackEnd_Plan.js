@@ -225,19 +225,19 @@ function AddAdminpush() {
                 adminpushEndDate: adminpushEndDate
             },
             success: function (data) {
-                let startData = data.nowDate.replace(/-/g, ',');
-                startData = startData.replace(/:/g, ',');
-                startData = startData.replace(/T/g, ',');
-                startData = startData.split(',');
-                let startDataText = +startData[0] + '/' +
-                    (+startData[1] < 10 ? ('0' + +startData[1]) : +startData[1]) + '/' +
-                    (+startData[2] < 10 ? ('0' + +startData[2]) : +startData[2]) + ' ' +
-                    (+startData[3] >= 12 ? ('下午' + (+startData[3] - 12)) : ('上午' + +startData[
+                let endData = adminpushEndDate.replace(/-/g, ',');
+                endData = endData.replace(/:/g, ',');
+                endData = endData.replace(/ /g, ',');
+                endData = endData.split(',');
+                let endDataText = +endData[0] + '/' +
+                    (+endData[1] < 10 ? ('0' + +endData[1]) : +endData[1]) + '/' +
+                    (+endData[2] < 10 ? ('0' + +endData[2]) : +endData[2]) + ' ' +
+                    (+endData[3] >= 12 ? ('下午' + (+endData[3] - 12)) : ('上午' + +endData[
                         3])) + ':' +
-                    (+startData[4] < 10 ? ('0' + +startData[4]) : +startData[4])
+                    (+endData[4] < 10 ? ('0' + +endData[4]) : +endData[4])
                 $('#adminpushBody').append(
                     '<div class="show-messenge clickShow"><div class="messenge"><div class="messenge-text">' +
-                    adminpushContent + '</div><div class="time-show">' + startDataText +
+                    adminpushContent + '</div><div class="time-show">' + endDataText +
                     '</div></div><hr class="hr-admin"></div>')
 
                 ajaxing--;

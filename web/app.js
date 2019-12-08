@@ -46,6 +46,7 @@ var register = require('./routes/register');
 var login_api = require('./routes/login');
 var login_api_cb = require('./routes/login');
 var login_api_logout = require('./routes/login');
+var content_checkprincipal = require('./routes/content_checkprincipal');
 var app = express();
 
 //設定session參數
@@ -115,6 +116,7 @@ app.use('/mywork/updateFile', mywork_updateFile);
 app.use('/auth/line', login_api);
 app.use('/auth/line/cb', login_api_cb);
 app.use('/auth/line/logout', login_api_logout);
+app.use('/content/checkprincipal', content_checkprincipal);
  
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
