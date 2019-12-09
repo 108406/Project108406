@@ -1,0 +1,1174 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
+/*----------------------------------*/
+
+/*            總體設定               */
+
+/*----------------------------------*/
+p.u-inline-block {
+    font-size: 0.9em;
+    margin-left: 11%;
+    color: #999999;
+}
+html, body {
+    font-family: 'Noto Serif TC', serif;
+    background: url(../imgs/背景1.png)center center fixed no-repeat;
+    background-size: cover;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+div.container-fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative;
+    top: 3.5em;
+    height: 100%;
+}
+
+div.content {
+    width: 100%;
+    transform: scale(0.8);
+    transform-origin: top center;
+}
+
+a {
+    color: rgb(36, 50, 73);
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: rgb(243, 171, 76);
+    text-decoration: none;
+}
+
+div.typesetting {
+    width: 80%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/*----------------------------------*/
+
+/*            slider-left           */
+
+/*----------------------------------*/
+
+div.slider-left {
+    position: fixed;
+    float: left;
+    top: 3.3em;
+    left: 0;
+    margin-left: -100%;
+    width: 300px;
+    height: 100%;
+    z-index: 10000000;
+    background: rgba(0, 63, 163, 0.4);
+}
+
+div.slider-header-name {
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.75em;
+    font-weight: bolder;
+}
+
+div.slider-card-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 232, 158, 0.9);
+    margin-left: 0.75em;
+    margin-right: 0.75em;
+    height: 2em;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+div.left-header-list {
+    color: rgb(0, 0, 0);
+    padding-left: 0.25em;
+    font-size: 1em;
+    height: 12px;
+    line-height: 12px;
+}
+
+form.slider-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+button.button-submit {
+    width: 5em;
+    padding: 0.5em !important;
+}
+
+.btn-return, .btn-return:hover {
+    color: #fff;
+    background-color: rgb(36, 50, 73);
+}
+
+.btn-ok, .btn-ok:hover {
+    color: #fff;
+    background-color: rgb(221, 152, 62);
+}
+
+/*----------------------------------*/
+
+/*                輪播              */
+
+/*----------------------------------*/
+
+.carousel {
+    margin-top: -0.5em;
+}
+
+.carousel-item {
+    height: 30em;
+}
+
+.carousel-item img {
+    height: 30em;
+}
+
+/*----------------------------------*/
+
+/*            card框架              */
+
+/*----------------------------------*/
+
+div.work-total {
+    border-radius: 8px;
+    margin: 0.5em;
+}
+
+div.body-show {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+/*----------------------------------*/
+
+/*            card-header           */
+
+/*----------------------------------*/
+
+div.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8em 0 0 0;
+}
+
+div.text {
+    font-size: 1.2em;
+    margin-left: 5%;
+    font-weight: bolder;
+}
+
+hr.highlight {
+    width: 90%;
+    margin: 0.65em 0;
+}
+
+/*----------------------------------*/
+
+/*            card列表              */
+
+/*----------------------------------*/
+div.card-list {
+    display: flex;
+    align-items: center;
+    background: rgb(36, 50, 73);
+    width:90%;
+    margin-left: 5%;
+    margin-top: 0.6em;
+    height: 2em;
+    padding: 0.5em;
+    border-radius: 8px;
+}
+
+.triangle{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7px 8px 7px;
+    border-color:  transparent transparent rgb(192, 192, 192) transparent;
+}
+
+div.list-header {
+    color: rgb(255, 255, 255);
+    padding-left: 0.25em;
+    display: flex;
+    font-size: 1em;
+    height: 12px;
+    line-height: 12px;
+}
+
+button.card-list-btn {
+    margin-left: auto;
+    margin-right: -0.5em;
+}
+
+/*----------------------------------*/
+
+/*            card工作              */
+
+/*----------------------------------*/
+
+div.card-content {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin-top: 0.2em;
+    margin-left: 5%;
+    padding: 0.2em 0.8em 0.2em 0.2em;
+    justify-content: flex-end;
+}
+
+a.work-a {
+    width: 65%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: rgb(36, 50, 73);
+    text-decoration: none !important;
+}
+
+.fa-hand-point-left {
+    margin-left: 0.2em;
+}
+
+button.btn-work {
+    margin: 0;
+    padding: 0;
+    color: #17294C;
+}
+
+button.btn-work:hover {
+    color: rgb(243, 171, 76);
+}
+
+a.work-a :hover {
+    color: black;
+}
+
+i.fa-caret-left {
+    font-size: 20px;
+    padding-top: 0.25em;
+}
+
+i.fa-caret-left:focus {
+    color: #3F62A6;
+}
+
+/*----------------------------------*/
+
+/*            card-footer           */
+
+/*----------------------------------*/
+
+.card-footer {
+    padding: 1.25rem 1.25rem;
+    background-color: rgba(255, 255, 255, .03);
+    border-top: none;
+}
+
+/*----------------------------------*/
+
+/*            上傳                 */
+
+/*----------------------------------*/
+
+label.upload_cover {
+    position: relative;
+    left: 0.8em;
+    top: 0.15em;
+}
+
+#upload_input {
+    display: none;
+}
+
+/*----------------------------------*/
+
+/*            scroll                */
+
+/*----------------------------------*/
+
+/* ::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: rgb(143, 143, 143);
+} */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 0px 0 5px 0;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: #808080;
+}
+/*----------------------------------*/
+
+/*            ON/OFF 上方           */
+
+/*----------------------------------*/
+
+div.switch-move-top {
+    display: flex;
+    margin-left: auto;
+    margin-top: 0.1em;
+    margin-right: 1.5em;
+}
+
+label.switch-top {
+    position: relative;
+    display: inline-block;
+    top: 0.3em;
+    left: 1em;
+    margin-left: auto;
+    margin-right: 0.8em;
+    width: 45px;
+    height: 15px;
+}
+
+label.switch-top input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+span.slider-top {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(204, 204, 204);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+span.slider-top:before {
+    position: absolute;
+    content: "";
+    height: 0.8em;
+    width: 0.8em;
+    top: 1px;
+    left: 0px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+span.slider-top {
+    background-color: #FFA356;
+}
+
+input:focus+span.slider-top {
+    box-shadow: 0 0 1px #FFA356;
+}
+
+input:checked+span.slider-top:before {
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
+}
+
+/* Rounded sliders */
+
+span.slider-top, span.round-top {
+    border-radius: 30px;
+}
+
+span.slider-top:before, span.round-top:before {
+    border-radius: 50%;
+}
+
+/*----------------------------------*/
+
+/*            ON/OFF                */
+
+/*----------------------------------*/
+
+div.switch-move {
+    position: relative;
+    right: 3%;
+    display: flex;
+    align-items: center;
+}
+
+label.switch {
+    position: relative;
+    display: inline-block;
+    top: 0.3em;
+    left: 1em;
+    margin-left: auto;
+    margin-right: 0.8em;
+    width: 2em;
+    height: 0.5em;
+}
+
+label.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+span.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+span.slider:before {
+    position: absolute;
+    content: "";
+    height: 1em;
+    width: 1em;
+    top: -4px;
+    left: -3px;
+    bottom: 0px;
+    background-color: #FFA356;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+span.slider {
+    /* background-color: #FFA356; */
+    background-color: rgb(50, 47, 92);
+}
+
+input:focus+span.slider {
+    box-shadow: 0 0 1px #FFA356;
+}
+
+input:checked+span.slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+/* Rounded sliders */
+
+span.slider, span.round {
+    border-radius: 30px;
+}
+
+span.slider:before, span.round:before {
+    border-radius: 50%;
+}
+
+/*----------------------------------*/
+
+/*            modal卡片點選調整       */
+
+/*----------------------------------*/
+
+.modal-dialog, .modal-content {
+    /* 90% of window height */
+    /* height: 90%;
+        min-height: 90%;
+        width: 100%; */
+    background-color: #f4f5f7;
+    height: auto !important;
+    zoom: 0.9;
+    /* min-height: 80% !important; */
+    /* min-height: 100% !important; */
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    /* max-height: calc(100% - 120px); */
+    padding: 0 !important;
+    height: auto !important;
+}
+
+/* .modal-left{
+        position: absolute;
+        top:0;
+        width:70%;
+        height: auto !important;
+        background: #f3d4d3;
+    }
+    .modal-right{
+        position: absolute;
+        background: #c9cdf1;
+        top:0;
+        left:70%;
+        height: 100% !important;
+        width:30%;
+    } */
+
+/*----------------------------------*/
+
+/*            modal header          */
+
+/*----------------------------------*/
+
+div.modal-header {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+    border-bottom: none !important;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+
+div.modal-title {
+    font-size: 1.2em !important;
+    display: flex;
+    width: 100%;
+}
+div.modal-header-name{
+    width: 100%;
+    margin-bottom: 1em;
+    overflow: hidden;
+    opacity: 0.89;
+    caret-color: #2D4F41;
+    cursor: text;
+    border: none;
+    background: transparent;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    margin: -4px 4px;
+    min-height: 24px;
+    padding: 4px 8px;
+    resize: none;
+}
+/* div.modal-header-name {
+    min-height: 30px;
+}
+div.modal-header-name {
+    margin-left: 0.5em;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    margin: -4px -8px;
+    min-height: 24px;
+    height: 34px;
+    margin-left: 2%;
+} */
+
+/* textarea.mod-card-back-title {
+    background: transparent;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    margin: -4px -8px;
+    min-height: 24px;
+    padding: 4px 8px;
+    resize: none;
+    overflow-wrap: break-word;
+    height: 34px;
+    margin-left: 2%;
+    border: none;
+} */
+
+/*----------------------------------*/
+
+/*            modal標籤              */
+
+/*----------------------------------*/
+
+div.modal-label-left {
+    margin-left: 1.2em;
+}
+
+div.label-set {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 2em;
+    padding-right: 2em;
+}
+
+span.label-text {
+    height: 5px;
+    line-height: 5px;
+    padding: 0 8px;
+}
+
+i.label-icon {
+    margin-right: 0.7em;
+    margin-left: 0.1em;
+}
+
+div.modal-label-name {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    min-height: 18px;
+    min-width: 40px;
+}
+
+div.modal-label {
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+}
+
+button.modal-add-label {
+    position: relative;
+    bottom: 0.1em;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 20px;
+    width: 30px;
+    background: rgba(104, 100, 100, 0.13);
+    border: none;
+}
+
+span.modal-label-1 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #61bd4f;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 60px; */
+    text-align: center;
+}
+
+span.modal-label-2 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #f2d600;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 60px; */
+    text-align: center;
+}
+
+span.modal-label-3 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #ff9f1a;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 60px; */
+    text-align: center;
+}
+
+span.modal-label-4 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #eb5a46;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 45px; */
+}
+
+span.modal-label-5 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #c377e0;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 45px; */
+}
+
+span.modal-label-6 {
+    float: left;
+    font-size: 13px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    background-color: #0079bf;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 45px;
+    /* max-width: 45px; */
+}
+
+/*----------------------------------*/
+
+/*            modal到期日           */
+
+/*----------------------------------*/
+
+div.modal-timeout {
+    margin-left: 1.2em;
+}
+
+span.deadtime {
+    background: #17294C;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 0.3em 0.35em;
+    font-size: 0.9em;
+}
+
+i.timeout-icon {
+    margin-right: 0.5em;
+}
+
+div.modal-timeout-name {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    min-height: 18px;
+    min-width: 40px;
+}
+
+div.timeout {
+    margin: 0.5em 0 0.5em 2em;
+}
+
+/*----------------------------------*/
+
+/*            modal描述              */
+
+/*----------------------------------*/
+
+/* div.modal-description {
+    margin-left: 1.2em;
+}
+
+i.icon-description {
+    margin-right: 0.8em;
+}
+
+div.modal-description-name {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    min-height: 18px;
+    min-width: 40px;
+}
+
+textarea.describle-text {
+    width: 88%;
+    margin-left: 2em;
+    margin-top: 0.5em;
+} */
+
+/*----------------------------------*/
+
+/*            modal檔案              */
+
+/*----------------------------------*/
+
+div.modal-file {
+    margin-top: 0.5em;
+    margin-left: 1.2em;
+}
+
+div.modal-file-name {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    min-height: 18px;
+    min-width: 40px;
+}
+
+i.icon-file {
+    margin-right: 0.8em;
+}
+
+div.file-set {
+    margin-left: 2em;
+    width: 88%;
+    border-radius: 3px;
+    min-height: 80px;
+    position: relative;
+}
+
+a.box-rar {
+    background-color: rgba(9, 30, 66, .08);
+    background-position: 50%;
+    border-radius: 3px;
+    height: 80px;
+    margin-top: -40px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    text-align: center;
+    text-decoration: none;
+    z-index: 1;
+    width: 112px;
+}
+
+span.box-rar-text {
+    color: #6b778c;
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    height: 100%;
+    line-height: 80px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+p.file-set-show {
+    box-sizing: border-box;
+    padding: 8px 8px 8px 128px;
+    min-height: 80px;
+}
+
+.file-set-show .file-name {
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+.file-set:hover .file-set-show {
+    background-color: rgba(9, 30, 66, .08);
+}
+
+/*----------------------------------*/
+
+/*            modal會員              */
+
+/*----------------------------------*/
+
+div.modal-member {
+    margin-left: 1.2em;
+}
+
+i.icon-member {
+    margin-right: 0.4em;
+}
+
+div.modal-description-name {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    min-height: 18px;
+    min-width: 40px;
+}
+
+div.modal-member-show {
+    margin-left: 1.8em;
+    padding-right: 2em;
+}
+
+img.modal-member-photo {
+    border-radius: 50%;
+    height: 3em;
+    width: 3em;
+    margin: 0.75em 0.35em;
+}
+
+/*----------------------------------*/
+
+/*            modal編輯按鈕          */
+
+/*----------------------------------*/
+
+.edit-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2.6em;
+    margin-bottom: 1.5em;
+}
+
+a.modal-btn-set {
+    background: #3F62A6;
+    color: #fff;
+}
+
+a.modal-btn-set:hover {
+    color: #fff;
+}
+
+.btn-edit, .btn-edit:hover {
+    color: #fff;
+    background-color: rgb(221, 152, 62);
+}
+
+/*----------------------------------*/
+
+/*            @media                */
+
+/*----------------------------------*/
+
+@media screen and (min-width:1300px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 30%;
+        max-width: 30%;
+        margin-left: 1.5%;
+        margin-right: 1.5%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width:1299px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 30%;
+        max-width: 30%;
+        margin-left: 1.5%;
+        margin-right: 1.5%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    div.slider-left{
+        top: 3.8em;
+        zoom:0.8;
+    }
+}
+
+@media screen and (max-width:1099px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 40%;
+        max-width: 40%;
+        margin-left: 4.75%;
+        margin-right: 4.75%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    div.slider-left{
+        top: 4.2em;
+        zoom:0.8;
+    }
+}
+
+@media screen and (max-width:920px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 70%;
+        max-width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width:875px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 70%;
+        max-width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width:685px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 80%;
+        max-width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width:550px) {
+    div.mywork {
+        box-sizing: border-box;
+        min-width: 95%;
+        max-width: 95%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: rgb(235, 235, 235);
+        border: none;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+
+/* @media screen and (max-width:360px) {
+    div.mywork {
+        float: left;
+        box-sizing: border-box;
+        min-width: 20rem;
+        max-width: 20rem;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-bottom: 1em;
+        border-radius: 10px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+} */
+
+/* @media screen and (max-width:320px) {
+    div.mywork {
+        float: left;
+        box-sizing: border-box;
+        min-width: 18rem;
+        max-width: 18rem;
+        min-height: 30em;
+        max-height: 30em;
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-bottom: 1em;
+        border-radius: 10px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    div.work-name {
+        display: inline-block;
+        font-size: 1em;
+        margin-left: 0.5em;
+        width: 5em;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    div.slider-left {
+        position: fixed;
+        float: left;
+        top: 3.5em;
+        left: 0;
+        margin-left: -100%;
+        width: 300px;
+        height: 100%;
+        z-index: 10000000;
+        background: rgb(219, 219, 219);
+    }
+} */

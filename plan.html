@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+
+<head>
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/kendo.common-material.min.css">
+    <link rel="stylesheet" href="./css/kendo.material.min.css">
+    <!--MyCss-->
+    <link rel="stylesheet" href="./css/Navbar.css">
+    <link rel="stylesheet" href="./css/Plan.css">
+    <!---->
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+</head>
+
+<body class="body">
+    <!--------------------------navbar-------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+
+        <div class="nav-brand">PlanYourself</div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav">
+                <li>
+                    <a href="Member.html"> <i class="far fa-user fa-lg"></i>會員</a>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fas fa-book fa-lg"></i>計畫</a>
+                </li>
+                <li>
+                    <a href="Mywork.html"> <i class="far fa-edit fa-lg"></i>我的工作</a>
+                </li>
+            </ul>
+
+            <div class="search">
+                <div class="test">
+                    <input class="search-input" type="text" name="search" placeholder="查詢計畫(#123456)">
+                    <a href="#" id="SearchForBox"><i class="fas fa-search search-icon"></i></a>
+                </div>
+                <div class="Search_Box">
+                    <span class="badge ProjectNameTitle">計畫名稱</span>
+                    <br>
+                    <div class="ProjectName">
+                        計畫名稱顯示這邊
+                    </div>
+                    <hr class="ProjectHr">
+                    <span class="badge ProjectNameTitle">輸入計畫密碼</span>
+                    <input class="Search_Box_Password" type="text" placeholder="輸入專案密碼">
+                    <br>
+                    <div class="ButtonGroup">
+                        <button type="button" class="btn btn-warning BtnSend">送出</button>
+                        <button type="button" class="btn btn-danger BtnCancel">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="study-logout">
+                <button class="btn btn-light btn-navbar-study" type="submit" id="show-carousel"><i
+                        class="fas fa-question-circle fa-lg" style="padding-right:5px;"></i>教學</button>
+                <button class="btn btn-danger btn-navbar-logout" type="submit" style="margin-left:0.5em;"
+                    onclick="location.href='login.html'"><i class="fas fa-sign-out-alt"
+                        style="padding-right:5px;"></i>登出</button>
+            </div>
+
+        </div>
+
+    </nav>
+    <!----------------------------------------------------------------->
+    
+    <div class="container-fluid">
+        <!-----------------------------組會員&管理者--------------------------------->
+        <div class="member-bottom" id="member">
+            <div class="plan-name">我的計畫</div>
+            <div class="hr-set"></div>
+            <div class="admin-name">管理者</div>
+
+            <div class="administrator-img" id="admin-move">
+                <div class="member-img-trash">
+                    <img src="imgs/gray-cat.png" class="img-photo">
+                </div>
+                <div class="member-img-trash">
+                    <img src="imgs/gray-cat.png" class="img-photo">
+                </div>
+                <div class="member-img-trash">
+                    <img src="imgs/gray-cat.png" class="img-photo">
+                </div>
+            </div>
+
+            <!-- <div class="hr-set">
+                <div class="hightline"></div>
+            </div> -->
+
+            <div class="admin-name">成員</div>
+            <div class="member-img" id="member-move">
+                <div class="member-img-trash">
+                    <img src="imgs/gray-cat.png" class="img-photo">
+                    <a href="#"><img src="imgs/delete1.png" class="member-delete-icon"></a>
+                </div>
+                <div class="member-img-trash">
+                    <img src="imgs/gray-cat.png" class="img-photo">
+                    <a href="#"><img src="imgs/delete1.png" class="member-delete-icon"></a>
+                </div>
+                <div class="member-img-trash">
+                    <img src="imgs/gray-cat.png" class="img-photo">
+                    <a href="#"><img src="imgs/delete1.png" class="member-delete-icon"></a>
+                </div>
+            </div>
+
+            <div class="admin-set">
+                <button class="btn btn-light btn-admin-set" data-toggle="modal" data-target="#member-set"><i
+                        class="fas fa-cog fa-lg" style="padding-right:5px;"></i>設定</button>
+                <button class="btn btn-light btn-admin-set" id="member-delete"><i class="fas fa-trash-alt fa-lg"
+                        style="padding-right:5px;"></i>刪除</button>
+            </div>
+
+        </div>
+        <!-----------------------------bottom結束--------------------------------->
+        <!--輪播-->
+    <div id="PlanCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+        <ol class="carousel-indicators">
+            <li data-target="#PlanCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#PlanCarousel" data-slide-to="1"></li>
+            <li data-target="#PlanCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./imgs/photo-1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./imgs/photo-2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./imgs/photo-3.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#PlanCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#PlanCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!---->
+        <!--列表-->
+        <div class="deck" id="work-total-move">
+            <div class="work-total">
+                <div class="work-header">
+                    <input id="GetInputValue" type="text" class="form-control input-style" placeholder="尚未開始">
+                    <div class="drpdown">
+                        <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu" style="min-width: 12em !important;"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="drop-right-header-title">
+                                <span class="drop-right-title">列表動作</span>
+                            </div>
+                            <div class="dropdown-right-content">
+                                <ul class="dropdown-right-list">
+                                    <li><a href="#">新增卡片</a></li>
+                                    <li><a href="#">刪除這個列表的所有卡片</a></li>
+                                    <li><a href="#">封存這個列表</a></li>
+                                </ul>
+                                <ul class="dropdown-right-list" data-stopPropagation="true">
+                                    <div class="dropdown-list-move">
+                                        <li><a href="#" id="dropdown-list-show-1">移動列表</a></li>
+                                        <div class="dropdown-content-list">
+                                            <a href="#" class="add-label-icon-a" id="move-list-off-1">
+                                                <i class="fas fa-times close-list-icon"></i>
+                                            </a>
+                                            <div class="move-list">
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">看板</span>
+                                                        <span class="move-value" id="move-list-value"
+                                                            onmousemove="removeClassType(this)">個人事項</span>
+                                                        <select id="drop-list-value"
+                                                            onchange="move_list_Value(this.id)">
+                                                            <optgroup label="計畫">
+                                                                <option>我的計畫</option>
+                                                                <option>我的計畫2</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">位置</span>
+                                                        <span class="move-value" id="drop-move-get-position"
+                                                            onmousemove="removeClassType(this)">1</span>
+                                                        <select id="drop-position-value"
+                                                            onchange="drop_position_value(this.id)">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <button class="move-btn">移動</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-body" id="work-body-move-1">
+                    <!--卡片-->
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">需要研究</span></span>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)">預估10天</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">架設上去</span></span>
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">node.js</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            使用vue.js
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">html</span></span>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)">jquery</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">css</span></span>
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">javascript</span></span>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)">bootstrap</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">jqueryUI</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            做出部落格的網站
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">UI設計</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            UI設計
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--點選新增卡片出現的框架##可以刪除-->
+                    <div class="card add-card">
+                        <textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
+                    </div>
+                    <!---->
+                </div>
+                <!---->
+                <!--列表尾部-->
+                <div class="card-footer">
+                    <a href="#" class="a-footer add-card-textarea">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+                <!---->
+            </div>
+            <div class="work-total">
+                <div class="work-header">
+                    <input type="text" class="form-control input-style" placeholder="執行中">
+                    <div class="drodown">
+                        <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu" style="min-width: 12em !important;"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="drop-right-header-title">
+                                <span class="drop-right-title">列表動作</span>
+                            </div>
+                            <div class="dropdown-right-content">
+                                <ul class="dropdown-right-list">
+                                    <li><a href="#">新增卡片</a></li>
+                                    <li><a href="#">刪除這個列表的所有卡片</a></li>
+                                    <li><a href="#">封存這個列表</a></li>
+                                </ul>
+                                <ul class="dropdown-right-list" data-stopPropagation="true">
+                                    <div class="dropdown-list-move">
+                                        <li><a class="js-move-list" href="#" id="dropdown-list-show-2">移動列表</a></li>
+                                        <div class="dropdown-content-list">
+                                            <a href="#" class="add-label-icon-a" id="move-list-off-2">
+                                                <i class="fas fa-times close-list-icon"></i></a>
+                                            <div class="move-list">
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">看板</span>
+                                                        <span class="move-value" id="move-list-value"
+                                                            onmousemove="removeClassType(this)">個人事項</span>
+                                                        <select id="drop-list-value"
+                                                            onchange="move_list_Value(this.id)">
+                                                            <optgroup label="計畫">
+                                                                <option>我的計畫</option>
+                                                                <option>我的計畫2</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">位置</span>
+                                                        <span class="move-value" id="drop-move-get-position"
+                                                            onmousemove="removeClassType(this)">1</span>
+                                                        <select id="drop-position-value"
+                                                            onchange="drop_position_value(this.id)">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <button class="move-btn">移動</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-body" id="work-body-move-2">
+                    <!--卡片-->
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">需要測試</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            javascript問題待修正
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">顏色配色</span></span>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)">使用者想法</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">創意巧思</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            顏色配色、使用者想法、創意巧思
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--點選新增卡片出現的框架##可以刪除-->
+                    <div class="card add-card">
+                        <textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
+                    </div>
+                    <!---->
+                </div>
+                <!---->
+                <!--列表尾部-->
+                <div class="card-footer">
+                    <a href="#" class="a-footer add-card-textarea">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+                <!---->
+            </div>
+
+            <div class="work-total">
+                <div class="work-header">
+                    <input type="text" class="form-control input-style" placeholder="執行中">
+                    <div class="drodown">
+                        <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu" style="min-width: 12em !important;"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="drop-right-header-title">
+                                <span class="drop-right-title">列表動作</span>
+                            </div>
+                            <div class="dropdown-right-content">
+                                <ul class="dropdown-right-list">
+                                    <li><a href="#">新增卡片</a></li>
+                                    <li><a href="#">刪除這個列表的所有卡片</a></li>
+                                    <li><a href="#">封存這個列表</a></li>
+                                </ul>
+                                <ul class="dropdown-right-list" data-stopPropagation="true">
+                                    <div class="dropdown-list-move">
+                                        <li><a class="js-move-list" href="#" id="dropdown-list-show-2">移動列表</a></li>
+                                        <div class="dropdown-content-list">
+                                            <a href="#" class="add-label-icon-a" id="move-list-off-2">
+                                                <i class="fas fa-times close-list-icon"></i></a>
+                                            <div class="move-list">
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">看板</span>
+                                                        <span class="move-value" id="move-list-value"
+                                                            onmousemove="removeClassType(this)">個人事項</span>
+                                                        <select id="drop-list-value"
+                                                            onchange="move_list_Value(this.id)">
+                                                            <optgroup label="計畫">
+                                                                <option>我的計畫</option>
+                                                                <option>我的計畫2</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">位置</span>
+                                                        <span class="move-value" id="drop-move-get-position"
+                                                            onmousemove="removeClassType(this)">1</span>
+                                                        <select id="drop-position-value"
+                                                            onchange="drop_position_value(this.id)">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <button class="move-btn">移動</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-body" id="work-body-move-2">
+                    <!--卡片-->
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">需要測試</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            javascript問題待修正
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">顏色配色</span></span>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)">使用者想法</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">創意巧思</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            顏色配色、使用者想法、創意巧思
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--點選新增卡片出現的框架##可以刪除-->
+                    <div class="card add-card">
+                        <textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
+                    </div>
+                    <!---->
+                </div>
+                <!---->
+                <!--列表尾部-->
+                <div class="card-footer">
+                    <a href="#" class="a-footer add-card-textarea">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+                <!---->
+            </div>
+            <div class="work-total">
+                <div class="work-header">
+                    <input type="text" class="form-control input-style" placeholder="執行中">
+                    <div class="drodown">
+                        <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu" style="min-width: 12em !important;"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="drop-right-header-title">
+                                <span class="drop-right-title">列表動作</span>
+                            </div>
+                            <div class="dropdown-right-content">
+                                <ul class="dropdown-right-list">
+                                    <li><a href="#">新增卡片</a></li>
+                                    <li><a href="#">刪除這個列表的所有卡片</a></li>
+                                    <li><a href="#">封存這個列表</a></li>
+                                </ul>
+                                <ul class="dropdown-right-list" data-stopPropagation="true">
+                                    <div class="dropdown-list-move">
+                                        <li><a class="js-move-list" href="#" id="dropdown-list-show-2">移動列表</a></li>
+                                        <div class="dropdown-content-list">
+                                            <a href="#" class="add-label-icon-a" id="move-list-off-2">
+                                                <i class="fas fa-times close-list-icon"></i></a>
+                                            <div class="move-list">
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">看板</span>
+                                                        <span class="move-value" id="move-list-value"
+                                                            onmousemove="removeClassType(this)">個人事項</span>
+                                                        <select id="drop-list-value"
+                                                            onchange="move_list_Value(this.id)">
+                                                            <optgroup label="計畫">
+                                                                <option>我的計畫</option>
+                                                                <option>我的計畫2</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">位置</span>
+                                                        <span class="move-value" id="drop-move-get-position"
+                                                            onmousemove="removeClassType(this)">1</span>
+                                                        <select id="drop-position-value"
+                                                            onchange="drop_position_value(this.id)">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <button class="move-btn">移動</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-body" id="work-body-move-2">
+                    <!--卡片-->
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">需要測試</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            javascript問題待修正
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">顏色配色</span></span>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)">使用者想法</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">創意巧思</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            顏色配色、使用者想法、創意巧思
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--點選新增卡片出現的框架##可以刪除-->
+                    <div class="card add-card">
+                        <textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
+                    </div>
+                    <!---->
+                </div>
+                <!---->
+                <!--列表尾部-->
+                <div class="card-footer">
+                    <a href="#" class="a-footer add-card-textarea">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+                <!---->
+            </div>
+            <div class="work-total">
+                <div class="work-header">
+                    <input type="text" class="form-control input-style" placeholder="執行中">
+                    <div class="drodown">
+                        <button class="btn btn-link btn-header" type="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu" style="min-width: 12em !important;"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="drop-right-header-title">
+                                <span class="drop-right-title">列表動作</span>
+                            </div>
+                            <div class="dropdown-right-content">
+                                <ul class="dropdown-right-list">
+                                    <li><a href="#">新增卡片</a></li>
+                                    <li><a href="#">刪除這個列表的所有卡片</a></li>
+                                    <li><a href="#">封存這個列表</a></li>
+                                </ul>
+                                <ul class="dropdown-right-list" data-stopPropagation="true">
+                                    <div class="dropdown-list-move">
+                                        <li><a class="js-move-list" href="#" id="dropdown-list-show-2">移動列表</a></li>
+                                        <div class="dropdown-content-list">
+                                            <a href="#" class="add-label-icon-a" id="move-list-off-2">
+                                                <i class="fas fa-times close-list-icon"></i></a>
+                                            <div class="move-list">
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">看板</span>
+                                                        <span class="move-value" id="move-list-value"
+                                                            onmousemove="removeClassType(this)">個人事項</span>
+                                                        <select id="drop-list-value"
+                                                            onchange="move_list_Value(this.id)">
+                                                            <optgroup label="計畫">
+                                                                <option>我的計畫</option>
+                                                                <option>我的計畫2</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">位置</span>
+                                                        <span class="move-value" id="drop-move-get-position"
+                                                            onmousemove="removeClassType(this)">1</span>
+                                                        <select id="drop-position-value"
+                                                            onchange="drop_position_value(this.id)">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <button class="move-btn">移動</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-body" id="work-body-move-2">
+                    <!--卡片-->
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">需要測試</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            javascript問題待修正
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card work-card">
+                        <div class="work-card-header">
+                            <span class="card-label-1"><span class="label-text"
+                                    onmousemove="removeClassType(this)">顏色配色</span></span>
+                            <span class="card-label-2"><span class="label-text"
+                                    onmousemove="removeClassType(this)">使用者想法</span></span>
+                            <span class="card-label-3"><span class="label-text"
+                                    onmousemove="removeClassType(this)">創意巧思</span></span>
+                        </div>
+                        <div class="work-name" data-toggle="modal" data-target="#show-modal">
+                            顏色配色、使用者想法、創意巧思
+                        </div>
+                        <div class="work-card-bottom" data-toggle="modal" data-target="#show-modal">
+                            <span class="deadtime"><i class="far fa-clock"></i>5月5日</span>
+                            <div class="work-img">
+                                <img src="imgs/gray-cat.png" class="work-img-photo">
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--點選新增卡片出現的框架##可以刪除-->
+                    <div class="card add-card">
+                        <textarea class="card-add-text card-textarea" placeholder="為這張卡片輸入標題..."></textarea>
+                    </div>
+                    <!---->
+                </div>
+                <!---->
+                <!--列表尾部-->
+                <div class="card-footer">
+                    <a href="#" class="a-footer add-card-textarea">
+                        <div class="footer-name">
+                            <i class="fas fa-plus"></i>
+                            新增另外一張卡片
+                        </div>
+                    </a>
+                </div>
+                <!---->
+            </div>
+            <!---->
+            <!--新增列表-->
+            <div class="add-list">
+                <div class="add-list-header">
+                    <a href="#" id="add-list">
+                        <input type="text" class="form-control add-input-style" placeholder="新增工作列表"
+                            id="add-list-input">
+                    </a>
+                    <div class="add-list-submit">
+                        <button class="btn btn-danger btn-add-list">新增列表</button>
+                        <a href="#" id="add-cancel">
+                            <i class="fas fa-times fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <!--組長推播-->
+            <a href="#" class="admin-push-text" data-target="#modal-admin-push" data-toggle="modal"><i
+                    class="fas fa-bell"></i></a>
+            <!---->
+        </div>
+        <!-- Modal 點選卡片出現 -->
+        <div class="modal fade bd-example-modal-lg" id="show-modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <!--標題-->
+                    <div class="modal-header">
+                        <i class="far fa-credit-card fa-lg" style="font-size: 1.5em;"></i>
+                        <div id="work_title" class="mod-card-back-title" role="textbox" contenteditable="true">html
+                            手機模式下列表會消失 修正問題</div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!---->
+                    <!--狀態位置-->
+                    <p class="u-inline-block">
+                        在「
+                        <a href="#">
+                            <u id="workInList">尚未完成</u>
+                        </a>
+                        」列表中
+                    </p>
+                    <!---->
+                    <!--畫面分割兩塊-->
+                    <div class="modal-body">
+                        <div class="row no-gutters">
+                            <!--左邊區塊-->
+                            <div class="col-md-8">
+                                <!--成員-->
+                                <div class="modal-member">
+                                    <div class="modal-description-header">
+                                        <i class="fas fa-user icon-member fa-lg"></i>
+                                        <div class="modal-description-name">成員</div>
+                                    </div>
+                                    <div class="modal-member-show">
+                                        <img src="imgs/gray-cat.png" class="modal-member-photo">
+                                    </div>
+                                </div>
+                                <!---->
+                                <!--標籤-->
+                                <div class="modal-label-left">
+                                    <div class="modal-label-header">
+                                        <i class="far fa-bookmark label-icon fa-lg"></i>
+                                        <div class="modal-label-name">標籤</div>
+                                    </div>
+                                    <div class="label-set">
+                                        <div class="modal-label" name="modal-label-show">
+                                            <span class="modal-label-1"><span class="label-text"
+                                                    onmousemove="removeClassType(this)">功能</span></span>
+                                            <span class="modal-label-2"><span class="label-text"
+                                                    onmousemove="removeClassType(this)">功能</span></span>
+                                            <span class="modal-label-3"><span class="label-text"
+                                                    onmousemove="removeClassType(this)">太長會無法處理</span></span>
+                                            <span class="modal-label-2"><span class="label-text"
+                                                    onmousemove="removeClassType(this)">太長會無法處理12312312太長會無</span></span>
+                                            <span class="modal-label-2"><span class="label-text"
+                                                    onmousemove="removeClassType(this)">太長</span></span>
+                                            <span class="modal-label-2"><span class="label-text"
+                                                    onmousemove="removeClassType(this)">給他五個字</span></span>
+
+                                            <!--左側新增標籤-->
+                                            <div class="dropdown-total">
+                                                <button class="modal-add-label" href="#" role="button" id="add-label"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                                        class="fas fa-plus"></i></button>
+                                                <div class="dropdown-menu" aria-labelledby="add-label"
+                                                    data-stopPropagation="true">
+                                                    <div class="dropdown-label-header">
+                                                        <span class="dropdown-label-header-title">標籤</span>
+                                                    </div>
+                                                    <div class="label-color-all" name="label-color-all-right">
+                                                        <div class="label-total">
+                                                            <a href="#" class="label-color-green-a"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-green-a">
+                                                                測試
+                                                            </a>
+                                                            <!--左側編輯標籤-->
+                                                            <div class="dropdown-edit">
+                                                                <button class="label-color-edit-btn"
+                                                                    id="edit-label-dropdown-1">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
+                                                                <div class="dropdown-content"
+                                                                    data-stopPropagation="true" id="dropdown-content-1">
+                                                                    <span class="dropdown-label-header-title">
+                                                                        改變標籤
+                                                                        <a href="#" class="add-label-icon-a"
+                                                                            name="label-edit-off">
+                                                                            <i
+                                                                                class="fas fa-times change-label-icon"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                    <div class="label-color-total">
+                                                                        <label class="label-name">名字</label>
+                                                                        <input class="label-edit-input-search"
+                                                                            id="label-edit-input-search-1" type="text">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                id="add-label-edit-btn-1">儲存</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--左側編輯標籤結束-->
+                                                        </div>
+                                                        <div class="label-total">
+                                                            <a href="#" class="label-color-yellow-a"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-yellow-a">
+                                                                測試
+                                                            </a>
+                                                            <!--左側編輯標籤-->
+                                                            <div class="dropdown-edit">
+                                                                <button class="label-color-edit-btn"
+                                                                    id="edit-label-dropdown-2">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
+                                                                <div class="dropdown-content"
+                                                                    data-stopPropagation="true" id="dropdown-content-2">
+                                                                    <span class="dropdown-label-header-title">
+                                                                        改變標籤
+                                                                        <a href="#" class="add-label-icon-a"
+                                                                            name="label-edit-off">
+                                                                            <i
+                                                                                class="fas fa-times change-label-icon"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                    <div class="label-color-total">
+                                                                        <label class="label-name">名字</label>
+                                                                        <input class="label-edit-input-search"
+                                                                            id="label-edit-input-search-2" type="text">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                id="add-label-edit-btn-2">儲存</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--左側編輯標籤結束-->
+                                                        </div>
+                                                        <div class="label-total">
+                                                            <a href="#" class="label-color-orange-a"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-orange-a">
+                                                                測試
+                                                            </a>
+                                                            <!--左側編輯標籤-->
+                                                            <div class="dropdown-edit">
+                                                                <button class="label-color-edit-btn"
+                                                                    id="edit-label-dropdown-3">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
+                                                                <div class="dropdown-content"
+                                                                    data-stopPropagation="true" id="dropdown-content-3">
+                                                                    <span class="dropdown-label-header-title">
+                                                                        改變標籤
+                                                                        <a href="#" class="add-label-icon-a"
+                                                                            name="label-edit-off">
+                                                                            <i
+                                                                                class="fas fa-times change-label-icon"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                    <div class="label-color-total">
+                                                                        <label class="label-name">名字</label>
+                                                                        <input class="label-edit-input-search"
+                                                                            id="label-edit-input-search-3" type="text">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                id="add-label-edit-btn-3">儲存</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--左側編輯標籤結束-->
+                                                        </div>
+                                                        <div class="label-total">
+                                                            <a href="#" class="label-color-red-a"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-red-a">
+                                                                測試
+                                                            </a>
+                                                            <!--左側編輯標籤-->
+                                                            <div class="dropdown-edit">
+                                                                <button class="label-color-edit-btn"
+                                                                    id="edit-label-dropdown-4">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
+                                                                <div class="dropdown-content"
+                                                                    data-stopPropagation="true" id="dropdown-content-4">
+                                                                    <span class="dropdown-label-header-title">
+                                                                        改變標籤
+                                                                        <a href="#" class="add-label-icon-a"
+                                                                            name="label-edit-off">
+                                                                            <i
+                                                                                class="fas fa-times change-label-icon"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                    <div class="label-color-total">
+                                                                        <label class="label-name">名字</label>
+                                                                        <input class="label-edit-input-search"
+                                                                            id="label-edit-input-search-4" type="text">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                id="add-label-edit-btn-4">儲存</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--左側編輯標籤結束-->
+                                                        </div>
+                                                        <div class="label-total">
+                                                            <a href="#" class="label-color-purple-a"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-purple-a">
+                                                                測試
+                                                            </a>
+                                                            <!--左側編輯標籤-->
+                                                            <div class="dropdown-edit">
+                                                                <button class="label-color-edit-btn"
+                                                                    id="edit-label-dropdown-5">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
+                                                                <div class="dropdown-content"
+                                                                    data-stopPropagation="true" id="dropdown-content-5">
+                                                                    <span class="dropdown-label-header-title">
+                                                                        改變標籤
+                                                                        <a href="#" class="add-label-icon-a"
+                                                                            name="label-edit-off">
+                                                                            <i
+                                                                                class="fas fa-times change-label-icon"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                    <div class="label-color-total">
+                                                                        <label class="label-name">名字</label>
+                                                                        <input class="label-edit-input-search"
+                                                                            id="label-edit-input-search-5" type="text">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                id="add-label-edit-btn-5">儲存</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--左側編輯標籤結束-->
+                                                        </div>
+                                                        <div class="label-total">
+                                                            <a href="#" class="label-color-blue-a"
+                                                                onmousemove="removeClassType(this)"
+                                                                id="label-color-blue-a">
+                                                                測試
+                                                            </a>
+                                                            <!--左側編輯標籤-->
+                                                            <div class="dropdown-edit">
+                                                                <button class="label-color-edit-btn"
+                                                                    id="edit-label-dropdown-6">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </button>
+                                                                <div class="dropdown-content"
+                                                                    data-stopPropagation="true" id="dropdown-content-6">
+                                                                    <span class="dropdown-label-header-title">
+                                                                        改變標籤
+                                                                        <a href="#" class="add-label-icon-a"
+                                                                            name="label-edit-off">
+                                                                            <i
+                                                                                class="fas fa-times change-label-icon"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                    <div class="label-color-total">
+                                                                        <label class="label-name">名字</label>
+                                                                        <input class="label-edit-input-search"
+                                                                            id="label-edit-input-search-6" type="text">
+                                                                        <div class="label-edit-btn-set">
+                                                                            <button class="btn-save"
+                                                                                id="add-label-edit-btn-6">儲存</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--左側編輯標籤結束-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--左側點選新增標籤結束-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---->
+                                <!--到期日-->
+                                <div class="modal-timeout">
+                                    <div class="modal-timeout-header">
+                                        <i class="far fa-clock timeout-icon fa-lg"></i>
+                                        <div class="modal-timeout-name">到期日</div>
+                                    </div>
+                                    <div class="timeout">
+                                        <span class="deadtime"><i class="far fa-clock"></i>5月5日 下午7點12分</span>
+                                    </div>
+                                </div>
+                                <!---->
+                                <!--檔案-->
+                                <div class="modal-file">
+                                    <div class="modal-file-header">
+                                        <i class="far fa-file icon-file fa-lg"></i>
+                                        <div class="modal-file-name">下載附件</div>
+                                    </div>
+                                    <div class="file-set">
+                                        <a class="box-rar" download href="./test.rar">
+                                            <span class="box-rar-text">rar</span>
+                                        </a>
+                                        <p class="file-set-show">
+                                            <a download href="./test.rar" class="file-name">2.0.rar</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                            <!--右側區塊-->
+                            <div class="col-md-4">
+                                <!--新增至卡片區塊-->
+                                <div class="add-to-card">
+                                    <div class="add-to-card-name">新增至卡片</div>
+                                    <!--成員-->
+                                    <div class="dropdown-member">
+                                        <a class="button-link js-change-card-members" href="#" role="button"
+                                            id="dropdown-member" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="far fa-user" style="margin-right: 0.35em;"></i>
+                                                成員
+                                            </span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-member">
+                                            <span class="pop-over-header-title">成員</span>
+                                            <div class="dropdown-member-edit">
+                                                <a class="dropdown-img-member-set" href="#">
+                                                    <img src="imgs/gray-cat.png" class="dropdown-member-img">
+                                                    <div class="member-name">張智皓(JD12358)</div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <!--右側標籤-->
+                                    <div class="dropdown-right-total">
+                                        <a class="button-link" href="#" role="button" id="add-right-label"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="far fa-bookmark" style="margin-right: 0.65em;"></i>
+                                                標籤
+                                            </span>
+                                        </a>
+
+                                        <!--右邊的標籤第一層-->
+                                        <div class="dropdown-menu" aria-labelledby="add-right-label"
+                                            data-stopPropagation="true">
+                                            <div class="dropdown-label-header">
+                                                <span class="dropdown-label-header-title">標籤</span>
+                                            </div>
+                                            <div class="label-color-all" name="label-color-all-right">
+                                                <div class="label-total">
+                                                    <a href="#" class="label-color-green-a"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-green-a-right">文字測試</a>
+                                                    <!--右邊的標籤點選編輯層-->
+                                                    <div class="dropdown-edit">
+                                                        <button class="label-color-edit-btn" id="edit-right-dropdown-1">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <div class="dropdown-content-right" data-stopPropagation="true"
+                                                            id="dropdown-content-right-1">
+                                                            <span class="dropdown-label-header-title">改變標籤
+                                                                <a href="#" class="add-label-icon-a"
+                                                                    name="label-edit-off">
+                                                                    <i class="fas fa-times change-label-icon"></i>
+                                                                </a>
+                                                            </span>
+                                                            <div class="label-color-total">
+                                                                <label class="label-name">名字</label>
+                                                                <input class="label-edit-input-search"
+                                                                    id="label-edit-input-search-right-1" type="text">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        id="add-label-edit-btn-right-1">儲存</button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--右邊的標籤點選編輯層結束-->
+                                                </div>
+                                                <div class="label-total">
+                                                    <a href="#" class="label-color-yellow-a"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-yellow-a-right">文字測試</a>
+                                                    <!--右邊的標籤點選編輯層-->
+                                                    <div class="dropdown-edit">
+                                                        <button class="label-color-edit-btn" id="edit-right-dropdown-2">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <div class="dropdown-content-right" data-stopPropagation="true"
+                                                            id="dropdown-content-right-2">
+                                                            <span class="dropdown-label-header-title">改變標籤
+                                                                <a href="#" class="add-label-icon-a"
+                                                                    name="label-edit-off">
+                                                                    <i class="fas fa-times change-label-icon"></i>
+                                                                </a>
+                                                            </span>
+                                                            <div class="label-color-total">
+                                                                <label class="label-name">名字</label>
+                                                                <input class="label-edit-input-search"
+                                                                    id="label-edit-input-search-right-2" type="text">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        id="add-label-edit-btn-right-2">儲存</button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--右邊的標籤點選編輯層結束-->
+                                                </div>
+                                                <div class="label-total">
+                                                    <a href="#" class="label-color-orange-a"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-orange-a-right">文字測試</a>
+                                                    <!--右邊的標籤點選編輯層-->
+                                                    <div class="dropdown-edit">
+                                                        <button class="label-color-edit-btn" id="edit-right-dropdown-3">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <div class="dropdown-content-right" data-stopPropagation="true"
+                                                            id="dropdown-content-right-3">
+                                                            <span class="dropdown-label-header-title">改變標籤
+                                                                <a href="#" class="add-label-icon-a"
+                                                                    name="label-edit-off">
+                                                                    <i class="fas fa-times change-label-icon"></i>
+                                                                </a>
+                                                            </span>
+                                                            <div class="label-color-total">
+                                                                <label class="label-name">名字</label>
+                                                                <input class="label-edit-input-search"
+                                                                    id="label-edit-input-search-right-3" type="text">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        id="add-label-edit-btn-right-3">儲存</button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--右邊的標籤點選編輯層結束-->
+                                                </div>
+                                                <div class="label-total">
+                                                    <a href="#" class="label-color-red-a"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-red-a-right">文字測試</a>
+                                                    <!--右邊的標籤點選編輯層-->
+                                                    <div class="dropdown-edit">
+                                                        <button class="label-color-edit-btn" id="edit-right-dropdown-4">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <div class="dropdown-content-right" data-stopPropagation="true"
+                                                            id="dropdown-content-right-4">
+                                                            <span class="dropdown-label-header-title">改變標籤
+                                                                <a href="#" class="add-label-icon-a"
+                                                                    name="label-edit-off">
+                                                                    <i class="fas fa-times change-label-icon"></i>
+                                                                </a>
+                                                            </span>
+                                                            <div class="label-color-total">
+                                                                <label class="label-name">名字</label>
+                                                                <input class="label-edit-input-search"
+                                                                    id="label-edit-input-search-right-4" type="text">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        id="add-label-edit-btn-right-4">儲存</button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--右邊的標籤點選編輯層結束-->
+                                                </div>
+                                                <div class="label-total">
+                                                    <a href="#" class="label-color-purple-a"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-purple-a-right">文字測試</a>
+                                                    <!--右邊的標籤點選編輯層-->
+                                                    <div class="dropdown-edit">
+                                                        <button class="label-color-edit-btn" id="edit-right-dropdown-5">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <div class="dropdown-content-right" data-stopPropagation="true"
+                                                            id="dropdown-content-right-5">
+                                                            <span class="dropdown-label-header-title">改變標籤
+                                                                <a href="#" class="add-label-icon-a"
+                                                                    name="label-edit-off">
+                                                                    <i class="fas fa-times change-label-icon"></i>
+                                                                </a>
+                                                            </span>
+                                                            <div class="label-color-total">
+                                                                <label class="label-name">名字</label>
+                                                                <input class="label-edit-input-search"
+                                                                    id="label-edit-input-search-right-5" type="text">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        id="add-label-edit-btn-right-5">儲存</button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--右邊的標籤點選編輯層結束-->
+                                                </div>
+                                                <div class="label-total">
+                                                    <a href="#" class="label-color-blue-a"
+                                                        onmousemove="removeClassType(this)"
+                                                        id="label-color-blue-a-right">文字測試</a>
+                                                    <!--右邊的標籤點選編輯層-->
+                                                    <div class="dropdown-edit">
+                                                        <button class="label-color-edit-btn" id="edit-right-dropdown-6">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <div class="dropdown-content-right" data-stopPropagation="true"
+                                                            id="dropdown-content-right-6">
+                                                            <span class="dropdown-label-header-title">改變標籤
+                                                                <a href="#" class="add-label-icon-a"
+                                                                    name="label-edit-off">
+                                                                    <i class="fas fa-times change-label-icon"></i>
+                                                                </a>
+                                                            </span>
+                                                            <div class="label-color-total">
+                                                                <label class="label-name">名字</label>
+                                                                <input class="label-edit-input-search"
+                                                                    id="label-edit-input-search-right-6" type="text">
+                                                                <div class="label-edit-btn-set">
+                                                                    <button class="btn-save"
+                                                                        id="add-label-edit-btn-right-6">儲存</button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--右邊的標籤點選編輯層結束-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--右邊最初的結束-->
+                                    </div>
+                                    <!---->
+                                    <!--到期時間-->
+                                    <div class="dropdown-timeout">
+                                        <a class="button-link js-change-card-times" href="#" role="button"
+                                            id="dropdown-timeout" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="true">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="far fa-clock" style="margin-right: 0.65em;"></i>到期日
+                                            </span>
+                                        </a>
+                                        <div id="TimeSet" class="dropdown-menu">
+                                            <span class="pop-over-header-title">到期日</span>
+                                            <div class="dropdown-timeout-edit">
+                                                <input id="TimeDate" class="timeout-date">
+                                                <div class="label-edit-btn-set">
+                                                    <button class="btn-save">儲存</button>
+                                                    <button class="btn-cancel">刪除</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <!--上傳檔案-->
+                                    <label class="upload_cover">
+                                        <span class="upload_cover_span">
+                                            <i class="far fa-file" style="margin-right: 0.75em;"></i>上傳附件
+                                        </span>
+                                        <input id="upload_input" type="file">
+                                    </label>
+                                    <!---->
+                                </div>
+                                <hr>
+                                <!--動作區塊-->
+                                <div class="modal-action">
+                                    <div class="add-to-card-name">動作</div>
+                                    <!--移動卡片-->
+                                    <div class="dropdown">
+                                        <a class="button-link js-change-card-moves" role="button" id="drop_move"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span style="margin-left: 0.5em;color: #091e42;">
+                                                <i class="fas fa-arrow-right" style="margin-right: 0.55em;"></i>
+                                                移動
+                                            </span>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="drop_move"
+                                            data-stopPropagation="true">
+                                            <span class="dropdown-label-header-title">移動卡片</span>
+                                            <div class="move-card-modal">
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move">
+                                                        <span class="move-label">看板</span>
+                                                        <span class="move-value" id="kanboard"
+                                                            onmousemove="removeClassType(this)">我的計畫</span>
+                                                        <select id="kanboard-value" onchange="Kanboard_Value(this.id)">
+                                                            <optgroup label="計畫">
+                                                                <option>我的計畫</option>
+                                                                <option>專題製作</option>
+                                                                <option>文件製作</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-grid">
+                                                    <div class="button-drop-move-left">
+                                                        <span class="move-label">列表</span>
+                                                        <span class="move-value" id="list-get"
+                                                            onmousemove="removeClassType(this)">代辦事項:</span>
+                                                        <select id="list-value" onchange="list_value(this.id)">
+                                                            <option>代辦事項: (目前的)</option>
+                                                            <option>今日應該完成</option>
+                                                            <option>已完成</option>
+                                                            <option>失敗</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="button-drop-move-right" style="margin-left: 0.5em;">
+                                                        <span class="move-label">位置</span>
+                                                        <span class="move-value" id="position-get"
+                                                            onmousemove="removeClassType(this)">1</span>
+                                                        <select id="position-value" onchange="position_value(this.id)">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <button class="move-btn">移動</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <!--刪除卡片-->
+                                    <div class="delete-card">
+                                        <a class="button-link change-card-deletes" href="#">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="fas fa-ban" style="margin-right: 0.45em;"></i>
+                                                刪除
+                                            </span>
+                                        </a>
+                                        <a class="button-link change-card-deletes-check" href="#">
+                                            <span style="margin-left: 0.5em;">
+                                                <i class="fas fa-ban" style="margin-right: 0.45em;"></i>
+                                                刪除卡片
+                                            </span>
+                                        </a>
+                                        <button type="button" class="btn-delete-close">取消</button>
+                                    </div>
+                                    <!---->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 設定會員權限-->
+        <div class="modal fade" id="member-set" tabindex="-1" role="dialog" aria-labelledby="member-set"
+            aria-hidden="true">
+            <div class="modal-dialog" style="max-width:28em;border-radius: 4px;" role="document">
+                <div class="modal-content modal-member-content" style="border-radius: 4px;">
+
+                    <div class="modal-header" style="background: rgb(59, 76, 105);color:#fff;border-radius: 4px;">
+                        <h5 class="modal-title" style="border-radius: 4px; font-size:1em;">會員權限設定:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                            <span aria-hidden="true" style="color:#fff;">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body" style="border-radius: 4px;">
+                        <div class="member-modal-label-set">
+                            <div class="member-modal-name">列表權限:</div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="member-modal-label-set">
+                            <div class="member-modal-name">工作新增:</div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="member-modal-label-set">
+                            <div class="member-modal-name">工作編輯:</div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="member-modal-label-set">
+                            <div class="member-modal-name">工作刪除:</div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark btn-member-close" data-dismiss="modal">關閉</button>
+                        <button type="button" class="btn btn-danger btn-member-submit">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal組長推播-->
+        <div class="modal fade" id="modal-admin-push" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-admin-border" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header modal-header-admin-push">
+                        <h5 class="modal-title">前三公告</h5>
+                        <div class="admin-icon-set">
+                            <div class="plus-square-admin">
+                                <a href="#"><i class="far fa-plus-square fa-lg" data-toggle="modal"
+                                        data-target="#admin-text"></i></a>
+                            </div>
+                            <div class="double-down-member">
+                                <a href="#" id="admin-text-show"><i class="fas fa-angle-double-down fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="show-messenge clickShow">
+                            <div class="messenge">
+                                <div class="messenge-text">
+                                    請各位負責好自己的部分，謝謝。
+                                </div>
+                                <div class="time-show">
+                                    2019/07/25 下午03:47
+                                </div>
+                            </div>
+                            <hr class="hr-admin">
+                        </div>
+                        <div class="show-messenge clickShow">
+                            <div class="messenge">
+                                <div class="messenge-text">
+                                    請各位負責好自己的部分，謝謝。
+                                </div>
+                                <div class="time-show">
+                                    2019/07/25 下午03:47
+                                </div>
+                            </div>
+                            <hr class="hr-admin">
+                        </div>
+                        <div class="show-messenge clickShow">
+                            <div class="messenge">
+                                <div class="messenge-text">
+                                    請各位負責好自己的部分，謝謝。
+                                </div>
+                                <div class="time-show">
+                                    2019/07/25 下午03:47
+                                </div>
+                            </div>
+                            <hr class="hr-admin">
+                        </div>
+                        <div class="show-messenge clickShow">
+                            <div class="messenge">
+                                <div class="messenge-text">
+                                    請各位負責好自己的部分，謝謝。
+                                </div>
+                                <div class="time-show">
+                                    2019/07/25 下午03:47
+                                </div>
+                            </div>
+                            <hr class="hr-admin">
+                        </div>
+                        <div class="show-messenge clickShow">
+                            <div class="messenge">
+                                <div class="messenge-text">
+                                    請各位負責好自己的部分，謝謝。
+                                </div>
+                                <div class="time-show">
+                                    2019/07/25 下午03:47
+                                </div>
+                            </div>
+                            <hr class="hr-admin">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <!-- Modal組長新增訊息-->
+        <div class="modal fade" id="admin-text" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="admin-text">新增訊息</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">時間</label>
+                            <input id="AdminDateTime" class="timeout-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">訊息</label>
+                            <textarea class="form-control" cols="50" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close" data-dismiss="modal">關閉</button>
+                        <button type="button" class="btn btn-send">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-----------------------------------scrpit-------------------------------------------->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <!--MyJavascript-->
+    <script src="./js/Plan_AddTextarea.js"></script>
+    <script src="./js/Plan_Draggable.js"></script>
+    <script src="./js/Plan_AddList.js"></script>
+    <script src="./js/Plan_CardLabelToggle.js"></script>
+    <script src="./js/Plan_ModalLabelLeft.js"></script>
+    <script src="./js/Plan_ModalLabelRight.js"></script>
+    <script src="./js/Plan_ModalMoveCard.js"></script>
+    <script src="./js/Plan_ModalDeleteCard.js"></script>
+    <script src="./js/Plan_ListDropdown.js"></script>
+    <script src="./js/Plan_MemberDelete.js"></script>
+    <script src="./js/Plan_AdminMessenge.js"></script>
+    <script src="./js/Plan_MoveHoverText.js"></script>
+    <script src="./js/Plan_StopPropagation.js"></script>
+    <script src="./js/Plan_KendoDatePicker.js"></script>
+    <script src="./js/Plan_ListInputValue.js"></script>
+    <script src="./js/Plan_Coursel.js"></script>
+    <!---->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!------------------------------------------------------------------------------------->
+</body>
+
+</html>
