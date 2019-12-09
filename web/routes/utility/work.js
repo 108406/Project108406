@@ -5,14 +5,24 @@ const query = require('./asyncDB');
 
 
 //------------------------------------------
+<<<<<<< HEAD
 // 用work_id查詢
 //------------------------------------------
 var displayWork = async function (work_id) {
+=======
+// 用work_serno查詢
+//------------------------------------------
+var displayWork = async function (work_serno) {
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     //存放結果
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query('select * from work where work_id = $1', [work_id])
+=======
+    await query('select * from work where work_serno = $1', [work_serno])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案資料(物件)
@@ -31,14 +41,24 @@ var displayWork = async function (work_id) {
 
 
 //------------------------------------------
+<<<<<<< HEAD
 // 用work_id顯示work_title
 //------------------------------------------
 var displayWorkTitle = async function (work_id) {
+=======
+// 用work_serno顯示work_title
+//------------------------------------------
+var displayWorkTitle = async function (work_serno) {
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     //存放結果
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query('select * from work where work_id = $1', [work_id])
+=======
+    await query('select * from work where work_serno = $1', [work_serno])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案資料(物件)
@@ -59,14 +79,23 @@ var displayWorkTitle = async function (work_id) {
 //------------------------------------------
 // 新增工作資料
 //------------------------------------------
+<<<<<<< HEAD
 var addWork = async function (work_id, work_title) {
+=======
+var addWork = async function (work_add) {
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     //存放結果
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     // await query('insert into work (work_title, work_content, deadline, tag, file, first_principal, second_principal) values ($1, $2, $3, $4, $5, $6, $7)'
     // , [work_add.work_title, work_add.work_content, work_add.deadline, work_add.tag, work_add.file, work_add.first_principal, work_add.second_principal])
     await query('insert into work (work_id, work_title) values ($1, $2)', [work_id, work_title])
+=======
+    await query('insert into work (work_title, work_content, deadline, tag, file, first_principal, second_principal) values ($1, $2, $3, $4, $5, $6, $7)'
+    , [work_add.work_title, work_add.work_content, work_add.deadline, work_add.tag, work_add.file, work_add.first_principal, work_add.second_principal])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -87,12 +116,20 @@ var addWork = async function (work_id, work_title) {
 //------------------------------------------
 // 刪除工作資料
 //------------------------------------------
+<<<<<<< HEAD
 var deleteWork = async function (work_id) {
+=======
+var deleteWork = async function (work_serno) {
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     //存放結果
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query('delete from work where work_id = $1', [work_id])
+=======
+    await query('delete from work where work_serno = $1', [work_serno])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -118,8 +155,13 @@ var updateWork = async function (work_update) {
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query('update work set work_title = $2, work_content = $3, deadline = $4, tag_id1 = $5, tag_id2 = $6, tag_id3 = $7, tag_id4 = $8, tag_id5 = $9, tag_id6 = $10, file = $11, file_name = $12, first_principal = $13, second_principal = $14 where work_id = $1'
     , [work_update.work_id, work_update.work_title, work_update.work_content, work_update.deadline, work_update.tag_id1, work_update.tag_id2, work_update.tag_id3, work_update.tag_id4, work_update.tag_id5, work_update.tag_id6, work_update.file, work_update.file_name, work_update.first_principal, work_update.second_principal])
+=======
+    await query('update work set work_title = $2, work_content = $3, deadline = $4, tag = $5, file = $6, first_principal = $7, second_principal = $8 where work_serno = $1'
+    , [work_update.work_serno, work_update.work_title, work_update.work_content, work_update.deadline, work_update.tag, work_update.file, work_update.first_principal, work_update.second_principal])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -138,14 +180,24 @@ var updateWork = async function (work_update) {
 
 
 //------------------------------------------
+<<<<<<< HEAD
 // 用work_id查詢
 //------------------------------------------
 var displayWrokPrincipal = async function (work_id) {
+=======
+// 用work_serno查詢
+//------------------------------------------
+var displayWrokPrincipal = async function (work_serno) {
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     //存放結果
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query('select * from work where work_id = $1', [work_id])
+=======
+    await query('select * from work where work_serno = $1', [work_serno])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案資料(物件)
@@ -189,6 +241,7 @@ var displayMyWork = async function (user_id) {
 //------------------------------------------
 
 
+<<<<<<< HEAD
 //------------------------------------------
 // 更改工作檔案
 //------------------------------------------
@@ -218,3 +271,7 @@ var updateWorkFile = async function (work_id, file, file_name) {
 
 //匯入
 module.exports = { displayWork, displayWorkTitle, addWork, deleteWork, updateWork, displayWrokPrincipal, displayMyWork, updateWorkFile }
+=======
+//匯入
+module.exports = { displayWork, displayWorkTitle, addWork, deleteWork, updateWork, displayWrokPrincipal, displayMyWork }
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52

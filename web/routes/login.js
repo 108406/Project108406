@@ -1,4 +1,5 @@
 var express = require('express');
+<<<<<<< HEAD
 var app = express();
 var router = express.Router();
 const line_login = require('./line-login');
@@ -78,5 +79,14 @@ function SetMember(profile) {
   })
 }
 
+=======
+var router = express.Router();
+
+//接收GET請求
+router.get('/', function(req, res, next) {
+    res.render('login.ejs', { text: 'none' });
+  });
+  
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 
 module.exports = router;

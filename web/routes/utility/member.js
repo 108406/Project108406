@@ -47,7 +47,11 @@ var addMember = async function (members) {
             }
         }, (error) => {
             result = false;  //執行錯誤
+<<<<<<< HEAD
             console.log("error", error)
+=======
+            console.log(error)
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         });
 
     //回傳執行結果
@@ -159,5 +163,31 @@ var updateMemberLinebotPush = async function (userID, linebotpush) {
 }
 //------------------------------------------
 
+<<<<<<< HEAD
 //匯出
 module.exports = { displayMember, addMember, deleteMember, updateMemberPhoto, updateMemberData, updateMemberLinebotPush };
+=======
+var tempIdentityCertification = async function (userID, password) {
+    //存放結果
+    var result = [];
+
+    //讀取資料庫
+    await query('select * from member where user_id = $1 and member_password = $2', [userID, password])
+        .then((data) => {
+            if (data.rowCount > 0) {
+                result = true;
+            } else {
+                result = false;
+            }
+        }, (error) => {
+            result = false;  //執行錯誤
+            console.log(error)
+        });
+
+    //回傳執行結果
+    return result;
+}
+
+//匯出
+module.exports = { displayMember, addMember, deleteMember, updateMemberPhoto, updateMemberData, updateMemberLinebotPush, tempIdentityCertification };
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52

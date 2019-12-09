@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
 
 /*----------------------------------*/
@@ -303,3 +304,67 @@ h1.text-set {
   cursor: pointer;
   width: 21em;
 }
+=======
+@charset "utf-8";
+html,body{
+  font-family: 'Handlee';
+  margin:0;
+  height:100%;
+  background:#FFF6AA;
+}
+
+.info{
+  width:100%;
+  padding:15% 10% 0 10%;
+  text-align:center;
+  text-shadow:0 2px 3px rgba(0,0,0,0.2);
+}
+
+/**test**/
+
+/* sign in FORM */
+.logreg-forms{
+  width:412px;
+  margin:10vh auto;
+  background-color:#FFF6AA;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.logreg-forms form {
+  width: 100%;
+  max-width: 410px;
+  padding: 15px;
+  margin: auto;
+}
+.form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.social-login{
+  width:390px;
+  margin:0 auto;
+  margin-bottom: 14px;
+}
+.social-btn{
+  height:50px;
+  background-color:#00C300;
+  font-weight: 100;
+  color:white;
+  width:190px;
+  font-size: 0.9rem;
+}
+
+
+
+
+
+.logreg-forms button[type="submit"]{ margin-top:10px; }
+
+
+
+
+
+
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+<<<<<<< HEAD
 //增加引用函式
 const view = require('./utility/view');
 const myFunction = require('./utility/myFunction');
@@ -162,5 +163,12 @@ function setDateFormat(date) {
 
     return d;
 }
+=======
+//接收GET請求
+router.get('/', function(req, res, next) {
+    res.render('mywork.ejs', { account: 'A001' });
+  });
+  
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 
 module.exports = router;

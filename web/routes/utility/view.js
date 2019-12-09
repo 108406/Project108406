@@ -8,11 +8,19 @@ var projectWithUser = async function (user_id) {
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query("select project_id, project_name, project_password, project_startdate, project_enddate, isadmin from projectwithuser_view where user_id = '" + user_id + "'")
         .then((data) => {
             result = data; //成功
         }, (error) => {
             result = false; //執行錯誤
+=======
+    await query("select project_id, project_name, project_password, project_startdate, project_enddate from projectwithuser_view where user_id = '" + user_id + "'")
+        .then((data) => {
+            result = data;  //成功
+        }, (error) => {
+            result = false;  //執行錯誤
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
             console.log(error)
         });
 
@@ -21,6 +29,7 @@ var projectWithUser = async function (user_id) {
 }
 //------------------------------------------
 
+<<<<<<< HEAD
 var projectWithPrincipal = async function (project_id, user_id) {
     //存放結果
     var result = [];
@@ -47,6 +56,18 @@ var projectAllData = async function (project_id) {
             // console.log(data.rows);
         }, (error) => {
             result = 'failed'; //執行錯誤
+=======
+var projectAllData = async function (project_id) {
+    //存放結果
+    var result = [];
+
+    //讀取資料庫
+    await query("select * from project_view where project_id = '" + project_id + "'")
+        .then((data) => {
+            result = data.rows;  //成功
+        }, (error) => {
+            result = false;  //執行錯誤
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
             console.log(error)
         });
 
@@ -55,6 +76,7 @@ var projectAllData = async function (project_id) {
 }
 //------------------------------------------
 
+<<<<<<< HEAD
 var workWithUser = async function (user_id) {
     //存放結果
     var result = [];
@@ -96,3 +118,7 @@ module.exports = {
     workWithUser,
     myWorkAllData
 }
+=======
+//匯入
+module.exports = { projectWithUser, projectAllData }
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52

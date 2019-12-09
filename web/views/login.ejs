@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="utf-8">
 
 <head>
@@ -41,14 +42,78 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/js/BackgroundChange.js"></script>
+=======
+<html lang="en">
+
+<head>
+
+    <title>Plan Yourself</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee" rel="stylesheet">
+    <style>
+    .warning {
+        color:red; 
+        font-size:0.8rem;
+        text-align:center; 
+    }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="info">
+            <h1>Plan Yourself</h1>
+        </div>
+        <div class="logreg-forms">
+            <form class="form-signin" action="/content" method="POST">
+                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+                <div class="social-login text-center">
+                        <a onclick="LineAuth();" style="cursor: pointer"><img src="./imgs/btn_login_hover.png"class="linWe"></a>
+                </div>
+                <p style="text-align:center"> OR </p>
+                <input type="text" class="form-control" placeholder="請輸入帳號" required="" name="account"
+                    autofocus="">
+                <input type="password" class="form-control" placeholder="請輸入密碼" required="" name="password">                
+                <div class="warning" style=<%= "display:" + text %>>您輸入的帳號或密碼有錯誤。</div>
+                <button class="btn btn-success btn-block" type="submit"> Sign
+                    in</button>
+            </form>
+        </div>
+    </div>
+    <!--**************************-->
+    <!------------scrpit----------->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script>
+        function LineAuth() {
+            var URL = 'https://access.line.me/oauth2/v2.1/authorize?';
+            URL += 'response_type=userid';
+            URL += '&client_id=1579756549';
+            URL += '&redirect_uri=http://localhost:3000/content';
+            URL += '&state=1234';
+            URL += '&scope=openid%20profile';
+            window.location.href = URL;
+        }
+    </script>
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
     <!------------------------------------------------------------------------------------->
+=======
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 </body>
 
 </html>

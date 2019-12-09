@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
 /*----------------------------------*/
 
@@ -123,10 +124,62 @@ a:hover {
     -webkit-border-radius: 4px;
     border-radius: 4px;
     background: rgb(143, 143, 143);
+=======
+@charset "utf-8";
+/**總體設定-------------------**/
+
+body, html {
+    font-family: 'Handlee', 'Noto Sans TC';
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #FFF6B7;
+}
+
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 3%;
+    padding-bottom: 3%;
+    /* background-image: url(../imgs/VBwhoPt.png); */
+    background-repeat: no-repeat;
+}
+
+/**導覽列設定-------------------**/
+
+.top_navbar {
+    background-color: #444054;
+}
+
+.btn-signout {
+    width: 4em;
+    padding: 2%;
+    margin: 10px;
+    color: #BEBBBB;
+    background: none;
+    text-align: middle;
+    font: normal normal bold 1.5rem "微軟正黑體";
+    border-radius: 8px;
+    border-style: solid;
+    border-color: #BEBBBB;
+}
+
+.btn-signout:hover {
+    color: #ffffff;
+    background-color: #DB7493;
+}
+
+.search {
+    background-color: #FFFFFF;
+}
+
+.nav {
+    font-size: 1.3rem;
+    text-align: center;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }
 
 /**label尚未開始、執行中、已完成大小設定-------------------**/
 
+<<<<<<< HEAD
 .status {
     width: 100%;
     margin-top: 2em;
@@ -175,10 +228,25 @@ a:hover {
     margin-left: 0.8em;
     font-size: 0.9em;
     font-weight: 700;
+=======
+.label {
+    width: 200px;
+    height: 50px;
+    background-color: #444054;
+}
+
+/**專案調整設定-------------------**/
+
+.card-set {
+    max-width: 280px;
+    min-width: 280px;
+    margin-top: 10px;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }
 
 /**card顏色等設定-------------------**/
 
+<<<<<<< HEAD
 .card-deck {
     margin-left: 5%;
     min-height: 10em;
@@ -194,6 +262,17 @@ a:hover {
     border: none;
     transform: scale(0.8);
     transform-origin: top left;
+=======
+.card {
+    max-width: 250px;
+    min-width: 250px;
+    height: 125px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 0px;
+    background: none;
+    border: none;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }
 
 .card:hover .block-setting {
@@ -207,12 +286,17 @@ a:hover {
     position: absolute;
     top: 5%;
     left: 2.5%;
+<<<<<<< HEAD
     border: 3px #7a7a7a solid;
+=======
+    border: 3px #ffffff solid;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }
 
 .card-link {
     height: 100%;
     width: 100%;
+<<<<<<< HEAD
     color: rgb(0, 0, 0);
     display: flex;
     align-items: center;
@@ -237,10 +321,32 @@ a:hover {
     padding-bottom: 0.5em;
     text-overflow: ellipsis;
     white-space: nowrap;
+=======
+    color: black;
+}
+
+.card-link:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.card-color-body {
+    height: 100%;
+    width: 100%;
+    background: #FFD3BC;
+}
+
+.card-title {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }
 
 .block-setting {
     display: none;
+<<<<<<< HEAD
     height: 100%;
     width: 25%;
     z-index: 11;
@@ -249,6 +355,16 @@ a:hover {
     top: 0;
     right: 1%;
     background: rgba(228, 227, 226, 0.753);
+=======
+    height: 110%;
+    width: 25%;
+    z-index: 2;
+    position: absolute;
+    right: 0px;
+    top: -5%;
+    right: 1%;
+    background: rgba(255, 255, 255, 0.6);
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }
 
 .card-setting {
@@ -258,21 +374,33 @@ a:hover {
     justify-content: center;
 }
 
+<<<<<<< HEAD
 .card-color-body {
     height: 100%;
     width: 100%;
     /*background: rgb(61, 85, 124);*/
 }
+=======
+/* .card-color-footer {
+    background: #F5F1ED;
+    color: #FFFFFF;
+} */
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 
 .card-color-body-ing {
     height: 100%;
     width: 100%;
+<<<<<<< HEAD
     /*background: rgb(61, 85, 124);*/
+=======
+    background: #FF84A3;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }
 
 .card-color-body-end {
     height: 100%;
     width: 100%;
+<<<<<<< HEAD
     /*background: rgb(61, 85, 124);*/
 }
 
@@ -281,11 +409,24 @@ a:hover {
     height: 100%;
     background: rgb(233, 232, 232);
     /*border: 2px #ffffff solid;*/
+=======
+    background: #FF3F72;
+}
+
+.card-color-special {
+    width: 250px;
+    height: 126.35px;
+    text-align: center;
+    padding-top: 16%;
+    background: rgba(190, 187, 187, 0.3);
+    border: 2px #ffffff solid;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     cursor: pointer;
 }
 
 /**tub垃圾桶設定-------------------**/
 
+<<<<<<< HEAD
 .tub-set {
     position: fixed;
     display: flex;
@@ -394,4 +535,10 @@ a:hover {
         margin-bottom: 0;
         margin-left: 0 !important;
     }
+=======
+.tub {
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }

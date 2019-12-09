@@ -3,6 +3,7 @@ var router = express.Router();
 
 //增加引用函式
 const project = require('./utility/project');
+<<<<<<< HEAD
 const myFunction = require('./utility/myFunction');
 
 //接收GET請求
@@ -32,6 +33,17 @@ router.post('/', function (req, res, next) {
                 'status': 'failed!'
             })
         }
+=======
+
+//接收GET請求
+router.post('/', function(req, res, next) {
+    project.updateProjectName(req.body.project_id, req.body.project_name, req.body.project_password).then(data => {
+        if(data==true){
+            res.render('complete.ejs');  //將資料傳給顯示頁面
+        }else{
+            res.render('notFound');  //導向找不到頁面
+        }  
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     })
 });
 

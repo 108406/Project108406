@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
 /*----------------------------------*/
 
@@ -179,4 +180,21 @@ button.BtnSend, button.BtnCancel {
         left: 50%;
         transform: translateX(-50%);
     }
+=======
+@charset "utf-8";
+/**總體設定-------------------**/
+body,html{
+    background-color:#FDF6AB;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+/**navbar上方導覽列設定-------------------**/
+.top_navbar{
+    background-color: #4D6C74;
+}
+/**上方導覽列search設定-------------------**/
+.search{
+    background-color:#FFFFFF;
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 }

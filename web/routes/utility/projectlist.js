@@ -5,14 +5,24 @@ const query = require('./asyncDB');
 
 
 //------------------------------------------
+<<<<<<< HEAD
 // 用list_id查詢專案
 //------------------------------------------
 var fetchProjectListP = async function (list_id) {
+=======
+// 用list_serno查詢專案
+//------------------------------------------
+var fetchProjectListP = async function (list_serno) {
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     //存放結果
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query('select * from projectlist where list_id = $1', [list_id])
+=======
+    await query('select * from projectlist where list_serno = $1', [list_serno])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rows.length > 0) {
                 result = data.rows;  //專案列表資料(物件)
@@ -56,12 +66,20 @@ var fetchProjectListL = async function (project_id) {
 //------------------------------------------
 // 新增專案列表資料
 //------------------------------------------
+<<<<<<< HEAD
 var addProjectList = async function (project_id, list_id) {
+=======
+var addProjectList = async function (project_id, list_serno) {
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     //存放結果
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query('insert into projectlist (project_id, list_id) values ($1, $2)', [project_id, list_id])
+=======
+    await query('insert into projectlist (project_id, list_serno) values ($1, $2)', [project_id, list_serno])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功

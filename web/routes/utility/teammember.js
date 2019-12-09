@@ -29,6 +29,7 @@ var displayTeamMember = async function (project_id) {
 }
 //------------------------------------------
 
+<<<<<<< HEAD
 //------------------------------------------
 // 用project_id查詢成員
 //------------------------------------------
@@ -54,6 +55,8 @@ var VerificationTeamMember = async function (user_id, project_id) {
 }
 //------------------------------------------
 
+=======
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
 
 //------------------------------------------
 // 用user_id顯示MyProject
@@ -110,12 +113,20 @@ var addTeamMember = async function (user_id, project_id, group_id, isadmin) {
 //------------------------------------------
 // 刪除成員資料
 //------------------------------------------
+<<<<<<< HEAD
 var deleteTeamMember = async function (user_id, project_id) {
+=======
+var deleteTeamMember = async function (teammember_serno) {
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
     //存放結果
     var result = [];
 
     //讀取資料庫
+<<<<<<< HEAD
     await query('delete from teammember where user_id = $1 and project_id = $2', [user_id, project_id])
+=======
+    await query('delete from teammember where teammember_serno = $1', [teammember_serno])
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         .then((data) => {
             if (data.rowCount > 0) {
                 result = true;  //成功
@@ -160,4 +171,8 @@ var updateTeamMember = async function (user_id, project_id, group_id, isadmin) {
 
 
 //匯入
+<<<<<<< HEAD
 module.exports = { displayTeamMember, VerificationTeamMember, displayMyProject, addTeamMember, deleteTeamMember, updateTeamMember }
+=======
+module.exports = { displayTeamMember, displayMyProject, addTeamMember, deleteTeamMember, updateTeamMember }
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52

@@ -8,7 +8,11 @@ router.get('/', function(req, res, next) {
     // console.log(Date.now() * 1000 + Math.floor(Math.random() * 1000));
     view.projectAllData(req.query.project_id).then(data => {
         if(data==null){
+<<<<<<< HEAD
             res.redirect('/login');  //導向錯誤頁面
+=======
+            res.render('error');  //導向錯誤頁面
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         }else{
             // 0 => list_permission, 1 => add_work, 2 => edit_work, 3 => delete_work
             var projectPermission = SetProjectPermission(data);
@@ -24,7 +28,11 @@ router.get('/', function(req, res, next) {
             console.log(listwork);
             console.log(lists);
             console.log(works);
+<<<<<<< HEAD
             res.render('project_list_work.ejs', {items:data});
+=======
+            res.render('project_list_work.ejs', {items:data, account: 'A001'});
+>>>>>>> 3e2fdee9850ac92c20478a7fc9d0a1bc1fb92e52
         } 
     })
 });
