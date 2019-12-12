@@ -373,7 +373,6 @@ function _bot() {
 			var msg = event.message.text;
 			var replyMsg = '您好。';
 
-			// CheckMember(event);
 			if (event.source.groupId != undefined) {
 				if (msg == '#加入專案' || msg == '#加入計劃' || msg == '#加入計畫') {
 					if (!talkingUser.includes(event.source.userId)) {
