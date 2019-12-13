@@ -13,15 +13,15 @@ var myFunction = require('./routes/utility/myFunction');
 var allWorkData = [];
 
 var bot = linebot({
-	channelId: '1653538178',
-	channelSecret: '55bd1ecab193602fb14635d5a808923b',
-	channelAccessToken: '2mEEc+12z5ghHzMoVuF77NuMlGZudmFnWE5yB5fYDQN2H1vOqfMSlYEgKqs835kDrccDVGvHxJSMSQIlN+aVtGdSCPc2NKH2ATQTfnoewYdmM2ed0YQQEF3FjO9vOLjZnJ/eHUWLQJhBLVIokDgz+gdB04t89/1O/w1cDnyilFU='
+	channelId: '',
+	channelSecret: '',
+	channelAccessToken: ''
 });
 
 var client = new line.Client({
-	channelId: '1653538178',
-	channelSecret: '55bd1ecab193602fb14635d5a808923b',
-	channelAccessToken: '2mEEc+12z5ghHzMoVuF77NuMlGZudmFnWE5yB5fYDQN2H1vOqfMSlYEgKqs835kDrccDVGvHxJSMSQIlN+aVtGdSCPc2NKH2ATQTfnoewYdmM2ed0YQQEF3FjO9vOLjZnJ/eHUWLQJhBLVIokDgz+gdB04t89/1O/w1cDnyilFU='
+	channelId: '',
+	channelSecret: '',
+	channelAccessToken: ''
 });
 
 const app = express();
